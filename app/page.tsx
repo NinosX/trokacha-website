@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Smartphone, ArrowRight, Repeat, ShoppingBag, Truck, Sparkles, Heart, MessageCircle, CheckCircle } from "lucide-react";
+import { Sparkles } from "lucide-react";
+import { EmailForm } from "@/components/EmailForm";
 import { useState, useEffect } from "react";
 
 // Animation du tutoriel de swipe
@@ -238,19 +239,7 @@ export default function Home() {
                 <div className="text-lg font-semibold mb-3 flex items-center gap-2">
                   🔔 Soyez informé du lancement
                 </div>
-                <form className="flex flex-col sm:flex-row gap-3">
-                  <input
-                    type="email"
-                    placeholder="votre@email.com"
-                    className="flex-1 px-4 py-3 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
-                  />
-                  <button
-                    type="submit"
-                    className="px-6 py-3 bg-white text-primary font-semibold rounded-xl hover:bg-white/90 transition-all duration-300 hover:scale-105"
-                  >
-                    M'avertir
-                  </button>
-                </form>
+                <EmailForm variant="hero" />
                 <p className="text-white/60 text-xs mt-3">
                   Pas de spam, juste une notification au lancement 🚀
                 </p>
@@ -390,19 +379,7 @@ export default function Home() {
 
             {/* Email Form CTA */}
             <div className="max-w-md mx-auto">
-              <form className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="email"
-                  placeholder="votre@email.com"
-                  className="flex-1 px-5 py-4 rounded-xl bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/50 text-center sm:text-left"
-                />
-                <button
-                  type="submit"
-                  className="px-8 py-4 bg-white text-primary font-bold rounded-xl hover:bg-white/90 transition-all duration-300 hover:scale-105"
-                >
-                  Je m'inscris
-                </button>
-              </form>
+              <EmailForm variant="cta" />
               <p className="text-white/60 text-sm mt-4">
                 🎁 Les premiers inscrits auront accès à des fonctionnalités exclusives
               </p>
