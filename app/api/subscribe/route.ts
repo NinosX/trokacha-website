@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { db } from '@/lib/firebase';
-import { collection, addDoc } from 'firebase/firestore';
+
+export const runtime = 'edge';
 
 export async function POST(request: Request) {
   try {
@@ -13,13 +13,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Add subscriber (skip duplicate check for simplicity)
-    const subscribersRef = collection(db, 'subscribers');
-    await addDoc(subscribersRef, {
-      email: email.toLowerCase(),
-      source: 'website',
-      createdAt: new Date().toISOString(),
-    });
+    // Pour l'instant, on log juste l'email (on ajoutera Firestore après)
+    console.log('New subscriber:', email);
 
     return NextResponse.json(
       { message: 'Inscription reussie !' },
