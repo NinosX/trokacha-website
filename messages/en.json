@@ -1,0 +1,274 @@
+{
+  "metadata": {
+    "title": "Trokacha - The Algerian All-in-One Platform",
+    "description": "The first Algerian all-in-one platform: Barter, Sale, Transport, Parcels and Carpooling"
+  },
+  "navbar": {
+    "features": "Features",
+    "howItWorks": "How it works",
+    "transport": "Transport",
+    "faq": "FAQ",
+    "signup": "Sign up"
+  },
+  "hero": {
+    "badge": "Coming soon",
+    "title": "Trokacha",
+    "subtitle": "The app that does it all",
+    "description": "Barter . Sale . Purchase . Parcel Transport . Carpooling",
+    "comingSoon": "Coming soon on",
+    "appStore": "App Store",
+    "playStore": "Play Store",
+    "notifyTitle": "Get notified at launch",
+    "notifyButton": "Notify me",
+    "notifyNote": "No spam, just a notification at launch"
+  },
+  "swipeTutorial": {
+    "step1": "Browse the ads",
+    "step2": "Interested in this ad?",
+    "step3": "Choose one of your ads",
+    "step4": "Swipe right",
+    "step5": "Proposal sent!"
+  },
+  "mobileFeatures": {
+    "troc": "Barter",
+    "vente": "Sale",
+    "transport": "Transport",
+    "covoiturage": "Carpooling"
+  },
+  "features": {
+    "title": "One app for everything",
+    "subtitle": "No need to juggle between multiple apps. Trokacha centralizes all your exchange needs in Algeria",
+    "troc": {
+      "title": "Barter & Exchange",
+      "description": "Exchange your goods with other users with ease"
+    },
+    "vente": {
+      "title": "Buy & Sell",
+      "description": "Sell or buy items securely"
+    },
+    "transport": {
+      "title": "Parcel Transport",
+      "description": "Send or transport parcels anywhere in Algeria"
+    },
+    "covoiturage": {
+      "title": "Carpooling",
+      "description": "Share your trips and save on travel"
+    },
+    "interface": {
+      "title": "Intuitive Interface",
+      "description": "Ultra-fast and easy-to-use swipe system"
+    },
+    "design": {
+      "title": "Elegant Design",
+      "description": "A modern and pleasant visual experience"
+    }
+  },
+  "howItWorks": {
+    "title": "How does it work?",
+    "subtitle": "4 simple steps to start exchanging",
+    "step1": {
+      "title": "Create your account",
+      "description": "Quick registration in seconds with your phone number"
+    },
+    "step2": {
+      "title": "Post or browse",
+      "description": "Add your ads or discover those of other users"
+    },
+    "step3": {
+      "title": "Swipe and propose",
+      "description": "Find what interests you and make an exchange proposal"
+    },
+    "step4": {
+      "title": "Exchange!",
+      "description": "Discuss, finalize and proceed with the exchange securely"
+    }
+  },
+  "transportSection": {
+    "badge": "New on Trokacha",
+    "title": "Collaborative transport",
+    "subtitle": "Send your parcels anywhere in Algeria thanks to our community of travelers. Economical, ecological and fast!",
+    "features": {
+      "send": {
+        "title": "Send everywhere",
+        "description": "Your parcels travel with individuals already making the trip"
+      },
+      "fast": {
+        "title": "Fast and flexible",
+        "description": "Choose the carrier and schedule that suits you"
+      },
+      "secure": {
+        "title": "100% Secure",
+        "description": "Verified carriers, real-time tracking and insurance included"
+      },
+      "community": {
+        "title": "Reliable community",
+        "description": "Rating and review system for total confidence"
+      }
+    },
+    "popularRoutes": "Popular routes",
+    "transportersAvailable": "Several carriers available",
+    "startingFrom": "starting from",
+    "moreRoutes": "+ hundreds of other routes available"
+  },
+  "algeriaMap": {
+    "title": "All over Algeria",
+    "subtitle": "From Tamanrasset to Annaba, Trokacha connects all wilayas",
+    "regions": {
+      "nord": "North",
+      "centre": "Center",
+      "ouest": "West",
+      "est": "East",
+      "sud": "South"
+    },
+    "stats": {
+      "wilayas": "Wilayas",
+      "coverage": "Coverage",
+      "available": "Available"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about Trokacha",
+    "questions": {
+      "q1": {
+        "question": "When will Trokacha be available?",
+        "answer": "Trokacha will be available very soon on iOS and Android. Sign up for the newsletter to be notified at launch!"
+      },
+      "q2": {
+        "question": "How does bartering work on Trokacha?",
+        "answer": "It's simple! Post your ad, browse other users' offers, and propose an exchange. If the other person accepts, you can discuss the details via chat."
+      },
+      "q3": {
+        "question": "Is parcel transport secure?",
+        "answer": "Yes! Each carrier is verified and rated by the community. You can track your parcel in real-time and communicate directly with the carrier."
+      },
+      "q4": {
+        "question": "Is Trokacha free?",
+        "answer": "Yes, Trokacha is completely free! No hidden fees, no subscription. Our business model is based on optional premium features."
+      },
+      "q5": {
+        "question": "In which cities is Trokacha available?",
+        "answer": "Trokacha will be available in all wilayas of Algeria at launch. Our goal is to connect Algerians from Tamanrasset to Annaba!"
+      },
+      "q6": {
+        "question": "How to become a carrier on Trokacha?",
+        "answer": "Just create an account and activate the carrier option. You can then see transport requests on your routes and offer your services."
+      }
+    }
+  },
+  "cta": {
+    "title": "Be among the first!",
+    "subtitle": "The app is coming soon. Sign up to be notified at launch and enjoy exclusive benefits.",
+    "button": "Sign me up",
+    "note": "Early subscribers will have access to exclusive features"
+  },
+  "footer": {
+    "tagline": "The Algerian app that does it all",
+    "links": "Useful Links",
+    "terms": "Terms of Use",
+    "privacy": "Privacy Policy",
+    "contact": "Contact",
+    "contactTitle": "Contact",
+    "copyright": "Trokacha. All rights reserved."
+  },
+  "emailForm": {
+    "placeholder": "your@email.com",
+    "success": "Registration successful!",
+    "errorConnection": "Connection error",
+    "errorServer": "Server error",
+    "errorInvalid": "Invalid email"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdate": "Last updated: December 2025",
+    "intro": "In accordance with Law 18-07 of June 10, 2018 relating to the protection of natural persons in the processing of personal data, amended by Law 11-25 of July 2025, Trokacha is committed to protecting the personal data of its users.",
+    "backHome": "Back to home",
+    "articles": {
+      "a1": {
+        "title": "Article 1 - Data Controller",
+        "content": "Trokacha - Online intermediation platform - Algeria",
+        "dpo": "Data Protection Officer (DPO)"
+      },
+      "a2": {
+        "title": "Article 2 - Data Collected",
+        "intro": "Trokacha only collects data necessary for the operation of the service:",
+        "items": [
+          "Identification data (name, first name, date of birth)",
+          "Contact details (email address, phone number)",
+          "For drivers: copy of driving license",
+          "Browsing and platform usage data",
+          "Transaction data (ad history, exchanges, reviews)"
+        ]
+      },
+      "a3": {
+        "title": "Article 3 - Legal Basis for Processing",
+        "intro": "Processing is based on:",
+        "items": [
+          "The express and informed consent of the user",
+          "The execution of the service contract",
+          "Trokacha's legal obligations",
+          "Legitimate interests (fraud prevention, service improvement)"
+        ]
+      },
+      "a4": {
+        "title": "Article 4 - Your Rights",
+        "intro": "In accordance with Law 18-07, you have the following rights:",
+        "items": [
+          "Right of access to your personal data",
+          "Right to rectification of inaccurate data",
+          "Right to erasure of data (right to be forgotten)",
+          "Right to object to processing",
+          "Right to restriction of processing",
+          "Right to data portability",
+          "Right to withdraw your consent at any time"
+        ],
+        "contact": "These rights can be exercised by contacting"
+      },
+      "a5": {
+        "title": "Article 5 - Data Retention",
+        "intro": "Personal data is retained:",
+        "items": [
+          "During the period of active account use",
+          "3 years after the last account activity",
+          "Then archived in accordance with legal obligations",
+          "Permanently deleted at the end of this period"
+        ]
+      },
+      "a6": {
+        "title": "Article 6 - Data Security",
+        "intro": "Trokacha implements appropriate technical and organizational measures:",
+        "items": [
+          "Encryption of sensitive data",
+          "Strict access controls",
+          "Regular security audits",
+          "Staff training"
+        ]
+      },
+      "a7": {
+        "title": "Article 7 - Breach Notification",
+        "content": "In the event of a data breach likely to result in a high risk to your rights and freedoms, Trokacha will notify the ANPDP within 5 days (in accordance with Law 11-25) and affected users as soon as possible."
+      },
+      "a8": {
+        "title": "Article 8 - Data Transfers",
+        "content": "Personal data is hosted in Algeria. Any transfer to a foreign country will require prior authorization from the ANPDP and appropriate guarantees."
+      },
+      "a9": {
+        "title": "Article 9 - Right to Complain",
+        "content": "You can file a complaint with the National Personal Data Protection Authority (ANPDP) if you believe your rights have not been respected.",
+        "website": "ANPDP website"
+      }
+    },
+    "footerLinks": {
+      "terms": "Terms of Use",
+      "contact": "Contact us"
+    }
+  },
+  "terms": {
+    "title": "Terms of Use",
+    "lastUpdate": "Last updated: December 2025"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Have a question? A suggestion? Don't hesitate to contact us"
+  }
+}

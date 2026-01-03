@@ -1,0 +1,274 @@
+{
+  "metadata": {
+    "title": "Trokacha - La plateforme algerienne tout-en-un",
+    "description": "La premiere plateforme algerienne tout-en-un: Troc, Vente, Transport, Colis et Covoiturage"
+  },
+  "navbar": {
+    "features": "Fonctionnalites",
+    "howItWorks": "Comment ca marche",
+    "transport": "Transport",
+    "faq": "FAQ",
+    "signup": "S'inscrire"
+  },
+  "hero": {
+    "badge": "Bientot disponible",
+    "title": "Trokacha",
+    "subtitle": "L'app qui fait tout",
+    "description": "Troc . Vente . Achat . Transport de Colis . Covoiturage",
+    "comingSoon": "Bientot sur",
+    "appStore": "App Store",
+    "playStore": "Play Store",
+    "notifyTitle": "Soyez informe du lancement",
+    "notifyButton": "M'avertir",
+    "notifyNote": "Pas de spam, juste une notification au lancement"
+  },
+  "swipeTutorial": {
+    "step1": "Parcourez les annonces",
+    "step2": "Cette annonce vous interesse ?",
+    "step3": "Choisissez une de vos annonces",
+    "step4": "Swipe a droite",
+    "step5": "Proposition envoyee !"
+  },
+  "mobileFeatures": {
+    "troc": "Troc",
+    "vente": "Vente",
+    "transport": "Transport",
+    "covoiturage": "Covoiturage"
+  },
+  "features": {
+    "title": "Une seule app pour tout",
+    "subtitle": "Plus besoin de jongler entre plusieurs apps. Trokacha centralise tous vos besoins d'echange en Algerie",
+    "troc": {
+      "title": "Troc & Echange",
+      "description": "Echangez vos biens avec d'autres utilisateurs en toute simplicite"
+    },
+    "vente": {
+      "title": "Vente & Achat",
+      "description": "Vendez ou achetez des articles en toute securite"
+    },
+    "transport": {
+      "title": "Transport de Colis",
+      "description": "Envoyez ou transportez des colis partout en Algerie"
+    },
+    "covoiturage": {
+      "title": "Covoiturage",
+      "description": "Partagez vos trajets et economisez sur vos deplacements"
+    },
+    "interface": {
+      "title": "Interface Intuitive",
+      "description": "Systeme de swipe ultra-rapide et simple a utiliser"
+    },
+    "design": {
+      "title": "Design Elegant",
+      "description": "Une experience visuelle moderne et agreable"
+    }
+  },
+  "howItWorks": {
+    "title": "Comment ca marche ?",
+    "subtitle": "4 etapes simples pour commencer a echanger",
+    "step1": {
+      "title": "Creez votre compte",
+      "description": "Inscription rapide en quelques secondes avec votre numero de telephone"
+    },
+    "step2": {
+      "title": "Publiez ou parcourez",
+      "description": "Ajoutez vos annonces ou decouvrez celles des autres utilisateurs"
+    },
+    "step3": {
+      "title": "Swipez et proposez",
+      "description": "Trouvez ce qui vous interesse et faites une proposition d'echange"
+    },
+    "step4": {
+      "title": "Echangez !",
+      "description": "Discutez, finalisez et procedez a l'echange en toute securite"
+    }
+  },
+  "transportSection": {
+    "badge": "Nouveau sur Trokacha",
+    "title": "Transport collaboratif",
+    "subtitle": "Envoyez vos colis partout en Algerie grace a notre communaute de voyageurs. Economique, ecologique et rapide !",
+    "features": {
+      "send": {
+        "title": "Envoyez partout",
+        "description": "Vos colis voyagent avec des particuliers qui font deja le trajet"
+      },
+      "fast": {
+        "title": "Rapide et flexible",
+        "description": "Choisissez le transporteur et l'horaire qui vous conviennent"
+      },
+      "secure": {
+        "title": "100% Securise",
+        "description": "Transporteurs verifies, suivi en temps reel et assurance incluse"
+      },
+      "community": {
+        "title": "Communaute fiable",
+        "description": "Systeme de notation et avis pour une confiance totale"
+      }
+    },
+    "popularRoutes": "Trajets populaires",
+    "transportersAvailable": "Plusieurs transporteurs disponibles",
+    "startingFrom": "a partir de",
+    "moreRoutes": "+ des centaines d'autres trajets disponibles"
+  },
+  "algeriaMap": {
+    "title": "Partout en Algerie",
+    "subtitle": "De Tamanrasset a Annaba, Trokacha connecte toutes les wilayas",
+    "regions": {
+      "nord": "Nord",
+      "centre": "Centre",
+      "ouest": "Ouest",
+      "est": "Est",
+      "sud": "Sud"
+    },
+    "stats": {
+      "wilayas": "Wilayas",
+      "coverage": "Couverture",
+      "available": "Disponible"
+    }
+  },
+  "faq": {
+    "title": "Questions frequentes",
+    "subtitle": "Tout ce que vous devez savoir sur Trokacha",
+    "questions": {
+      "q1": {
+        "question": "Quand sera disponible Trokacha ?",
+        "answer": "Trokacha sera disponible tres prochainement sur iOS et Android. Inscrivez-vous a la newsletter pour etre notifie des le lancement !"
+      },
+      "q2": {
+        "question": "Comment fonctionne le troc sur Trokacha ?",
+        "answer": "C'est simple ! Publiez votre annonce, parcourez les offres des autres utilisateurs, et proposez un echange. Si l'autre personne accepte, vous pouvez discuter des details par chat."
+      },
+      "q3": {
+        "question": "Le transport de colis est-il securise ?",
+        "answer": "Oui ! Chaque transporteur est verifie et note par la communaute. Vous pouvez suivre votre colis en temps reel et communiquer directement avec le transporteur."
+      },
+      "q4": {
+        "question": "Trokacha est-il gratuit ?",
+        "answer": "Oui, Trokacha est entierement gratuit ! Pas de frais caches, pas d'abonnement. Notre modele economique repose sur des fonctionnalites premium optionnelles."
+      },
+      "q5": {
+        "question": "Dans quelles villes Trokacha est-il disponible ?",
+        "answer": "Trokacha sera disponible dans toutes les wilayas d'Algerie des le lancement. Notre objectif est de connecter les algeriens de Tamanrasset a Annaba !"
+      },
+      "q6": {
+        "question": "Comment devenir transporteur sur Trokacha ?",
+        "answer": "Il suffit de creer un compte et d'activer l'option transporteur. Vous pourrez alors voir les demandes de transport sur vos trajets et proposer vos services."
+      }
+    }
+  },
+  "cta": {
+    "title": "Soyez parmi les premiers !",
+    "subtitle": "L'app arrive bientot. Inscrivez-vous pour etre notifie des le lancement et profiter d'avantages exclusifs.",
+    "button": "Je m'inscris",
+    "note": "Les premiers inscrits auront acces a des fonctionnalites exclusives"
+  },
+  "footer": {
+    "tagline": "L'app algerienne qui fait tout",
+    "links": "Liens Utiles",
+    "terms": "Conditions d'Utilisation",
+    "privacy": "Politique de Confidentialite",
+    "contact": "Contact",
+    "contactTitle": "Contact",
+    "copyright": "Trokacha. Tous droits reserves."
+  },
+  "emailForm": {
+    "placeholder": "votre@email.com",
+    "success": "Inscription reussie !",
+    "errorConnection": "Erreur de connexion",
+    "errorServer": "Erreur serveur",
+    "errorInvalid": "Email invalide"
+  },
+  "privacy": {
+    "title": "Politique de Confidentialite",
+    "lastUpdate": "Derniere mise a jour : Decembre 2025",
+    "intro": "Conformement a la Loi 18-07 du 10 juin 2018 relative a la protection des personnes physiques dans le traitement des donnees a caractere personnel, modifiee par la Loi 11-25 de juillet 2025, Trokacha s'engage a proteger les donnees personnelles de ses utilisateurs.",
+    "backHome": "Retour a l'accueil",
+    "articles": {
+      "a1": {
+        "title": "Article 1 - Responsable du Traitement",
+        "content": "Trokacha - Plateforme d'intermediation en ligne - Algerie",
+        "dpo": "Delegue a la Protection des Donnees (DPO)"
+      },
+      "a2": {
+        "title": "Article 2 - Donnees Collectees",
+        "intro": "Trokacha collecte uniquement les donnees necessaires au fonctionnement du service :",
+        "items": [
+          "Donnees d'identification (nom, prenom, date de naissance)",
+          "Coordonnees (adresse email, numero de telephone)",
+          "Pour les conducteurs : copie du permis de conduire",
+          "Donnees de navigation et d'utilisation de la plateforme",
+          "Donnees de transaction (historique des annonces, echanges, evaluations)"
+        ]
+      },
+      "a3": {
+        "title": "Article 3 - Base Legale du Traitement",
+        "intro": "Les traitements sont fondes sur :",
+        "items": [
+          "Le consentement expres et eclaire de l'utilisateur",
+          "L'execution du contrat de service",
+          "Les obligations legales de Trokacha",
+          "Les interets legitimes (prevention de la fraude, amelioration du service)"
+        ]
+      },
+      "a4": {
+        "title": "Article 4 - Vos Droits",
+        "intro": "Conformement a la Loi 18-07, vous disposez des droits suivants :",
+        "items": [
+          "Droit d'acces a vos donnees personnelles",
+          "Droit de rectification des donnees inexactes",
+          "Droit de suppression des donnees (droit a l'oubli)",
+          "Droit d'opposition au traitement",
+          "Droit de limitation du traitement",
+          "Droit a la portabilite des donnees",
+          "Droit de retirer votre consentement a tout moment"
+        ],
+        "contact": "Ces droits peuvent etre exerces en contactant"
+      },
+      "a5": {
+        "title": "Article 5 - Conservation des Donnees",
+        "intro": "Les donnees personnelles sont conservees :",
+        "items": [
+          "Pendant la duree d'utilisation active du compte",
+          "3 ans apres la derniere activite du compte",
+          "Puis archivees conformement aux obligations legales",
+          "Supprimees definitivement a l'issue de cette periode"
+        ]
+      },
+      "a6": {
+        "title": "Article 6 - Securite des Donnees",
+        "intro": "Trokacha met en oeuvre des mesures techniques et organisationnelles appropriees :",
+        "items": [
+          "Chiffrement des donnees sensibles",
+          "Controles d'acces stricts",
+          "Audits de securite reguliers",
+          "Formation du personnel"
+        ]
+      },
+      "a7": {
+        "title": "Article 7 - Notification des Violations",
+        "content": "En cas de violation de donnees susceptible d'engendrer un risque eleve pour vos droits et libertes, Trokacha notifiera l'ANPDP dans un delai de 5 jours (conformement a la Loi 11-25) et les utilisateurs concernes dans les meilleurs delais."
+      },
+      "a8": {
+        "title": "Article 8 - Transferts de Donnees",
+        "content": "Les donnees personnelles sont hebergees en Algerie. Tout transfert vers un pays etranger necessitera une autorisation prealable de l'ANPDP et des garanties appropriees."
+      },
+      "a9": {
+        "title": "Article 9 - Droit de Reclamation",
+        "content": "Vous pouvez deposer une reclamation aupres de l'Autorite Nationale de Protection des Donnees Personnelles (ANPDP) si vous estimez que vos droits n'ont pas ete respectes.",
+        "website": "Site web ANPDP"
+      }
+    },
+    "footerLinks": {
+      "terms": "Conditions Generales d'Utilisation",
+      "contact": "Nous contacter"
+    }
+  },
+  "terms": {
+    "title": "Conditions Generales d'Utilisation",
+    "lastUpdate": "Derniere mise a jour : Decembre 2025"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Une question ? Une suggestion ? N'hesitez pas a nous contacter"
+  }
+}
