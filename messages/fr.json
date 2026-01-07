@@ -21,6 +21,15 @@
     "title": "Trokacha",
     "subtitle": "Une App Algerienne, pour les Algeriens !",
     "description": "Troc . Vente . Achat . Services . Immobilier . Transport de Colis . Covoiturage",
+    "categories": {
+      "troc": "Troc",
+      "vente": "Vente",
+      "achat": "Achat",
+      "services": "Services",
+      "immobilier": "Immobilier",
+      "colis": "Colis",
+      "covoiturage": "Covoiturage"
+    },
     "comingSoon": "Bientot sur",
     "appStore": "App Store",
     "playStore": "Play Store",

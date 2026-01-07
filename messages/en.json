@@ -21,6 +21,15 @@
     "title": "Trokacha",
     "subtitle": "An Algerian App, for Algerians!",
     "description": "Barter . Sale . Purchase . Services . Real Estate . Parcel Transport . Carpooling",
+    "categories": {
+      "troc": "Barter",
+      "vente": "Sale",
+      "achat": "Purchase",
+      "services": "Services",
+      "immobilier": "Real Estate",
+      "colis": "Parcels",
+      "covoiturage": "Carpooling"
+    },
     "comingSoon": "Coming soon on",
     "appStore": "App Store",
     "playStore": "Play Store",

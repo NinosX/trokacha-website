@@ -297,20 +297,20 @@ export default function Home() {
                 className="flex flex-wrap gap-2 md:gap-3 mb-8"
               >
                 {[
-                  { icon: "🔄", label: "Troc" },
-                  { icon: "🛍️", label: "Vente" },
-                  { icon: "🛒", label: "Achat" },
-                  { icon: "🔧", label: "Services" },
-                  { icon: "🏠", label: "Immobilier" },
-                  { icon: "📦", label: "Colis" },
-                  { icon: "🚗", label: "Covoiturage" },
+                  { icon: "🔄", key: "troc" },
+                  { icon: "🛍️", key: "vente" },
+                  { icon: "🛒", key: "achat" },
+                  { icon: "🔧", key: "services" },
+                  { icon: "🏠", key: "immobilier" },
+                  { icon: "📦", key: "colis" },
+                  { icon: "🚗", key: "covoiturage" },
                 ].map((item, index) => (
                   <span
                     key={index}
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-sm md:text-base font-medium"
                   >
                     <span>{item.icon}</span>
-                    <span>{item.label}</span>
+                    <span>{t(`hero.categories.${item.key}`)}</span>
                   </span>
                 ))}
               </motion.div>
