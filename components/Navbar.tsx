@@ -72,19 +72,20 @@ export function Navbar() {
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="flex items-center justify-between h-16 md:h-24">
             <Link
               href="/"
-              className={`flex items-center gap-2 text-2xl font-bold transition-colors ${
+              className={`flex items-center transition-colors ${
                 isScrolled ? "text-primary" : "text-white"
               }`}
             >
               <Image
-                src="/logo.png"
+                src="/logo-text.png"
                 alt="Trokacha"
-                width={56}
-                height={56}
-                className="w-10 h-10 md:w-14 md:h-14"
+                width={295}
+                height={351}
+                className="w-12 h-auto md:w-20"
+                priority
               />
             </Link>
 
