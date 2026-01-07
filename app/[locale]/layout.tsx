@@ -3,6 +3,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { JsonLd } from '@/components/JsonLd';
+import { ScrollToTop } from '@/components/ScrollToTop';
 import type { Viewport } from 'next';
 import '../globals.css';
 
@@ -132,6 +133,7 @@ export default async function LocaleLayout({
       <body className="font-sans">
         <NextIntlClientProvider messages={messages}>
           {children}
+          <ScrollToTop />
         </NextIntlClientProvider>
       </body>
     </html>

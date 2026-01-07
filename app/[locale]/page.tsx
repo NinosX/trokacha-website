@@ -283,16 +283,37 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed"
+                className="text-xl md:text-2xl mb-6 text-white/90 leading-relaxed"
               >
                 <span className="inline-flex items-center gap-2">
-                  {t("hero.subtitle")} ✨
-                </span>
-                <br />
-                <span className="text-lg text-white/80">
-                  {t("hero.description")}
+                  {t("hero.subtitle")} 🇩🇿
                 </span>
               </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="flex flex-wrap gap-2 md:gap-3 mb-8"
+              >
+                {[
+                  { icon: "🔄", label: "Troc" },
+                  { icon: "🛍️", label: "Vente" },
+                  { icon: "🛒", label: "Achat" },
+                  { icon: "🔧", label: "Services" },
+                  { icon: "🏠", label: "Immobilier" },
+                  { icon: "📦", label: "Colis" },
+                  { icon: "🚗", label: "Covoiturage" },
+                ].map((item, index) => (
+                  <span
+                    key={index}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-sm md:text-base font-medium"
+                  >
+                    <span>{item.icon}</span>
+                    <span>{item.label}</span>
+                  </span>
+                ))}
+              </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
