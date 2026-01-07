@@ -1,25 +1,25 @@
 {
   "metadata": {
-    "title": "Trokacha - La plateforme algerienne tout-en-un",
-    "description": "La premiere plateforme algerienne tout-en-un: Troc, Vente, Transport, Colis et Covoiturage"
+    "title": "Trokacha - La plateforme algérienne tout-en-un",
+    "description": "La première plateforme algérienne tout-en-un: Troc, Vente, Transport, Colis et Covoiturage"
   },
   "navbar": {
     "home": "Accueil",
-    "features": "Fonctionnalites",
+    "features": "Fonctionnalités",
     "echange": "Troc & Vente",
     "transport": "Transport",
     "chat": "Chat",
-    "verification": "Verification",
+    "verification": "Vérification",
     "faq": "FAQ",
     "signup": "S'inscrire",
     "terms": "Conditions d'utilisation",
-    "privacy": "Politique de confidentialite",
+    "privacy": "Politique de confidentialité",
     "contact": "Contact"
   },
   "hero": {
-    "badge": "Bientot disponible",
+    "badge": "Bientôt disponible",
     "title": "Trokacha",
-    "subtitle": "Une App Algerienne, pour les Algeriens !",
+    "subtitle": "Une App Algérienne, pour les Algériens !",
     "description": "Troc . Vente . Achat . Services . Immobilier . Transport de Colis . Covoiturage",
     "categories": {
       "troc": "Troc",
@@ -30,19 +30,19 @@
       "colis": "Colis",
       "covoiturage": "Covoiturage"
     },
-    "comingSoon": "Bientot sur",
+    "comingSoon": "Bientôt sur",
     "appStore": "App Store",
     "playStore": "Play Store",
-    "notifyTitle": "Soyez informe du lancement",
+    "notifyTitle": "Soyez informé du lancement",
     "notifyButton": "M'avertir",
     "notifyNote": "Pas de spam, juste une notification au lancement"
   },
   "swipeTutorial": {
     "step1": "Parcourez les annonces",
-    "step2": "Cette annonce vous interesse ?",
+    "step2": "Cette annonce vous intéresse ?",
     "step3": "Choisissez une de vos annonces",
-    "step4": "Swipe a droite",
-    "step5": "Proposition envoyee !"
+    "step4": "Swipe à droite",
+    "step5": "Proposition envoyée !"
   },
   "mobileFeatures": {
     "troc": "Troc",
@@ -52,75 +52,75 @@
   },
   "features": {
     "title": "Une seule app pour tout",
-    "subtitle": "Plus besoin de jongler entre plusieurs apps. Trokacha centralise tous vos besoins d'echange en Algerie",
+    "subtitle": "Plus besoin de jongler entre plusieurs apps. Trokacha centralise tous vos besoins d'échange en Algérie",
     "troc": {
       "title": "Troc",
-      "description": "Echangez vos biens avec d'autres utilisateurs en toute simplicite"
+      "description": "Échangez vos biens avec d'autres utilisateurs en toute simplicité"
     },
     "vente": {
       "title": "Vente & Achat",
-      "description": "Vendez ou achetez des articles en toute securite"
+      "description": "Vendez ou achetez des articles en toute sécurité"
     },
     "transport": {
       "title": "Transport de Colis",
-      "description": "Envoyez ou transportez des colis partout en Algerie"
+      "description": "Envoyez ou transportez des colis partout en Algérie"
     },
     "covoiturage": {
       "title": "Covoiturage",
-      "description": "Partagez vos trajets et economisez sur vos deplacements"
+      "description": "Partagez vos trajets et économisez sur vos déplacements"
     },
     "interface": {
       "title": "Interface Intuitive",
-      "description": "Systeme de swipe ultra-rapide et simple a utiliser"
+      "description": "Système de swipe ultra-rapide et simple à utiliser"
     },
     "design": {
-      "title": "Design Elegant",
-      "description": "Une experience visuelle moderne et agreable"
+      "title": "Design Élégant",
+      "description": "Une expérience visuelle moderne et agréable"
     },
     "verification": {
-      "title": "Utilisateurs Verifies",
-      "description": "Verification d'identite (photo ID + selfie) et badge de confiance visible"
+      "title": "Utilisateurs Vérifiés",
+      "description": "Vérification d'identité (photo ID + selfie) et badge de confiance visible"
     },
     "gamification": {
-      "title": "Badges & Recompenses",
-      "description": "Gagnez des points, debloquez des badges et grimpez dans le classement"
+      "title": "Badges & Récompenses",
+      "description": "Gagnez des points, débloquez des badges et grimpez dans le classement"
     },
     "chat": {
       "title": "Chat Complet",
-      "description": "Messages vocaux, photos, documents et reactions pour communiquer facilement"
+      "description": "Messages vocaux, photos, documents et réactions pour communiquer facilement"
     }
   },
   "security": {
-    "badge": "Securite & Confiance",
-    "title": "Echangez en toute confiance",
-    "subtitle": "Trokacha propose un systeme de verification d'identite pour garantir des echanges securises. Optionnel pour les utilisateurs, obligatoire pour les chauffeurs et transporteurs.",
+    "badge": "Sécurité & Confiance",
+    "title": "Échangez en toute confiance",
+    "subtitle": "Trokacha propose un système de vérification d'identité pour garantir des échanges sécurisés. Optionnel pour les utilisateurs, obligatoire pour les chauffeurs et transporteurs.",
     "badges": {
       "benefits": "Avantages",
       "blue": {
-        "optional": "Recommande",
-        "title": "Badge Identite",
-        "description": "Pour tous les utilisateurs qui souhaitent inspirer confiance et echanger en toute securite.",
-        "req1": "Piece d'identite",
-        "req2": "Selfie de verification",
+        "optional": "Recommandé",
+        "title": "Badge Identité",
+        "description": "Pour tous les utilisateurs qui souhaitent inspirer confiance et échanger en toute sécurité.",
+        "req1": "Pièce d'identité",
+        "req2": "Selfie de vérification",
         "benefit1": "Profil de confiance visible",
         "benefit2": "+50 points de gamification",
-        "benefit3": "Meilleur taux de reponse"
+        "benefit3": "Meilleur taux de réponse"
       },
       "green": {
         "required": "Obligatoire",
         "title": "Badge Transporteur",
         "description": "Pour les chauffeurs et transporteurs. Obligatoire pour proposer des trajets ou accepter des demandes.",
-        "req1": "Piece d'identite",
-        "req2": "Selfie de verification",
+        "req1": "Pièce d'identité",
+        "req2": "Selfie de vérification",
         "req3": "Permis de conduire",
         "whoNeeds": "Obligatoire pour",
         "driver": "Chauffeurs covoiturage",
         "transporter": "Transporteurs colis"
       }
     },
-    "processTitle": "Comment ca marche ?",
+    "processTitle": "Comment ça marche ?",
     "process": {
-      "step1": "Creez votre compte",
+      "step1": "Créez votre compte",
       "step2": "Photo de votre ID",
       "step3": "Selfie",
       "step4": "Validation 24-48h",
@@ -128,85 +128,85 @@
     },
     "features": {
       "feature1": {
-        "title": "Identite Verifiee",
-        "description": "Verification ID + selfie"
+        "title": "Identité Vérifiée",
+        "description": "Vérification ID + selfie"
       },
       "feature2": {
-        "title": "Systeme de Notation",
-        "description": "Notes apres chaque echange"
+        "title": "Système de Notation",
+        "description": "Notes après chaque échange"
       },
       "feature3": {
-        "title": "Donnees Protegees",
-        "description": "Informations chiffrees"
+        "title": "Données Protégées",
+        "description": "Informations chiffrées"
       },
       "feature4": {
-        "title": "Support Reactif",
-        "description": "Equipe disponible 24/7"
+        "title": "Support Réactif",
+        "description": "Équipe disponible 24/7"
       }
     },
     "stats": {
-      "stat1": "Verifications securisees",
+      "stat1": "Vérifications sécurisées",
       "stat2": "Support disponible",
       "stat3": "Note moyenne",
-      "stat4": "Tolerance fraude"
+      "stat4": "Tolérance fraude"
     },
-    "backHome": "Retour a l'accueil",
-    "ctaTitle": "Pret a rejoindre la communaute ?",
-    "ctaSubtitle": "Telechargez Trokacha et commencez a echanger en toute confiance",
-    "discoverEchange": "Decouvrir le Troc",
-    "discoverTransport": "Decouvrir le Transport",
-    "allRightsReserved": "Tous droits reserves."
+    "backHome": "Retour à l'accueil",
+    "ctaTitle": "Prêt à rejoindre la communauté ?",
+    "ctaSubtitle": "Téléchargez Trokacha et commencez à échanger en toute confiance",
+    "discoverEchange": "Découvrir le Troc",
+    "discoverTransport": "Découvrir le Transport",
+    "allRightsReserved": "Tous droits réservés."
   },
   "howItWorks": {
-    "title": "Comment ca marche ?",
-    "subtitle": "4 etapes simples pour commencer a echanger",
+    "title": "Comment ça marche ?",
+    "subtitle": "4 étapes simples pour commencer à échanger",
     "step1": {
-      "title": "Creez votre compte",
-      "description": "Inscription rapide en quelques secondes avec votre numero de telephone"
+      "title": "Créez votre compte",
+      "description": "Inscription rapide en quelques secondes avec votre numéro de téléphone"
     },
     "step2": {
       "title": "Publiez ou parcourez",
-      "description": "Ajoutez vos annonces ou decouvrez celles des autres utilisateurs"
+      "description": "Ajoutez vos annonces ou découvrez celles des autres utilisateurs"
     },
     "step3": {
       "title": "Swipez et proposez",
-      "description": "Trouvez ce qui vous interesse et faites une proposition d'echange"
+      "description": "Trouvez ce qui vous intéresse et faites une proposition d'échange"
     },
     "step4": {
-      "title": "Echangez !",
-      "description": "Discutez, finalisez et procedez a l'echange en toute securite"
+      "title": "Échangez !",
+      "description": "Discutez, finalisez et procédez à l'échange en toute sécurité"
     }
   },
   "transportSection": {
     "badge": "Nouveau sur Trokacha",
     "title": "Transport collaboratif",
-    "subtitle": "Envoyez vos colis partout en Algerie grace a notre communaute de voyageurs. Economique, ecologique et rapide !",
+    "subtitle": "Envoyez vos colis partout en Algérie grâce à notre communauté de voyageurs. Économique, écologique et rapide !",
     "features": {
       "send": {
         "title": "Envoyez partout",
-        "description": "Vos colis voyagent avec des particuliers qui font deja le trajet"
+        "description": "Vos colis voyagent avec des particuliers qui font déjà le trajet"
       },
       "fast": {
         "title": "Rapide et flexible",
         "description": "Choisissez le transporteur et l'horaire qui vous conviennent"
       },
       "secure": {
-        "title": "100% Securise",
-        "description": "Transporteurs verifies et suivi en temps reel"
+        "title": "100% Sécurisé",
+        "description": "Transporteurs vérifiés et suivi en temps réel"
       },
       "community": {
-        "title": "Communaute fiable",
-        "description": "Systeme de notation et avis pour une confiance totale"
+        "title": "Communauté fiable",
+        "description": "Système de notation et avis pour une confiance totale"
       }
     },
     "popularRoutes": "Trajets populaires",
     "transportersAvailable": "Plusieurs transporteurs disponibles",
-    "startingFrom": "a partir de",
+    "startingFrom": "à partir de",
     "moreRoutes": "+ des centaines d'autres trajets disponibles"
   },
   "algeriaMap": {
-    "title": "Partout en Algerie",
-    "subtitle": "De Tamanrasset a Annaba, Trokacha connecte toutes les wilayas",
+    "title": "Partout en Algérie",
+    "subtitle": "De Tamanrasset à Annaba, Trokacha connecte toutes les wilayas",
     "regions": {
       "nord": "Nord",
       "centre": "Centre",
@@ -221,233 +221,233 @@
     }
   },
   "faq": {
-    "title": "Questions frequentes",
+    "title": "Questions fréquentes",
     "subtitle": "Tout ce que vous devez savoir sur Trokacha",
     "questions": {
       "q1": {
         "question": "Quand sera disponible Trokacha ?",
-        "answer": "Trokacha sera disponible tres prochainement sur iOS et Android. Inscrivez-vous a la newsletter pour etre notifie des le lancement !"
+        "answer": "Trokacha sera disponible très prochainement sur iOS et Android. Inscrivez-vous à la newsletter pour être notifié dès le lancement !"
       },
       "q2": {
         "question": "Comment fonctionne le troc sur Trokacha ?",
-        "answer": "C'est simple ! Publiez votre annonce, parcourez les offres des autres utilisateurs, et proposez un echange. Si l'autre personne accepte, vous pouvez discuter des details par chat."
+        "answer": "C'est simple ! Publiez votre annonce, parcourez les offres des autres utilisateurs, et proposez un échange. Si l'autre personne accepte, vous pouvez discuter des détails par chat."
       },
       "q3": {
-        "question": "Le transport de colis est-il securise ?",
-        "answer": "Oui ! Chaque transporteur est verifie et note par la communaute. Vous pouvez suivre votre colis en temps reel et communiquer directement avec le transporteur."
+        "question": "Le transport de colis est-il sécurisé ?",
+        "answer": "Oui ! Chaque transporteur est vérifié et noté par la communauté. Vous pouvez suivre votre colis en temps réel et communiquer directement avec le transporteur."
       },
       "q4": {
         "question": "Trokacha est-il gratuit ?",
-        "answer": "Oui, Trokacha est entierement gratuit ! Pas de frais caches, pas d'abonnement. Notre modele economique repose sur des fonctionnalites premium optionnelles."
+        "answer": "Oui, Trokacha est entièrement gratuit ! Pas de frais cachés, pas d'abonnement. Notre modèle économique repose sur des fonctionnalités premium optionnelles."
       },
       "q5": {
         "question": "Dans quelles villes Trokacha est-il disponible ?",
-        "answer": "Trokacha sera disponible dans toutes les wilayas d'Algerie des le lancement. Notre objectif est de connecter les algeriens de Tamanrasset a Annaba !"
+        "answer": "Trokacha sera disponible dans toutes les wilayas d'Algérie dès le lancement. Notre objectif est de connecter les algériens de Tamanrasset à Annaba !"
       },
       "q6": {
         "question": "Comment devenir transporteur sur Trokacha ?",
-        "answer": "Il suffit de creer un compte et d'activer l'option transporteur. Vous pourrez alors voir les demandes de transport sur vos trajets et proposer vos services."
+        "answer": "Il suffit de créer un compte et d'activer l'option transporteur. Vous pourrez alors voir les demandes de transport sur vos trajets et proposer vos services."
       }
     }
   },
   "cta": {
     "title": "Soyez parmi les premiers !",
-    "subtitle": "L'app arrive bientot. Inscrivez-vous pour etre notifie des le lancement et profiter d'avantages exclusifs.",
+    "subtitle": "L'app arrive bientôt. Inscrivez-vous pour être notifié dès le lancement et profiter d'avantages exclusifs.",
     "button": "Je m'inscris",
-    "note": "Les premiers inscrits auront acces a des fonctionnalites exclusives"
+    "note": "Les premiers inscrits auront accès à des fonctionnalités exclusives"
   },
   "footer": {
-    "tagline": "L'app algerienne qui fait tout",
+    "tagline": "L'app algérienne qui fait tout",
     "links": "Liens Utiles",
     "terms": "Conditions d'Utilisation",
-    "privacy": "Politique de Confidentialite",
+    "privacy": "Politique de Confidentialité",
     "contact": "Contact",
     "contactTitle": "Contact",
-    "copyright": "Trokacha. Tous droits reserves."
+    "copyright": "Trokacha. Tous droits réservés."
   },
   "emailForm": {
     "placeholder": "votre@email.com",
-    "success": "Inscription reussie !",
+    "success": "Inscription réussie !",
     "errorConnection": "Erreur de connexion",
     "errorServer": "Erreur serveur",
     "errorInvalid": "Email invalide"
   },
   "privacy": {
-    "title": "Politique de Confidentialite",
-    "lastUpdate": "Derniere mise a jour : Decembre 2025",
-    "intro": "Conformement a la Loi 18-07 du 10 juin 2018 relative a la protection des personnes physiques dans le traitement des donnees a caractere personnel, modifiee par la Loi 11-25 de juillet 2025, Trokacha s'engage a proteger les donnees personnelles de ses utilisateurs.",
-    "backHome": "Retour a l'accueil",
+    "title": "Politique de Confidentialité",
+    "lastUpdate": "Dernière mise à jour : Décembre 2025",
+    "intro": "Conformément à la Loi 18-07 du 10 juin 2018 relative à la protection des personnes physiques dans le traitement des données à caractère personnel, modifiée par la Loi 11-25 de juillet 2025, Trokacha s'engage à protéger les données personnelles de ses utilisateurs.",
+    "backHome": "Retour à l'accueil",
     "articles": {
       "a1": {
         "title": "Article 1 - Responsable du Traitement",
-        "content": "Trokacha - Plateforme d'intermediation en ligne - Algerie",
-        "dpo": "Delegue a la Protection des Donnees (DPO)"
+        "content": "Trokacha - Plateforme d'intermédiation en ligne - Algérie",
+        "dpo": "Délégué à la Protection des Données (DPO)"
       },
       "a2": {
-        "title": "Article 2 - Donnees Collectees",
-        "intro": "Trokacha collecte uniquement les donnees necessaires au fonctionnement du service :",
+        "title": "Article 2 - Données Collectées",
+        "intro": "Trokacha collecte uniquement les données nécessaires au fonctionnement du service :",
         "items": [
-          "Donnees d'identification (nom, prenom, date de naissance)",
-          "Coordonnees (adresse email, numero de telephone)",
+          "Données d'identification (nom, prénom, date de naissance)",
+          "Coordonnées (adresse email, numéro de téléphone)",
           "Pour les conducteurs : copie du permis de conduire",
-          "Donnees de navigation et d'utilisation de la plateforme",
-          "Donnees de transaction (historique des annonces, echanges, evaluations)"
+          "Données de navigation et d'utilisation de la plateforme",
+          "Données de transaction (historique des annonces, échanges, évaluations)"
         ]
       },
       "a3": {
-        "title": "Article 3 - Base Legale du Traitement",
-        "intro": "Les traitements sont fondes sur :",
+        "title": "Article 3 - Base Légale du Traitement",
+        "intro": "Les traitements sont fondés sur :",
         "items": [
-          "Le consentement expres et eclaire de l'utilisateur",
-          "L'execution du contrat de service",
-          "Les obligations legales de Trokacha",
-          "Les interets legitimes (prevention de la fraude, amelioration du service)"
+          "Le consentement exprès et éclairé de l'utilisateur",
+          "L'exécution du contrat de service",
+          "Les obligations légales de Trokacha",
+          "Les intérêts légitimes (prévention de la fraude, amélioration du service)"
         ]
       },
       "a4": {
         "title": "Article 4 - Vos Droits",
-        "intro": "Conformement a la Loi 18-07, vous disposez des droits suivants :",
+        "intro": "Conformément à la Loi 18-07, vous disposez des droits suivants :",
         "items": [
-          "Droit d'acces a vos donnees personnelles",
-          "Droit de rectification des donnees inexactes",
-          "Droit de suppression des donnees (droit a l'oubli)",
+          "Droit d'accès à vos données personnelles",
+          "Droit de rectification des données inexactes",
+          "Droit de suppression des données (droit à l'oubli)",
           "Droit d'opposition au traitement",
           "Droit de limitation du traitement",
-          "Droit a la portabilite des donnees",
-          "Droit de retirer votre consentement a tout moment"
+          "Droit à la portabilité des données",
+          "Droit de retirer votre consentement à tout moment"
         ],
-        "contact": "Ces droits peuvent etre exerces en contactant"
+        "contact": "Ces droits peuvent être exercés en contactant"
       },
       "a5": {
-        "title": "Article 5 - Conservation des Donnees",
-        "intro": "Les donnees personnelles sont conservees :",
+        "title": "Article 5 - Conservation des Données",
+        "intro": "Les données personnelles sont conservées :",
         "items": [
-          "Pendant la duree d'utilisation active du compte",
-          "3 ans apres la derniere activite du compte",
-          "Puis archivees conformement aux obligations legales",
-          "Supprimees definitivement a l'issue de cette periode"
+          "Pendant la durée d'utilisation active du compte",
+          "3 ans après la dernière activité du compte",
+          "Puis archivées conformément aux obligations légales",
+          "Supprimées définitivement à l'issue de cette période"
         ]
       },
       "a6": {
-        "title": "Article 6 - Securite des Donnees",
-        "intro": "Trokacha met en oeuvre des mesures techniques et organisationnelles appropriees :",
+        "title": "Article 6 - Sécurité des Données",
+        "intro": "Trokacha met en œuvre des mesures techniques et organisationnelles appropriées :",
         "items": [
-          "Chiffrement des donnees sensibles",
-          "Controles d'acces stricts",
-          "Audits de securite reguliers",
+          "Chiffrement des données sensibles",
+          "Contrôles d'accès stricts",
+          "Audits de sécurité réguliers",
           "Formation du personnel"
         ]
       },
       "a7": {
         "title": "Article 7 - Notification des Violations",
-        "content": "En cas de violation de donnees susceptible d'engendrer un risque eleve pour vos droits et libertes, Trokacha notifiera l'ANPDP dans un delai de 5 jours (conformement a la Loi 11-25) et les utilisateurs concernes dans les meilleurs delais."
+        "content": "En cas de violation de données susceptible d'engendrer un risque élevé pour vos droits et libertés, Trokacha notifiera l'ANPDP dans un délai de 5 jours (conformément à la Loi 11-25) et les utilisateurs concernés dans les meilleurs délais."
       },
       "a8": {
-        "title": "Article 8 - Transferts de Donnees",
-        "content": "Les donnees personnelles sont hebergees en Algerie. Tout transfert vers un pays etranger necessitera une autorisation prealable de l'ANPDP et des garanties appropriees."
+        "title": "Article 8 - Transferts de Données",
+        "content": "Les données personnelles sont hébergées en Algérie. Tout transfert vers un pays étranger nécessitera une autorisation préalable de l'ANPDP et des garanties appropriées."
       },
       "a9": {
-        "title": "Article 9 - Droit de Reclamation",
-        "content": "Vous pouvez deposer une reclamation aupres de l'Autorite Nationale de Protection des Donnees Personnelles (ANPDP) si vous estimez que vos droits n'ont pas ete respectes.",
+        "title": "Article 9 - Droit de Réclamation",
+        "content": "Vous pouvez déposer une réclamation auprès de l'Autorité Nationale de Protection des Données Personnelles (ANPDP) si vous estimez que vos droits n'ont pas été respectés.",
         "website": "Site web ANPDP"
       }
     },
     "footerLinks": {
-      "terms": "Conditions Generales d'Utilisation",
+      "terms": "Conditions Générales d'Utilisation",
       "contact": "Nous contacter"
     }
   },
   "terms": {
-    "title": "Conditions Generales d'Utilisation",
-    "lastUpdate": "Derniere mise a jour : Decembre 2025"
+    "title": "Conditions Générales d'Utilisation",
+    "lastUpdate": "Dernière mise à jour : Décembre 2025"
   },
   "contact": {
     "title": "Contactez-nous",
-    "subtitle": "Une question ? Une suggestion ? N'hesitez pas a nous contacter"
+    "subtitle": "Une question ? Une suggestion ? N'hésitez pas à nous contacter"
   },
   "echange": {
-    "backHome": "Retour a l'accueil",
+    "backHome": "Retour à l'accueil",
     "title": "Troc, Vente & Achat",
-    "subtitle": "Decouvrez comment echanger, vendre ou acheter en toute simplicite sur Trokacha",
+    "subtitle": "Découvrez comment échanger, vendre ou acheter en toute simplicité sur Trokacha",
     "stepsTitle": "Le parcours complet",
-    "stepsSubtitle": "De la publication a la notation, suivez chaque etape de votre echange",
+    "stepsSubtitle": "De la publication à la notation, suivez chaque étape de votre échange",
     "steps": {
       "step1": {
         "title": "Publiez votre annonce",
-        "description": "Prenez des photos de qualite, ajoutez une description detaillee et fixez votre prix ou ce que vous recherchez en echange.",
-        "tip": "Des photos claires et une description complete augmentent vos chances de trouver un echange !"
+        "description": "Prenez des photos de qualité, ajoutez une description détaillée et fixez votre prix ou ce que vous recherchez en échange.",
+        "tip": "Des photos claires et une description complète augmentent vos chances de trouver un échange !"
       },
       "step2": {
         "title": "Parcourez les annonces",
-        "description": "Explorez les offres des autres utilisateurs. Filtrez par categorie, localisation ou type d'echange souhaite.",
+        "description": "Explorez les offres des autres utilisateurs. Filtrez par catégorie, localisation ou type d'échange souhaité.",
         "tip": "Utilisez les filtres pour trouver exactement ce que vous cherchez plus rapidement."
       },
       "step3": {
         "title": "Faites une proposition",
-        "description": "Une annonce vous interesse ? Selectionnez une de vos annonces a proposer en echange, ou faites une offre d'achat.",
-        "tip": "Swipez a droite pour proposer un echange, c'est rapide et intuitif !"
+        "description": "Une annonce vous intéresse ? Sélectionnez une de vos annonces à proposer en échange, ou faites une offre d'achat.",
+        "tip": "Swipez à droite pour proposer un échange, c'est rapide et intuitif !"
       },
       "step4": {
         "title": "C'est un Match !",
-        "description": "Si l'autre utilisateur accepte votre proposition, vous avez un match ! Vous pouvez maintenant discuter des details.",
-        "tip": "Le match signifie que les deux parties sont interessees - la negociation peut commencer."
+        "description": "Si l'autre utilisateur accepte votre proposition, vous avez un match ! Vous pouvez maintenant discuter des détails.",
+        "tip": "Le match signifie que les deux parties sont intéressées - la négociation peut commencer."
       },
       "step5": {
         "title": "Confirmez l'engagement",
-        "description": "Une fois les details regles, confirmez votre engagement mutuel. Cela scelle l'accord entre vous.",
-        "tip": "L'engagement mutuel protege les deux parties et garantit le serieux de la transaction."
+        "description": "Une fois les détails réglés, confirmez votre engagement mutuel. Cela scelle l'accord entre vous.",
+        "tip": "L'engagement mutuel protège les deux parties et garantit le sérieux de la transaction."
       },
       "step6": {
-        "title": "Procedez a l'echange",
-        "description": "Rencontrez-vous pour effectuer l'echange physique des biens ou finalisez la vente selon vos accords.",
-        "tip": "Choisissez un lieu public et securise pour vos echanges en personne."
+        "title": "Procédez à l'échange",
+        "description": "Rencontrez-vous pour effectuer l'échange physique des biens ou finalisez la vente selon vos accords.",
+        "tip": "Choisissez un lieu public et sécurisé pour vos échanges en personne."
       },
       "step7": {
         "title": "Notez et terminez",
-        "description": "Apres l'echange, notez votre experience. Vos avis aident la communaute a identifier les utilisateurs de confiance.",
-        "tip": "Une bonne notation vous aide a batir votre reputation sur la plateforme !"
+        "description": "Après l'échange, notez votre expérience. Vos avis aident la communauté à identifier les utilisateurs de confiance.",
+        "tip": "Une bonne notation vous aide à bâtir votre réputation sur la plateforme !"
       }
     },
     "screenshotsTitle": "L'app en action",
-    "screenshotsSubtitle": "Decouvrez l'interface intuitive de Trokacha",
-    "screenshotPlaceholder": "Capture d'ecran bientot disponible",
-    "ctaTitle": "Pret a echanger ?",
-    "ctaSubtitle": "Rejoignez des milliers d'utilisateurs qui font deja confiance a Trokacha",
-    "discoverTransport": "Decouvrir le Transport",
-    "discoverChat": "Decouvrir le Chat",
-    "allRightsReserved": "Tous droits reserves."
+    "screenshotsSubtitle": "Découvrez l'interface intuitive de Trokacha",
+    "screenshotPlaceholder": "Capture d'écran bientôt disponible",
+    "ctaTitle": "Prêt à échanger ?",
+    "ctaSubtitle": "Rejoignez des milliers d'utilisateurs qui font déjà confiance à Trokacha",
+    "discoverTransport": "Découvrir le Transport",
+    "discoverChat": "Découvrir le Chat",
+    "allRightsReserved": "Tous droits réservés."
   },
   "transport": {
-    "backHome": "Retour a l'accueil",
+    "backHome": "Retour à l'accueil",
     "title": "Transport & Covoiturage",
-    "subtitle": "Envoyez vos colis ou partagez vos trajets avec la communaute Trokacha",
+    "subtitle": "Envoyez vos colis ou partagez vos trajets avec la communauté Trokacha",
     "colisMode": "Transport de Colis",
     "covoiturageMode": "Covoiturage",
     "features": {
       "feature1": {
-        "title": "Partout en Algerie",
-        "description": "De Tamanrasset a Annaba, trouvez des transporteurs sur tous les trajets"
+        "title": "Partout en Algérie",
+        "description": "De Tamanrasset à Annaba, trouvez des transporteurs sur tous les trajets"
       },
       "feature2": {
         "title": "Rapide & Flexible",
         "description": "Choisissez l'horaire et le transporteur qui vous conviennent"
       },
       "feature3": {
-        "title": "100% Securise",
-        "description": "Transporteurs verifies et suivi en temps reel de vos colis"
+        "title": "100% Sécurisé",
+        "description": "Transporteurs vérifiés et suivi en temps réel de vos colis"
       },
       "feature4": {
-        "title": "Communaute Fiable",
-        "description": "Systeme de notation et avis pour une confiance totale"
+        "title": "Communauté Fiable",
+        "description": "Système de notation et avis pour une confiance totale"
       }
     },
     "colisSection": {
       "badge": "Envoi de Colis",
       "title": "Envoyez vos colis facilement",
-      "subtitle": "Vos colis voyagent avec des particuliers qui font deja le trajet. Economique et ecologique !",
+      "subtitle": "Vos colis voyagent avec des particuliers qui font déjà le trajet. Économique et écologique !",
       "steps": {
         "step1": {
-          "title": "Decrivez votre colis",
+          "title": "Décrivez votre colis",
           "description": "Indiquez les dimensions, le poids et la nature de votre colis"
         },
         "step2": {
@@ -455,42 +455,42 @@
           "description": "Parcourez les annonces de voyageurs sur votre trajet"
         },
         "step3": {
-          "title": "Contactez et negociez",
-          "description": "Discutez des details et du prix via le chat integre"
+          "title": "Contactez et négociez",
+          "description": "Discutez des détails et du prix via le chat intégré"
         },
         "step4": {
           "title": "Remettez le colis",
           "description": "Rencontrez le transporteur et confiez-lui votre colis"
         },
         "step5": {
-          "title": "Suivez en temps reel",
+          "title": "Suivez en temps réel",
           "description": "Suivez l'avancement de votre colis sur la carte"
         },
         "step6": {
           "title": "Confirmation & avis",
-          "description": "Confirmez la reception et notez votre experience"
+          "description": "Confirmez la réception et notez votre expérience"
         }
       }
     },
     "covoiturageSection": {
       "badge": "Covoiturage",
       "title": "Partagez vos trajets",
-      "subtitle": "Voyagez ensemble, economisez et faites des rencontres !",
+      "subtitle": "Voyagez ensemble, économisez et faites des rencontres !",
       "steps": {
         "step1": {
           "title": "Publiez votre trajet",
-          "description": "Indiquez votre itineraire, date et nombre de places"
+          "description": "Indiquez votre itinéraire, date et nombre de places"
         },
         "step2": {
-          "title": "Definissez vos conditions",
-          "description": "Prix par place, bagages acceptes, preferences"
+          "title": "Définissez vos conditions",
+          "description": "Prix par place, bagages acceptés, préférences"
         },
         "step3": {
           "title": "Recevez des demandes",
-          "description": "Les passagers interessés vous contactent"
+          "description": "Les passagers intéressés vous contactent"
         },
         "step4": {
-          "title": "Confirmez les reservations",
+          "title": "Confirmez les réservations",
           "description": "Acceptez les passagers et confirmez les places"
         },
         "step5": {
@@ -498,31 +498,31 @@
           "description": "Retrouvez vos passagers et partagez la route"
         },
         "step6": {
-          "title": "Notez l'experience",
-          "description": "Evaluez vos covoitureurs pour la communaute"
+          "title": "Notez l'expérience",
+          "description": "Évaluez vos covoitureurs pour la communauté"
         }
       }
     },
     "realtime": {
-      "title": "Places disponibles en temps reel",
-      "description": "Visualisez instantanement les places restantes sur chaque trajet. Plus besoin de demander, l'information est mise a jour automatiquement !"
+      "title": "Places disponibles en temps réel",
+      "description": "Visualisez instantanément les places restantes sur chaque trajet. Plus besoin de demander, l'information est mise à jour automatiquement !"
     },
-    "ctaTitle": "Pret a voyager ?",
-    "ctaSubtitle": "Rejoignez la communaute de transport collaboratif Trokacha",
-    "discoverEchange": "Decouvrir le Troc",
-    "discoverChat": "Decouvrir le Chat",
-    "allRightsReserved": "Tous droits reserves."
+    "ctaTitle": "Prêt à voyager ?",
+    "ctaSubtitle": "Rejoignez la communauté de transport collaboratif Trokacha",
+    "discoverEchange": "Découvrir le Troc",
+    "discoverChat": "Découvrir le Chat",
+    "allRightsReserved": "Tous droits réservés."
   },
   "chatPage": {
-    "backHome": "Retour a l'accueil",
+    "backHome": "Retour à l'accueil",
     "title": "Chat Trokacha",
-    "subtitle": "Un systeme de messagerie complet pour negocier, echanger et conclure vos transactions",
+    "subtitle": "Un système de messagerie complet pour négocier, échanger et conclure vos transactions",
     "featuresTitle": "Tout pour communiquer",
-    "featuresSubtitle": "Des fonctionnalites pensees pour faciliter vos echanges",
+    "featuresSubtitle": "Des fonctionnalités pensées pour faciliter vos échanges",
     "features": {
       "feature1": {
         "title": "Messages texte",
-        "description": "Discutez en temps reel avec les autres utilisateurs"
+        "description": "Discutez en temps réel avec les autres utilisateurs"
       },
       "feature2": {
         "title": "Messages vocaux",
@@ -530,33 +530,33 @@
       },
       "feature3": {
         "title": "Partage de photos",
-        "description": "Envoyez des photos pour montrer vos articles en detail"
+        "description": "Envoyez des photos pour montrer vos articles en détail"
       },
       "feature4": {
         "title": "Documents",
-        "description": "Partagez des documents si necessaire"
+        "description": "Partagez des documents si nécessaire"
       },
       "feature5": {
-        "title": "Reactions",
-        "description": "Reagissez aux messages avec des emojis"
+        "title": "Réactions",
+        "description": "Réagissez aux messages avec des emojis"
       },
       "feature6": {
-        "title": "Securise",
-        "description": "Vos conversations sont privees et protegees"
+        "title": "Sécurisé",
+        "description": "Vos conversations sont privées et protégées"
       }
     },
     "marketplace": {
-      "badge": "Second lieu de marche",
-      "title": "Le chat, un espace de negociation",
-      "description": "Le chat Trokacha n'est pas qu'un simple outil de messagerie. C'est un veritable espace de negociation ou vous pouvez discuter des prix, proposer des alternatives et conclure vos transactions.",
+      "badge": "Second lieu de marché",
+      "title": "Le chat, un espace de négociation",
+      "description": "Le chat Trokacha n'est pas qu'un simple outil de messagerie. C'est un véritable espace de négociation où vous pouvez discuter des prix, proposer des alternatives et conclure vos transactions.",
       "useCases": {
         "case1": {
-          "title": "Negociez les prix",
-          "description": "Discutez et trouvez un accord sur le prix ou les conditions d'echange"
+          "title": "Négociez les prix",
+          "description": "Discutez et trouvez un accord sur le prix ou les conditions d'échange"
         },
         "case2": {
           "title": "Organisez les rencontres",
-          "description": "Convenez du lieu et de l'heure pour l'echange physique"
+          "description": "Convenez du lieu et de l'heure pour l'échange physique"
         },
         "case3": {
           "title": "Suivez vos colis",
@@ -564,7 +564,7 @@
         },
         "case4": {
           "title": "Construisez la confiance",
-          "description": "Apprenez a connaitre votre interlocuteur avant de conclure"
+          "description": "Apprenez à connaître votre interlocuteur avant de conclure"
         }
       }
     },
@@ -572,14 +572,14 @@
       "userName": "Ahmed B.",
       "status": "En ligne",
       "message1": "Bonjour, votre iPhone est toujours disponible ?",
-      "message2": "Oui ! Je suis interesse par votre MacBook en echange",
+      "message2": "Oui ! Je suis intéressé par votre MacBook en échange",
       "message3": "Super, on se retrouve demain ?",
-      "placeholder": "Ecrivez un message..."
+      "placeholder": "Écrivez un message..."
     },
-    "ctaTitle": "Pret a discuter ?",
-    "ctaSubtitle": "Rejoignez Trokacha et commencez a echanger avec la communaute",
-    "discoverEchange": "Decouvrir le Troc",
-    "discoverTransport": "Decouvrir le Transport",
-    "allRightsReserved": "Tous droits reserves."
+    "ctaTitle": "Prêt à discuter ?",
+    "ctaSubtitle": "Rejoignez Trokacha et commencez à échanger avec la communauté",
+    "discoverEchange": "Découvrir le Troc",
+    "discoverTransport": "Découvrir le Transport",
+    "allRightsReserved": "Tous droits réservés."
   }
 }
