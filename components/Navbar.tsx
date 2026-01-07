@@ -80,11 +80,11 @@ export function Navbar() {
               <Image
                 src="/logo.png"
                 alt="Trokacha"
-                width={40}
-                height={40}
-                className="w-10 h-10"
+                width={56}
+                height={56}
+                className="w-14 h-14"
               />
-              <span>Trokacha</span>
+              <span className="hidden sm:inline">Trokacha</span>
             </Link>
 
             <div className="hidden md:flex items-center gap-8">
