@@ -77,7 +77,7 @@ export function Navbar() {
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 md:h-28 pt-[max(env(safe-area-inset-top),0.5rem)] md:pt-4">
+          <div className="flex items-center justify-between h-20 md:h-24 pt-[max(env(safe-area-inset-top),0.5rem)] md:pt-3">
             <Link
               href="/"
               className={`flex items-center transition-colors ${
@@ -89,7 +89,7 @@ export function Navbar() {
                 alt="Trokacha"
                 width={295}
                 height={351}
-                className="w-10 h-auto md:w-20"
+                className="w-10 h-auto md:w-16"
                 priority
               />
             </Link>
