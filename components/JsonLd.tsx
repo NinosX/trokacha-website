@@ -9,10 +9,10 @@ export function JsonLd({ locale }: { locale: string }) {
     "url": baseUrl,
     "logo": `${baseUrl}/logo.png`,
     "description": locale === "ar"
-      ? "أول منصة جزائرية شاملة: مقايضة، بيع، نقل، طرود ومشاركة السيارات"
+      ? "تطبيق جزائري، للجزائريين! مقايضة، بيع، شراء، خدمات، عقارات، طرود، مشاركة السيارات"
       : locale === "en"
-      ? "The first Algerian all-in-one platform: Barter, Sale, Transport, Parcels and Carpooling"
-      : "La première plateforme algérienne tout-en-un: Troc, Vente, Transport, Colis et Covoiturage",
+      ? "An Algerian App, for Algerians! Barter, Sale, Purchase, Services, Real Estate, Parcels, Carpooling"
+      : "Une App Algérienne, pour les Algériens ! Troc, Vente, Achat, Services, Immobilier, Colis, Covoiturage",
     "foundingDate": "2024",
     "foundingLocation": {
       "@type": "Place",
@@ -42,10 +42,10 @@ export function JsonLd({ locale }: { locale: string }) {
     "operatingSystem": ["iOS", "Android"],
     "applicationCategory": "LifestyleApplication",
     "description": locale === "ar"
-      ? "تطبيق جزائري للمقايضة والبيع ونقل الطرود ومشاركة السيارات"
+      ? "تطبيق جزائري، للجزائريين! مقايضة، بيع، شراء، خدمات، عقارات، طرود، مشاركة السيارات"
       : locale === "en"
-      ? "Algerian app for bartering, selling, parcel transport and carpooling"
-      : "Application algérienne de troc, vente, transport de colis et covoiturage",
+      ? "An Algerian App, for Algerians! Barter, Sale, Purchase, Services, Real Estate, Parcels, Carpooling"
+      : "Une App Algérienne, pour les Algériens ! Troc, Vente, Achat, Services, Immobilier, Colis, Covoiturage",
     "offers": {
       "@type": "Offer",
       "price": "0",
