@@ -6,7 +6,6 @@ import { EmailForm } from "@/components/EmailForm";
 import { Navbar } from "@/components/Navbar";
 import { HowItWorks } from "@/components/HowItWorks";
 import { TransportSection } from "@/components/TransportSection";
-import { AlgeriaMap } from "@/components/AlgeriaMap";
 import { FAQ } from "@/components/FAQ";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
@@ -198,6 +197,24 @@ export default function Home() {
       title: t("features.design.title"),
       description: t("features.design.description"),
       color: "from-indigo-500 to-purple-500",
+    },
+    {
+      emoji: "✅",
+      title: t("features.verification.title"),
+      description: t("features.verification.description"),
+      color: "from-teal-500 to-cyan-500",
+    },
+    {
+      emoji: "🏆",
+      title: t("features.gamification.title"),
+      description: t("features.gamification.description"),
+      color: "from-amber-500 to-yellow-500",
+    },
+    {
+      emoji: "💬",
+      title: t("features.chat.title"),
+      description: t("features.chat.description"),
+      color: "from-rose-500 to-red-500",
     },
   ];
 
@@ -405,8 +422,6 @@ export default function Home() {
       {/* Transport Section */}
       <TransportSection />
 
-      {/* Algeria Map */}
-      <AlgeriaMap />
 
       {/* FAQ */}
       <FAQ />

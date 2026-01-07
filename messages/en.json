@@ -61,6 +61,18 @@
     "design": {
       "title": "Elegant Design",
       "description": "A modern and pleasant visual experience"
+    },
+    "verification": {
+      "title": "Verified Users",
+      "description": "Identity verification (ID photo + selfie) and visible trust badge"
+    },
+    "gamification": {
+      "title": "Badges & Rewards",
+      "description": "Earn points, unlock badges and climb the leaderboard"
+    },
+    "chat": {
+      "title": "Complete Chat",
+      "description": "Voice messages, photos, documents and reactions to communicate easily"
     }
   },
   "howItWorks": {
@@ -98,7 +110,7 @@
       },
       "secure": {
         "title": "100% Secure",
-        "description": "Verified carriers, real-time tracking and insurance included"
+        "description": "Verified carriers and real-time tracking"
       },
       "community": {
         "title": "Reliable community",

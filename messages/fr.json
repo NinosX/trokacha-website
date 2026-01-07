@@ -61,6 +61,18 @@
     "design": {
       "title": "Design Elegant",
       "description": "Une experience visuelle moderne et agreable"
+    },
+    "verification": {
+      "title": "Utilisateurs Verifies",
+      "description": "Verification d'identite (photo ID + selfie) et badge de confiance visible"
+    },
+    "gamification": {
+      "title": "Badges & Recompenses",
+      "description": "Gagnez des points, debloquez des badges et grimpez dans le classement"
+    },
+    "chat": {
+      "title": "Chat Complet",
+      "description": "Messages vocaux, photos, documents et reactions pour communiquer facilement"
     }
   },
   "howItWorks": {
@@ -98,7 +110,7 @@
       },
       "secure": {
         "title": "100% Securise",
-        "description": "Transporteurs verifies, suivi en temps reel et assurance incluse"
+        "description": "Transporteurs verifies et suivi en temps reel"
       },
       "community": {
         "title": "Communaute fiable",
