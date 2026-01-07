@@ -4,6 +4,7 @@
     "description": "La premiere plateforme algerienne tout-en-un: Troc, Vente, Transport, Colis et Covoiturage"
   },
   "navbar": {
+    "home": "Accueil",
     "features": "Fonctionnalites",
     "echange": "Troc & Vente",
     "transport": "Transport",

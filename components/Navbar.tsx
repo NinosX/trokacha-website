@@ -38,6 +38,11 @@ export function Navbar() {
     { href: "#faq", label: t("faq"), isSection: true },
   ];
 
+  const mobileNavLinks = [
+    { href: "/", label: t("home"), isSection: false },
+    ...navLinks,
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -84,7 +89,7 @@ export function Navbar() {
                 alt="Trokacha"
                 width={295}
                 height={351}
-                className="w-12 h-auto md:w-20"
+                className="w-10 h-auto md:w-20"
                 priority
               />
             </Link>
@@ -227,7 +232,7 @@ export function Navbar() {
             className="fixed inset-x-0 top-16 z-40 bg-white shadow-xl md:hidden"
           >
             <div className="container mx-auto px-4 py-6 space-y-4">
-              {navLinks.map((link) => (
+              {mobileNavLinks.map((link) => (
                 link.isSection ? (
                   <button
                     key={link.href}

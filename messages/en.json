@@ -4,6 +4,7 @@
     "description": "The first Algerian all-in-one platform: Barter, Sale, Transport, Parcels and Carpooling"
   },
   "navbar": {
+    "home": "Home",
     "features": "Features",
     "echange": "Barter & Sale",
     "transport": "Transport",
