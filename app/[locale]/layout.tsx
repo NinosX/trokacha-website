@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import { JsonLd } from '@/components/JsonLd';
 import '../globals.css';
 
 export function generateStaticParams() {
@@ -13,18 +14,78 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const messages = await getMessages({ locale });
   const metadata = messages.metadata as { title: string; description: string };
 
+  const baseUrl = "https://trokacha.com";
+  const localeUrls: Record<string, string> = {
+    fr: baseUrl,
+    en: `${baseUrl}/en`,
+    ar: `${baseUrl}/ar`,
+  };
+
   return {
-    title: metadata.title,
+    title: {
+      default: metadata.title,
+      template: `%s | Trokacha`,
+    },
     description: metadata.description,
-    keywords: ["troc", "vente", "transport", "colis", "covoiturage", "algerie", "marketplace"],
+    keywords: [
+      "troc", "vente", "achat", "transport", "colis", "covoiturage",
+      "algerie", "marketplace", "echange", "annonces", "occasion",
+      "livraison", "particuliers", "trokacha", "application mobile"
+    ],
+    authors: [{ name: "Trokacha" }],
+    creator: "Trokacha",
+    publisher: "Trokacha",
+    metadataBase: new URL(baseUrl),
+    alternates: {
+      canonical: localeUrls[locale] || baseUrl,
+      languages: {
+        "fr": baseUrl,
+        "en": `${baseUrl}/en`,
+        "ar": `${baseUrl}/ar`,
+      },
+    },
     icons: {
       icon: "/favicon.png",
       apple: "/logo.png",
+      shortcut: "/favicon.png",
     },
+    manifest: "/manifest.json",
     openGraph: {
+      type: "website",
+      locale: locale === "ar" ? "ar_DZ" : locale === "en" ? "en_US" : "fr_FR",
+      url: localeUrls[locale] || baseUrl,
+      siteName: "Trokacha",
+      title: metadata.title,
+      description: metadata.description,
+      images: [
+        {
+          url: "/logo.png",
+          width: 464,
+          height: 520,
+          alt: "Trokacha Logo",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
       title: metadata.title,
       description: metadata.description,
       images: ["/logo.png"],
+      creator: "@trokacha",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    verification: {
+      google: "GOOGLE_VERIFICATION_CODE", // À remplacer avec ton code
     },
   };
 }
@@ -54,6 +115,9 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={dir}>
+      <head>
+        <JsonLd locale={locale} />
+      </head>
       <body className="font-sans">
         <NextIntlClientProvider messages={messages}>
           {children}

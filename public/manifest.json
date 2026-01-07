@@ -1,0 +1,25 @@
+{
+  "name": "Trokacha",
+  "short_name": "Trokacha",
+  "description": "La plateforme algérienne tout-en-un : Troc, Vente, Transport de Colis et Covoiturage",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#F97316",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "464x520",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["shopping", "lifestyle", "social"],
+  "lang": "fr",
+  "dir": "ltr"
+}
