@@ -5,8 +5,9 @@
   },
   "navbar": {
     "features": "Fonctionnalites",
-    "howItWorks": "Comment ca marche",
+    "echange": "Troc & Vente",
     "transport": "Transport",
+    "chat": "Chat",
     "faq": "FAQ",
     "signup": "S'inscrire"
   },
@@ -282,5 +283,222 @@
   "contact": {
     "title": "Contactez-nous",
     "subtitle": "Une question ? Une suggestion ? N'hesitez pas a nous contacter"
+  },
+  "echange": {
+    "backHome": "Retour a l'accueil",
+    "title": "Troc, Vente & Achat",
+    "subtitle": "Decouvrez comment echanger, vendre ou acheter en toute simplicite sur Trokacha",
+    "stepsTitle": "Le parcours complet",
+    "stepsSubtitle": "De la publication a la notation, suivez chaque etape de votre echange",
+    "steps": {
+      "step1": {
+        "title": "Publiez votre annonce",
+        "description": "Prenez des photos de qualite, ajoutez une description detaillee et fixez votre prix ou ce que vous recherchez en echange.",
+        "tip": "Des photos claires et une description complete augmentent vos chances de trouver un echange !"
+      },
+      "step2": {
+        "title": "Parcourez les annonces",
+        "description": "Explorez les offres des autres utilisateurs. Filtrez par categorie, localisation ou type d'echange souhaite.",
+        "tip": "Utilisez les filtres pour trouver exactement ce que vous cherchez plus rapidement."
+      },
+      "step3": {
+        "title": "Faites une proposition",
+        "description": "Une annonce vous interesse ? Selectionnez une de vos annonces a proposer en echange, ou faites une offre d'achat.",
+        "tip": "Swipez a droite pour proposer un echange, c'est rapide et intuitif !"
+      },
+      "step4": {
+        "title": "C'est un Match !",
+        "description": "Si l'autre utilisateur accepte votre proposition, vous avez un match ! Vous pouvez maintenant discuter des details.",
+        "tip": "Le match signifie que les deux parties sont interessees - la negociation peut commencer."
+      },
+      "step5": {
+        "title": "Confirmez l'engagement",
+        "description": "Une fois les details regles, confirmez votre engagement mutuel. Cela scelle l'accord entre vous.",
+        "tip": "L'engagement mutuel protege les deux parties et garantit le serieux de la transaction."
+      },
+      "step6": {
+        "title": "Procedez a l'echange",
+        "description": "Rencontrez-vous pour effectuer l'echange physique des biens ou finalisez la vente selon vos accords.",
+        "tip": "Choisissez un lieu public et securise pour vos echanges en personne."
+      },
+      "step7": {
+        "title": "Notez et terminez",
+        "description": "Apres l'echange, notez votre experience. Vos avis aident la communaute a identifier les utilisateurs de confiance.",
+        "tip": "Une bonne notation vous aide a batir votre reputation sur la plateforme !"
+      }
+    },
+    "screenshotsTitle": "L'app en action",
+    "screenshotsSubtitle": "Decouvrez l'interface intuitive de Trokacha",
+    "screenshotPlaceholder": "Capture d'ecran bientot disponible",
+    "ctaTitle": "Pret a echanger ?",
+    "ctaSubtitle": "Rejoignez des milliers d'utilisateurs qui font deja confiance a Trokacha",
+    "discoverTransport": "Decouvrir le Transport",
+    "discoverChat": "Decouvrir le Chat",
+    "allRightsReserved": "Tous droits reserves."
+  },
+  "transport": {
+    "backHome": "Retour a l'accueil",
+    "title": "Transport & Covoiturage",
+    "subtitle": "Envoyez vos colis ou partagez vos trajets avec la communaute Trokacha",
+    "colisMode": "Transport de Colis",
+    "covoiturageMode": "Covoiturage",
+    "features": {
+      "feature1": {
+        "title": "Partout en Algerie",
+        "description": "De Tamanrasset a Annaba, trouvez des transporteurs sur tous les trajets"
+      },
+      "feature2": {
+        "title": "Rapide & Flexible",
+        "description": "Choisissez l'horaire et le transporteur qui vous conviennent"
+      },
+      "feature3": {
+        "title": "100% Securise",
+        "description": "Transporteurs verifies et suivi en temps reel de vos colis"
+      },
+      "feature4": {
+        "title": "Communaute Fiable",
+        "description": "Systeme de notation et avis pour une confiance totale"
+      }
+    },
+    "colisSection": {
+      "badge": "Envoi de Colis",
+      "title": "Envoyez vos colis facilement",
+      "subtitle": "Vos colis voyagent avec des particuliers qui font deja le trajet. Economique et ecologique !",
+      "steps": {
+        "step1": {
+          "title": "Decrivez votre colis",
+          "description": "Indiquez les dimensions, le poids et la nature de votre colis"
+        },
+        "step2": {
+          "title": "Trouvez un transporteur",
+          "description": "Parcourez les annonces de voyageurs sur votre trajet"
+        },
+        "step3": {
+          "title": "Contactez et negociez",
+          "description": "Discutez des details et du prix via le chat integre"
+        },
+        "step4": {
+          "title": "Remettez le colis",
+          "description": "Rencontrez le transporteur et confiez-lui votre colis"
+        },
+        "step5": {
+          "title": "Suivez en temps reel",
+          "description": "Suivez l'avancement de votre colis sur la carte"
+        },
+        "step6": {
+          "title": "Confirmation & avis",
+          "description": "Confirmez la reception et notez votre experience"
+        }
+      }
+    },
+    "covoiturageSection": {
+      "badge": "Covoiturage",
+      "title": "Partagez vos trajets",
+      "subtitle": "Voyagez ensemble, economisez et faites des rencontres !",
+      "steps": {
+        "step1": {
+          "title": "Publiez votre trajet",
+          "description": "Indiquez votre itineraire, date et nombre de places"
+        },
+        "step2": {
+          "title": "Definissez vos conditions",
+          "description": "Prix par place, bagages acceptes, preferences"
+        },
+        "step3": {
+          "title": "Recevez des demandes",
+          "description": "Les passagers interessés vous contactent"
+        },
+        "step4": {
+          "title": "Confirmez les reservations",
+          "description": "Acceptez les passagers et confirmez les places"
+        },
+        "step5": {
+          "title": "Voyagez ensemble",
+          "description": "Retrouvez vos passagers et partagez la route"
+        },
+        "step6": {
+          "title": "Notez l'experience",
+          "description": "Evaluez vos covoitureurs pour la communaute"
+        }
+      }
+    },
+    "realtime": {
+      "title": "Places disponibles en temps reel",
+      "description": "Visualisez instantanement les places restantes sur chaque trajet. Plus besoin de demander, l'information est mise a jour automatiquement !"
+    },
+    "ctaTitle": "Pret a voyager ?",
+    "ctaSubtitle": "Rejoignez la communaute de transport collaboratif Trokacha",
+    "discoverEchange": "Decouvrir le Troc",
+    "discoverChat": "Decouvrir le Chat",
+    "allRightsReserved": "Tous droits reserves."
+  },
+  "chatPage": {
+    "backHome": "Retour a l'accueil",
+    "title": "Chat Trokacha",
+    "subtitle": "Un systeme de messagerie complet pour negocier, echanger et conclure vos transactions",
+    "featuresTitle": "Tout pour communiquer",
+    "featuresSubtitle": "Des fonctionnalites pensees pour faciliter vos echanges",
+    "features": {
+      "feature1": {
+        "title": "Messages texte",
+        "description": "Discutez en temps reel avec les autres utilisateurs"
+      },
+      "feature2": {
+        "title": "Messages vocaux",
+        "description": "Envoyez des notes vocales pour communiquer plus vite"
+      },
+      "feature3": {
+        "title": "Partage de photos",
+        "description": "Envoyez des photos pour montrer vos articles en detail"
+      },
+      "feature4": {
+        "title": "Documents",
+        "description": "Partagez des documents si necessaire"
+      },
+      "feature5": {
+        "title": "Reactions",
+        "description": "Reagissez aux messages avec des emojis"
+      },
+      "feature6": {
+        "title": "Securise",
+        "description": "Vos conversations sont privees et protegees"
+      }
+    },
+    "marketplace": {
+      "badge": "Second lieu de marche",
+      "title": "Le chat, un espace de negociation",
+      "description": "Le chat Trokacha n'est pas qu'un simple outil de messagerie. C'est un veritable espace de negociation ou vous pouvez discuter des prix, proposer des alternatives et conclure vos transactions.",
+      "useCases": {
+        "case1": {
+          "title": "Negociez les prix",
+          "description": "Discutez et trouvez un accord sur le prix ou les conditions d'echange"
+        },
+        "case2": {
+          "title": "Organisez les rencontres",
+          "description": "Convenez du lieu et de l'heure pour l'echange physique"
+        },
+        "case3": {
+          "title": "Suivez vos colis",
+          "description": "Restez en contact avec le transporteur pendant le trajet"
+        },
+        "case4": {
+          "title": "Construisez la confiance",
+          "description": "Apprenez a connaitre votre interlocuteur avant de conclure"
+        }
+      }
+    },
+    "mockup": {
+      "userName": "Ahmed B.",
+      "status": "En ligne",
+      "message1": "Bonjour, votre iPhone est toujours disponible ?",
+      "message2": "Oui ! Je suis interesse par votre MacBook en echange",
+      "message3": "Super, on se retrouve demain ?",
+      "placeholder": "Ecrivez un message..."
+    },
+    "ctaTitle": "Pret a discuter ?",
+    "ctaSubtitle": "Rejoignez Trokacha et commencez a echanger avec la communaute",
+    "discoverEchange": "Decouvrir le Troc",
+    "discoverTransport": "Decouvrir le Transport",
+    "allRightsReserved": "Tous droits reserves."
   }
 }

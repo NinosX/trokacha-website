@@ -30,10 +30,11 @@ export function Navbar() {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
 
   const navLinks = [
-    { href: "#features", label: t("features") },
-    { href: "#how-it-works", label: t("howItWorks") },
-    { href: "#transport", label: t("transport") },
-    { href: "#faq", label: t("faq") },
+    { href: "#features", label: t("features"), isSection: true },
+    { href: "/echange", label: t("echange"), isSection: false },
+    { href: "/transport", label: t("transport"), isSection: false },
+    { href: "/chat", label: t("chat"), isSection: false },
+    { href: "#faq", label: t("faq"), isSection: true },
   ];
 
   useEffect(() => {
@@ -88,15 +89,27 @@ export function Navbar() {
 
             <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => scrollToSection(link.href)}
-                  className={`font-medium transition-colors hover:opacity-80 ${
-                    isScrolled ? "text-gray-700" : "text-white/90"
-                  }`}
-                >
-                  {link.label}
-                </button>
+                link.isSection ? (
+                  <button
+                    key={link.href}
+                    onClick={() => scrollToSection(link.href)}
+                    className={`font-medium transition-colors hover:opacity-80 ${
+                      isScrolled ? "text-gray-700" : "text-white/90"
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`font-medium transition-colors hover:opacity-80 ${
+                      isScrolled ? "text-gray-700" : "text-white/90"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
 
               {/* Language Switcher */}
@@ -213,13 +226,24 @@ export function Navbar() {
           >
             <div className="container mx-auto px-4 py-6 space-y-4">
               {navLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => scrollToSection(link.href)}
-                  className="block w-full text-start px-4 py-3 text-gray-700 font-medium hover:bg-gray-50 rounded-lg transition-colors"
-                >
-                  {link.label}
-                </button>
+                link.isSection ? (
+                  <button
+                    key={link.href}
+                    onClick={() => scrollToSection(link.href)}
+                    className="block w-full text-start px-4 py-3 text-gray-700 font-medium hover:bg-gray-50 rounded-lg transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block w-full text-start px-4 py-3 text-gray-700 font-medium hover:bg-gray-50 rounded-lg transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                )
               ))}
               <button
                 onClick={() => scrollToSection("#cta")}

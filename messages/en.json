@@ -5,8 +5,9 @@
   },
   "navbar": {
     "features": "Features",
-    "howItWorks": "How it works",
+    "echange": "Barter & Sale",
     "transport": "Transport",
+    "chat": "Chat",
     "faq": "FAQ",
     "signup": "Sign up"
   },
@@ -282,5 +283,222 @@
   "contact": {
     "title": "Contact Us",
     "subtitle": "Have a question? A suggestion? Don't hesitate to contact us"
+  },
+  "echange": {
+    "backHome": "Back to home",
+    "title": "Barter, Sale & Purchase",
+    "subtitle": "Discover how to exchange, sell or buy easily on Trokacha",
+    "stepsTitle": "The complete journey",
+    "stepsSubtitle": "From posting to rating, follow each step of your exchange",
+    "steps": {
+      "step1": {
+        "title": "Post your ad",
+        "description": "Take quality photos, add a detailed description and set your price or what you're looking for in exchange.",
+        "tip": "Clear photos and a complete description increase your chances of finding an exchange!"
+      },
+      "step2": {
+        "title": "Browse the ads",
+        "description": "Explore offers from other users. Filter by category, location or type of exchange desired.",
+        "tip": "Use filters to find exactly what you're looking for faster."
+      },
+      "step3": {
+        "title": "Make a proposal",
+        "description": "Interested in an ad? Select one of your ads to propose in exchange, or make a purchase offer.",
+        "tip": "Swipe right to propose an exchange, it's fast and intuitive!"
+      },
+      "step4": {
+        "title": "It's a Match!",
+        "description": "If the other user accepts your proposal, you have a match! You can now discuss the details.",
+        "tip": "A match means both parties are interested - negotiation can begin."
+      },
+      "step5": {
+        "title": "Confirm the commitment",
+        "description": "Once the details are settled, confirm your mutual commitment. This seals the agreement between you.",
+        "tip": "Mutual commitment protects both parties and guarantees the seriousness of the transaction."
+      },
+      "step6": {
+        "title": "Proceed with the exchange",
+        "description": "Meet to perform the physical exchange of goods or finalize the sale according to your agreements.",
+        "tip": "Choose a public and secure place for your in-person exchanges."
+      },
+      "step7": {
+        "title": "Rate and finish",
+        "description": "After the exchange, rate your experience. Your reviews help the community identify trustworthy users.",
+        "tip": "A good rating helps you build your reputation on the platform!"
+      }
+    },
+    "screenshotsTitle": "The app in action",
+    "screenshotsSubtitle": "Discover Trokacha's intuitive interface",
+    "screenshotPlaceholder": "Screenshot coming soon",
+    "ctaTitle": "Ready to exchange?",
+    "ctaSubtitle": "Join thousands of users who already trust Trokacha",
+    "discoverTransport": "Discover Transport",
+    "discoverChat": "Discover Chat",
+    "allRightsReserved": "All rights reserved."
+  },
+  "transport": {
+    "backHome": "Back to home",
+    "title": "Transport & Carpooling",
+    "subtitle": "Send your parcels or share your trips with the Trokacha community",
+    "colisMode": "Parcel Transport",
+    "covoiturageMode": "Carpooling",
+    "features": {
+      "feature1": {
+        "title": "All over Algeria",
+        "description": "From Tamanrasset to Annaba, find carriers on all routes"
+      },
+      "feature2": {
+        "title": "Fast & Flexible",
+        "description": "Choose the schedule and carrier that suits you"
+      },
+      "feature3": {
+        "title": "100% Secure",
+        "description": "Verified carriers and real-time parcel tracking"
+      },
+      "feature4": {
+        "title": "Reliable Community",
+        "description": "Rating and review system for total confidence"
+      }
+    },
+    "colisSection": {
+      "badge": "Parcel Shipping",
+      "title": "Send your parcels easily",
+      "subtitle": "Your parcels travel with individuals already making the trip. Economical and ecological!",
+      "steps": {
+        "step1": {
+          "title": "Describe your parcel",
+          "description": "Indicate the dimensions, weight and nature of your parcel"
+        },
+        "step2": {
+          "title": "Find a carrier",
+          "description": "Browse traveler ads on your route"
+        },
+        "step3": {
+          "title": "Contact and negotiate",
+          "description": "Discuss details and price via integrated chat"
+        },
+        "step4": {
+          "title": "Hand over the parcel",
+          "description": "Meet the carrier and entrust them with your parcel"
+        },
+        "step5": {
+          "title": "Track in real-time",
+          "description": "Follow your parcel's progress on the map"
+        },
+        "step6": {
+          "title": "Confirmation & review",
+          "description": "Confirm receipt and rate your experience"
+        }
+      }
+    },
+    "covoiturageSection": {
+      "badge": "Carpooling",
+      "title": "Share your trips",
+      "subtitle": "Travel together, save money and meet new people!",
+      "steps": {
+        "step1": {
+          "title": "Post your trip",
+          "description": "Indicate your route, date and number of seats"
+        },
+        "step2": {
+          "title": "Set your conditions",
+          "description": "Price per seat, luggage accepted, preferences"
+        },
+        "step3": {
+          "title": "Receive requests",
+          "description": "Interested passengers contact you"
+        },
+        "step4": {
+          "title": "Confirm bookings",
+          "description": "Accept passengers and confirm seats"
+        },
+        "step5": {
+          "title": "Travel together",
+          "description": "Meet your passengers and share the road"
+        },
+        "step6": {
+          "title": "Rate the experience",
+          "description": "Evaluate your carpoolers for the community"
+        }
+      }
+    },
+    "realtime": {
+      "title": "Real-time available seats",
+      "description": "Instantly see remaining seats on each trip. No need to ask, the information is automatically updated!"
+    },
+    "ctaTitle": "Ready to travel?",
+    "ctaSubtitle": "Join the Trokacha collaborative transport community",
+    "discoverEchange": "Discover Barter",
+    "discoverChat": "Discover Chat",
+    "allRightsReserved": "All rights reserved."
+  },
+  "chatPage": {
+    "backHome": "Back to home",
+    "title": "Trokacha Chat",
+    "subtitle": "A complete messaging system to negotiate, exchange and conclude your transactions",
+    "featuresTitle": "Everything to communicate",
+    "featuresSubtitle": "Features designed to facilitate your exchanges",
+    "features": {
+      "feature1": {
+        "title": "Text messages",
+        "description": "Chat in real-time with other users"
+      },
+      "feature2": {
+        "title": "Voice messages",
+        "description": "Send voice notes to communicate faster"
+      },
+      "feature3": {
+        "title": "Photo sharing",
+        "description": "Send photos to show your items in detail"
+      },
+      "feature4": {
+        "title": "Documents",
+        "description": "Share documents if needed"
+      },
+      "feature5": {
+        "title": "Reactions",
+        "description": "React to messages with emojis"
+      },
+      "feature6": {
+        "title": "Secure",
+        "description": "Your conversations are private and protected"
+      }
+    },
+    "marketplace": {
+      "badge": "Second marketplace",
+      "title": "Chat, a negotiation space",
+      "description": "Trokacha chat is not just a simple messaging tool. It's a real negotiation space where you can discuss prices, propose alternatives and conclude your transactions.",
+      "useCases": {
+        "case1": {
+          "title": "Negotiate prices",
+          "description": "Discuss and find an agreement on price or exchange conditions"
+        },
+        "case2": {
+          "title": "Organize meetings",
+          "description": "Agree on the place and time for the physical exchange"
+        },
+        "case3": {
+          "title": "Track your parcels",
+          "description": "Stay in touch with the carrier during the trip"
+        },
+        "case4": {
+          "title": "Build trust",
+          "description": "Get to know your contact before concluding"
+        }
+      }
+    },
+    "mockup": {
+      "userName": "Ahmed B.",
+      "status": "Online",
+      "message1": "Hi, is your iPhone still available?",
+      "message2": "Yes! I'm interested in your MacBook in exchange",
+      "message3": "Great, shall we meet tomorrow?",
+      "placeholder": "Write a message..."
+    },
+    "ctaTitle": "Ready to chat?",
+    "ctaSubtitle": "Join Trokacha and start exchanging with the community",
+    "discoverEchange": "Discover Barter",
+    "discoverTransport": "Discover Transport",
+    "allRightsReserved": "All rights reserved."
   }
 }
