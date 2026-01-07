@@ -5,7 +5,6 @@ import { Sparkles } from "lucide-react";
 import { EmailForm } from "@/components/EmailForm";
 import { Navbar } from "@/components/Navbar";
 import { HowItWorks } from "@/components/HowItWorks";
-import { TransportSection } from "@/components/TransportSection";
 import { FAQ } from "@/components/FAQ";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
@@ -419,8 +418,6 @@ export default function Home() {
       {/* How it works */}
       <HowItWorks />
 
-      {/* Transport Section */}
-      <TransportSection />
 
 
       {/* FAQ */}
