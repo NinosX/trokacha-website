@@ -6,6 +6,7 @@ import { Menu, X, Globe } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import Image from "next/image";
 
 const localeNames: Record<string, string> = {
   fr: "FR",
@@ -72,11 +73,18 @@ export function Navbar() {
           <div className="flex items-center justify-between h-16 md:h-20">
             <Link
               href="/"
-              className={`text-2xl font-bold transition-colors ${
+              className={`flex items-center gap-2 text-2xl font-bold transition-colors ${
                 isScrolled ? "text-primary" : "text-white"
               }`}
             >
-              Trokacha
+              <Image
+                src="/logo.png"
+                alt="Trokacha"
+                width={40}
+                height={40}
+                className="w-10 h-10"
+              />
+              <span>Trokacha</span>
             </Link>
 
             <div className="hidden md:flex items-center gap-8">

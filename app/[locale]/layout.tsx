@@ -17,6 +17,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: metadata.title,
     description: metadata.description,
     keywords: ["troc", "vente", "transport", "colis", "covoiturage", "algerie", "marketplace"],
+    icons: {
+      icon: "/favicon.png",
+      apple: "/logo.png",
+    },
+    openGraph: {
+      title: metadata.title,
+      description: metadata.description,
+      images: ["/logo.png"],
+    },
   };
 }
 
