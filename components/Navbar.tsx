@@ -77,7 +77,7 @@ export function Navbar() {
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-24">
+          <div className="flex items-center justify-between h-16 md:h-28 pt-2 md:pt-4">
             <Link
               href="/"
               className={`flex items-center transition-colors ${
