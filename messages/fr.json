@@ -8,6 +8,7 @@
     "echange": "Troc & Vente",
     "transport": "Transport",
     "chat": "Chat",
+    "verification": "Verification",
     "faq": "FAQ",
     "signup": "S'inscrire"
   },
@@ -79,51 +80,59 @@
   "security": {
     "badge": "Securite & Confiance",
     "title": "Echangez en toute confiance",
-    "subtitle": "Contrairement aux autres plateformes, chaque utilisateur Trokacha est verifie. Notre systeme de verification d'identite garantit des echanges securises.",
-    "verificationTitle": "Verification en 4 etapes",
-    "steps": {
-      "step1": {
-        "title": "Creez votre compte",
-        "description": "Inscription rapide avec votre numero de telephone"
+    "subtitle": "Trokacha propose un systeme de verification d'identite pour garantir des echanges securises. Optionnel pour les utilisateurs, obligatoire pour les chauffeurs et transporteurs.",
+    "badges": {
+      "benefits": "Avantages",
+      "blue": {
+        "optional": "Recommande",
+        "title": "Badge Identite",
+        "description": "Pour tous les utilisateurs qui souhaitent inspirer confiance et echanger en toute securite.",
+        "req1": "Piece d'identite",
+        "req2": "Selfie de verification",
+        "benefit1": "Profil de confiance visible",
+        "benefit2": "+50 points de gamification",
+        "benefit3": "Meilleur taux de reponse"
       },
-      "step2": {
-        "title": "Photo de votre piece d'identite",
-        "description": "Prenez en photo votre carte d'identite ou passeport"
-      },
-      "step3": {
-        "title": "Selfie de verification",
-        "description": "Un selfie pour confirmer que c'est bien vous"
-      },
-      "step4": {
-        "title": "Compte verifie !",
-        "description": "Vous obtenez le badge de confiance visible par tous"
+      "green": {
+        "required": "Obligatoire",
+        "title": "Badge Transporteur",
+        "description": "Pour les chauffeurs et transporteurs. Obligatoire pour proposer des trajets ou accepter des demandes.",
+        "req1": "Piece d'identite",
+        "req2": "Selfie de verification",
+        "req3": "Permis de conduire",
+        "whoNeeds": "Obligatoire pour",
+        "driver": "Chauffeurs covoiturage",
+        "transporter": "Transporteurs colis"
       }
     },
-    "badgePreview": {
-      "title": "Utilisateur Verifie",
-      "verified": "VERIFIE",
-      "description": "Ce badge s'affiche sur votre profil et vos annonces"
+    "processTitle": "Comment ca marche ?",
+    "process": {
+      "step1": "Creez votre compte",
+      "step2": "Photo de votre ID",
+      "step3": "Selfie",
+      "step4": "Validation 24-48h",
+      "step5": "Badge obtenu !"
     },
     "features": {
       "feature1": {
         "title": "Identite Verifiee",
-        "description": "Chaque utilisateur passe par notre verification ID + selfie"
+        "description": "Verification ID + selfie"
       },
       "feature2": {
-        "title": "Badge de Confiance",
-        "description": "Un badge visible sur tous les profils verifies"
+        "title": "Systeme de Notation",
+        "description": "Notes apres chaque echange"
       },
       "feature3": {
-        "title": "Systeme de Notation",
-        "description": "Notes et avis apres chaque transaction"
+        "title": "Donnees Protegees",
+        "description": "Informations chiffrees"
       },
       "feature4": {
-        "title": "Donnees Protegees",
-        "description": "Vos informations personnelles sont chiffrees"
+        "title": "Support Reactif",
+        "description": "Equipe disponible 24/7"
       }
     },
     "stats": {
-      "stat1": "Utilisateurs verifies",
+      "stat1": "Verifications securisees",
       "stat2": "Support disponible",
       "stat3": "Note moyenne",
       "stat4": "Tolerance fraude"

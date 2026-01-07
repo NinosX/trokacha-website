@@ -8,6 +8,7 @@
     "echange": "Barter & Sale",
     "transport": "Transport",
     "chat": "Chat",
+    "verification": "Verification",
     "faq": "FAQ",
     "signup": "Sign up"
   },
@@ -79,51 +80,59 @@
   "security": {
     "badge": "Security & Trust",
     "title": "Exchange with confidence",
-    "subtitle": "Unlike other platforms, every Trokacha user is verified. Our identity verification system guarantees secure exchanges.",
-    "verificationTitle": "4-step verification",
-    "steps": {
-      "step1": {
-        "title": "Create your account",
-        "description": "Quick registration with your phone number"
+    "subtitle": "Trokacha offers an identity verification system to guarantee secure exchanges. Optional for users, mandatory for drivers and transporters.",
+    "badges": {
+      "benefits": "Benefits",
+      "blue": {
+        "optional": "Recommended",
+        "title": "Identity Badge",
+        "description": "For all users who want to inspire trust and exchange securely.",
+        "req1": "ID document",
+        "req2": "Verification selfie",
+        "benefit1": "Visible trust profile",
+        "benefit2": "+50 gamification points",
+        "benefit3": "Better response rate"
       },
-      "step2": {
-        "title": "Photo of your ID",
-        "description": "Take a photo of your ID card or passport"
-      },
-      "step3": {
-        "title": "Verification selfie",
-        "description": "A selfie to confirm it's really you"
-      },
-      "step4": {
-        "title": "Account verified!",
-        "description": "You get the trust badge visible to everyone"
+      "green": {
+        "required": "Required",
+        "title": "Transporter Badge",
+        "description": "For drivers and transporters. Required to offer trips or accept requests.",
+        "req1": "ID document",
+        "req2": "Verification selfie",
+        "req3": "Driver's license",
+        "whoNeeds": "Required for",
+        "driver": "Carpooling drivers",
+        "transporter": "Parcel transporters"
       }
     },
-    "badgePreview": {
-      "title": "Verified User",
-      "verified": "VERIFIED",
-      "description": "This badge appears on your profile and listings"
+    "processTitle": "How does it work?",
+    "process": {
+      "step1": "Create your account",
+      "step2": "Photo of your ID",
+      "step3": "Selfie",
+      "step4": "Validation 24-48h",
+      "step5": "Badge obtained!"
     },
     "features": {
       "feature1": {
         "title": "Verified Identity",
-        "description": "Every user goes through our ID + selfie verification"
+        "description": "ID + selfie verification"
       },
       "feature2": {
-        "title": "Trust Badge",
-        "description": "A visible badge on all verified profiles"
+        "title": "Rating System",
+        "description": "Ratings after each exchange"
       },
       "feature3": {
-        "title": "Rating System",
-        "description": "Ratings and reviews after each transaction"
+        "title": "Protected Data",
+        "description": "Encrypted information"
       },
       "feature4": {
-        "title": "Protected Data",
-        "description": "Your personal information is encrypted"
+        "title": "Responsive Support",
+        "description": "Team available 24/7"
       }
     },
     "stats": {
-      "stat1": "Verified users",
+      "stat1": "Secure verifications",
       "stat2": "Support available",
       "stat3": "Average rating",
       "stat4": "Fraud tolerance"
