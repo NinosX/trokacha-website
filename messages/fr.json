@@ -11,7 +11,10 @@
     "chat": "Chat",
     "verification": "Verification",
     "faq": "FAQ",
-    "signup": "S'inscrire"
+    "signup": "S'inscrire",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialite",
+    "contact": "Contact"
   },
   "hero": {
     "badge": "Bientot disponible",

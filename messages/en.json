@@ -11,7 +11,10 @@
     "chat": "Chat",
     "verification": "Verification",
     "faq": "FAQ",
-    "signup": "Sign up"
+    "signup": "Sign up",
+    "terms": "Terms of Use",
+    "privacy": "Privacy Policy",
+    "contact": "Contact"
   },
   "hero": {
     "badge": "Coming soon",

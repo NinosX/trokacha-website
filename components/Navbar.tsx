@@ -41,6 +41,9 @@ export function Navbar() {
   const mobileNavLinks = [
     { href: "/", label: t("home"), isSection: false },
     ...navLinks,
+    { href: "/terms", label: t("terms"), isSection: false },
+    { href: "/privacy", label: t("privacy"), isSection: false },
+    { href: "/contact", label: t("contact"), isSection: false },
   ];
 
   useEffect(() => {
