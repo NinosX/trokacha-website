@@ -34,7 +34,7 @@ export function Navbar() {
     { href: "/echange", label: t("echange"), isSection: false },
     { href: "/transport", label: t("transport"), isSection: false },
     { href: "/chat", label: t("chat"), isSection: false },
-    { href: "#security", label: t("verification"), isSection: true },
+    { href: "/verification", label: t("verification"), isSection: false },
     { href: "#faq", label: t("faq"), isSection: true },
   ];
 

@@ -6,7 +6,6 @@ import { EmailForm } from "@/components/EmailForm";
 import { Navbar } from "@/components/Navbar";
 import { HowItWorks } from "@/components/HowItWorks";
 import { FAQ } from "@/components/FAQ";
-import { Security } from "@/components/Security";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -415,9 +414,6 @@ export default function Home() {
         </div>
       </section>
 
-
-      {/* Security Section */}
-      <Security />
 
       {/* How it works */}
       <HowItWorks />

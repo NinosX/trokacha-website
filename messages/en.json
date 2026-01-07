@@ -41,7 +41,7 @@
     "title": "One app for everything",
     "subtitle": "No need to juggle between multiple apps. Trokacha centralizes all your exchange needs in Algeria",
     "troc": {
-      "title": "Barter & Exchange",
+      "title": "Barter",
       "description": "Exchange your goods with other users with ease"
     },
     "vente": {
@@ -136,7 +136,13 @@
       "stat2": "Support available",
       "stat3": "Average rating",
       "stat4": "Fraud tolerance"
-    }
+    },
+    "backHome": "Back to home",
+    "ctaTitle": "Ready to join the community?",
+    "ctaSubtitle": "Download Trokacha and start exchanging with confidence",
+    "discoverEchange": "Discover Barter",
+    "discoverTransport": "Discover Transport",
+    "allRightsReserved": "All rights reserved."
   },
   "howItWorks": {
     "title": "How does it work?",

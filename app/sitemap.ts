@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://trokacha.com';
   const locales = ['fr', 'en', 'ar'];
-  const pages = ['', '/privacy', '/terms', '/contact', '/echange', '/transport', '/chat'];
+  const pages = ['', '/privacy', '/terms', '/contact', '/echange', '/transport', '/chat', '/verification'];
 
   const sitemap: MetadataRoute.Sitemap = [];
 

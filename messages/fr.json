@@ -41,7 +41,7 @@
     "title": "Une seule app pour tout",
     "subtitle": "Plus besoin de jongler entre plusieurs apps. Trokacha centralise tous vos besoins d'echange en Algerie",
     "troc": {
-      "title": "Troc & Echange",
+      "title": "Troc",
       "description": "Echangez vos biens avec d'autres utilisateurs en toute simplicite"
     },
     "vente": {
@@ -136,7 +136,13 @@
       "stat2": "Support disponible",
       "stat3": "Note moyenne",
       "stat4": "Tolerance fraude"
-    }
+    },
+    "backHome": "Retour a l'accueil",
+    "ctaTitle": "Pret a rejoindre la communaute ?",
+    "ctaSubtitle": "Telechargez Trokacha et commencez a echanger en toute confiance",
+    "discoverEchange": "Decouvrir le Troc",
+    "discoverTransport": "Decouvrir le Transport",
+    "allRightsReserved": "Tous droits reserves."
   },
   "howItWorks": {
     "title": "Comment ca marche ?",
