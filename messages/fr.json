@@ -76,6 +76,59 @@
       "description": "Messages vocaux, photos, documents et reactions pour communiquer facilement"
     }
   },
+  "security": {
+    "badge": "Securite & Confiance",
+    "title": "Echangez en toute confiance",
+    "subtitle": "Contrairement aux autres plateformes, chaque utilisateur Trokacha est verifie. Notre systeme de verification d'identite garantit des echanges securises.",
+    "verificationTitle": "Verification en 4 etapes",
+    "steps": {
+      "step1": {
+        "title": "Creez votre compte",
+        "description": "Inscription rapide avec votre numero de telephone"
+      },
+      "step2": {
+        "title": "Photo de votre piece d'identite",
+        "description": "Prenez en photo votre carte d'identite ou passeport"
+      },
+      "step3": {
+        "title": "Selfie de verification",
+        "description": "Un selfie pour confirmer que c'est bien vous"
+      },
+      "step4": {
+        "title": "Compte verifie !",
+        "description": "Vous obtenez le badge de confiance visible par tous"
+      }
+    },
+    "badgePreview": {
+      "title": "Utilisateur Verifie",
+      "verified": "VERIFIE",
+      "description": "Ce badge s'affiche sur votre profil et vos annonces"
+    },
+    "features": {
+      "feature1": {
+        "title": "Identite Verifiee",
+        "description": "Chaque utilisateur passe par notre verification ID + selfie"
+      },
+      "feature2": {
+        "title": "Badge de Confiance",
+        "description": "Un badge visible sur tous les profils verifies"
+      },
+      "feature3": {
+        "title": "Systeme de Notation",
+        "description": "Notes et avis apres chaque transaction"
+      },
+      "feature4": {
+        "title": "Donnees Protegees",
+        "description": "Vos informations personnelles sont chiffrees"
+      }
+    },
+    "stats": {
+      "stat1": "Utilisateurs verifies",
+      "stat2": "Support disponible",
+      "stat3": "Note moyenne",
+      "stat4": "Tolerance fraude"
+    }
+  },
   "howItWorks": {
     "title": "Comment ca marche ?",
     "subtitle": "4 etapes simples pour commencer a echanger",

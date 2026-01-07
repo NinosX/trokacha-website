@@ -76,6 +76,59 @@
       "description": "Voice messages, photos, documents and reactions to communicate easily"
     }
   },
+  "security": {
+    "badge": "Security & Trust",
+    "title": "Exchange with confidence",
+    "subtitle": "Unlike other platforms, every Trokacha user is verified. Our identity verification system guarantees secure exchanges.",
+    "verificationTitle": "4-step verification",
+    "steps": {
+      "step1": {
+        "title": "Create your account",
+        "description": "Quick registration with your phone number"
+      },
+      "step2": {
+        "title": "Photo of your ID",
+        "description": "Take a photo of your ID card or passport"
+      },
+      "step3": {
+        "title": "Verification selfie",
+        "description": "A selfie to confirm it's really you"
+      },
+      "step4": {
+        "title": "Account verified!",
+        "description": "You get the trust badge visible to everyone"
+      }
+    },
+    "badgePreview": {
+      "title": "Verified User",
+      "verified": "VERIFIED",
+      "description": "This badge appears on your profile and listings"
+    },
+    "features": {
+      "feature1": {
+        "title": "Verified Identity",
+        "description": "Every user goes through our ID + selfie verification"
+      },
+      "feature2": {
+        "title": "Trust Badge",
+        "description": "A visible badge on all verified profiles"
+      },
+      "feature3": {
+        "title": "Rating System",
+        "description": "Ratings and reviews after each transaction"
+      },
+      "feature4": {
+        "title": "Protected Data",
+        "description": "Your personal information is encrypted"
+      }
+    },
+    "stats": {
+      "stat1": "Verified users",
+      "stat2": "Support available",
+      "stat3": "Average rating",
+      "stat4": "Fraud tolerance"
+    }
+  },
   "howItWorks": {
     "title": "How does it work?",
     "subtitle": "4 simple steps to start exchanging",
