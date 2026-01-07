@@ -70,7 +70,7 @@ export function Navbar() {
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="flex items-center justify-between h-20 md:h-24">
             <Link
               href="/"
               className={`flex items-center gap-2 text-2xl font-bold transition-colors ${
@@ -80,11 +80,10 @@ export function Navbar() {
               <Image
                 src="/logo.png"
                 alt="Trokacha"
-                width={56}
-                height={56}
-                className="w-14 h-14"
+                width={120}
+                height={120}
+                className="w-12 h-12 md:w-16 md:h-16"
               />
-              <span className="hidden sm:inline">Trokacha</span>
             </Link>
 
             <div className="hidden md:flex items-center gap-8">
@@ -182,7 +181,7 @@ export function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-0 top-16 z-50 bg-white shadow-xl md:hidden"
+            className="fixed inset-x-0 top-20 z-50 bg-white shadow-xl md:hidden"
           >
             <div className="container mx-auto px-4 py-4 flex justify-center gap-4">
               {routing.locales.map((loc) => (
@@ -210,7 +209,7 @@ export function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-0 top-16 z-40 bg-white shadow-xl md:hidden"
+            className="fixed inset-x-0 top-20 z-40 bg-white shadow-xl md:hidden"
           >
             <div className="container mx-auto px-4 py-6 space-y-4">
               {navLinks.map((link) => (
