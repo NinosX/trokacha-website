@@ -1,19 +1,27 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import { EmailForm } from "@/components/EmailForm";
 import { Navbar } from "@/components/Navbar";
-import { HowItWorks } from "@/components/HowItWorks";
-import { FAQ } from "@/components/FAQ";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import dynamic from "next/dynamic";
+import { useInView } from "@/hooks/useInView";
+
+// Lazy load composants below the fold
+const HowItWorks = dynamic(() => import("@/components/HowItWorks").then(mod => mod.HowItWorks), {
+  loading: () => <div className="py-24 bg-white" />,
+});
+const FAQ = dynamic(() => import("@/components/FAQ").then(mod => mod.FAQ), {
+  loading: () => <div className="py-24 bg-gray-50" />,
+});
 
 // Animation du tutoriel de swipe
 function SwipeTutorial() {
   const t = useTranslations("swipeTutorial");
   const [step, setStep] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const steps = [
     { icon: "📱", text: t("step1"), emoji: "👀" },
@@ -25,7 +33,11 @@ function SwipeTutorial() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setStep((prev) => (prev + 1) % steps.length);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setStep((prev) => (prev + 1) % steps.length);
+        setIsTransitioning(false);
+      }, 300);
     }, 3000);
     return () => clearInterval(timer);
   }, [steps.length]);
@@ -33,83 +45,46 @@ function SwipeTutorial() {
   return (
     <div className="relative w-full h-[600px] flex items-center justify-center">
       {/* Phone mockup */}
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        className="relative w-[320px] h-[600px]"
-      >
+      <div className="relative w-[320px] h-[600px] animate-fade-in-up">
         {/* Phone frame */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-3">
           <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
             {/* Animated content */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={step}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.5 }}
-                className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center"
-              >
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.2, type: "spring" }}
-                  className="text-8xl mb-6"
-                >
-                  {steps[step].icon}
-                </motion.div>
-                <motion.h3
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="text-2xl font-bold text-gray-800 mb-2"
-                >
-                  {steps[step].text}
-                </motion.h3>
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: [0, 1.2, 1] }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
-                  className="text-4xl"
-                >
-                  {steps[step].emoji}
-                </motion.div>
-              </motion.div>
-            </AnimatePresence>
+            <div
+              className={`absolute inset-0 flex flex-col items-center justify-center p-8 text-center transition-all duration-300 ${
+                isTransitioning ? "opacity-0 translate-x-[-50px]" : "opacity-100 translate-x-0"
+              }`}
+            >
+              <div className="text-8xl mb-6 animate-scale-in">
+                {steps[step].icon}
+              </div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-2 animate-fade-in-up delay-200">
+                {steps[step].text}
+              </h3>
+              <div className="text-4xl animate-scale-in delay-300">
+                {steps[step].emoji}
+              </div>
+            </div>
 
             {/* Swipe indicator */}
             {step === 3 && (
-              <motion.div
-                initial={{ x: "50%", opacity: 0 }}
-                animate={{ x: ["50%", "80%", "50%"], opacity: [0, 1, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute bottom-20 left-0 right-0 flex justify-center"
-              >
+              <div className="absolute bottom-20 left-0 right-0 flex justify-center animate-swipe-hint">
                 <div className="bg-primary text-white px-6 py-3 rounded-full font-semibold shadow-lg">
                   👉 Swipe →
                 </div>
-              </motion.div>
+              </div>
             )}
           </div>
         </div>
 
         {/* Floating emojis */}
-        <motion.div
-          animate={{ y: [-10, 10, -10], rotate: [0, 5, 0, -5, 0] }}
-          transition={{ duration: 4, repeat: Infinity }}
-          className="absolute -top-8 -right-8 text-6xl"
-        >
+        <div className="absolute -top-8 -right-8 text-6xl animate-float">
           ✨
-        </motion.div>
-        <motion.div
-          animate={{ y: [10, -10, 10], rotate: [0, -5, 0, 5, 0] }}
-          transition={{ duration: 5, repeat: Infinity }}
-          className="absolute -bottom-8 -left-8 text-6xl"
-        >
+        </div>
+        <div className="absolute -bottom-8 -left-8 text-6xl animate-float-reverse">
           💫
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* Step indicators */}
       <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-2 pb-8">
@@ -141,18 +116,51 @@ function MobileFeatures() {
     <div className="lg:hidden mt-8">
       <div className="flex justify-center gap-4 flex-wrap">
         {features.map((feature, index) => (
-          <motion.div
+          <div
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 + index * 0.1 }}
-            className="flex flex-col items-center bg-white/10 backdrop-blur-sm rounded-2xl px-4 py-3"
+            className="flex flex-col items-center bg-white/10 backdrop-blur-sm rounded-2xl px-4 py-3 animate-fade-in-up"
+            style={{ animationDelay: `${0.6 + index * 0.1}s` }}
           >
             <span className="text-3xl mb-1">{feature.icon}</span>
             <span className="text-sm font-medium">{feature.text}</span>
-          </motion.div>
+          </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+// Composant pour les feature cards avec animation au scroll
+function FeatureCard({ feature, index }: { feature: { emoji: string; title: string; description: string; color: string }; index: number }) {
+  const { ref, isInView } = useInView();
+
+  return (
+    <div
+      ref={ref}
+      className={`group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover-lift ${
+        isInView ? "animate-fade-in-up" : "opacity-0"
+      }`}
+      style={{ animationDelay: `${index * 0.1}s` }}
+    >
+      <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+        <span className="text-5xl">{feature.emoji}</span>
+      </div>
+      <h3 className="text-2xl font-bold mb-3 text-gray-900">{feature.title}</h3>
+      <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+    </div>
+  );
+}
+
+// Composant pour les sections avec animation au scroll
+function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const { ref, isInView } = useInView();
+
+  return (
+    <div
+      ref={ref}
+      className={`${className} ${isInView ? "animate-fade-in-up" : "opacity-0"}`}
+    >
+      {children}
     </div>
   );
 }
@@ -224,78 +232,31 @@ export default function Home() {
       <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-secondary min-h-screen flex items-center">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-          <motion.div
-            className="absolute bottom-20 right-10 w-96 h-96 bg-white/10 rounded-full blur-3xl"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.5, 0.3, 0.5],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
+          <div className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse-slow" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse-slow-reverse" />
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-24 md:pt-28">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-white"
-            >
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-                className="flex items-center gap-2 md:gap-4 mb-6"
-              >
+            <div className="text-white animate-fade-in-up">
+              <div className="flex items-center gap-2 md:gap-4 mb-6 animate-fade-in-up delay-300">
                 <h1 className="text-4xl md:text-7xl font-bold leading-tight">
                   {t("hero.title")}
                 </h1>
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
-                  className="inline-flex items-center gap-1 md:gap-2 px-2 md:px-4 py-1 md:py-2 bg-gradient-to-r from-orange-400 to-yellow-400 text-white rounded-full text-[10px] md:text-sm font-semibold shadow-lg whitespace-nowrap"
-                >
+                <span className="inline-flex items-center gap-1 md:gap-2 px-2 md:px-4 py-1 md:py-2 bg-gradient-to-r from-orange-400 to-yellow-400 text-white rounded-full text-[10px] md:text-sm font-semibold shadow-lg whitespace-nowrap animate-scale-in delay-500">
                   <Sparkles className="w-3 h-3 md:w-4 md:h-4" />
                   {t("hero.badge")}
-                </motion.span>
-              </motion.div>
+                </span>
+              </div>
 
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-                className="text-xl md:text-2xl mb-6 text-white/90 leading-relaxed"
-              >
+              <p className="text-xl md:text-2xl mb-6 text-white/90 leading-relaxed animate-fade-in-up delay-400">
                 <span className="inline-flex items-center gap-2">
                   {t("hero.subtitle")} 🇩🇿
                 </span>
-              </motion.p>
+              </p>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="flex flex-wrap gap-2 md:gap-3 mb-8"
-              >
+              <div className="flex flex-wrap gap-2 md:gap-3 mb-8 animate-fade-in-up delay-500">
                 {[
                   { icon: "🔄", key: "troc" },
                   { icon: "🛍️", key: "vente" },
@@ -313,18 +274,11 @@ export default function Home() {
                     <span>{t(`hero.categories.${item.key}`)}</span>
                   </span>
                 ))}
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="flex flex-col sm:flex-row gap-4 mb-12"
-              >
+              <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-in-up delay-500">
                 {/* App Store Button - Coming Soon */}
-                <div
-                  className="inline-flex items-center justify-center px-6 py-4 bg-black/50 text-white/70 rounded-2xl font-semibold cursor-not-allowed"
-                >
+                <div className="inline-flex items-center justify-center px-6 py-4 bg-black/50 text-white/70 rounded-2xl font-semibold cursor-not-allowed">
                   <svg className="w-8 h-8 me-3 opacity-70" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                   </svg>
@@ -335,9 +289,7 @@ export default function Home() {
                 </div>
 
                 {/* Play Store Button - Coming Soon */}
-                <div
-                  className="inline-flex items-center justify-center px-6 py-4 bg-white/50 text-gray-500 rounded-2xl font-semibold cursor-not-allowed"
-                >
+                <div className="inline-flex items-center justify-center px-6 py-4 bg-white/50 text-gray-500 rounded-2xl font-semibold cursor-not-allowed">
                   <svg className="w-8 h-8 me-3 opacity-70" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
                   </svg>
@@ -346,15 +298,10 @@ export default function Home() {
                     <div className="text-lg font-bold">{t("hero.playStore")}</div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Email Notification Form */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.7, duration: 0.8 }}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-md"
-              >
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-md animate-fade-in delay-700">
                 <div className="text-lg font-semibold mb-3 flex items-center gap-2">
                   🔔 {t("hero.notifyTitle")}
                 </div>
@@ -362,75 +309,39 @@ export default function Home() {
                 <p className="text-white/60 text-xs mt-3">
                   {t("hero.notifyNote")} 🚀
                 </p>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
             {/* Right Content - Animated Tutorial */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              className="relative lg:flex justify-center hidden"
-            >
+            <div className="relative lg:flex justify-center hidden animate-fade-in-up delay-500">
               <SwipeTutorial />
-            </motion.div>
+            </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div
-          animate={{
-            y: [0, 10, 0],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        >
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
           <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-3 bg-white/50 rounded-full" />
+            <div className="w-1 h-3 bg-white/50 rounded-full animate-scroll-bounce" />
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Features Section */}
       <section id="features" className="py-24 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
+          <AnimatedSection className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
               {t("features.title")} 🎯
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               {t("features.subtitle")}
             </p>
-          </motion.div>
+          </AnimatedSection>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Feature Cards */}
             {featuresList.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                className="group relative bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-100"
-              >
-                <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                  <span className="text-5xl">{feature.emoji}</span>
-                </div>
-                <h3 className="text-2xl font-bold mb-3 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-              </motion.div>
+              <FeatureCard key={index} feature={feature} index={index} />
             ))}
           </div>
         </div>
@@ -455,12 +366,7 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+          <AnimatedSection>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               {t("cta.title")} 🚀
             </h2>
@@ -475,7 +381,7 @@ export default function Home() {
                 🎁 {t("cta.note")}
               </p>
             </div>
-          </motion.div>
+          </AnimatedSection>
         </div>
       </section>
 
