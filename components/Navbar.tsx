@@ -24,7 +24,6 @@ export function Navbar() {
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -48,11 +47,6 @@ export function Navbar() {
 
   useEffect(() => {
     setIsVisible(true);
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (href: string) => {
@@ -72,19 +66,15 @@ export function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-lg"
-            : "bg-transparent"
-        } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent ${
+          isVisible ? "translate-y-0" : "-translate-y-full"
+        }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 md:h-24 pt-[max(env(safe-area-inset-top),0.5rem)] md:pt-3">
             <Link
               href="/"
-              className={`flex items-center transition-colors ${
-                isScrolled ? "text-primary" : "text-white"
-              }`}
+              className="flex items-center transition-colors text-white"
             >
               <Image
                 src="/logo-text.png"
@@ -102,9 +92,7 @@ export function Navbar() {
                   <button
                     key={link.href}
                     onClick={() => scrollToSection(link.href)}
-                    className={`font-medium transition-colors hover:opacity-80 ${
-                      isScrolled ? "text-gray-700" : "text-white/90"
-                    }`}
+                    className="font-medium transition-colors hover:opacity-80 text-white/90"
                   >
                     {link.label}
                   </button>
@@ -112,9 +100,7 @@ export function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`font-medium transition-colors hover:opacity-80 ${
-                      isScrolled ? "text-gray-700" : "text-white/90"
-                    }`}
+                    className="font-medium transition-colors hover:opacity-80 text-white/90"
                   >
                     {link.label}
                   </Link>
@@ -125,11 +111,7 @@ export function Navbar() {
               <div className="relative">
                 <button
                   onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-full font-medium transition-all hover:scale-105 ${
-                    isScrolled
-                      ? "bg-gray-100 text-gray-700"
-                      : "bg-white/20 text-white"
-                  }`}
+                  className="flex items-center gap-2 px-3 py-2 rounded-full font-medium transition-all hover:scale-105 bg-white/20 text-white"
                 >
                   <Globe className="w-4 h-4" />
                   <span>{localeFlags[locale]} {localeNames[locale]}</span>
@@ -159,11 +141,7 @@ export function Navbar() {
 
               <button
                 onClick={() => scrollToSection("#cta")}
-                className={`px-5 py-2.5 rounded-full font-semibold transition-all hover:scale-105 ${
-                  isScrolled
-                    ? "bg-primary text-white"
-                    : "bg-white text-primary"
-                }`}
+                className="px-5 py-2.5 rounded-full font-semibold transition-all hover:scale-105 bg-white text-primary"
               >
                 {t("signup")}
               </button>
@@ -173,18 +151,14 @@ export function Navbar() {
               {/* Mobile Language Switcher */}
               <button
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                className={`p-2 rounded-lg transition-colors ${
-                  isScrolled ? "text-gray-700" : "text-white"
-                }`}
+                className="p-2 rounded-lg transition-colors text-white"
               >
                 <span className="text-lg">{localeFlags[locale]}</span>
               </button>
 
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`p-2 rounded-lg transition-colors ${
-                  isScrolled ? "text-gray-700" : "text-white"
-                }`}
+                className="p-2 rounded-lg transition-colors text-white"
               >
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
