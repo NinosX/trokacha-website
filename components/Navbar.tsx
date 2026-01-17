@@ -79,7 +79,7 @@ export function Navbar() {
         } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14 md:h-16 pt-[max(env(safe-area-inset-top),0.25rem)] md:pt-1">
+          <div className="flex items-center justify-between h-20 md:h-24 pt-[max(env(safe-area-inset-top),0.5rem)] md:pt-3">
             <Link
               href="/"
               className={`flex items-center transition-colors ${
@@ -96,13 +96,13 @@ export function Navbar() {
               />
             </Link>
 
-            <div className="hidden md:flex items-center gap-5">
+            <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
                 link.isSection ? (
                   <button
                     key={link.href}
                     onClick={() => scrollToSection(link.href)}
-                    className={`font-medium text-sm transition-colors hover:opacity-80 ${
+                    className={`font-medium transition-colors hover:opacity-80 ${
                       isScrolled ? "text-gray-700" : "text-white/90"
                     }`}
                   >
@@ -112,7 +112,7 @@ export function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`font-medium text-sm transition-colors hover:opacity-80 ${
+                    className={`font-medium transition-colors hover:opacity-80 ${
                       isScrolled ? "text-gray-700" : "text-white/90"
                     }`}
                   >
@@ -125,7 +125,7 @@ export function Navbar() {
               <div className="relative">
                 <button
                   onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full font-medium text-sm transition-all hover:scale-105 ${
+                  className={`flex items-center gap-2 px-3 py-2 rounded-full font-medium transition-all hover:scale-105 ${
                     isScrolled
                       ? "bg-gray-100 text-gray-700"
                       : "bg-white/20 text-white"
@@ -159,7 +159,7 @@ export function Navbar() {
 
               <button
                 onClick={() => scrollToSection("#cta")}
-                className={`px-4 py-2 rounded-full font-semibold text-sm transition-all hover:scale-105 ${
+                className={`px-5 py-2.5 rounded-full font-semibold transition-all hover:scale-105 ${
                   isScrolled
                     ? "bg-primary text-white"
                     : "bg-white text-primary"
@@ -195,7 +195,7 @@ export function Navbar() {
 
       {/* Mobile Language Menu */}
       <div
-        className={`fixed inset-x-0 top-14 z-50 bg-white shadow-xl md:hidden transition-all duration-200 ${
+        className={`fixed inset-x-0 top-16 z-50 bg-white shadow-xl md:hidden transition-all duration-200 ${
           isLangMenuOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-4 pointer-events-none"
@@ -221,7 +221,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-x-0 top-14 z-40 bg-white shadow-xl md:hidden transition-all duration-200 ${
+        className={`fixed inset-x-0 top-16 z-40 bg-white shadow-xl md:hidden transition-all duration-200 ${
           isMobileMenuOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-4 pointer-events-none"
