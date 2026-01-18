@@ -40,8 +40,8 @@
   "swipeTutorial": {
     "step1": "Browse the ads",
     "step2": "Interested in this ad?",
-    "step3": "Choose one of your ads",
-    "step4": "Swipe right",
+    "step3": "Select 1 or 2 of your ads",
+    "step4": "Swipe right = exchange, left = cash",
     "step5": "Proposal sent!"
   },
   "mobileFeatures": {
@@ -170,7 +170,7 @@
     },
     "step3": {
       "title": "Swipe and propose",
-      "description": "Find what interests you and make an exchange proposal"
+      "description": "Select your ads at the bottom, then swipe right for an exchange or left for a cash offer"
     },
     "step4": {
       "title": "Exchange!",
@@ -230,7 +230,7 @@
       },
       "q2": {
         "question": "How does bartering work on Trokacha?",
-        "answer": "It's simple! Post your ad, browse other users' offers, and propose an exchange. If the other person accepts, you can discuss the details via chat."
+        "answer": "Post your ad, browse the offers. To propose an exchange: select 1 or 2 of your ads in the bottom bar, then swipe right. For a cash offer, swipe left."
       },
       "q3": {
         "question": "Is parcel transport secure?",
@@ -384,8 +384,8 @@
       },
       "step3": {
         "title": "Make a proposal",
-        "description": "Interested in an ad? Select one of your ads to propose in exchange, or make a purchase offer.",
-        "tip": "Swipe right to propose an exchange, it's fast and intuitive!"
+        "description": "Interested in an ad? Select 1 or 2 of your ads in the bottom bar, then swipe right for an exchange or left for a cash offer.",
+        "tip": "Select your ads first, then swipe in the chosen direction!"
       },
       "step4": {
         "title": "It's a Match!",
@@ -394,7 +394,7 @@
       },
       "step5": {
         "title": "Confirm the commitment",
-        "description": "Once the details are settled, confirm your mutual commitment. This seals the agreement between you.",
+        "description": "Once the details are settled, confirm the engagement. This blocks the articles: they can no longer receive new proposals.",
         "tip": "Mutual commitment protects both parties and guarantees the seriousness of the transaction."
       },
       "step6": {

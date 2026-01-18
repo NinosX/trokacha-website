@@ -40,8 +40,8 @@
   "swipeTutorial": {
     "step1": "Parcourez les annonces",
     "step2": "Cette annonce vous intéresse ?",
-    "step3": "Choisissez une de vos annonces",
-    "step4": "Swipe à droite",
+    "step3": "Sélectionnez 1 ou 2 de vos annonces",
+    "step4": "Swipe droite = échange, gauche = cash",
     "step5": "Proposition envoyée !"
   },
   "mobileFeatures": {
@@ -170,7 +170,7 @@
     },
     "step3": {
       "title": "Swipez et proposez",
-      "description": "Trouvez ce qui vous intéresse et faites une proposition d'échange"
+      "description": "Sélectionnez vos annonces en bas, puis swipez à droite pour proposer un échange ou à gauche pour une offre en argent"
     },
     "step4": {
       "title": "Échangez !",
@@ -230,7 +230,7 @@
       },
       "q2": {
         "question": "Comment fonctionne le troc sur Trokacha ?",
-        "answer": "C'est simple ! Publiez votre annonce, parcourez les offres des autres utilisateurs, et proposez un échange. Si l'autre personne accepte, vous pouvez discuter des détails par chat."
+        "answer": "Publiez votre annonce, parcourez les offres. Pour proposer un échange : sélectionnez 1 ou 2 de vos annonces dans la barre en bas, puis swipez à droite. Pour faire une offre en argent, swipez à gauche. Si l'autre accepte, vous avez un match et pouvez discuter !"
       },
       "q3": {
         "question": "Le transport de colis est-il sécurisé ?",
@@ -384,8 +384,8 @@
       },
       "step3": {
         "title": "Faites une proposition",
-        "description": "Une annonce vous intéresse ? Sélectionnez une de vos annonces à proposer en échange, ou faites une offre d'achat.",
-        "tip": "Swipez à droite pour proposer un échange, c'est rapide et intuitif !"
+        "description": "Une annonce vous intéresse ? Sélectionnez 1 ou 2 de vos annonces dans la barre en bas, puis swipez à droite pour proposer un échange, ou swipez à gauche pour faire une offre en argent.",
+        "tip": "Swipe droite = échange, swipe gauche = offre cash. Simple et rapide !"
       },
       "step4": {
         "title": "C'est un Match !",
@@ -394,8 +394,8 @@
       },
       "step5": {
         "title": "Confirmez l'engagement",
-        "description": "Une fois les détails réglés, confirmez votre engagement mutuel. Cela scelle l'accord entre vous.",
-        "tip": "L'engagement mutuel protège les deux parties et garantit le sérieux de la transaction."
+        "description": "Une fois les détails réglés, confirmez votre engagement. Une fois engagés, vos articles sont réservés et ne peuvent plus être proposés à d'autres.",
+        "tip": "L'engagement bloque vos articles pour cet échange uniquement. Cela garantit le sérieux de la transaction."
       },
       "step6": {
         "title": "Procédez à l'échange",
