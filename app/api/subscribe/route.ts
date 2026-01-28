@@ -5,11 +5,51 @@ export const runtime = 'edge';
 const PROJECT_ID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
 const API_KEY = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
 
+// Simple in-memory rate limiter (resets on cold start)
+// For production at scale, consider Upstash Redis
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
+const MAX_REQUESTS = 3; // 3 requests per minute per IP
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return false;
+  }
+
+  if (record.count >= MAX_REQUESTS) {
+    return true;
+  }
+
+  record.count++;
+  return false;
+}
+
+// Email validation regex
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export async function POST(request: Request) {
   try {
+    // Get client IP for rate limiting
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() 
+      || request.headers.get('x-real-ip') 
+      || 'unknown';
+
+    // Check rate limit
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: 'Trop de requêtes. Réessayez dans une minute.' },
+        { status: 429 }
+      );
+    }
+
     const { email } = await request.json();
 
-    if (!email || !email.includes('@')) {
+    // Improved email validation
+    if (!email || !EMAIL_REGEX.test(email)) {
       return NextResponse.json(
         { error: 'Email invalide' },
         { status: 400 }
@@ -26,7 +66,7 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         fields: {
-          email: { stringValue: email.toLowerCase() },
+          email: { stringValue: email.toLowerCase().trim() },
           source: { stringValue: 'website' },
           createdAt: { stringValue: new Date().toISOString() },
         },
