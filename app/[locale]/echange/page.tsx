@@ -5,6 +5,8 @@ import { Navbar } from "@/components/Navbar";
 import { Link } from "@/i18n/navigation";
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
+import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
+import Image from "next/image";
 
 const steps = [
   { number: 1, icon: "📝", color: "from-blue-500 to-cyan-500" },
@@ -123,7 +125,7 @@ export default function EchangePage() {
         </div>
       </section>
 
-      {/* Screenshot Placeholder Section */}
+      {/* Screenshots Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-12">
@@ -135,19 +137,42 @@ export default function EchangePage() {
             </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="aspect-[9/16] bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl shadow-lg flex items-center justify-center animate-fade-in-up"
-                style={{ animationDelay: `${i * 0.1}s` }}
-              >
-                <div className="text-center text-gray-400">
-                  <span className="text-6xl mb-4 block">📱</span>
-                  <p className="text-sm">{t("screenshotPlaceholder")}</p>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-start">
+            {/* Carousel principal */}
+            <div className="animate-fade-in-up">
+              <ScreenshotCarousel
+                screenshots={[
+                  { src: "/screenshots/03_Home_Echanger.png", alt: "Mode Échanger" },
+                  { src: "/screenshots/04_Proposition_Recue.png", alt: "Proposition Reçue" },
+                  { src: "/screenshots/05_Match_Felicitations.png", alt: "Nouveau Match" },
+                  { src: "/screenshots/06_Detail_Match.png", alt: "Détail du Match" },
+                ]}
+                autoPlay={true}
+                interval={4000}
+              />
+            </div>
+
+            {/* Screenshot statique - Création d'annonce */}
+            <div className="animate-fade-in-up delay-200">
+              <div className="relative w-full max-w-sm mx-auto">
+                <div className="relative w-full aspect-[9/19.5]">
+                  <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-3">
+                    <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
+                      <Image
+                        src="/screenshots/07_Creation_Annonce.png"
+                        alt="Créer une annonce"
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 100vw, 400px"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="text-center mt-4">
+                  <p className="text-sm text-gray-600">Créer une annonce facilement</p>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>

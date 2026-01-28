@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { Link } from "@/i18n/navigation";
 import { ArrowLeft, ArrowRight, Package, Car, MapPin, Clock, Shield, Users } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
+import Image from "next/image";
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isInView } = useInView();
@@ -219,6 +220,42 @@ export default function TransportPage() {
               </p>
             </div>
           </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Screenshot Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Découvrez l&apos;interface 📱
+            </h2>
+            <p className="text-lg text-gray-600">
+              Une expérience utilisateur simple et intuitive
+            </p>
+          </AnimatedSection>
+
+          <div className="max-w-sm mx-auto">
+            <AnimatedSection>
+              <div className="relative w-full aspect-[9/19.5]">
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-3">
+                  <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
+                    <Image
+                      src="/screenshots/10_Transport.png"
+                      alt="Interface de transport collaboratif"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 400px"
+                      priority
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="text-center mt-6">
+                <p className="text-sm text-gray-600">Interface de transport collaboratif</p>
+              </div>
+            </AnimatedSection>
+          </div>
         </div>
       </section>
 

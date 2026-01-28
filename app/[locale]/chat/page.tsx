@@ -3,8 +3,9 @@
 import { useTranslations } from "next-intl";
 import { Navbar } from "@/components/Navbar";
 import { Link } from "@/i18n/navigation";
-import { ArrowLeft, ArrowRight, MessageCircle, Mic, Image, FileText, Heart, Shield } from "lucide-react";
+import { ArrowLeft, ArrowRight, MessageCircle, Mic, Image as ImageIcon, FileText, Heart, Shield } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
+import Image from "next/image";
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isInView } = useInView();
@@ -69,7 +70,7 @@ export default function ChatPage() {
   const features = [
     { icon: MessageCircle, emoji: "💬", color: "from-blue-500 to-cyan-500" },
     { icon: Mic, emoji: "🎤", color: "from-purple-500 to-pink-500" },
-    { icon: Image, emoji: "📷", color: "from-green-500 to-emerald-500" },
+    { icon: ImageIcon, emoji: "📷", color: "from-green-500 to-emerald-500" },
     { icon: FileText, emoji: "📄", color: "from-orange-500 to-amber-500" },
     { icon: Heart, emoji: "❤️", color: "from-red-500 to-pink-500" },
     { icon: Shield, emoji: "🔒", color: "from-indigo-500 to-purple-500" },
@@ -132,8 +133,44 @@ export default function ChatPage() {
         </div>
       </section>
 
-      {/* Marketplace Section */}
+      {/* Screenshot Section */}
       <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Messagerie Intégrée 💬
+            </h2>
+            <p className="text-lg text-gray-600">
+              Communiquez facilement avec les autres utilisateurs
+            </p>
+          </AnimatedSection>
+
+          <div className="max-w-sm mx-auto">
+            <AnimatedSection>
+              <div className="relative w-full aspect-[9/19.5]">
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-3">
+                  <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
+                    <Image
+                      src="/screenshots/09_Messages.png"
+                      alt="Interface de messagerie"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 400px"
+                      priority
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="text-center mt-6">
+                <p className="text-sm text-gray-600">Gérez vos conversations facilement</p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Marketplace Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
