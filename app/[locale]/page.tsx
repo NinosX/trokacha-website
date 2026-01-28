@@ -3,12 +3,10 @@
 import { Sparkles } from "lucide-react";
 import { EmailForm } from "@/components/EmailForm";
 import { Navbar } from "@/components/Navbar";
-import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import dynamic from "next/dynamic";
 import { useInView } from "@/hooks/useInView";
-import Image from "next/image";
 
 // Lazy load composants below the fold
 const HowItWorks = dynamic(() => import("@/components/HowItWorks").then(mod => mod.HowItWorks), {
@@ -18,53 +16,25 @@ const FAQ = dynamic(() => import("@/components/FAQ").then(mod => mod.FAQ), {
   loading: () => <div className="py-24 bg-gray-50" />,
 });
 
-// Animation du tutoriel de swipe avec screenshots
+// Phone mockup avec vidéo intro
 function SwipeTutorial() {
-  const [step, setStep] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const screenshots = [
-    { src: "/screenshots/02_Home_Offre_Cash.png", alt: "Mode Offre Cash" },
-    { src: "/screenshots/03_Home_Echanger.png", alt: "Mode Échanger" },
-    { src: "/screenshots/05_Match_Felicitations.png", alt: "Nouveau Match" },
-    { src: "/screenshots/06_Detail_Match.png", alt: "Détail du Match" },
-    { src: "/screenshots/07_Creation_Annonce.png", alt: "Créer une Annonce" },
-    { src: "/screenshots/08_Compte.png", alt: "Mon Compte" },
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setStep((prev) => (prev + 1) % screenshots.length);
-        setIsTransitioning(false);
-      }, 300);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [screenshots.length]);
-
   return (
     <div className="relative w-full h-[600px] flex items-center justify-center">
       {/* Phone mockup */}
       <div className="relative w-[320px] h-[600px] animate-fade-in-up">
         {/* Phone frame */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-3">
-          <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
-            {/* Screenshot */}
-            <div
-              className={`absolute inset-0 transition-all duration-300 ${
-                isTransitioning ? "opacity-0 scale-95" : "opacity-100 scale-100"
-              }`}
+          <div className="w-full h-full bg-black rounded-[2.5rem] overflow-hidden relative">
+            {/* Video */}
+            <video
+              className="absolute inset-0 w-full h-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
             >
-              <Image
-                src={screenshots[step].src}
-                alt={screenshots[step].alt}
-                fill
-                className="object-cover"
-                sizes="320px"
-                priority={step === 0}
-              />
-            </div>
+              <source src="/videos/intro.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
 
@@ -75,18 +45,6 @@ function SwipeTutorial() {
         <div className="absolute -bottom-8 -left-8 text-6xl animate-float-reverse">
           💫
         </div>
-      </div>
-
-      {/* Step indicators */}
-      <div className="absolute bottom-0 left-0 right-0 flex justify-center gap-2 pb-8">
-        {screenshots.map((_, idx) => (
-          <div
-            key={idx}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              idx === step ? "w-8 bg-white" : "w-2 bg-white/30"
-            }`}
-          />
-        ))}
       </div>
     </div>
   );
