@@ -207,7 +207,8 @@ export default function Home() {
                 </span>
               </p>
 
-              <div className="mb-8 animate-fade-in-up delay-500">
+              {/* Desktop: TypewriterCategories reste ici */}
+              <div className="hidden lg:block mb-8 animate-fade-in-up delay-500">
                 <TypewriterCategories
                   categories={[
                     { icon: "🔄", key: "troc", label: t("hero.categories.troc") },
@@ -221,8 +222,25 @@ export default function Home() {
                 />
               </div>
 
+              {/* Mobile: TypewriterCategories au-dessus du téléphone */}
+              <div className="lg:hidden mb-4 animate-fade-in-up delay-500">
+                <div className="flex justify-center">
+                  <TypewriterCategories
+                    categories={[
+                      { icon: "🔄", key: "troc", label: t("hero.categories.troc") },
+                      { icon: "🛍️", key: "vente", label: t("hero.categories.vente") },
+                      { icon: "🛒", key: "achat", label: t("hero.categories.achat") },
+                      { icon: "🔧", key: "services", label: t("hero.categories.services") },
+                      { icon: "🏠", key: "immobilier", label: t("hero.categories.immobilier") },
+                      { icon: "📦", key: "colis", label: t("hero.categories.colis") },
+                      { icon: "🚗", key: "covoiturage", label: t("hero.categories.covoiturage") },
+                    ]}
+                  />
+                </div>
+              </div>
+
               {/* Mobile Screenshot Carousel */}
-              <div className="lg:hidden mb-8 animate-fade-in-up delay-500">
+              <div className="lg:hidden mb-6 animate-fade-in-up delay-500">
                 <ScreenshotCarousel size="compact" />
               </div>
 
