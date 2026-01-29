@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { Link } from "@/i18n/navigation";
 import { Shield, UserCheck, Star, Lock, BadgeCheck, Car, Package, ArrowLeft, ArrowRight } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
+import Image from "next/image";
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isInView } = useInView();
@@ -175,6 +176,29 @@ export default function VerificationPage() {
               {t("subtitle")}
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Phone Screenshot Section */}
+      <section className="py-12 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="flex justify-center">
+            <div className="relative" style={{ width: '270px', height: '585px' }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-[6px]">
+                <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20" />
+                <div className="w-full h-full bg-black rounded-[2.7rem] overflow-hidden relative">
+                  <Image
+                    src="/screenshots/verif.png"
+                    alt="Vérification d'identité"
+                    fill
+                    className="object-cover"
+                    sizes="270px"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
