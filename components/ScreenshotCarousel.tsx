@@ -1,126 +1,150 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-interface Screenshot {
-  src: string;
-  alt: string;
-}
+import Image from "next/image";
 
 interface ScreenshotCarouselProps {
-  screenshots: Screenshot[];
-  autoPlay?: boolean;
-  interval?: number;
+  screenshots?: string[];
+  autoPlayInterval?: number;
+  className?: string;
 }
 
 export function ScreenshotCarousel({
-  screenshots,
-  autoPlay = true,
-  interval = 4000,
+  screenshots = [
+    "/screenshots/1.png",
+    "/screenshots/2.png",
+    "/screenshots/3.png",
+    "/screenshots/4.png",
+    "/screenshots/5.png",
+  ],
+  autoPlayInterval = 4000,
+  className = "",
 }: ScreenshotCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  const goToSlide = useCallback((index: number) => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex(index);
+    setTimeout(() => setIsTransitioning(false), 500);
+  }, [isTransitioning]);
+
+  const goToNext = useCallback(() => {
+    goToSlide((currentIndex + 1) % screenshots.length);
+  }, [currentIndex, screenshots.length, goToSlide]);
+
+  const goToPrev = useCallback(() => {
+    goToSlide((currentIndex - 1 + screenshots.length) % screenshots.length);
+  }, [currentIndex, screenshots.length, goToSlide]);
+
+  // Auto-play
   useEffect(() => {
-    if (!autoPlay) return;
-
-    const timer = setInterval(() => {
-      handleNext();
-    }, interval);
-
+    if (isPaused) return;
+    const timer = setInterval(goToNext, autoPlayInterval);
     return () => clearInterval(timer);
-  }, [currentIndex, autoPlay, interval]);
+  }, [isPaused, goToNext, autoPlayInterval]);
 
-  const handleNext = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentIndex((prev) => (prev + 1) % screenshots.length);
-      setIsTransitioning(false);
-    }, 300);
-  };
-
-  const handlePrev = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
-      setIsTransitioning(false);
-    }, 300);
-  };
-
-  const goToSlide = (index: number) => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentIndex(index);
-      setIsTransitioning(false);
-    }, 300);
-  };
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") goToPrev();
+      if (e.key === "ArrowRight") goToNext();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [goToNext, goToPrev]);
 
   return (
-    <div className="relative w-full max-w-sm mx-auto">
-      {/* Phone mockup with screenshot */}
-      <div className="relative w-full aspect-[9/19.5] animate-fade-in-up">
+    <div
+      className={`relative w-full h-[600px] flex items-center justify-center ${className}`}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* Phone mockup */}
+      <div className="relative w-[280px] sm:w-[320px] h-[560px] sm:h-[600px] animate-fade-in-up">
         {/* Phone frame */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-3">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-2 sm:p-3">
+          {/* Notch */}
+          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20" />
+          
+          {/* Screen */}
           <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
-            {/* Screenshot */}
-            <div
-              className={`absolute inset-0 transition-all duration-300 ${
-                isTransitioning ? "opacity-0 scale-95" : "opacity-100 scale-100"
-              }`}
-            >
-              <Image
-                src={screenshots[currentIndex].src}
-                alt={screenshots[currentIndex].alt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 640px) 100vw, 400px"
-                priority={currentIndex === 0}
-              />
+            {/* Screenshots */}
+            <div className="relative w-full h-full">
+              {screenshots.map((src, index) => (
+                <div
+                  key={src}
+                  className={`absolute inset-0 transition-all duration-500 ease-in-out ${
+                    index === currentIndex
+                      ? "opacity-100 scale-100"
+                      : "opacity-0 scale-95"
+                  }`}
+                >
+                  <Image
+                    src={src}
+                    alt={`Screenshot ${index + 1}`}
+                    fill
+                    className="object-cover object-top"
+                    priority={index === 0}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Navigation Arrows */}
-        <button
-          onClick={handlePrev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors z-10"
-          aria-label="Previous screenshot"
-        >
-          <ChevronLeft className="w-6 h-6 text-gray-700" />
-        </button>
-        <button
-          onClick={handleNext}
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors z-10"
-          aria-label="Next screenshot"
-        >
-          <ChevronRight className="w-6 h-6 text-gray-700" />
-        </button>
+        {/* Floating emojis */}
+        <div className="absolute -top-8 -right-8 text-5xl sm:text-6xl animate-float hidden sm:block">
+          ✨
+        </div>
+        <div className="absolute -bottom-8 -left-8 text-5xl sm:text-6xl animate-float-reverse hidden sm:block">
+          💫
+        </div>
       </div>
 
-      {/* Dots indicators */}
-      <div className="flex justify-center gap-2 mt-6">
-        {screenshots.map((_, idx) => (
+      {/* Navigation Arrows */}
+      <button
+        onClick={goToPrev}
+        className="absolute left-2 sm:left-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+        aria-label="Previous screenshot"
+      >
+        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+      </button>
+      <button
+        onClick={goToNext}
+        className="absolute right-2 sm:right-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+        aria-label="Next screenshot"
+      >
+        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+      </button>
+
+      {/* Dot indicators */}
+      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+        {screenshots.map((_, index) => (
           <button
-            key={idx}
-            onClick={() => goToSlide(idx)}
+            key={index}
+            onClick={() => goToSlide(index)}
             className={`h-2 rounded-full transition-all duration-300 ${
-              idx === currentIndex ? "w-8 bg-primary" : "w-2 bg-gray-300 hover:bg-gray-400"
+              index === currentIndex
+                ? "w-8 bg-white"
+                : "w-2 bg-white/40 hover:bg-white/60"
             }`}
-            aria-label={`Go to screenshot ${idx + 1}`}
+            aria-label={`Go to screenshot ${index + 1}`}
           />
         ))}
       </div>
 
-      {/* Screenshot caption */}
-      <div className="text-center mt-4">
-        <p className="text-sm text-gray-600">
-          {screenshots[currentIndex].alt}
-        </p>
+      {/* Progress bar */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
+        <div
+          className="h-full bg-white/60 transition-all duration-300"
+          style={{
+            width: `${((currentIndex + 1) / screenshots.length) * 100}%`,
+          }}
+        />
       </div>
     </div>
   );
