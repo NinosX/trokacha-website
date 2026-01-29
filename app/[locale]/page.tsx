@@ -221,6 +221,11 @@ export default function Home() {
                 />
               </div>
 
+              {/* Mobile Screenshot Carousel */}
+              <div className="lg:hidden mb-8 animate-fade-in-up delay-500">
+                <ScreenshotCarousel size="compact" />
+              </div>
+
               <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-in-up delay-500">
                 {/* App Store Button - Coming Soon */}
                 <div className="inline-flex items-center justify-center px-6 py-4 bg-black/50 text-white/70 rounded-2xl font-semibold cursor-not-allowed">

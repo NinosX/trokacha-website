@@ -12,6 +12,7 @@ interface ScreenshotCarouselProps {
   autoPlay?: boolean;
   interval?: number;
   className?: string;
+  size?: "default" | "compact";
 }
 
 function getScreenshotSrc(screenshot: Screenshot): string {
@@ -37,12 +38,18 @@ export function ScreenshotCarousel({
   autoPlay = true,
   interval = 4000,
   className = "",
+  size = "default",
 }: ScreenshotCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const effectiveInterval = autoPlayInterval ?? interval;
+  
+  // Tailles selon le mode
+  const isCompact = size === "compact" || className.includes("h-[400px]");
+  const phoneWidth = isCompact ? 180 : 270;
+  const phoneHeight = isCompact ? 390 : 585;
 
   const goToSlide = useCallback((index: number) => {
     setCurrentIndex(index);
@@ -77,31 +84,36 @@ export function ScreenshotCarousel({
     };
   }, [autoPlay, isPaused, effectiveInterval, screenshots.length]);
 
-  // Keyboard navigation
+  // Keyboard navigation (seulement pour desktop)
   useEffect(() => {
+    if (isCompact) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") goToPrev();
       if (e.key === "ArrowRight") goToNext();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [goToNext, goToPrev]);
+  }, [goToNext, goToPrev, isCompact]);
 
   return (
     <div
-      className={`relative w-full h-[600px] flex items-center justify-center ${className}`}
+      className={`relative w-full flex items-center justify-center ${className}`}
+      style={{ height: isCompact ? 'auto' : '600px' }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Phone mockup - ratio 9:19.5 comme iPhone */}
-      <div className="relative animate-fade-in-up" style={{ width: '270px', height: '585px' }}>
+      <div 
+        className="relative animate-fade-in-up" 
+        style={{ width: `${phoneWidth}px`, height: `${phoneHeight}px` }}
+      >
         {/* Phone frame */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-[6px]">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[2rem] sm:rounded-[3rem] shadow-2xl p-[4px] sm:p-[6px]">
           {/* Notch */}
-          <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20" />
+          <div className={`absolute ${isCompact ? 'top-2 w-16 h-4' : 'top-3 w-24 h-6'} left-1/2 transform -translate-x-1/2 bg-black rounded-full z-20`} />
           
           {/* Screen - même ratio que les screenshots */}
-          <div className="w-full h-full bg-black rounded-[2.7rem] overflow-hidden relative">
+          <div className="w-full h-full bg-black rounded-[1.7rem] sm:rounded-[2.7rem] overflow-hidden relative">
             {/* Screenshots */}
             {screenshots.map((screenshot, index) => (
               <div
@@ -116,41 +128,44 @@ export function ScreenshotCarousel({
                   fill
                   className="object-cover"
                   priority={index === 0}
-                  sizes="270px"
+                  sizes={`${phoneWidth}px`}
                 />
               </div>
             ))}
           </div>
         </div>
-
       </div>
 
-      {/* Navigation Arrows */}
-      <button
-        onClick={goToPrev}
-        className="absolute left-0 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
-        aria-label="Previous screenshot"
-      >
-        <ChevronLeft className="w-5 h-5 text-white" />
-      </button>
-      <button
-        onClick={goToNext}
-        className="absolute right-0 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
-        aria-label="Next screenshot"
-      >
-        <ChevronRight className="w-5 h-5 text-white" />
-      </button>
+      {/* Navigation Arrows - cachés en mode compact */}
+      {!isCompact && (
+        <>
+          <button
+            onClick={goToPrev}
+            className="absolute left-0 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+            aria-label="Previous screenshot"
+          >
+            <ChevronLeft className="w-5 h-5 text-white" />
+          </button>
+          <button
+            onClick={goToNext}
+            className="absolute right-0 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+            aria-label="Next screenshot"
+          >
+            <ChevronRight className="w-5 h-5 text-white" />
+          </button>
+        </>
+      )}
 
       {/* Dot indicators */}
-      <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-2">
+      <div className={`absolute ${isCompact ? '-bottom-6' : 'bottom-2'} left-0 right-0 flex justify-center gap-1.5 sm:gap-2`}>
         {screenshots.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`h-2 rounded-full transition-all duration-300 ${
+            className={`rounded-full transition-all duration-300 ${
               index === currentIndex
-                ? "w-6 bg-white"
-                : "w-2 bg-white/40 hover:bg-white/60"
+                ? `${isCompact ? 'w-4 h-1.5' : 'w-6 h-2'} bg-white`
+                : `${isCompact ? 'w-1.5 h-1.5' : 'w-2 h-2'} bg-white/40 hover:bg-white/60`
             }`}
             aria-label={`Go to screenshot ${index + 1}`}
           />
