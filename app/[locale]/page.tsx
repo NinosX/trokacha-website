@@ -226,6 +226,7 @@ export default function Home() {
               <div className="lg:hidden mb-4 animate-fade-in-up delay-500">
                 <div className="flex justify-center">
                   <TypewriterCategories
+                    size="small"
                     categories={[
                       { icon: "🔄", key: "troc", label: t("hero.categories.troc") },
                       { icon: "🛍️", key: "vente", label: t("hero.categories.vente") },

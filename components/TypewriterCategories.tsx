@@ -13,6 +13,7 @@ interface TypewriterCategoriesProps {
   prefix?: string;
   typingSpeed?: number;
   pauseDuration?: number;
+  size?: "default" | "small";
 }
 
 export function TypewriterCategories({
@@ -20,6 +21,7 @@ export function TypewriterCategories({
   prefix = "",
   typingSpeed = 50,
   pauseDuration = 1000,
+  size = "default",
 }: TypewriterCategoriesProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
@@ -58,16 +60,18 @@ export function TypewriterCategories({
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, currentCategory.label, categories.length, typingSpeed, pauseDuration]);
 
+  const isSmall = size === "small";
+
   return (
-    <div className="flex items-center gap-3 text-xl md:text-2xl font-medium">
+    <div className={`flex items-center gap-3 font-medium ${isSmall ? "text-base" : "text-xl md:text-2xl"}`}>
       {prefix && <span className="text-white/80">{prefix}</span>}
       <span 
-        className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur-sm rounded-full transition-all duration-300"
+        className={`inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full transition-all duration-300 ${isSmall ? "px-3 py-1.5" : "px-4 py-2"}`}
       >
-        <span className="text-2xl md:text-3xl transition-transform duration-300">
+        <span className={`transition-transform duration-300 ${isSmall ? "text-xl" : "text-2xl md:text-3xl"}`}>
           {currentCategory.icon}
         </span>
-        <span className="text-white font-semibold min-w-[100px]">
+        <span className={`text-white font-semibold ${isSmall ? "min-w-[80px]" : "min-w-[100px]"}`}>
           {displayedText}
           <span className="animate-pulse">|</span>
         </span>
