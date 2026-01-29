@@ -175,7 +175,7 @@ export function ScreenshotCarousel({
       )}
 
       {/* Dot indicators */}
-      <div className={`absolute ${isCompact ? '-bottom-6' : 'bottom-2'} left-0 right-0 flex justify-center gap-1.5 sm:gap-2`}>
+      <div className={`absolute ${isCompact ? '-bottom-10' : '-bottom-6'} left-0 right-0 flex justify-center gap-1.5 sm:gap-2`}>
         {screenshots.map((_, index) => (
           <button
             key={index}
