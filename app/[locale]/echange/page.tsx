@@ -5,34 +5,46 @@ import { Navbar } from "@/components/Navbar";
 import { Link } from "@/i18n/navigation";
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
-import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
-import Image from "next/image";
+import { VideoPhone } from "@/components/VideoPhone";
+import { useState } from "react";
 
 const steps = [
-  { number: 1, icon: "📝", color: "from-blue-500 to-cyan-500" },
-  { number: 2, icon: "👀", color: "from-purple-500 to-pink-500" },
-  { number: 3, icon: "💡", color: "from-orange-500 to-amber-500" },
-  { number: 4, icon: "🎯", color: "from-green-500 to-emerald-500" },
-  { number: 5, icon: "🤝", color: "from-indigo-500 to-purple-500" },
-  { number: 6, icon: "📦", color: "from-teal-500 to-cyan-500" },
-  { number: 7, icon: "⭐", color: "from-yellow-500 to-orange-500" },
+  { number: 1, icon: "📝", color: "from-blue-500 to-cyan-500", timestamp: 0 },
+  { number: 2, icon: "👀", color: "from-purple-500 to-pink-500", timestamp: 5 },
+  { number: 3, icon: "💡", color: "from-orange-500 to-amber-500", timestamp: 10 },
+  { number: 4, icon: "🎯", color: "from-green-500 to-emerald-500", timestamp: 15 },
+  { number: 5, icon: "🤝", color: "from-indigo-500 to-purple-500", timestamp: 20 },
+  { number: 6, icon: "📦", color: "from-teal-500 to-cyan-500", timestamp: 25 },
+  { number: 7, icon: "⭐", color: "from-yellow-500 to-orange-500", timestamp: 30 },
 ];
 
-function StepItem({ step, index, t }: { step: typeof steps[0]; index: number; t: (key: string) => string }) {
+function StepItem({ 
+  step, 
+  index, 
+  t, 
+  isActive 
+}: { 
+  step: typeof steps[0]; 
+  index: number; 
+  t: (key: string) => string;
+  isActive: boolean;
+}) {
   const { ref, isInView } = useInView();
 
   return (
     <div
       ref={ref}
-      className={`relative ${isInView ? (index % 2 === 0 ? "animate-slide-in-left" : "animate-slide-in-right") : "opacity-0"}`}
+      className={`relative transition-all duration-500 ${
+        isActive ? "scale-105" : "scale-100 opacity-70"
+      } ${isInView ? (index % 2 === 0 ? "animate-slide-in-left" : "animate-slide-in-right") : "opacity-0"}`}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <div className={`flex items-start gap-6 ${index % 2 === 1 ? "flex-row-reverse" : ""}`}>
-        <div className={`flex-shrink-0 w-20 h-20 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg`}>
+        <div className={`flex-shrink-0 w-20 h-20 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg transition-all duration-300 ${isActive ? "ring-4 ring-white/50 shadow-xl" : ""}`}>
           <span className="text-4xl">{step.icon}</span>
         </div>
 
-        <div className={`flex-1 bg-white rounded-2xl p-6 shadow-lg border border-gray-100 ${index % 2 === 1 ? "text-right" : ""}`}>
+        <div className={`flex-1 bg-white rounded-2xl p-6 shadow-lg border border-gray-100 transition-all duration-300 ${index % 2 === 1 ? "text-right" : ""} ${isActive ? "border-primary/30 shadow-xl" : ""}`}>
           <div className="flex items-center gap-3 mb-3">
             <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br ${step.color} text-white text-sm font-bold`}>
               {step.number}
@@ -74,6 +86,7 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 
 export default function EchangePage() {
   const t = useTranslations("echange");
+  const [activeStep, setActiveStep] = useState(0);
 
   return (
     <main className="min-h-screen bg-white">
@@ -105,10 +118,10 @@ export default function EchangePage() {
         </div>
       </section>
 
-      {/* Steps Section */}
+      {/* Steps Section with Video */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-16">
+          <AnimatedSection className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               {t("stepsTitle")}
             </h2>
@@ -117,62 +130,26 @@ export default function EchangePage() {
             </p>
           </AnimatedSection>
 
+          {/* Video Phone */}
+          <div className="flex justify-center mb-16">
+            <VideoPhone 
+              src="/videos/troc-vente.mp4"
+              steps={steps}
+              onStepChange={setActiveStep}
+            />
+          </div>
+
+          {/* Steps */}
           <div className="space-y-8 max-w-4xl mx-auto">
             {steps.map((step, index) => (
-              <StepItem key={step.number} step={step} index={index} t={t} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Screenshots Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {t("screenshotsTitle")}
-            </h2>
-            <p className="text-lg text-gray-600">
-              {t("screenshotsSubtitle")}
-            </p>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto items-start">
-            {/* Carousel principal */}
-            <div className="animate-fade-in-up">
-              <ScreenshotCarousel
-                screenshots={[
-                  { src: "/screenshots/03_Home_Echanger.png", alt: "Mode Échanger" },
-                  { src: "/screenshots/04_Proposition_Recue.png", alt: "Proposition Reçue" },
-                  { src: "/screenshots/05_Match_Felicitations.png", alt: "Nouveau Match" },
-                  { src: "/screenshots/06_Detail_Match.png", alt: "Détail du Match" },
-                ]}
-                autoPlay={true}
-                interval={4000}
+              <StepItem 
+                key={step.number} 
+                step={step} 
+                index={index} 
+                t={t}
+                isActive={index === activeStep}
               />
-            </div>
-
-            {/* Screenshot statique - Création d'annonce */}
-            <div className="animate-fade-in-up delay-200">
-              <div className="relative w-full max-w-sm mx-auto">
-                <div className="relative w-full aspect-[9/19.5]">
-                  <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-3">
-                    <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
-                      <Image
-                        src="/screenshots/07_Creation_Annonce.png"
-                        alt="Créer une annonce"
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 640px) 100vw, 400px"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="text-center mt-4">
-                  <p className="text-sm text-gray-600">Créer une annonce facilement</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
