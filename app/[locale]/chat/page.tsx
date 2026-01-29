@@ -136,7 +136,7 @@ export default function ChatPage() {
                   </div>
                   
                   {/* Liste conversations - Image */}
-                  <div className="relative h-[300px]">
+                  <div className="relative h-[260px]">
                     <Image
                       src="/screenshots/09_Messages.png"
                       alt="Liste des conversations"
