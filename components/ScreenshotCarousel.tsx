@@ -123,13 +123,6 @@ export function ScreenshotCarousel({
           </div>
         </div>
 
-        {/* Floating emojis */}
-        <div className="absolute -top-6 -right-6 text-4xl sm:text-5xl animate-float hidden sm:block">
-          ✨
-        </div>
-        <div className="absolute -bottom-6 -left-6 text-4xl sm:text-5xl animate-float-reverse hidden sm:block">
-          💫
-        </div>
       </div>
 
       {/* Navigation Arrows */}

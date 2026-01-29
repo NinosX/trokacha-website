@@ -18,8 +18,8 @@ interface TypewriterCategoriesProps {
 export function TypewriterCategories({
   categories,
   prefix = "",
-  typingSpeed = 80,
-  pauseDuration = 2000,
+  typingSpeed = 50,
+  pauseDuration = 1500,
 }: TypewriterCategoriesProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
