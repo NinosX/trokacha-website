@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import dynamic from "next/dynamic";
 import { useInView } from "@/hooks/useInView";
+import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
 
 // Lazy load composants below the fold
 const HowItWorks = dynamic(() => import("@/components/HowItWorks").then(mod => mod.HowItWorks), {
@@ -261,9 +262,9 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Content - Animated Tutorial with Screenshots */}
+            {/* Right Content - Screenshot Carousel */}
             <div className="relative lg:flex justify-center hidden animate-fade-in-up delay-500">
-              <SwipeTutorial />
+              <ScreenshotCarousel />
             </div>
           </div>
         </div>
