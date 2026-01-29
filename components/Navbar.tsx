@@ -29,18 +29,25 @@ export function Navbar() {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
+  const isHomePage = pathname === "/" || pathname === "";
+  
   const navLinks = [
-    { href: "#features", label: t("features"), isSection: true },
+    ...(isHomePage ? [{ href: "#features", label: t("features"), isSection: true }] : []),
     { href: "/echange", label: t("echange"), isSection: false },
     { href: "/transport", label: t("transport"), isSection: false },
     { href: "/chat", label: t("chat"), isSection: false },
     { href: "/verification", label: t("verification"), isSection: false },
-    { href: "#faq", label: t("faq"), isSection: true },
+    ...(isHomePage ? [{ href: "#faq", label: t("faq"), isSection: true }] : []),
   ];
 
   const mobileNavLinks = [
     { href: "/", label: t("home"), isSection: false },
-    ...navLinks,
+    ...(isHomePage ? [{ href: "#features", label: t("features"), isSection: true }] : []),
+    { href: "/echange", label: t("echange"), isSection: false },
+    { href: "/transport", label: t("transport"), isSection: false },
+    { href: "/chat", label: t("chat"), isSection: false },
+    { href: "/verification", label: t("verification"), isSection: false },
+    ...(isHomePage ? [{ href: "#faq", label: t("faq"), isSection: true }] : []),
     { href: "/terms", label: t("terms"), isSection: false },
     { href: "/privacy", label: t("privacy"), isSection: false },
     { href: "/contact", label: t("contact"), isSection: false },
