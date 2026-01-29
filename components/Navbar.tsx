@@ -14,9 +14,9 @@ const localeNames: Record<string, string> = {
 };
 
 const localeFlags: Record<string, string> = {
-  fr: "🇫🇷",
-  en: "🇬🇧",
-  ar: "🇩🇿",
+  fr: "/flags/fr.png",
+  en: "/flags/gb.png",
+  ar: "/flags/dz.png",
 };
 
 export function Navbar() {
@@ -139,7 +139,8 @@ export function Navbar() {
                   }`}
                 >
                   <Globe className="w-4 h-4" />
-                  <span>{localeFlags[locale]} {localeNames[locale]}</span>
+                  <img src={localeFlags[locale]} alt="" className="w-5 h-4 object-cover rounded-sm" />
+                  <span>{localeNames[locale]}</span>
                 </button>
 
                 <div
@@ -157,7 +158,7 @@ export function Navbar() {
                         locale === loc ? "bg-primary/10 text-primary" : "text-gray-700"
                       }`}
                     >
-                      <span>{localeFlags[loc]}</span>
+                      <img src={localeFlags[loc]} alt="" className="w-5 h-4 object-cover rounded-sm" />
                       <span>{localeNames[loc]}</span>
                     </button>
                   ))}
@@ -184,7 +185,7 @@ export function Navbar() {
                   isScrolled ? "text-gray-700" : "text-white"
                 }`}
               >
-                <span className="text-lg">{localeFlags[locale]}</span>
+                <img src={localeFlags[locale]} alt="" className="w-6 h-5 object-cover rounded-sm" />
               </button>
 
               <button
@@ -219,7 +220,7 @@ export function Navbar() {
                   : "bg-gray-100 text-gray-700"
               }`}
             >
-              <span>{localeFlags[loc]}</span>
+              <img src={localeFlags[loc]} alt="" className="w-5 h-4 object-cover rounded-sm" />
               <span>{localeNames[loc]}</span>
             </button>
           ))}
