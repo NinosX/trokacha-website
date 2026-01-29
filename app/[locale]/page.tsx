@@ -191,7 +191,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <div className="text-white animate-fade-in-up">
-              <div className="flex items-center gap-2 md:gap-4 mb-6 animate-fade-in-up delay-300">
+              <div className="flex items-center gap-2 md:gap-4 mb-1 animate-fade-in-up delay-300">
                 <h1 className="text-4xl md:text-7xl font-bold leading-tight">
                   {t("hero.title")}
                 </h1>
@@ -201,9 +201,9 @@ export default function Home() {
                 </span>
               </div>
 
-              <p className="text-base md:text-lg mb-4 text-white/80 leading-relaxed animate-fade-in-up delay-400">
-                <span className="inline-flex items-center gap-2">
-                  {t("hero.subtitle")} <img src="/flags/dz.png" alt="🇩🇿" className="inline w-5 h-4 object-cover rounded-sm ml-1" />
+              <p className="text-sm md:text-base mb-6 text-white/70 animate-fade-in-up delay-400">
+                <span className="inline-flex items-center gap-1">
+                  {t("hero.subtitle")} <img src="/flags/dz.png" alt="🇩🇿" className="inline w-4 h-3 object-cover rounded-sm" />
                 </span>
               </p>
 
