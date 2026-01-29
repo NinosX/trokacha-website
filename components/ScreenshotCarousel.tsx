@@ -56,7 +56,7 @@ export function ScreenshotCarousel({
     setCurrentIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
   }, [screenshots.length]);
 
-  // Auto-play avec useRef pour éviter les problèmes de closure
+  // Auto-play
   useEffect(() => {
     if (!autoPlay || isPaused) {
       if (timerRef.current) {
@@ -89,39 +89,37 @@ export function ScreenshotCarousel({
 
   return (
     <div
-      className={`relative w-full h-[560px] flex items-center justify-center ${className}`}
+      className={`relative w-full h-[600px] flex items-center justify-center ${className}`}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Phone mockup */}
-      <div className="relative w-[260px] sm:w-[290px] h-[520px] sm:h-[580px] animate-fade-in-up">
+      {/* Phone mockup - ratio 9:19.5 comme iPhone */}
+      <div className="relative animate-fade-in-up" style={{ width: '270px', height: '585px' }}>
         {/* Phone frame */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[2.5rem] shadow-2xl p-2">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-[6px]">
           {/* Notch */}
-          <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-20 h-5 bg-black rounded-full z-20" />
+          <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20" />
           
-          {/* Screen */}
-          <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
+          {/* Screen - même ratio que les screenshots */}
+          <div className="w-full h-full bg-black rounded-[2.7rem] overflow-hidden relative">
             {/* Screenshots */}
-            <div className="relative w-full h-full">
-              {screenshots.map((screenshot, index) => (
-                <div
-                  key={getScreenshotSrc(screenshot)}
-                  className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
-                    index === currentIndex ? "opacity-100" : "opacity-0"
-                  }`}
-                >
-                  <Image
-                    src={getScreenshotSrc(screenshot)}
-                    alt={getScreenshotAlt(screenshot, index)}
-                    fill
-                    className="object-contain"
-                    priority={index === 0}
-                    sizes="290px"
-                  />
-                </div>
-              ))}
-            </div>
+            {screenshots.map((screenshot, index) => (
+              <div
+                key={getScreenshotSrc(screenshot)}
+                className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+                  index === currentIndex ? "opacity-100" : "opacity-0 pointer-events-none"
+                }`}
+              >
+                <Image
+                  src={getScreenshotSrc(screenshot)}
+                  alt={getScreenshotAlt(screenshot, index)}
+                  fill
+                  className="object-cover"
+                  priority={index === 0}
+                  sizes="270px"
+                />
+              </div>
+            ))}
           </div>
         </div>
 
@@ -137,17 +135,17 @@ export function ScreenshotCarousel({
       {/* Navigation Arrows */}
       <button
         onClick={goToPrev}
-        className="absolute left-0 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+        className="absolute left-0 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
         aria-label="Previous screenshot"
       >
-        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+        <ChevronLeft className="w-5 h-5 text-white" />
       </button>
       <button
         onClick={goToNext}
-        className="absolute right-0 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+        className="absolute right-0 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
         aria-label="Next screenshot"
       >
-        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+        <ChevronRight className="w-5 h-5 text-white" />
       </button>
 
       {/* Dot indicators */}
