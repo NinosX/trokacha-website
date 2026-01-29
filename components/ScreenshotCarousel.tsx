@@ -89,12 +89,12 @@ export function ScreenshotCarousel({
 
   return (
     <div
-      className={`relative w-full h-[480px] flex items-center justify-center ${className}`}
+      className={`relative w-full h-[560px] flex items-center justify-center ${className}`}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Phone mockup - taille réduite */}
-      <div className="relative w-[220px] sm:w-[250px] h-[440px] sm:h-[500px] animate-fade-in-up">
+      {/* Phone mockup */}
+      <div className="relative w-[260px] sm:w-[290px] h-[520px] sm:h-[580px] animate-fade-in-up">
         {/* Phone frame */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[2.5rem] shadow-2xl p-2">
           {/* Notch */}
@@ -117,7 +117,7 @@ export function ScreenshotCarousel({
                     fill
                     className="object-contain"
                     priority={index === 0}
-                    sizes="250px"
+                    sizes="290px"
                   />
                 </div>
               ))}
