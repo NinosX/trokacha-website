@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
@@ -9,13 +9,11 @@ type Screenshot = string | { src: string; alt?: string };
 interface ScreenshotCarouselProps {
   screenshots?: Screenshot[];
   autoPlayInterval?: number;
-  // Legacy props for backward compatibility
   autoPlay?: boolean;
   interval?: number;
   className?: string;
 }
 
-// Helper to normalize screenshot format
 function getScreenshotSrc(screenshot: Screenshot): string {
   return typeof screenshot === "string" ? screenshot : screenshot.src;
 }
@@ -42,33 +40,42 @@ export function ScreenshotCarousel({
 }: ScreenshotCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Use autoPlayInterval if provided, otherwise fall back to interval
   const effectiveInterval = autoPlayInterval ?? interval;
-  const isAutoPlayEnabled = autoPlay;
 
   const goToSlide = useCallback((index: number) => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
     setCurrentIndex(index);
-    setTimeout(() => setIsTransitioning(false), 500);
-  }, [isTransitioning]);
+  }, []);
 
   const goToNext = useCallback(() => {
-    goToSlide((currentIndex + 1) % screenshots.length);
-  }, [currentIndex, screenshots.length, goToSlide]);
+    setCurrentIndex((prev) => (prev + 1) % screenshots.length);
+  }, [screenshots.length]);
 
   const goToPrev = useCallback(() => {
-    goToSlide((currentIndex - 1 + screenshots.length) % screenshots.length);
-  }, [currentIndex, screenshots.length, goToSlide]);
+    setCurrentIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
+  }, [screenshots.length]);
 
-  // Auto-play
+  // Auto-play avec useRef pour éviter les problèmes de closure
   useEffect(() => {
-    if (isPaused || !isAutoPlayEnabled) return;
-    const timer = setInterval(goToNext, effectiveInterval);
-    return () => clearInterval(timer);
-  }, [isPaused, isAutoPlayEnabled, goToNext, effectiveInterval]);
+    if (!autoPlay || isPaused) {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+      }
+      return;
+    }
+
+    timerRef.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % screenshots.length);
+    }, effectiveInterval);
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [autoPlay, isPaused, effectiveInterval, screenshots.length]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -82,36 +89,35 @@ export function ScreenshotCarousel({
 
   return (
     <div
-      className={`relative w-full h-[600px] flex items-center justify-center ${className}`}
+      className={`relative w-full h-[480px] flex items-center justify-center ${className}`}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Phone mockup */}
-      <div className="relative w-[280px] sm:w-[320px] h-[560px] sm:h-[600px] animate-fade-in-up">
+      {/* Phone mockup - taille réduite */}
+      <div className="relative w-[220px] sm:w-[250px] h-[440px] sm:h-[500px] animate-fade-in-up">
         {/* Phone frame */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-2 sm:p-3">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[2.5rem] shadow-2xl p-2">
           {/* Notch */}
-          <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20" />
+          <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-20 h-5 bg-black rounded-full z-20" />
           
           {/* Screen */}
-          <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
+          <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
             {/* Screenshots */}
             <div className="relative w-full h-full">
               {screenshots.map((screenshot, index) => (
                 <div
                   key={getScreenshotSrc(screenshot)}
-                  className={`absolute inset-0 transition-all duration-500 ease-in-out ${
-                    index === currentIndex
-                      ? "opacity-100 scale-100"
-                      : "opacity-0 scale-95"
+                  className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+                    index === currentIndex ? "opacity-100" : "opacity-0"
                   }`}
                 >
                   <Image
                     src={getScreenshotSrc(screenshot)}
                     alt={getScreenshotAlt(screenshot, index)}
                     fill
-                    className="object-cover object-top"
+                    className="object-contain"
                     priority={index === 0}
+                    sizes="250px"
                   />
                 </div>
               ))}
@@ -120,10 +126,10 @@ export function ScreenshotCarousel({
         </div>
 
         {/* Floating emojis */}
-        <div className="absolute -top-8 -right-8 text-5xl sm:text-6xl animate-float hidden sm:block">
+        <div className="absolute -top-6 -right-6 text-4xl sm:text-5xl animate-float hidden sm:block">
           ✨
         </div>
-        <div className="absolute -bottom-8 -left-8 text-5xl sm:text-6xl animate-float-reverse hidden sm:block">
+        <div className="absolute -bottom-6 -left-6 text-4xl sm:text-5xl animate-float-reverse hidden sm:block">
           💫
         </div>
       </div>
@@ -131,43 +137,33 @@ export function ScreenshotCarousel({
       {/* Navigation Arrows */}
       <button
         onClick={goToPrev}
-        className="absolute left-2 sm:left-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+        className="absolute left-0 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
         aria-label="Previous screenshot"
       >
-        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
       </button>
       <button
         onClick={goToNext}
-        className="absolute right-2 sm:right-8 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+        className="absolute right-0 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
         aria-label="Next screenshot"
       >
-        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
       </button>
 
       {/* Dot indicators */}
-      <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+      <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-2">
         {screenshots.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
             className={`h-2 rounded-full transition-all duration-300 ${
               index === currentIndex
-                ? "w-8 bg-white"
+                ? "w-6 bg-white"
                 : "w-2 bg-white/40 hover:bg-white/60"
             }`}
             aria-label={`Go to screenshot ${index + 1}`}
           />
         ))}
-      </div>
-
-      {/* Progress bar */}
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
-        <div
-          className="h-full bg-white/60 transition-all duration-300"
-          style={{
-            width: `${((currentIndex + 1) / screenshots.length) * 100}%`,
-          }}
-        />
       </div>
     </div>
   );
