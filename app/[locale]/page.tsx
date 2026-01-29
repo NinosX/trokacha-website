@@ -201,9 +201,9 @@ export default function Home() {
                 </span>
               </div>
 
-              <p className="text-xl md:text-2xl mb-6 text-white/90 leading-relaxed animate-fade-in-up delay-400">
+              <p className="text-base md:text-lg mb-4 text-white/80 leading-relaxed animate-fade-in-up delay-400">
                 <span className="inline-flex items-center gap-2">
-                  {t("hero.subtitle")} <img src="/flags/dz.png" alt="🇩🇿" className="inline w-6 h-5 object-cover rounded-sm ml-1" />
+                  {t("hero.subtitle")} <img src="/flags/dz.png" alt="🇩🇿" className="inline w-5 h-4 object-cover rounded-sm ml-1" />
                 </span>
               </p>
 
