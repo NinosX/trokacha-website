@@ -128,26 +128,26 @@ export default function ChatPage() {
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
             {/* Mockup compact - Aperçu liste conversations */}
             <AnimatedSection>
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-[2rem] p-3 shadow-2xl max-w-[280px]">
-                <div className="bg-white rounded-[1.5rem] overflow-hidden">
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-[1.5rem] p-[3px] shadow-xl max-w-[240px]">
+                <div className="bg-white rounded-[1.4rem] overflow-hidden">
                   {/* Header */}
-                  <div className="bg-gradient-to-r from-rose-500 to-purple-600 p-4">
-                    <p className="text-white font-semibold text-center">Conversations</p>
+                  <div className="bg-gradient-to-r from-rose-500 to-purple-600 p-3">
+                    <p className="text-white font-semibold text-center text-sm">Conversations</p>
                   </div>
                   
                   {/* Liste conversations - Image */}
-                  <div className="relative h-[300px]">
+                  <div className="relative h-[260px]">
                     <Image
                       src="/screenshots/09_Messages.png"
                       alt="Liste des conversations"
                       fill
                       className="object-cover object-top"
-                      sizes="280px"
+                      sizes="240px"
                     />
                   </div>
                 </div>
               </div>
-              <p className="text-center mt-4 text-sm text-gray-600">Vos conversations</p>
+              <p className="text-center mt-3 text-sm text-gray-600">Vos conversations</p>
             </AnimatedSection>
 
             {/* Flèche de connexion */}
@@ -157,22 +157,22 @@ export default function ChatPage() {
 
             {/* Téléphone entier - Chat détail */}
             <AnimatedSection>
-              <div className="relative" style={{ width: '270px', height: '585px' }}>
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-[6px]">
-                  <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20" />
-                  <div className="w-full h-full bg-black rounded-[2.7rem] overflow-hidden relative">
+              <div className="relative" style={{ width: '200px', height: '433px' }}>
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[2.2rem] shadow-xl p-[4px]">
+                  <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-16 h-4 bg-black rounded-full z-20" />
+                  <div className="w-full h-full bg-black rounded-[2rem] overflow-hidden relative">
                     <Image
                       src="/screenshots/chat.png"
                       alt="Interface de chat"
                       fill
                       className="object-cover"
-                      sizes="270px"
+                      sizes="200px"
                       priority
                     />
                   </div>
                 </div>
               </div>
-              <p className="text-center mt-4 text-sm text-gray-600">Discussion en détail</p>
+              <p className="text-center mt-3 text-sm text-gray-600">Discussion en détail</p>
             </AnimatedSection>
           </div>
         </div>
