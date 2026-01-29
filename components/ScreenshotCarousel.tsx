@@ -41,8 +41,9 @@ export function ScreenshotCarousel({
   size = "default",
 }: ScreenshotCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
 
   const effectiveInterval = autoPlayInterval ?? interval;
   
@@ -63,26 +64,23 @@ export function ScreenshotCarousel({
     setCurrentIndex((prev) => (prev - 1 + screenshots.length) % screenshots.length);
   }, [screenshots.length]);
 
-  // Auto-play
+  // Auto-play - toujours actif, loop infini
   useEffect(() => {
-    if (!autoPlay || isPaused) {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-      }
-      return;
-    }
+    if (!autoPlay) return;
 
-    timerRef.current = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % screenshots.length);
-    }, effectiveInterval);
+    const startTimer = () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+      timerRef.current = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % screenshots.length);
+      }, effectiveInterval);
+    };
+
+    startTimer();
 
     return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-      }
+      if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [autoPlay, isPaused, effectiveInterval, screenshots.length]);
+  }, [autoPlay, effectiveInterval, screenshots.length]);
 
   // Keyboard navigation (seulement pour desktop)
   useEffect(() => {
@@ -95,12 +93,32 @@ export function ScreenshotCarousel({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [goToNext, goToPrev, isCompact]);
 
+  // Touch/swipe handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    const threshold = 50;
+    if (diff > threshold) {
+      goToNext();
+    } else if (diff < -threshold) {
+      goToPrev();
+    }
+  };
+
   return (
     <div
       className={`relative w-full flex items-center justify-center ${className}`}
       style={{ height: isCompact ? 'auto' : '600px' }}
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       {/* Phone mockup - ratio 9:19.5 comme iPhone */}
       <div 
