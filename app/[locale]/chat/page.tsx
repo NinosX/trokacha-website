@@ -113,28 +113,8 @@ export default function ChatPage() {
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {t("featuresTitle")}
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              {t("featuresSubtitle")}
-            </p>
-          </AnimatedSection>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {features.map((feature, index) => (
-              <FeatureCard key={index} feature={feature} index={index} t={t} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Screenshots Section - Two phones */}
-      <section className="py-20 bg-white">
+      {/* Screenshots Section - Compact + Full phone side by side */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -145,19 +125,24 @@ export default function ChatPage() {
             </p>
           </AnimatedSection>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
-            {/* Petit téléphone - Liste des conversations */}
-            <AnimatedSection className="order-1">
-              <div className="relative" style={{ width: '180px', height: '390px' }}>
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[2rem] shadow-2xl p-[4px]">
-                  <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-16 h-4 bg-black rounded-full z-20" />
-                  <div className="w-full h-full bg-black rounded-[1.7rem] overflow-hidden relative">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+            {/* Mockup compact - Aperçu liste conversations */}
+            <AnimatedSection>
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-[2rem] p-3 shadow-2xl max-w-[280px]">
+                <div className="bg-white rounded-[1.5rem] overflow-hidden">
+                  {/* Header */}
+                  <div className="bg-gradient-to-r from-rose-500 to-purple-600 p-4">
+                    <p className="text-white font-semibold text-center">Conversations</p>
+                  </div>
+                  
+                  {/* Liste conversations - Image */}
+                  <div className="relative h-[300px]">
                     <Image
                       src="/screenshots/09_Messages.png"
                       alt="Liste des conversations"
                       fill
-                      className="object-cover"
-                      sizes="180px"
+                      className="object-cover object-top"
+                      sizes="280px"
                     />
                   </div>
                 </div>
@@ -165,8 +150,13 @@ export default function ChatPage() {
               <p className="text-center mt-4 text-sm text-gray-600">Vos conversations</p>
             </AnimatedSection>
 
-            {/* Grand téléphone - Chat */}
-            <AnimatedSection className="order-2">
+            {/* Flèche de connexion */}
+            <div className="hidden md:block text-4xl text-gray-300">
+              →
+            </div>
+
+            {/* Téléphone entier - Chat détail */}
+            <AnimatedSection>
               <div className="relative" style={{ width: '270px', height: '585px' }}>
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-[6px]">
                   <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20" />
@@ -184,6 +174,26 @@ export default function ChatPage() {
               </div>
               <p className="text-center mt-4 text-sm text-gray-600">Discussion en détail</p>
             </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Grid */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              {t("featuresTitle")}
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              {t("featuresSubtitle")}
+            </p>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {features.map((feature, index) => (
+              <FeatureCard key={index} feature={feature} index={index} t={t} />
+            ))}
           </div>
         </div>
       </section>
