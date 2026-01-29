@@ -11,12 +11,14 @@ const localeNames: Record<string, string> = {
   fr: "FR",
   en: "EN",
   ar: "AR",
+  kab: "KAB",
 };
 
 const localeFlags: Record<string, string> = {
   fr: "/flags/fr.png",
   en: "/flags/gb.png",
   ar: "/flags/dz.png",
+  kab: "/flags/amazigh.png",
 };
 
 export function Navbar() {

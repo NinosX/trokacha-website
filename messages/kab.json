@@ -1,0 +1,585 @@
+{
+  "metadata": {
+    "title": "Trokacha - Aseddu aqbayli n yal taɣawsa",
+    "description": "Asnas-nneɣ, Abrid-nneɣ! 🇩🇿 Amsenfel, Tizwert, Tiɣin, Imeẓla, Axxam, Ikarduten, Amyafar"
+  },
+  "navbar": {
+    "home": "Asebter agejdan",
+    "features": "Timahilin",
+    "echange": "Amsenfel & Tizwert",
+    "transport": "Assiweḍ",
+    "chat": "Timeslayin",
+    "verification": "Asenqed",
+    "faq": "Isteqsiyen",
+    "signup": "Jerred",
+    "terms": "Tiwtilin n useqdec",
+    "privacy": "Tasertit n tbaḍnit",
+    "contact": "Nermes-aɣ"
+  },
+  "hero": {
+    "badge": "Ad d-yas",
+    "title": "Trokacha",
+    "subtitle": "Asnas-nneɣ, Abrid-nneɣ!",
+    "description": "Amsenfel . Tizwert . Tiɣin . Imeẓla . Axxam . Assiweḍ n yikarduten . Amyafar",
+    "categories": {
+      "troc": "Amsenfel",
+      "vente": "Tizwert",
+      "achat": "Tiɣin",
+      "services": "Imeẓla",
+      "immobilier": "Axxam",
+      "colis": "Ikarduten",
+      "covoiturage": "Amyafar"
+    },
+    "comingSoon": "Ar ticki ɣef",
+    "appStore": "App Store",
+    "playStore": "Play Store",
+    "notifyTitle": "Sken-asen-d ma yekker",
+    "notifyButton": "Lɣu-yi",
+    "notifyNote": "Ulac spam, kan yiwet n telɣut mi ara d-yekker"
+  },
+  "swipeTutorial": {
+    "step1": "Wali talɣutin",
+    "step2": "Tebɣiḍ talɣut-agi?",
+    "step3": "Fren 1 neɣ 2 n telɣutin-ik",
+    "step4": "Swipe ayeffus = amsenfel, azelmaḍ = idrimen",
+    "step5": "Tuzna tettwazen!"
+  },
+  "mobileFeatures": {
+    "troc": "Amsenfel",
+    "vente": "Tizwert",
+    "transport": "Assiweḍ",
+    "covoiturage": "Amyafar"
+  },
+  "features": {
+    "title": "Yiwen usnas i yal taɣawsa",
+    "subtitle": "Ulac lḥaja ad tɛeddiḍ seg waṭas n yisnasen. Trokacha yesdukkul akk ayen tesriḍ di Lezzayer",
+    "troc": {
+      "title": "Amsenfel",
+      "description": "Senfel tiqeccaḍ-ik d wiyaḍ s sshula"
+    },
+    "vente": {
+      "title": "Tizwert & Tiɣin",
+      "description": "Zenz neɣ aɣ tiqeccaḍ s laman"
+    },
+    "transport": {
+      "title": "Assiweḍ n yikarduten",
+      "description": "Azen neɣ siweḍ ikarduten anda yebɣu di Lezzayer"
+    },
+    "covoiturage": {
+      "title": "Amyafar",
+      "description": "Bḍu abrid-ik terna tḥerzeḍ idrimen"
+    },
+    "interface": {
+      "title": "Agrudem fessus",
+      "description": "Anagraw n swipe arurad, fessus i useqdec"
+    },
+    "design": {
+      "title": "Afeṣṣel yelhan",
+      "description": "Tiririt tatrart d tameɣrast"
+    },
+    "verification": {
+      "title": "Iseqdacen yettwasenqden",
+      "description": "Asenqed n timagit (taswirt n timagit + selfie) d tbadut n laman"
+    },
+    "gamification": {
+      "title": "Tibadyin & Tazmert",
+      "description": "Rbeḥ tinqiḍin, kkes tibadyin terna tali deg usettef"
+    },
+    "chat": {
+      "title": "Timeslayin iččuren",
+      "description": "Iznan s taɣect, tiswirin, isemkaden d tceṛkiwin i usiwel fessus"
+    }
+  },
+  "security": {
+    "badge": "Laman & Taflest",
+    "title": "Senfel s laman",
+    "subtitle": "Trokacha yessumer anagraw n usenqed n timagit akken ad ḍemneḍ imsenfal ilmawen. D afran i yiseqdacen, d aḥettem i yisufar d yisiwḍen.",
+    "badges": {
+      "benefits": "Ayen d-yettawi",
+      "blue": {
+        "optional": "Yettwasumer",
+        "title": "Tabadut n timagit",
+        "description": "I yiseqdacen yebɣan ad qqimen s laman terna ad senflen s taflest.",
+        "req1": "Takarḍa n timagit",
+        "req2": "Selfie n usenqed",
+        "benefit1": "Amaɣnu n taflest ibanen",
+        "benefit2": "+50 n tinqiḍin",
+        "benefit3": "Ugar n tririyin"
+      },
+      "green": {
+        "required": "D aḥettem",
+        "title": "Tabadut n usufar",
+        "description": "I yisufar d yisiwḍen. D aḥettem akken ad tessumeṛ iberdan neɣ ad tqebleḍ tussniwin.",
+        "req1": "Takarḍa n timagit",
+        "req2": "Selfie n usenqed",
+        "req3": "Turagt n usfar",
+        "whoNeeds": "D aḥettem i",
+        "driver": "Isufar n umyafar",
+        "transporter": "Isiwḍen n yikarduten"
+      }
+    },
+    "processTitle": "Amek i teddu?",
+    "process": {
+      "step1": "Rnu amiḍan-ik",
+      "step2": "Taswirt n timagit-ik",
+      "step3": "Selfie",
+      "step4": "Asentem 24-48 isragen",
+      "step5": "Tabadut tettwakkes!"
+    },
+    "features": {
+      "feature1": {
+        "title": "Timagit tettwasenqed",
+        "description": "Asenqed ID + selfie"
+      },
+      "feature2": {
+        "title": "Anagraw n usmizzwer",
+        "description": "Isiziwen deffir yal amsenfel"
+      },
+      "feature3": {
+        "title": "Isefka ttwaḥerzen",
+        "description": "Talɣut tettunegzel"
+      },
+      "feature4": {
+        "title": "Tallalt d-ittarran",
+        "description": "Tarbaɛt tella 24/7"
+      }
+    },
+    "stats": {
+      "stat1": "Isenqden ilmawen",
+      "stat2": "Tallalt tella",
+      "stat3": "Tazmilt talemmast",
+      "stat4": "Ulac tidukla n lekdeb"
+    },
+    "backHome": "Uɣal ɣer usebter agejdan",
+    "ctaTitle": "Theggiḍ ad ternuḍ ɣer tmezdagnut?",
+    "ctaSubtitle": "Sider Trokacha terna bdec ad tsenfleḍ s laman",
+    "discoverEchange": "Wali amsenfel",
+    "discoverTransport": "Wali assiweḍ",
+    "allRightsReserved": "Akk izerfan ttwaḥerzen."
+  },
+  "howItWorks": {
+    "title": "Amek i teddu?",
+    "subtitle": "4 n yimecwaṛen fessusen akken ad tebduḍ amsenfel",
+    "step1": {
+      "title": "Rnu amiḍan-ik",
+      "description": "Ajerred arurad s kra n tesdidin s wuṭṭun n tilifun-ik"
+    },
+    "step2": {
+      "title": "Ssufeɣ neɣ wali",
+      "description": "Rnu talɣutin-ik neɣ wali tid n yiseqdacen-nniḍen"
+    },
+    "step3": {
+      "title": "Swipe terna sumer",
+      "description": "Fren talɣutin-ik sdaw, swipe ɣer uyeffus i umsenfel neɣ ɣer uzelmaḍ i yidrimen"
+    },
+    "step4": {
+      "title": "Senfel!",
+      "description": "Meslay, sali-d terna senfel s laman"
+    }
+  },
+  "transportSection": {
+    "badge": "Amaynut di Trokacha",
+    "title": "Assiweḍ n temɣiwent",
+    "subtitle": "Azen ikarduten-ik anda yebɣu di Lezzayer s wid yellan deg ubrid. D aɛdil, d amaswan terna d arurad!",
+    "features": {
+      "send": {
+        "title": "Azen anda yebɣu",
+        "description": "Ikarduten-ik ad ddun d yiseqdacen yellan yakan deg ubrid"
+      },
+      "fast": {
+        "title": "D arurad, yettemlellay",
+        "description": "Fren asufar d wakud i k-icerrḥen"
+      },
+      "secure": {
+        "title": "100% s laman",
+        "description": "Isufar ttwasenqden terna aḍfaṛ srid"
+      },
+      "community": {
+        "title": "Tamezdagnut taɣelnawt",
+        "description": "Anagraw n usmizzwer i taflest"
+      }
+    },
+    "popularRoutes": "Iberdan yettwassnen",
+    "transportersAvailable": "Aṭas n yisiwḍen",
+    "startingFrom": "seg",
+    "moreRoutes": "+ aṭas n yiberdan-nniḍen"
+  },
+  "algeriaMap": {
+    "title": "Anda yebɣu di Lezzayer",
+    "subtitle": "Seg Tamanrasset ɣer Ɛennaba, Trokacha yeqqen akk tiwilayin",
+    "regions": {
+      "nord": "Agafa",
+      "centre": "Alemmas",
+      "ouest": "Amalu",
+      "est": "Agmud",
+      "sud": "Anẓul"
+    },
+    "stats": {
+      "wilayas": "Tiwilayin",
+      "coverage": "Taɣmert",
+      "available": "Yella"
+    }
+  },
+  "faq": {
+    "title": "Isteqsiyen i d-ittekken",
+    "subtitle": "Akk ayen tesriḍ ɣef Trokacha",
+    "questions": {
+      "q1": {
+        "question": "Melmi ara d-yas Trokacha?",
+        "answer": "Trokacha ad d-yas zik ɣef iOS d Android. Jerred ɣer newsletter akken ad k-nlɣu mi ara d-yekker!"
+      },
+      "q2": {
+        "question": "Amek i yeddu umsenfel di Trokacha?",
+        "answer": "Ssufeɣ talɣut-ik, wali tid n wiyaḍ. Akken ad tessumeṛ amsenfel: fren 1 neɣ 2 n telɣutin-ik sdaw, swipe ɣer uyeffus. I yidrimen, swipe ɣer uzelmaḍ. Ma yeqbel wayeḍ, d match, tzemreḍ ad tmeslayeḍ!"
+      },
+      "q3": {
+        "question": "Assiweḍ n yikarduten s laman?",
+        "answer": "Ih! Yal asiwweḍ yettwasenqed terna tamezdagnut tesmizwir-it. Tzemreḍ ad tḍefṛeḍ akardun-ik srid terna ad tmeslayeḍ d usiwweḍ."
+      },
+      "q4": {
+        "question": "Trokacha d baṭel?",
+        "answer": "Ih, Trokacha d baṭel maṛṛa! Ulac isurfen uffiren, ulac aɣrum. Asnagraw-nneɣ adimanṣi yebna ɣef tmahilin premium d afran."
+      },
+      "q5": {
+        "question": "Anida yella Trokacha?",
+        "answer": "Trokacha ad yili di yal tawilaylin n Lezzayer seg tazwara. Iswi-nneɣ d aqqen n Yizzayriyen seg Tamanrasset ɣer Ɛennaba!"
+      },
+      "q6": {
+        "question": "Amek ara iliɣ d asiwweḍ di Trokacha?",
+        "answer": "Rnu kan amiḍan-ik terna rmed afran n usiwweḍ. Ad tizmireḍ ad twaliḍ tussniwin n ussiweḍ ɣef yiberdan-ik terna ad tessumeṛ imeẓla-k."
+      }
+    }
+  },
+  "cta": {
+    "title": "Ili gar yimezwura!",
+    "subtitle": "Asnas ad d-yas zik. Jerred akken ad k-nlɣu mi ara d-yekker terna ad tesɛuḍ ayen yemgaraden.",
+    "button": "Ad jerreḍ",
+    "note": "Imezwura yejjerden ad sɛun tmahilin tiyizdigen"
+  },
+  "footer": {
+    "tagline": "Asnas azzayri i yal taɣawsa",
+    "links": "Iseɣwan",
+    "terms": "Tiwtilin n useqdec",
+    "privacy": "Tasertit n tbaḍnit",
+    "contact": "Nermes-aɣ",
+    "contactTitle": "Nermes-aɣ",
+    "copyright": "Trokacha. Akk izerfan ttwaḥerzen."
+  },
+  "emailForm": {
+    "placeholder": "imayl-ik@email.com",
+    "success": "Ajerred yedda!",
+    "errorConnection": "Tuccḍa n tuqqna",
+    "errorServer": "Tuccḍa n uqeddac",
+    "errorInvalid": "Imayl mačči d ameɣtu"
+  },
+  "privacy": {
+    "title": "Tasertit n tbaḍnit",
+    "lastUpdate": "Aleqqem aneggaru: Dujamber 2025",
+    "intro": "S lḥukum n usaḍuf 18-07 n 10 yunyu 2018 ɣef ummesten n yimdanen deg usesfer n yisefka udmawanen, yettubeddlen s usaḍuf 11-25 n yulyu 2025, Trokacha yezdeɣ ad yeḥrez isefka udmawanen n yiseqdacen-is.",
+    "backHome": "Uɣal ɣer usebter agejdan",
+    "articles": {
+      "a1": {
+        "title": "Amagrad 1 - Amsebded n usesfer",
+        "content": "Trokacha - Aseddu n uselɣu srid - Lezzayer",
+        "dpo": "Amsebded n ummesten n yisefka (DPO)"
+      },
+      "a2": {
+        "title": "Amagrad 2 - Isefka yettwalqḍen",
+        "intro": "Trokacha yelqeḍ kan isefka ilaqen i umahel n umeẓlu:",
+        "items": [
+          "Isefka n usuɣel (isem, talalit)",
+          "Tansiwin (imayl, uṭṭun n tilifun)",
+          "I yisufar: unɣel n turagt n usfar",
+          "Isefka n tunigin d useqdec n useddu",
+          "Isefka n temhelt (amazray n telɣutin, imsenfal, isiziwen)"
+        ]
+      },
+      "a3": {
+        "title": "Amagrad 3 - Tasila tusḍift n usesfer",
+        "intro": "Isesfer bnan ɣef:",
+        "items": [
+          "Amtawa s tifin d usfehm n useqdac",
+          "Aselkem n umsaḍuf n umeẓlu",
+          "Tiḥuqranin tusḍifin n Trokacha",
+          "Iswi ilmawen (asewḥel n lkira, asnerni n umeẓlu)"
+        ]
+      },
+      "a4": {
+        "title": "Amagrad 4 - Izerfan-ik",
+        "intro": "S lḥukum n usaḍuf 18-07, tesɛiḍ izerfan-agi:",
+        "items": [
+          "Azref n unekcum ɣer yisefka-k udmawanen",
+          "Azref n useɣti n yisefka ur nellin ara d imeɣta",
+          "Azref n tukksa n yisefka (azref n uttun)",
+          "Azref n umgal n usesfer",
+          "Azref n usettef n usesfer",
+          "Azref n usenkez n yisefka",
+          "Azref n ukkes n umtawa-k melmi tebɣiḍ"
+        ],
+        "contact": "Izerfan-agi zemren ad ttwaselkmen s unermes ɣer"
+      },
+      "a5": {
+        "title": "Amagrad 5 - Aḥraz n yisefka",
+        "intro": "Isefka udmawanen ttwaḥerzen:",
+        "items": [
+          "Di yal akud n useqdec urmid n umiḍan",
+          "3 n yiseggasen deffir tamahilt taneggarut n umiḍan",
+          "Dɣa ttwaẓnen s lḥukum n tiḥuqranin tusḍifin",
+          "Ttwakksen meṛṛa deffir tegnit-agi"
+        ]
+      },
+      "a6": {
+        "title": "Amagrad 6 - Taɣellist n yisefka",
+        "intro": "Trokacha yesseqdac tiɣaṛiwin tekinikanin d tuddsinanin:",
+        "items": [
+          "Anegzum n yisefka iḥulfen",
+          "Asenqed aḥebbus n unekcum",
+          "Tiftisin n tɣellist iwatayen",
+          "Asileɣ n yinaxdamen"
+        ]
+      },
+      "a7": {
+        "title": "Amagrad 7 - Alɣu n trewla",
+        "content": "Ma tella trewla n yisefka yezmer ad d-yawi ugur meqqren i yizerfan-ik, Trokacha ad ylɣu ANPDP deg 5 n wussan (s lḥukum n usaḍuf 11-25) d yiseqdacen yettwaɛnan deg wakud afessas."
+      },
+      "a8": {
+        "title": "Amagrad 8 - Asenkez n yisefka",
+        "content": "Isefka udmawanen llan di Lezzayer. Yal asenkez ɣer tmurt-nniḍen yesra turagt n ANPDP d tḥuqranin iwatayen."
+      },
+      "a9": {
+        "title": "Amagrad 9 - Azref n tẓiḍḍert",
+        "content": "Tzemreḍ ad teǧǧeḍ taẓiḍḍert ɣer ANPDP (Tamazɣa Taɣelnawt n Ummesten n Yisefka Udmawanen) ma tḥeqqeḍ izerfan-ik ur ttwaqadren ara.",
+        "website": "Asmel web n ANPDP"
+      }
+    },
+    "footerLinks": {
+      "terms": "Tiwtilin n useqdec",
+      "contact": "Nermes-aɣ"
+    }
+  },
+  "terms": {
+    "title": "Tiwtilin n useqdec",
+    "lastUpdate": "Aleqqem aneggaru: Dujamber 2025"
+  },
+  "contact": {
+    "title": "Nermes-aɣ",
+    "subtitle": "Tesɛiḍ asteqsi? Asumer? Ur ttagad ara ad aɣ-tnermseḍ"
+  },
+  "echange": {
+    "backHome": "Uɣal ɣer usebter agejdan",
+    "title": "Amsenfel, Tizwert & Tiɣin",
+    "subtitle": "Wali amek ara tsenfleḍ, tzenzeḍ neɣ taɣeḍ s sshula ɣef Trokacha",
+    "stepsTitle": "Abrid ummid",
+    "stepsSubtitle": "Seg usuffeɣ ɣer usmizzwer, ḍfeṛ yal amecwaṛ n umsenfel-ik",
+    "steps": {
+      "step1": {
+        "title": "Ssufeɣ talɣut-ik",
+        "description": "Ṭṭef tiswirin n tɣara, rnu aglam leqqayen terna sbadu ssuma neɣ ayen tettnadi di lmendad.",
+        "tip": "Tiswirin ifeclen d uglam ummid ssnernayent tignatin-ik n tifin n umsenfel!"
+      },
+      "step2": {
+        "title": "Wali talɣutin",
+        "description": "Ẓer tuẓẓimt n yiseqdacen-nniḍen. Smizwer s taggayt, adig neɣ anaw n umsenfel tebɣiḍ.",
+        "tip": "Seqdec imsizdigen akken ad d-tafeḍ s zik ayen tettnadi."
+      },
+      "step3": {
+        "title": "Eg asumer",
+        "description": "Talɣut k-teɛjeb? Fren 1 neɣ 2 n telɣutin-ik sdaw, swipe ɣer uyeffus i umsenfel, neɣ ɣer uzelmaḍ i tuzna s yidrimen.",
+        "tip": "Swipe ayeffus = amsenfel, swipe azelmaḍ = idrimen. D fessus!"
+      },
+      "step4": {
+        "title": "D Match!",
+        "description": "Ma yeqbel useqdac-nniḍen asumer-ik, d match! Tzemreḍ tura ad tmeslayeḍ ɣef yigmaḍ.",
+        "tip": "Match yeɛna sin yeẓran ḥṛicen - amṣekkar yezmer ad yekker."
+      },
+      "step5": {
+        "title": "Sentem aseḍmu",
+        "description": "Ticki igmaḍ llan, sentem aseḍmu-k. Ticki tettwaddeḍmeḍ, iɣunas-ik seggmen ur zmiren ara ad ttwasumren i wiyaḍ.",
+        "tip": "Aseḍmu yessekker iɣunas-ik i umsenfel-agi kan. Ayagi iḍemmen azga n temhelt."
+      },
+      "step6": {
+        "title": "Senfel",
+        "description": "Mlil akken ad tsenfleḍ tiqeccaḍ neɣ ad tfakeḍ tizwert akken twafqem.",
+        "tip": "Fren adig azayez d uɣellsan i yimsenfal-ik."
+      },
+      "step7": {
+        "title": "Smizwer terna fak",
+        "description": "Deffir umsenfel, smizwer tarmit-ik. Isiziwen-ik ɛawnen tamezdagnut ad teɛqel iseqdacen n taflest.",
+        "tip": "Asmizzwer yelhan ik-iɛawen ad tebniḍ taɣult-ik ɣef useddu!"
+      }
+    },
+    "screenshotsTitle": "Asnas yella",
+    "screenshotsSubtitle": "Wali agrudem fessus n Trokacha",
+    "screenshotPlaceholder": "Taswirt ad d-tas",
+    "ctaTitle": "Theggiḍ ad tsenfleḍ?",
+    "ctaSubtitle": "Ddu-d d waṭas n yiseqdacen yettamnen yakan Trokacha",
+    "discoverTransport": "Wali assiweḍ",
+    "discoverChat": "Wali timeslayin",
+    "allRightsReserved": "Akk izerfan ttwaḥerzen."
+  },
+  "transport": {
+    "backHome": "Uɣal ɣer usebter agejdan",
+    "title": "Assiweḍ & Amyafar",
+    "subtitle": "Azen ikarduten-ik neɣ bḍu iberdan-ik d temezdagnut n Trokacha",
+    "colisMode": "Assiweḍ n yikarduten",
+    "covoiturageMode": "Amyafar",
+    "features": {
+      "feature1": {
+        "title": "Anda yebɣu di Lezzayer",
+        "description": "Seg Tamanrasset ɣer Ɛennaba, af isiwḍen ɣef yal abrid"
+      },
+      "feature2": {
+        "title": "D arurad & yemlellay",
+        "description": "Fren akud d usiwweḍ i k-icerrḥen"
+      },
+      "feature3": {
+        "title": "100% s laman",
+        "description": "Isiwḍen ttwasenqden d uḍfaṛ srid n yikarduten-ik"
+      },
+      "feature4": {
+        "title": "Tamezdagnut taɣelnawt",
+        "description": "Anagraw n usmizzwer d yisiziwen i taflest"
+      }
+    },
+    "colisSection": {
+      "badge": "Tuzna n yikarduten",
+      "title": "Azen ikarduten-ik s sshula",
+      "subtitle": "Ikarduten-ik ad ddun d yimdanen yellan deg ubrid. D aɛdil, d amaswan!",
+      "steps": {
+        "step1": {
+          "title": "Glem akardun-ik",
+          "description": "Sken tiseddwin, tuzzuft d taɣara n ukardun-ik"
+        },
+        "step2": {
+          "title": "Af asiwweḍ",
+          "description": "Wali talɣutin n yimyafaṛen ɣef ubrid-ik"
+        },
+        "step3": {
+          "title": "Meslay terna ṣekker",
+          "description": "Meslay ɣef yigmaḍ d ssuma s chat"
+        },
+        "step4": {
+          "title": "Efk akardun",
+          "description": "Mlil asiwweḍ terna efk-as akardun-ik"
+        },
+        "step5": {
+          "title": "Ḍfeṛ srid",
+          "description": "Ḍfeṛ andud n ukardun-ik ɣef tkarḍa"
+        },
+        "step6": {
+          "title": "Asentem & asiziwer",
+          "description": "Sentem times d smizwer tarmit-ik"
+        }
+      }
+    },
+    "covoiturageSection": {
+      "badge": "Amyafar",
+      "title": "Bḍu iberdan-ik",
+      "subtitle": "Afarem akken, ḥerzet idrimen terna gget timusniwin!",
+      "steps": {
+        "step1": {
+          "title": "Ssufeɣ abrid-ik",
+          "description": "Sken annar-ik, azemz d umḍan n yidigen"
+        },
+        "step2": {
+          "title": "Sbadu tiwtilin-ik",
+          "description": "Ssuma i yidis, ikarduten yettwaqdren, ayen tebɣiḍ"
+        },
+        "step3": {
+          "title": "Ṭṭef tussniwin",
+          "description": "Inebgawen ḥṛicen ad k-nermsen"
+        },
+        "step4": {
+          "title": "Sentem iseggan",
+          "description": "Qbel inebgawen terna sentem idigen"
+        },
+        "step5": {
+          "title": "Afarem akken",
+          "description": "Mlil inebgawen-ik terna bḍu abrid"
+        },
+        "step6": {
+          "title": "Smizwer tarmit",
+          "description": "Smizwer imyafaṛen-ik i temezdagnut"
+        }
+      }
+    },
+    "realtime": {
+      "title": "Idigen llan srid",
+      "description": "Wali srid idigen yeqqimen ɣef yal abrid. Ulac lḥaja ad testeqsiḍ, talɣut tettwaleqqem s yiman-is!"
+    },
+    "ctaTitle": "Theggiḍ ad tefareḍ?",
+    "ctaSubtitle": "Ddu-d ɣer temezdagnut n ussiweḍ amazday n Trokacha",
+    "discoverEchange": "Wali amsenfel",
+    "discoverChat": "Wali timeslayin",
+    "allRightsReserved": "Akk izerfan ttwaḥerzen."
+  },
+  "chatPage": {
+    "backHome": "Uɣal ɣer usebter agejdan",
+    "title": "Timeslayin n Trokacha",
+    "subtitle": "Anagraw ummid n yiznan i umṣekkar, amsenfel d ufakki n temhalin-ik",
+    "featuresTitle": "Akk i usiwel",
+    "featuresSubtitle": "Timahilin ttwaḥsabent akken ad seshlen imsenfal-ik",
+    "features": {
+      "feature1": {
+        "title": "Iznan s uḍris",
+        "description": "Meslay srid d yiseqdacen-nniḍen"
+      },
+      "feature2": {
+        "title": "Iznan s taɣect",
+        "description": "Azen tizwalin s taɣect i usiwel arurad"
+      },
+      "feature3": {
+        "title": "Azenzi n tswirin",
+        "description": "Azen tiswirin akken ad d-tsekneḍ iɣunas-ik s leqqayen"
+      },
+      "feature4": {
+        "title": "Isemkaden",
+        "description": "Bḍu isemkaden ma ilaq"
+      },
+      "feature5": {
+        "title": "Ticeṛkiwin",
+        "description": "Err i yiznan s emojis"
+      },
+      "feature6": {
+        "title": "S laman",
+        "description": "Timeslayin-ik d tusligin terna ttwaḥerzent"
+      }
+    },
+    "marketplace": {
+      "badge": "Adig wis sin n ssuk",
+      "title": "Chat, adig n umṣekkar",
+      "description": "Chat n Trokacha mačči d allal kan n yiznan. D adig n umṣekkar anda tzemreḍ ad tmeslayeḍ ɣef ssuma, ad tessumeṛ ayen-nniḍen terna ad tfakeḍ timhalin-ik.",
+      "useCases": {
+        "case1": {
+          "title": "Ṣekker ssuma",
+          "description": "Meslay terna af amtawa ɣef ssuma neɣ tiwtilin n umsenfel"
+        },
+        "case2": {
+          "title": "Suddes timlilliyin",
+          "description": "Twafqem ɣef wadig d wakud i umsenfel"
+        },
+        "case3": {
+          "title": "Ḍfeṛ ikarduten-ik",
+          "description": "Qqim s unermes d usiwweḍ di tegnit n ubrid"
+        },
+        "case4": {
+          "title": "Bnu taflest",
+          "description": "Issin amdan-nniḍen uqbel ad tfakeḍ"
+        }
+      }
+    },
+    "mockup": {
+      "userName": "Ahmed B.",
+      "status": "Yeqqen",
+      "message1": "Azul, iPhone-ik mazal yella?",
+      "message2": "Ih! Ḥricceɣ deg MacBook-ik i umsenfel",
+      "message3": "Igerrez, ad nemlil azekka?",
+      "placeholder": "Aru izen..."
+    },
+    "ctaTitle": "Theggiḍ ad tmeslayeḍ?",
+    "ctaSubtitle": "Ddu-d ɣer Trokacha terna bdec amsenfel d temezdagnut",
+    "discoverEchange": "Wali amsenfel",
+    "discoverTransport": "Wali assiweḍ",
+    "allRightsReserved": "Akk izerfan ttwaḥerzen."
+  }
+}
