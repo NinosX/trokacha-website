@@ -4,10 +4,27 @@ import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
+type Screenshot = string | { src: string; alt?: string };
+
 interface ScreenshotCarouselProps {
-  screenshots?: string[];
+  screenshots?: Screenshot[];
   autoPlayInterval?: number;
+  // Legacy props for backward compatibility
+  autoPlay?: boolean;
+  interval?: number;
   className?: string;
+}
+
+// Helper to normalize screenshot format
+function getScreenshotSrc(screenshot: Screenshot): string {
+  return typeof screenshot === "string" ? screenshot : screenshot.src;
+}
+
+function getScreenshotAlt(screenshot: Screenshot, index: number): string {
+  if (typeof screenshot === "string") {
+    return `Screenshot ${index + 1}`;
+  }
+  return screenshot.alt || `Screenshot ${index + 1}`;
 }
 
 export function ScreenshotCarousel({
@@ -18,12 +35,18 @@ export function ScreenshotCarousel({
     "/screenshots/4.png",
     "/screenshots/5.png",
   ],
-  autoPlayInterval = 4000,
+  autoPlayInterval,
+  autoPlay = true,
+  interval = 4000,
   className = "",
 }: ScreenshotCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Use autoPlayInterval if provided, otherwise fall back to interval
+  const effectiveInterval = autoPlayInterval ?? interval;
+  const isAutoPlayEnabled = autoPlay;
 
   const goToSlide = useCallback((index: number) => {
     if (isTransitioning) return;
@@ -42,10 +65,10 @@ export function ScreenshotCarousel({
 
   // Auto-play
   useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(goToNext, autoPlayInterval);
+    if (isPaused || !isAutoPlayEnabled) return;
+    const timer = setInterval(goToNext, effectiveInterval);
     return () => clearInterval(timer);
-  }, [isPaused, goToNext, autoPlayInterval]);
+  }, [isPaused, isAutoPlayEnabled, goToNext, effectiveInterval]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -74,9 +97,9 @@ export function ScreenshotCarousel({
           <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
             {/* Screenshots */}
             <div className="relative w-full h-full">
-              {screenshots.map((src, index) => (
+              {screenshots.map((screenshot, index) => (
                 <div
-                  key={src}
+                  key={getScreenshotSrc(screenshot)}
                   className={`absolute inset-0 transition-all duration-500 ease-in-out ${
                     index === currentIndex
                       ? "opacity-100 scale-100"
@@ -84,8 +107,8 @@ export function ScreenshotCarousel({
                   }`}
                 >
                   <Image
-                    src={src}
-                    alt={`Screenshot ${index + 1}`}
+                    src={getScreenshotSrc(screenshot)}
+                    alt={getScreenshotAlt(screenshot, index)}
                     fill
                     className="object-cover object-top"
                     priority={index === 0}
