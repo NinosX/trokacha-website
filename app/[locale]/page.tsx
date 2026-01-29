@@ -8,6 +8,7 @@ import { Link } from "@/i18n/navigation";
 import dynamic from "next/dynamic";
 import { useInView } from "@/hooks/useInView";
 import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
+import { TypewriterCategories } from "@/components/TypewriterCategories";
 
 // Lazy load composants below the fold
 const HowItWorks = dynamic(() => import("@/components/HowItWorks").then(mod => mod.HowItWorks), {
@@ -206,24 +207,18 @@ export default function Home() {
                 </span>
               </p>
 
-              <div className="flex flex-wrap gap-2 md:gap-3 mb-8 animate-fade-in-up delay-500">
-                {[
-                  { icon: "🔄", key: "troc" },
-                  { icon: "🛍️", key: "vente" },
-                  { icon: "🛒", key: "achat" },
-                  { icon: "🔧", key: "services" },
-                  { icon: "🏠", key: "immobilier" },
-                  { icon: "📦", key: "colis" },
-                  { icon: "🚗", key: "covoiturage" },
-                ].map((item, index) => (
-                  <span
-                    key={index}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-sm md:text-base font-medium"
-                  >
-                    <span>{item.icon}</span>
-                    <span>{t(`hero.categories.${item.key}`)}</span>
-                  </span>
-                ))}
+              <div className="mb-8 animate-fade-in-up delay-500">
+                <TypewriterCategories
+                  categories={[
+                    { icon: "🔄", key: "troc", label: t("hero.categories.troc") },
+                    { icon: "🛍️", key: "vente", label: t("hero.categories.vente") },
+                    { icon: "🛒", key: "achat", label: t("hero.categories.achat") },
+                    { icon: "🔧", key: "services", label: t("hero.categories.services") },
+                    { icon: "🏠", key: "immobilier", label: t("hero.categories.immobilier") },
+                    { icon: "📦", key: "colis", label: t("hero.categories.colis") },
+                    { icon: "🚗", key: "covoiturage", label: t("hero.categories.covoiturage") },
+                  ]}
+                />
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-in-up delay-500">
