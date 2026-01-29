@@ -241,7 +241,7 @@ export default function Home() {
               </div>
 
               {/* Mobile Screenshot Carousel */}
-              <div className="lg:hidden mb-14 animate-fade-in-up delay-500">
+              <div className="lg:hidden mb-8 animate-fade-in-up delay-500">
                 <ScreenshotCarousel size="compact" />
               </div>
 
