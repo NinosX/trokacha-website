@@ -264,7 +264,7 @@ export default function Home() {
 
                 {/* Play Store Button - APK BETA */}
                 <a
-                  href="https://expo.dev/accounts/trokacha/projects/trokacha/builds/6dccdbe3-c638-46e4-b831-ee22d41e882d"
+                  href="https://expo.dev/accounts/trokacha/projects/trokacha/builds/91a1122e-b40b-46a4-ab45-d68e2e7406c3"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-2 sm:px-6 py-2 sm:py-4 bg-white hover:bg-gray-100 text-gray-800 rounded-lg sm:rounded-2xl font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none"
