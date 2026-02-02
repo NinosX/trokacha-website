@@ -264,7 +264,7 @@ export default function Home() {
 
                 {/* Play Store Button - APK BETA */}
                 <a
-                  href="https://expo.dev/artifacts/eas/fLAcUrYCwFCfxiGANjLvKn.apk"
+                  href="https://expo.dev/artifacts/eas/nyz4nd4Lht4Pc3gW8HLs2Z.apk"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-2 sm:px-6 py-2 sm:py-4 bg-white hover:bg-gray-100 text-gray-800 rounded-lg sm:rounded-2xl font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none"
