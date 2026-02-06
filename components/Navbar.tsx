@@ -34,12 +34,15 @@ export function Navbar() {
   const isHomePage = pathname === "/" || pathname === "";
   
   const navLinks = [
-    ...(isHomePage ? [{ href: "#features", label: t("features"), isSection: true }] : []),
-    { href: "/echange", label: t("echange"), isSection: false },
-    { href: "/transport", label: t("transport"), isSection: false },
-    { href: "/chat", label: t("chat"), isSection: false },
-    { href: "/verification", label: t("verification"), isSection: false },
-    ...(isHomePage ? [{ href: "#faq", label: t("faq"), isSection: true }] : []),
+    ...(isHomePage ? [
+      { href: "#features", label: t("features"), isSection: true },
+      { href: "#faq", label: t("faq"), isSection: true },
+    ] : [
+      { href: "/echange", label: t("echange"), isSection: false },
+      { href: "/transport", label: t("transport"), isSection: false },
+      { href: "/chat", label: t("chat"), isSection: false },
+      { href: "/verification", label: t("verification"), isSection: false },
+    ]),
   ];
 
   const mobileNavLinks = [

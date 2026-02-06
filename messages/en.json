@@ -11,23 +11,19 @@
     "chat": "Chat",
     "verification": "Verification",
     "faq": "FAQ",
-    "signup": "Sign up",
+    "signup": "Try the Beta",
     "terms": "Terms of Use",
     "privacy": "Privacy Policy",
     "contact": "Contact"
   },
   "hero": {
-    "badge": "Coming soon",
+    "badge": "BETA available",
     "title": "Trokacha",
-    "subtitle": "Our app, Our way!",
+    "subtitle": "Barter, sell, transport — between Algerians",
     "description": "Barter . Sale . Purchase . Services . Real Estate . Parcel Transport . Carpooling",
     "categories": {
-      "troc": "Barter",
-      "vente": "Sale",
-      "achat": "Purchase",
-      "services": "Services",
-      "immobilier": "Real Estate",
-      "colis": "Parcels",
+      "trocVenteAchat": "Barter, Buy & Sell",
+      "colis": "Parcel Transport",
       "covoiturage": "Carpooling"
     },
     "comingSoon": "Coming soon on",
@@ -52,31 +48,24 @@
     "covoiturage": "Carpooling"
   },
   "features": {
-    "title": "One app for everything",
-    "subtitle": "No need to juggle between multiple apps. Trokacha centralizes all your exchange needs in Algeria",
-    "troc": {
-      "title": "Barter",
-      "description": "Exchange your goods with other users with ease"
-    },
-    "vente": {
-      "title": "Buy & Sell",
-      "description": "Sell or buy items securely"
+    "title": "What can you do?",
+    "subtitle": "Three pillars, one app — discover everything Trokacha lets you do",
+    "learnMore": "Learn more",
+    "trocVenteAchat": {
+      "title": "Barter, Buy & Sell",
+      "description": "Post your ads, swipe to propose an exchange or a cash offer. Find what you're looking for with Trokacha's unique matching system."
     },
     "transport": {
       "title": "Parcel Transport",
-      "description": "Send or transport parcels anywhere in Algeria"
+      "description": "Send your parcels anywhere in Algeria with travelers already making the trip. Economical, ecological and real-time tracking."
     },
     "covoiturage": {
       "title": "Carpooling",
-      "description": "Share your trips and save on travel"
+      "description": "Post or join a trip, share costs and travel in good company. Verified drivers and real-time seat availability."
     },
-    "interface": {
-      "title": "Intuitive Interface",
-      "description": "Ultra-fast and easy-to-use swipe system"
-    },
-    "design": {
-      "title": "Elegant Design",
-      "description": "A modern and pleasant visual experience"
+    "chat": {
+      "title": "Built-in Chat",
+      "description": "Voice messages, photos, documents and reactions to negotiate and close your exchanges"
     },
     "verification": {
       "title": "Verified Users",
@@ -85,10 +74,6 @@
     "gamification": {
       "title": "Badges & Rewards",
       "description": "Earn points, unlock badges and climb the leaderboard"
-    },
-    "chat": {
-      "title": "Complete Chat",
-      "description": "Voice messages, photos, documents and reactions to communicate easily"
     }
   },
   "security": {
@@ -226,8 +211,8 @@
     "subtitle": "Everything you need to know about Trokacha",
     "questions": {
       "q1": {
-        "question": "When will Trokacha be available?",
-        "answer": "Trokacha will be available very soon on iOS and Android. Sign up for the newsletter to be notified at launch!"
+        "question": "How to test Trokacha?",
+        "answer": "Trokacha is available in BETA! Download it on TestFlight (iOS) or as an APK (Android) directly from this page. Your feedback helps us improve the app before the official launch."
       },
       "q2": {
         "question": "How does bartering work on Trokacha?",
@@ -252,10 +237,10 @@
     }
   },
   "cta": {
-    "title": "Be among the first!",
-    "subtitle": "The app is coming soon. Sign up to be notified at launch and enjoy exclusive benefits.",
+    "title": "Try the BETA!",
+    "subtitle": "Download Trokacha, test it and help us build the best exchange app in Algeria.",
     "button": "Sign me up",
-    "note": "Early subscribers will have access to exclusive features"
+    "note": "Your feedback helps us improve the app before the official launch"
   },
   "footer": {
     "tagline": "The Algerian app that does it all",

@@ -11,23 +11,19 @@
     "chat": "Chat",
     "verification": "Vérification",
     "faq": "FAQ",
-    "signup": "S'inscrire",
+    "signup": "Tester la Beta",
     "terms": "Conditions d'utilisation",
     "privacy": "Politique de confidentialité",
     "contact": "Contact"
   },
   "hero": {
-    "badge": "Bientôt disponible",
+    "badge": "BETA disponible",
     "title": "Trokacha",
-    "subtitle": "Notre app, Notre façon !",
+    "subtitle": "Troquez, vendez, transportez — entre Algériens",
     "description": "Troc . Vente . Achat . Services . Immobilier . Transport de Colis . Covoiturage",
     "categories": {
-      "troc": "Troc",
-      "vente": "Vente",
-      "achat": "Achat",
-      "services": "Services",
-      "immobilier": "Immobilier",
-      "colis": "Colis",
+      "trocVenteAchat": "Troc, Vente & Achat",
+      "colis": "Transport de Colis",
       "covoiturage": "Covoiturage"
     },
     "comingSoon": "Bientôt sur",
@@ -52,31 +48,24 @@
     "covoiturage": "Covoiturage"
   },
   "features": {
-    "title": "Une seule app pour tout",
-    "subtitle": "Plus besoin de jongler entre plusieurs apps. Trokacha centralise tous vos besoins d'échange en Algérie",
-    "troc": {
-      "title": "Troc",
-      "description": "Échangez vos biens avec d'autres utilisateurs en toute simplicité"
-    },
-    "vente": {
-      "title": "Vente & Achat",
-      "description": "Vendez ou achetez des articles en toute sécurité"
+    "title": "Que pouvez-vous faire ?",
+    "subtitle": "Trois piliers, une seule app — découvrez tout ce que Trokacha vous permet de faire",
+    "learnMore": "En savoir plus",
+    "trocVenteAchat": {
+      "title": "Troc, Vente & Achat",
+      "description": "Publiez vos annonces, swipez pour proposer un échange ou une offre cash. Trouvez ce que vous cherchez grâce au système de match unique de Trokacha."
     },
     "transport": {
       "title": "Transport de Colis",
-      "description": "Envoyez ou transportez des colis partout en Algérie"
+      "description": "Envoyez vos colis partout en Algérie grâce à des voyageurs qui font déjà le trajet. Économique, écologique et suivi en temps réel."
     },
     "covoiturage": {
       "title": "Covoiturage",
-      "description": "Partagez vos trajets et économisez sur vos déplacements"
+      "description": "Publiez ou rejoignez un trajet, partagez les frais et voyagez en bonne compagnie. Transporteurs vérifiés et places en temps réel."
     },
-    "interface": {
-      "title": "Interface Intuitive",
-      "description": "Système de swipe ultra-rapide et simple à utiliser"
-    },
-    "design": {
-      "title": "Design Élégant",
-      "description": "Une expérience visuelle moderne et agréable"
+    "chat": {
+      "title": "Chat intégré",
+      "description": "Messages vocaux, photos, documents et réactions pour négocier et conclure vos échanges"
     },
     "verification": {
       "title": "Utilisateurs Vérifiés",
@@ -85,10 +74,6 @@
     "gamification": {
       "title": "Badges & Récompenses",
       "description": "Gagnez des points, débloquez des badges et grimpez dans le classement"
-    },
-    "chat": {
-      "title": "Chat Complet",
-      "description": "Messages vocaux, photos, documents et réactions pour communiquer facilement"
     }
   },
   "security": {
@@ -226,8 +211,8 @@
     "subtitle": "Tout ce que vous devez savoir sur Trokacha",
     "questions": {
       "q1": {
-        "question": "Quand sera disponible Trokacha ?",
-        "answer": "Trokacha sera disponible très prochainement sur iOS et Android. Inscrivez-vous à la newsletter pour être notifié dès le lancement !"
+        "question": "Comment tester Trokacha ?",
+        "answer": "Trokacha est disponible en version BETA ! Téléchargez-la sur TestFlight (iOS) ou en APK (Android) directement depuis cette page. Vos retours nous aident à améliorer l'app avant le lancement officiel."
       },
       "q2": {
         "question": "Comment fonctionne le troc sur Trokacha ?",
@@ -252,10 +237,10 @@
     }
   },
   "cta": {
-    "title": "Soyez parmi les premiers !",
-    "subtitle": "L'app arrive bientôt. Inscrivez-vous pour être notifié dès le lancement et profiter d'avantages exclusifs.",
+    "title": "Testez la BETA !",
+    "subtitle": "Téléchargez Trokacha, testez et aidez-nous à construire la meilleure app d'échange en Algérie.",
     "button": "Je m'inscris",
-    "note": "Les premiers inscrits auront accès à des fonctionnalités exclusives"
+    "note": "Vos retours nous aident à améliorer l'app avant le lancement officiel"
   },
   "footer": {
     "tagline": "L'app algérienne qui fait tout",

@@ -11,23 +11,19 @@
     "chat": "Ameslay",
     "verification": "Asenqed",
     "faq": "Isteqsiyen",
-    "signup": "Kcem",
+    "signup": "Ɛreḍ Beta",
     "terms": "Tiwtilin n useqdec",
     "privacy": "Aḥraz n tbaḍnit",
     "contact": "Nermes-aɣ-d"
   },
   "hero": {
-    "badge": "Qrib ad d-yas",
+    "badge": "BETA tella",
     "title": "Trokacha",
-    "subtitle": "D ayen-nneɣ, s twizi-nneɣ!",
+    "subtitle": "Senfel, zenz, siweḍ — gar Yizzayriyen",
     "description": "Amsenfel . Tizwert . Tiɣin . Imeẓla . Axxam . Assiweḍ n tqecwalt . Amyafaṛ",
     "categories": {
-      "troc": "Amsenfel",
-      "vente": "Tizwert",
-      "achat": "Tiɣin",
-      "services": "Imeẓla",
-      "immobilier": "Axxam",
-      "colis": "Tiqecwalt",
+      "trocVenteAchat": "Amsenfel, Tizwert & Tiɣin",
+      "colis": "Assiweḍ n tqecwalt",
       "covoiturage": "Amyafaṛ"
     },
     "comingSoon": "Qrib ad yili ɣef",
@@ -52,31 +48,24 @@
     "covoiturage": "Amyafaṛ"
   },
   "features": {
-    "title": "Yiwen useddu i yal taɣawsa",
-    "subtitle": "Ulac lḥaja ad tneggzeḍ seg useddu ɣer wayeḍ. Trokacha yesdukkel akk ayen tesriḍ di Lezzayer",
-    "troc": {
-      "title": "Amsenfel",
-      "description": "Senfel tiɣawsiwin-ik d wiyaḍ, ulac ugur"
-    },
-    "vente": {
-      "title": "Tizwert & Tiɣin",
-      "description": "Zenz neɣ sɣ s laman, bla ccekk"
+    "title": "D acu i tzemreḍ ad txedmeḍ?",
+    "subtitle": "Tlata n yiɣallen, yiwen useddu — wali akk ayen i k-yettawi Trokacha",
+    "learnMore": "Issin ugar",
+    "trocVenteAchat": {
+      "title": "Amsenfel, Tizwert & Tiɣin",
+      "description": "Ssufeɣ talɣutin-ik, zluẓ akken ad tessumeṛ amsenfel neɣ idrimen. Af ayen tettnadi s unagraw n umṣada amaynut n Trokacha."
     },
     "transport": {
       "title": "Assiweḍ n tqecwalt",
-      "description": "Azen neɣ awi-d tiqecwalt anda tebɣiḍ di Lezzayer"
+      "description": "Azen tiqecwalt-ik anda tebɣiḍ di Lezzayer d yimdanen yellan yakan deg ubrid. Yexser, yeshel, aḍfaṛ srid."
     },
     "covoiturage": {
       "title": "Amyafaṛ",
-      "description": "Bḍu abrid-ik, ḥrez idrimen-ik"
+      "description": "Ssufeɣ neɣ ddu-d ɣer ubrid, bḍu ssuma, afar di laman. Isufaṛen ttwasenqden, idigen srid."
     },
-    "interface": {
-      "title": "Useqdec fessus",
-      "description": "Zluẓ kan, ulac acu nniḍen"
-    },
-    "design": {
-      "title": "Taneggarut telha",
-      "description": "Udem igerrez, yeshel i tmuɣli"
+    "chat": {
+      "title": "Ameslay yeddan",
+      "description": "Iznan s taɣect, tiswirin, isedduyen d tiririt akken ad temṣakkaṛeḍ, ad tfakeḍ imsenfal-ik"
     },
     "verification": {
       "title": "Imdanen yettwasenqden",
@@ -85,10 +74,6 @@
     "gamification": {
       "title": "Tibedyaḍ & Tinqiḍin",
       "description": "Rbeḥ tinqiḍin, sali-d tibedyaḍ, ili deg yimezwura"
-    },
-    "chat": {
-      "title": "Ameslay ummid",
-      "description": "Iznan s taɣect, tiswirin, isedduyen - akk ayen ilaqen i usiwel"
     }
   },
   "security": {
@@ -226,8 +211,8 @@
     "subtitle": "Akk ayen tesriḍ ɣef Trokacha",
     "questions": {
       "q1": {
-        "question": "Melmi ara d-yeffeɣ Trokacha?",
-        "answer": "Qrib ad d-yeffeɣ ɣef iOS d Android. Efk-aɣ-d imayl-ik akken ad k-d-nlɣu mi ara d-yeffeɣ!"
+        "question": "Amek ara ɛerḍeɣ Trokacha?",
+        "answer": "Trokacha yella s lqem BETA! Sider-it seg TestFlight (iOS) neɣ d APK (Android) srid seg usebter-agi. Tikkin-nwen tɛawen-aɣ ad nesnerni aseddu send ad d-yeffeɣ s wudem unṣib."
       },
       "q2": {
         "question": "Amek i yeddu umsenfel di Trokacha?",
@@ -252,10 +237,10 @@
     }
   },
   "cta": {
-    "title": "Ili seg yimezwura!",
-    "subtitle": "Aseddu qrib ad d-yeffeɣ. Efk-aɣ-d imayl-ik akken ad k-d-nlɣu terna ad tesɛuḍ ayen i wid yejjerden kan.",
+    "title": "Ɛreḍ lqem BETA!",
+    "subtitle": "Sider Trokacha, ɛreḍ-it, ɛawen-aɣ ad nebnu aseddu igerrzen n umsenfel di Lezzayer.",
     "button": "Ad jerreɣ",
-    "note": "Imezwura ad sɛun timahilin ur tent-yesɛi ḥedd"
+    "note": "Tikkin-nwen tɛawen-aɣ ad nesnerni aseddu send ad d-yeffeɣ s wudem unṣib"
   },
   "footer": {
     "tagline": "Aseddu azzayri i yal taɣawsa",
