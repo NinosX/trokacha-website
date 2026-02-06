@@ -244,12 +244,20 @@
   },
   "footer": {
     "tagline": "L'app algérienne qui fait tout",
+    "features": "Fonctionnalités",
+    "echange": "Troc & Vente",
+    "transport": "Transport",
+    "chat": "Chat",
+    "verification": "Vérification",
     "links": "Liens Utiles",
     "terms": "Conditions d'Utilisation",
     "privacy": "Politique de Confidentialité",
     "contact": "Contact",
     "contactTitle": "Contact",
     "copyright": "Trokacha. Tous droits réservés."
+  },
+  "socialProof": {
+    "text": "Déjà {count}+ beta testeurs"
   },
   "emailForm": {
     "placeholder": "votre@email.com",

@@ -51,35 +51,6 @@ function SwipeTutorial() {
   );
 }
 
-// Version mobile simplifiee des fonctionnalites
-function MobileFeatures() {
-  const t = useTranslations("mobileFeatures");
-
-  const features = [
-    { icon: "🔄", text: t("troc") },
-    { icon: "🛍️", text: t("vente") },
-    { icon: "🚚", text: t("transport") },
-    { icon: "🚗", text: t("covoiturage") },
-  ];
-
-  return (
-    <div className="lg:hidden mt-8">
-      <div className="flex justify-center gap-4 flex-wrap">
-        {features.map((feature, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center bg-white/10 backdrop-blur-sm rounded-2xl px-4 py-3 animate-fade-in-up"
-            style={{ animationDelay: `${0.6 + index * 0.1}s` }}
-          >
-            <span className="text-3xl mb-1">{feature.icon}</span>
-            <span className="text-sm font-medium">{feature.text}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 // Composant pour les 3 grandes cards piliers avec lien
 function PillarCard({ feature, index }: { feature: { emoji: string; title: string; description: string; color: string; href: string; learnMore: string }; index: number }) {
   const { ref, isInView } = useInView();
@@ -346,6 +317,18 @@ export default function Home() {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <AnimatedSection>
+            {/* Social Proof */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur-sm rounded-full mb-6">
+              <span className="flex -space-x-2">
+                <span className="w-7 h-7 rounded-full bg-green-400 flex items-center justify-center text-xs font-bold text-white ring-2 ring-white/20">A</span>
+                <span className="w-7 h-7 rounded-full bg-blue-400 flex items-center justify-center text-xs font-bold text-white ring-2 ring-white/20">K</span>
+                <span className="w-7 h-7 rounded-full bg-orange-400 flex items-center justify-center text-xs font-bold text-white ring-2 ring-white/20">S</span>
+              </span>
+              <span className="text-sm font-medium text-white/90">
+                {t("socialProof.text", { count: "50" })}
+              </span>
+            </div>
+
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               {t("cta.title")} 🚀
             </h2>
@@ -400,15 +383,26 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             {/* Brand */}
-            <div>
+            <div className="col-span-2 md:col-span-1">
               <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
                 Trokacha <span className="text-3xl">✨</span>
               </h3>
               <p className="text-gray-400">
                 {t("footer.tagline")}
               </p>
+            </div>
+
+            {/* Features */}
+            <div>
+              <h4 className="font-semibold mb-4">{t("footer.features")}</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/echange" className="hover:text-white transition-colors">{t("footer.echange")}</Link></li>
+                <li><Link href="/transport" className="hover:text-white transition-colors">{t("footer.transport")}</Link></li>
+                <li><Link href="/chat" className="hover:text-white transition-colors">{t("footer.chat")}</Link></li>
+                <li><Link href="/verification" className="hover:text-white transition-colors">{t("footer.verification")}</Link></li>
+              </ul>
             </div>
 
             {/* Links */}

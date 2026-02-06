@@ -244,12 +244,20 @@
   },
   "footer": {
     "tagline": "The Algerian app that does it all",
+    "features": "Features",
+    "echange": "Barter & Sale",
+    "transport": "Transport",
+    "chat": "Chat",
+    "verification": "Verification",
     "links": "Useful Links",
     "terms": "Terms of Use",
     "privacy": "Privacy Policy",
     "contact": "Contact",
     "contactTitle": "Contact",
     "copyright": "Trokacha. All rights reserved."
+  },
+  "socialProof": {
+    "text": "Already {count}+ beta testers"
   },
   "emailForm": {
     "placeholder": "your@email.com",

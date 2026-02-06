@@ -244,12 +244,20 @@
   },
   "footer": {
     "tagline": "التطبيق الجزائري الذي يفعل كل شيء",
+    "features": "المميزات",
+    "echange": "مقايضة وبيع",
+    "transport": "النقل",
+    "chat": "الدردشة",
+    "verification": "التحقق",
     "links": "روابط مفيدة",
     "terms": "شروط الاستخدام",
     "privacy": "سياسة الخصوصية",
     "contact": "اتصل بنا",
     "contactTitle": "اتصل بنا",
     "copyright": "تروكاشا. جميع الحقوق محفوظة."
+  },
+  "socialProof": {
+    "text": "أكثر من {count}+ مختبر للنسخة التجريبية"
   },
   "emailForm": {
     "placeholder": "بريدك@الإلكتروني.com",

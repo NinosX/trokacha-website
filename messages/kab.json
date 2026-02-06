@@ -244,12 +244,20 @@
   },
   "footer": {
     "tagline": "Aseddu azzayri i yal taɣawsa",
+    "features": "D acu i d-yettawi",
+    "echange": "Amsenfel & Tizwert",
+    "transport": "Assiweḍ",
+    "chat": "Ameslay",
+    "verification": "Asenqed",
     "links": "Iseɣwan",
     "terms": "Tiwtilin n useqdec",
     "privacy": "Aḥraz n tbaḍnit",
     "contact": "Nermes-aɣ-d",
     "contactTitle": "Nermes-aɣ-d",
     "copyright": "Trokacha. Akk izerfan ttwaḥerzen."
+  },
+  "socialProof": {
+    "text": "Yakan {count}+ i yettɛerriḍen beta"
   },
   "emailForm": {
     "placeholder": "imayl-ik@amedya.com",
