@@ -30,9 +30,9 @@
     "betaVersion": "BETA Version",
     "appStore": "App Store",
     "playStore": "Play Store",
-    "notifyTitle": "Get notified at launch",
+    "notifyTitle": "Stay updated",
     "notifyButton": "Notify me",
-    "notifyNote": "No spam, just a notification at launch"
+    "notifyNote": "No spam, just important updates"
   },
   "swipeTutorial": {
     "step1": "Browse the ads",

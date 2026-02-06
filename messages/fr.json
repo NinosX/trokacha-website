@@ -30,9 +30,9 @@
     "betaVersion": "Version BETA",
     "appStore": "App Store",
     "playStore": "Play Store",
-    "notifyTitle": "Soyez informé du lancement",
+    "notifyTitle": "Restez informé des nouveautés",
     "notifyButton": "M'avertir",
-    "notifyNote": "Pas de spam, juste une notification au lancement"
+    "notifyNote": "Pas de spam, juste les mises à jour importantes"
   },
   "swipeTutorial": {
     "step1": "Parcourez les annonces",

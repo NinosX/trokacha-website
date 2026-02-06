@@ -242,16 +242,6 @@ export default function Home() {
                 </a>
               </div>
 
-              {/* Email Notification Form */}
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-md animate-fade-in delay-700">
-                <div className="text-lg font-semibold mb-3 flex items-center gap-2">
-                  🔔 {t("hero.notifyTitle")}
-                </div>
-                <EmailForm variant="hero" />
-                <p className="text-white/60 text-xs mt-3">
-                  {t("hero.notifyNote")} 🚀
-                </p>
-              </div>
             </div>
 
             {/* Right Content - Screenshot Carousel */}
@@ -370,10 +360,13 @@ export default function Home() {
             </div>
 
             {/* Email Form CTA */}
-            <div className="max-w-md mx-auto">
+            <div className="max-w-md mx-auto border-t border-white/20 pt-8">
+              <p className="text-white/70 text-sm mb-3">
+                🔔 {t("hero.notifyTitle")}
+              </p>
               <EmailForm variant="cta" />
-              <p className="text-white/60 text-sm mt-4">
-                🎁 {t("cta.note")}
+              <p className="text-white/50 text-xs mt-3">
+                {t("hero.notifyNote")}
               </p>
             </div>
           </AnimatedSection>
