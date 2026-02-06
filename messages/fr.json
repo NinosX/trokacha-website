@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Trokacha - La plateforme algérienne tout-en-un",
-    "description": "Une App Algérienne, pour les Algériens ! 🇩🇿 Troc, Vente, Achat, Services, Immobilier, Colis, Covoiturage"
+    "description": "BETA disponible ! L'app algérienne pour troquer, vendre, transporter des colis et covoiturer. Téléchargez et testez maintenant."
   },
   "navbar": {
     "home": "Accueil",
@@ -138,7 +138,7 @@
     },
     "backHome": "Retour à l'accueil",
     "ctaTitle": "Prêt à rejoindre la communauté ?",
-    "ctaSubtitle": "Téléchargez Trokacha et commencez à échanger en toute confiance",
+    "ctaSubtitle": "Téléchargez la BETA et vérifiez votre profil pour échanger en toute confiance",
     "discoverEchange": "Découvrir le Troc",
     "discoverTransport": "Découvrir le Transport",
     "allRightsReserved": "Tous droits réservés."
@@ -406,7 +406,7 @@
     "screenshotsSubtitle": "Découvrez l'interface intuitive de Trokacha",
     "screenshotPlaceholder": "Capture d'écran bientôt disponible",
     "ctaTitle": "Prêt à échanger ?",
-    "ctaSubtitle": "Rejoignez des milliers d'utilisateurs qui font déjà confiance à Trokacha",
+    "ctaSubtitle": "Téléchargez la BETA et testez le troc, la vente et l'achat sur Trokacha",
     "discoverTransport": "Découvrir le Transport",
     "discoverChat": "Découvrir le Chat",
     "allRightsReserved": "Tous droits réservés."
@@ -502,7 +502,7 @@
       "description": "Visualisez instantanément les places restantes sur chaque trajet. Plus besoin de demander, l'information est mise à jour automatiquement !"
     },
     "ctaTitle": "Prêt à voyager ?",
-    "ctaSubtitle": "Rejoignez la communauté de transport collaboratif Trokacha",
+    "ctaSubtitle": "Téléchargez la BETA et testez le transport collaboratif sur Trokacha",
     "discoverEchange": "Découvrir le Troc",
     "discoverChat": "Découvrir le Chat",
     "allRightsReserved": "Tous droits réservés."
@@ -571,7 +571,7 @@
       "placeholder": "Écrivez un message..."
     },
     "ctaTitle": "Prêt à discuter ?",
-    "ctaSubtitle": "Rejoignez Trokacha et commencez à échanger avec la communauté",
+    "ctaSubtitle": "Téléchargez la BETA et testez le chat intégré de Trokacha",
     "discoverEchange": "Découvrir le Troc",
     "discoverTransport": "Découvrir le Transport",
     "allRightsReserved": "Tous droits réservés."

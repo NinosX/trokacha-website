@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Trokacha - Aseddu azzayri i yal taɣawsa",
-    "description": "D ayen-nneɣ, s twizi-nneɣ! 🇩🇿 Amsenfel, Tizwert, Tiɣin, Imeẓla, Axxam, Tiqecwalt, Amyafaṛ"
+    "description": "BETA tella! Aseddu azzayri n umsenfel, tizwert, assiweḍ n tqecwalt d umyafaṛ. Sider-it, ɛreḍ-it tura."
   },
   "navbar": {
     "home": "Axxam",
@@ -138,7 +138,7 @@
     },
     "backHome": "Uɣal ɣer uxxam",
     "ctaTitle": "Theggiḍ ad d-ternuḍ ɣur-neɣ?",
-    "ctaSubtitle": "Sider Trokacha, bdu amsenfel bla ccekk",
+    "ctaSubtitle": "Sider lqem BETA, senqed amaɣnu-k akken ad tsenfleḍ bla ccekk",
     "discoverEchange": "Wali amsenfel",
     "discoverTransport": "Wali assiweḍ",
     "allRightsReserved": "Akk izerfan ttwaḥerzen."
@@ -406,7 +406,7 @@
     "screenshotsSubtitle": "Wali udem n Trokacha",
     "screenshotPlaceholder": "Tiswirin ad d-asent",
     "ctaTitle": "Theggiḍ?",
-    "ctaSubtitle": "Ddu-d d waṭas n yimdanen yettamnen yakan Trokacha",
+    "ctaSubtitle": "Sider lqem BETA, ɛreḍ amsenfel, tizwert d tiɣin ɣef Trokacha",
     "discoverTransport": "Wali assiweḍ",
     "discoverChat": "Wali ameslay",
     "allRightsReserved": "Akk izerfan ttwaḥerzen."
@@ -502,7 +502,7 @@
       "description": "Wali srid acḥal n yidigen i d-yeqqimen ɣef yal abrid. Talɣut tettwaleqqem weḥd-s!"
     },
     "ctaTitle": "Theggiḍ ad tefareḍ?",
-    "ctaSubtitle": "Ddu-d ɣer temezdagnut n ussiweḍ n Trokacha",
+    "ctaSubtitle": "Sider lqem BETA, ɛreḍ assiweḍ n twizi ɣef Trokacha",
     "discoverEchange": "Wali amsenfel",
     "discoverChat": "Wali ameslay",
     "allRightsReserved": "Akk izerfan ttwaḥerzen."
@@ -571,7 +571,7 @@
       "placeholder": "Aru izen..."
     },
     "ctaTitle": "Theggiḍ ad tmeslayeḍ?",
-    "ctaSubtitle": "Ddu-d ɣer Trokacha, bdu amsenfel d temezdagnut",
+    "ctaSubtitle": "Sider lqem BETA, ɛreḍ ameslay yeddan n Trokacha",
     "discoverEchange": "Wali amsenfel",
     "discoverTransport": "Wali assiweḍ",
     "allRightsReserved": "Akk izerfan ttwaḥerzen."

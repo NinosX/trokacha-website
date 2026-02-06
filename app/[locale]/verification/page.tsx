@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { Navbar } from "@/components/Navbar";
 import { Link } from "@/i18n/navigation";
 import { Shield, UserCheck, Star, Lock, BadgeCheck, Car, Package, ArrowLeft, ArrowRight } from "lucide-react";
+import { BetaDownloadButtons } from "@/components/BetaDownloadButtons";
 import { useInView } from "@/hooks/useInView";
 import Image from "next/image";
 
@@ -279,10 +280,13 @@ export default function VerificationPage() {
             <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
               {t("ctaSubtitle")}
             </p>
+            <div className="mb-8">
+              <BetaDownloadButtons variant="compact" />
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/echange"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-2xl font-semibold hover:bg-blue-700 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-gray-100 text-gray-700 rounded-2xl font-semibold hover:bg-gray-200 transition-colors"
               >
                 {t("discoverEchange")}
                 <ArrowRight className="w-5 h-5" />

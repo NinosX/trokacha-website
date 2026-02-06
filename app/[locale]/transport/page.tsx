@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { Navbar } from "@/components/Navbar";
 import { Link } from "@/i18n/navigation";
 import { ArrowLeft, ArrowRight, Package, Car, MapPin, Clock, Shield, Users } from "lucide-react";
+import { BetaDownloadButtons } from "@/components/BetaDownloadButtons";
 import { useInView } from "@/hooks/useInView";
 import { VideoPhone } from "@/components/VideoPhone";
 
@@ -251,10 +252,13 @@ export default function TransportPage() {
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
               {t("ctaSubtitle")}
             </p>
+            <div className="mb-8">
+              <BetaDownloadButtons variant="compact" />
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/echange"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-green-600 rounded-2xl font-semibold hover:bg-white/90 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white/20 text-white rounded-2xl font-semibold hover:bg-white/30 transition-colors"
               >
                 {t("discoverEchange")}
                 <ArrowRight className="w-5 h-5" />

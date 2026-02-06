@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Trokacha - The Algerian All-in-One Platform",
-    "description": "An Algerian App, for Algerians! 🇩🇿 Barter, Sale, Purchase, Services, Real Estate, Parcels, Carpooling"
+    "description": "BETA available! The Algerian app for bartering, selling, parcel transport and carpooling. Download and test now."
   },
   "navbar": {
     "home": "Home",
@@ -138,7 +138,7 @@
     },
     "backHome": "Back to home",
     "ctaTitle": "Ready to join the community?",
-    "ctaSubtitle": "Download Trokacha and start exchanging with confidence",
+    "ctaSubtitle": "Download the BETA and verify your profile to exchange with confidence",
     "discoverEchange": "Discover Barter",
     "discoverTransport": "Discover Transport",
     "allRightsReserved": "All rights reserved."
@@ -406,7 +406,7 @@
     "screenshotsSubtitle": "Discover Trokacha's intuitive interface",
     "screenshotPlaceholder": "Screenshot coming soon",
     "ctaTitle": "Ready to exchange?",
-    "ctaSubtitle": "Join thousands of users who already trust Trokacha",
+    "ctaSubtitle": "Download the BETA and test bartering, buying and selling on Trokacha",
     "discoverTransport": "Discover Transport",
     "discoverChat": "Discover Chat",
     "allRightsReserved": "All rights reserved."
@@ -502,7 +502,7 @@
       "description": "Instantly see remaining seats on each trip. No need to ask, the information is automatically updated!"
     },
     "ctaTitle": "Ready to travel?",
-    "ctaSubtitle": "Join the Trokacha collaborative transport community",
+    "ctaSubtitle": "Download the BETA and test collaborative transport on Trokacha",
     "discoverEchange": "Discover Barter",
     "discoverChat": "Discover Chat",
     "allRightsReserved": "All rights reserved."
@@ -571,7 +571,7 @@
       "placeholder": "Write a message..."
     },
     "ctaTitle": "Ready to chat?",
-    "ctaSubtitle": "Join Trokacha and start exchanging with the community",
+    "ctaSubtitle": "Download the BETA and test Trokacha's built-in chat",
     "discoverEchange": "Discover Barter",
     "discoverTransport": "Discover Transport",
     "allRightsReserved": "All rights reserved."
