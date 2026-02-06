@@ -8,6 +8,7 @@ import { Link } from "@/i18n/navigation";
 import dynamic from "next/dynamic";
 import { useInView } from "@/hooks/useInView";
 import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
+import { SHOW_TRANSPORT } from "@/lib/featureFlags";
 
 // Lazy load composants below the fold
 const HowItWorks = dynamic(() => import("@/components/HowItWorks").then(mod => mod.HowItWorks), {
@@ -131,22 +132,24 @@ export default function Home() {
       href: "/echange",
       learnMore: t("features.learnMore"),
     },
-    {
-      emoji: "📦",
-      title: t("features.transport.title"),
-      description: t("features.transport.description"),
-      color: "from-green-500 to-emerald-500",
-      href: "/transport#colis",
-      learnMore: t("features.learnMore"),
-    },
-    {
-      emoji: "🚗",
-      title: t("features.covoiturage.title"),
-      description: t("features.covoiturage.description"),
-      color: "from-yellow-500 to-orange-500",
-      href: "/transport#covoiturage",
-      learnMore: t("features.learnMore"),
-    },
+    ...(SHOW_TRANSPORT ? [
+      {
+        emoji: "📦",
+        title: t("features.transport.title"),
+        description: t("features.transport.description"),
+        color: "from-green-500 to-emerald-500",
+        href: "/transport#colis",
+        learnMore: t("features.learnMore"),
+      },
+      {
+        emoji: "🚗",
+        title: t("features.covoiturage.title"),
+        description: t("features.covoiturage.description"),
+        color: "from-yellow-500 to-orange-500",
+        href: "/transport#covoiturage",
+        learnMore: t("features.learnMore"),
+      },
+    ] : []),
   ];
 
   const supportFeaturesList = [
@@ -392,7 +395,7 @@ export default function Home() {
               <h4 className="font-semibold mb-4">{t("footer.features")}</h4>
               <ul className="space-y-2 text-gray-400">
                 <li><Link href="/echange" className="hover:text-white transition-colors">{t("footer.echange")}</Link></li>
-                <li><Link href="/transport" className="hover:text-white transition-colors">{t("footer.transport")}</Link></li>
+                {SHOW_TRANSPORT && <li><Link href="/transport" className="hover:text-white transition-colors">{t("footer.transport")}</Link></li>}
                 <li><Link href="/chat" className="hover:text-white transition-colors">{t("footer.chat")}</Link></li>
                 <li><Link href="/verification" className="hover:text-white transition-colors">{t("footer.verification")}</Link></li>
               </ul>

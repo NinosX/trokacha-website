@@ -7,6 +7,7 @@ import { Shield, UserCheck, Star, Lock, BadgeCheck, Car, Package, ArrowLeft, Arr
 import { BetaDownloadButtons } from "@/components/BetaDownloadButtons";
 import { useInView } from "@/hooks/useInView";
 import Image from "next/image";
+import { SHOW_TRANSPORT } from "@/lib/featureFlags";
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isInView } = useInView();
@@ -206,9 +207,9 @@ export default function VerificationPage() {
       {/* Two Badges Section */}
       <section className="py-16 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className={`grid ${SHOW_TRANSPORT ? "md:grid-cols-2" : "md:grid-cols-1 max-w-xl"} gap-8 max-w-5xl mx-auto`}>
             <BadgeCard type="blue" t={t} />
-            <BadgeCard type="green" t={t} />
+            {SHOW_TRANSPORT && <BadgeCard type="green" t={t} />}
           </div>
         </div>
       </section>
@@ -291,13 +292,15 @@ export default function VerificationPage() {
                 {t("discoverEchange")}
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link
-                href="/transport"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gray-100 text-gray-700 rounded-2xl font-semibold hover:bg-gray-200 transition-colors"
-              >
-                {t("discoverTransport")}
-                <ArrowRight className="w-5 h-5" />
-              </Link>
+              {SHOW_TRANSPORT && (
+                <Link
+                  href="/transport"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-gray-100 text-gray-700 rounded-2xl font-semibold hover:bg-gray-200 transition-colors"
+                >
+                  {t("discoverTransport")}
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              )}
             </div>
           </AnimatedSection>
         </div>

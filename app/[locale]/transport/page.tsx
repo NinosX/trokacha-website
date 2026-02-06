@@ -7,6 +7,8 @@ import { ArrowLeft, ArrowRight, Package, Car, MapPin, Clock, Shield, Users } fro
 import { BetaDownloadButtons } from "@/components/BetaDownloadButtons";
 import { useInView } from "@/hooks/useInView";
 import { VideoPhone } from "@/components/VideoPhone";
+import { SHOW_TRANSPORT } from "@/lib/featureFlags";
+import { redirect } from "next/navigation";
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isInView } = useInView();
@@ -70,6 +72,7 @@ function StepCard({ step, index, t, prefix, bgClass = "" }: { step: { icon: stri
 }
 
 export default function TransportPage() {
+  if (!SHOW_TRANSPORT) { redirect("/"); }
   const t = useTranslations("transport");
 
   const colisSteps = [

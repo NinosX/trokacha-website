@@ -1,3 +1,5 @@
+import { SHOW_TRANSPORT } from "@/lib/featureFlags";
+
 export function JsonLd({ locale }: { locale: string }) {
   const baseUrl = "https://trokacha.com";
 
@@ -9,10 +11,16 @@ export function JsonLd({ locale }: { locale: string }) {
     "url": baseUrl,
     "logo": `${baseUrl}/logo.png`,
     "description": locale === "ar"
-      ? "تطبيق جزائري، للجزائريين! مقايضة، بيع، شراء، خدمات، عقارات، طرود، مشاركة السيارات"
+      ? SHOW_TRANSPORT
+        ? "تطبيق جزائري، للجزائريين! مقايضة، بيع، شراء، خدمات، عقارات، طرود، مشاركة السيارات"
+        : "تطبيق جزائري، للجزائريين! مقايضة، بيع، شراء، خدمات، عقارات"
       : locale === "en"
-      ? "An Algerian App, for Algerians! Barter, Sale, Purchase, Services, Real Estate, Parcels, Carpooling"
-      : "Une App Algérienne, pour les Algériens ! Troc, Vente, Achat, Services, Immobilier, Colis, Covoiturage",
+      ? SHOW_TRANSPORT
+        ? "An Algerian App, for Algerians! Barter, Sale, Purchase, Services, Real Estate, Parcels, Carpooling"
+        : "An Algerian App, for Algerians! Barter, Sale, Purchase, Services, Real Estate"
+      : SHOW_TRANSPORT
+        ? "Une App Algérienne, pour les Algériens ! Troc, Vente, Achat, Services, Immobilier, Colis, Covoiturage"
+        : "Une App Algérienne, pour les Algériens ! Troc, Vente, Achat, Services, Immobilier",
     "foundingDate": "2024",
     "foundingLocation": {
       "@type": "Place",
@@ -42,10 +50,16 @@ export function JsonLd({ locale }: { locale: string }) {
     "operatingSystem": ["iOS", "Android"],
     "applicationCategory": "LifestyleApplication",
     "description": locale === "ar"
-      ? "تطبيق جزائري، للجزائريين! مقايضة، بيع، شراء، خدمات، عقارات، طرود، مشاركة السيارات"
+      ? SHOW_TRANSPORT
+        ? "تطبيق جزائري، للجزائريين! مقايضة، بيع، شراء، خدمات، عقارات، طرود، مشاركة السيارات"
+        : "تطبيق جزائري، للجزائريين! مقايضة، بيع، شراء، خدمات، عقارات"
       : locale === "en"
-      ? "An Algerian App, for Algerians! Barter, Sale, Purchase, Services, Real Estate, Parcels, Carpooling"
-      : "Une App Algérienne, pour les Algériens ! Troc, Vente, Achat, Services, Immobilier, Colis, Covoiturage",
+      ? SHOW_TRANSPORT
+        ? "An Algerian App, for Algerians! Barter, Sale, Purchase, Services, Real Estate, Parcels, Carpooling"
+        : "An Algerian App, for Algerians! Barter, Sale, Purchase, Services, Real Estate"
+      : SHOW_TRANSPORT
+        ? "Une App Algérienne, pour les Algériens ! Troc, Vente, Achat, Services, Immobilier, Colis, Covoiturage"
+        : "Une App Algérienne, pour les Algériens ! Troc, Vente, Achat, Services, Immobilier",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -61,8 +75,10 @@ export function JsonLd({ locale }: { locale: string }) {
     "featureList": [
       "Troc et échange de biens",
       "Vente et achat sécurisés",
-      "Transport collaboratif de colis",
-      "Covoiturage",
+      ...(SHOW_TRANSPORT ? [
+        "Transport collaboratif de colis",
+        "Covoiturage",
+      ] : []),
       "Chat intégré avec messages vocaux",
       "Vérification d'identité",
       "Système de notation"
@@ -115,7 +131,7 @@ export function JsonLd({ locale }: { locale: string }) {
             : "Oui, Trokacha est entièrement gratuit ! Pas de frais cachés, pas d'abonnement."
         }
       },
-      {
+      ...(SHOW_TRANSPORT ? [{
         "@type": "Question",
         "name": locale === "en" ? "Is parcel transport secure?" : locale === "ar" ? "هل نقل الطرود آمن؟" : "Le transport de colis est-il sécurisé ?",
         "acceptedAnswer": {
@@ -126,7 +142,7 @@ export function JsonLd({ locale }: { locale: string }) {
             ? "نعم! كل ناقل موثق ومُقيَّم من المجتمع. يمكنك تتبع طردك مباشرة."
             : "Oui ! Chaque transporteur est vérifié et noté par la communauté. Vous pouvez suivre votre colis en temps réel."
         }
-      }
+      }] : [])
     ]
   };
 

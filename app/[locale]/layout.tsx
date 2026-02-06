@@ -6,6 +6,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { ScrollToTop } from '@/components/ScrollToTop';
 import type { Viewport } from 'next';
 import '../globals.css';
+import { SHOW_TRANSPORT } from '@/lib/featureFlags';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -36,9 +37,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     description: metadata.description,
     keywords: [
-      "troc", "vente", "achat", "transport", "colis", "covoiturage",
-      "algerie", "marketplace", "echange", "annonces", "occasion",
-      "livraison", "particuliers", "trokacha", "application mobile"
+      "troc", "vente", "achat", "algerie", "marketplace", "echange",
+      "annonces", "occasion", "particuliers", "trokacha", "application mobile",
+      ...(SHOW_TRANSPORT ? ["transport", "colis", "covoiturage", "livraison"] : []),
     ],
     authors: [{ name: "Trokacha" }],
     creator: "Trokacha",

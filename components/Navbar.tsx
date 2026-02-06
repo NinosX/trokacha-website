@@ -6,6 +6,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import Image from "next/image";
+import { SHOW_TRANSPORT } from "@/lib/featureFlags";
 
 const localeNames: Record<string, string> = {
   fr: "FR",
@@ -39,7 +40,7 @@ export function Navbar() {
       { href: "#faq", label: t("faq"), isSection: true },
     ] : [
       { href: "/echange", label: t("echange"), isSection: false },
-      { href: "/transport", label: t("transport"), isSection: false },
+      ...(SHOW_TRANSPORT ? [{ href: "/transport", label: t("transport"), isSection: false }] : []),
       { href: "/chat", label: t("chat"), isSection: false },
       { href: "/verification", label: t("verification"), isSection: false },
     ]),
@@ -49,7 +50,7 @@ export function Navbar() {
     { href: "/", label: t("home"), isSection: false },
     ...(isHomePage ? [{ href: "#features", label: t("features"), isSection: true }] : []),
     { href: "/echange", label: t("echange"), isSection: false },
-    { href: "/transport", label: t("transport"), isSection: false },
+    ...(SHOW_TRANSPORT ? [{ href: "/transport", label: t("transport"), isSection: false }] : []),
     { href: "/chat", label: t("chat"), isSection: false },
     { href: "/verification", label: t("verification"), isSection: false },
     ...(isHomePage ? [{ href: "#faq", label: t("faq"), isSection: true }] : []),

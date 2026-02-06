@@ -8,6 +8,7 @@ import { BetaDownloadButtons } from "@/components/BetaDownloadButtons";
 import { useInView } from "@/hooks/useInView";
 import { VideoPhone } from "@/components/VideoPhone";
 import { useState } from "react";
+import { SHOW_TRANSPORT } from "@/lib/featureFlags";
 
 const steps = [
   { number: 1, icon: "📝", color: "from-blue-500 to-cyan-500", timestamp: 0 },
@@ -169,13 +170,15 @@ export default function EchangePage() {
               <BetaDownloadButtons variant="compact" />
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/transport"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white/20 text-white rounded-2xl font-semibold hover:bg-white/30 transition-colors"
-              >
-                {t("discoverTransport")}
-                <ArrowRight className="w-5 h-5" />
-              </Link>
+              {SHOW_TRANSPORT && (
+                <Link
+                  href="/transport"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white/20 text-white rounded-2xl font-semibold hover:bg-white/30 transition-colors"
+                >
+                  {t("discoverTransport")}
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              )}
               <Link
                 href="/chat"
                 className="inline-flex items-center gap-2 px-8 py-4 bg-white/20 text-white rounded-2xl font-semibold hover:bg-white/30 transition-colors"
