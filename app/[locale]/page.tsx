@@ -8,7 +8,6 @@ import { Link } from "@/i18n/navigation";
 import dynamic from "next/dynamic";
 import { useInView } from "@/hooks/useInView";
 import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
-import { TypewriterCategories } from "@/components/TypewriterCategories";
 
 // Lazy load composants below the fold
 const HowItWorks = dynamic(() => import("@/components/HowItWorks").then(mod => mod.HowItWorks), {
@@ -227,36 +226,11 @@ export default function Home() {
                 </span>
               </div>
 
-              <p className="text-sm md:text-base mb-6 text-white/70 animate-fade-in-up delay-400">
-                <span className="inline-flex items-center gap-1">
-                  {t("hero.subtitle")} <img src="/flags/dz.png" alt="🇩🇿" className="inline w-4 h-3 object-cover rounded-sm" />
+              <p className="text-base md:text-xl mb-10 text-white/80 animate-fade-in-up delay-400">
+                <span className="inline-flex items-center gap-2">
+                  {t("hero.subtitle")} <img src="/flags/dz.png" alt="🇩🇿" className="inline w-5 h-4 object-cover rounded-sm" />
                 </span>
               </p>
-
-              {/* Desktop: TypewriterCategories reste ici */}
-              <div className="hidden lg:block mb-8 animate-fade-in-up delay-500">
-                <TypewriterCategories
-                  categories={[
-                    { icon: "🔄", key: "trocVenteAchat", label: t("hero.categories.trocVenteAchat") },
-                    { icon: "📦", key: "colis", label: t("hero.categories.colis") },
-                    { icon: "🚗", key: "covoiturage", label: t("hero.categories.covoiturage") },
-                  ]}
-                />
-              </div>
-
-              {/* Mobile: TypewriterCategories au-dessus du téléphone */}
-              <div className="lg:hidden mb-4 animate-fade-in-up delay-500">
-                <div className="flex justify-center">
-                  <TypewriterCategories
-                    size="small"
-                    categories={[
-                      { icon: "🔄", key: "trocVenteAchat", label: t("hero.categories.trocVenteAchat") },
-                      { icon: "📦", key: "colis", label: t("hero.categories.colis") },
-                      { icon: "🚗", key: "covoiturage", label: t("hero.categories.covoiturage") },
-                    ]}
-                  />
-                </div>
-              </div>
 
               {/* Mobile Screenshot Carousel */}
               <div className="lg:hidden mb-8 animate-fade-in-up delay-500">
