@@ -268,83 +268,198 @@
   },
   "privacy": {
     "title": "Aḥraz n tbaḍnit",
-    "lastUpdate": "Aleqqem aneggaru: Dujamber 2025",
+    "lastUpdate": "Aleqqem aneggaru: Fuṛaṛ 2026",
     "intro": "S lḥukum n usaḍuf 18-07 n 10 yunyu 2018 ɣef ummesten n yimdanen deg usesfer n yisefka udmawanen, yettubeddlen s usaḍuf 11-25 n yulyu 2025, Trokacha yettḥaraz isefka udmawanen n yiseqdacen-is.",
     "backHome": "Uɣal ɣer uxxam",
     "articles": {
       "a1": {
-        "title": "Amagrad 1 - Amsebded n usesfer",
-        "content": "Trokacha - Aseddu n uselɣu srid - Lezzayer",
+        "title": "Amagrad 1 – Amsebded n usesfer",
+        "content": "Trokacha – Aseddu n uselɣu srid – Lezzayer",
         "dpo": "Amsebded n ummesten n yisefka (DPO)"
       },
       "a2": {
-        "title": "Amagrad 2 - Isefka yettwalqḍen",
+        "title": "Amagrad 2 – Isefka yettwalqḍen",
         "intro": "Trokacha yelqeḍ kan isefka ilaqen i wakken ad teddu lxedma:",
-        "items": [
-          "Isem-ik d tlalit-ik",
-          "Imayl-ik d wuṭṭun n tilifun-ik",
-          "I yisufaṛen: turagt n usfar",
-          "Amek i tesseqdaceḍ aseddu",
-          "Amazray n telɣutin, imsenfal, tezmilin"
-        ]
+        "s1": {
+          "title": "2.1 – Isefka n timagit",
+          "items": [
+            "Isem, talalit",
+            "Imayl, uṭṭun n tilifun",
+            "Taswirt n umaɣnu (d afran)"
+          ]
+        },
+        "s2": {
+          "title": "2.2 – Isefka n usenqed n timagit",
+          "items": [
+            "Taswirt n tekarḍa n timagit tunṣibt (carte nationale, turagt n usfar neɣ passeport)",
+            "Selfie n usenqed i userwes d tekarḍa",
+            "I yisufaṛen: turagt n usfar"
+          ],
+          "note": "Isefka-agi ttwasesferlen kan i usenqed n timagit d ufka n tbedyaṭ « Amdan yettwasenqed ». Tiswirin n tekarḍa ttwaḥerzen s unegzum di tegnit n usenqed, dɣa ttwakksen deg 30 n wussan deffir usentem. Kan addad n usenqed (yettwasenqed/ur yettwasenqed ara) i yettwaḥerzen."
+        },
+        "s3": {
+          "title": "2.3 – Isefka n udeg anamkan",
+          "items": [
+            "Adeg anamkan n useqdac (s uqbul-is aḥerfi)",
+            "Yettwaseqdac i: abeyyeḍ n telɣutin iqerben, imeẓla n umyafaṛ d ussiweḍ",
+            "Asnas n udeg yeddu kan mi yella useddu yermden (ulac alqaḍ deg ugilal)",
+            "Aseqdac yezmer ad yens asnas n udeg melmi yebɣa deg yiɣewwaṛen n yibenk-is"
+          ]
+        },
+        "s4": {
+          "title": "2.4 – Isefka n temhalin d useqdec",
+          "items": [
+            "Amazray n telɣutin yeffɣen, imsenfal yettusumren d wid yeddan",
+            "Tezmilin gar yiseqdacen",
+            "Iznan yettwaznen s ameslay (aḍris, tiswirin, iznan s taɣect, isedduyen)",
+            "Isefka n useqdec n useddu (isebtar yettwawalen, tanzagt n tɣimit)",
+            "Tinqiḍin, tibedyaḍ d yisefka n twuṛi"
+          ]
+        },
+        "s5": {
+          "title": "2.5 – Isefka itiknikanen",
+          "items": [
+            "Tansa IP",
+            "Anaw d lqem n unagraw (iOS, Android)",
+            "Tanalt n yibenk",
+            "Asulay amayut n yibenk",
+            "Isefka n tmellit d uṣeggem (crashes, tuccḍiwin)"
+          ]
+        }
       },
       "a3": {
-        "title": "Amagrad 3 - Tasila tusḍift n usesfer",
+        "title": "Amagrad 3 – Tasila tusḍift n usesfer",
         "intro": "Asesfer yebna ɣef:",
         "items": [
-          "Aqbul-ik s ufehm",
-          "Aselkem n umsaḍuf n umeẓlu",
-          "Tiḥuqranin tusḍifin n Trokacha",
-          "Aswehel n lkira, asnerni n umeẓlu"
+          "Aqbul: aseqdac yeqbel s ufehm mi yekcem d mi yermad yal tamahilt (adeg, asenqed, ilɣuten)",
+          "Aselkem n umsaḍuf: isefka ilaqen i umeẓlu (talɣutin, imsenfal, ameslay, amyafaṛ)",
+          "Tiḥuqranin tusḍifin: aḥraz n yisefka s usaḍuf azzayri",
+          "Aswehel ameɣtu: aswehel n lkira, taɣellist n useddu, asnerni n umeẓlu"
         ]
       },
       "a4": {
-        "title": "Amagrad 4 - Izerfan-ik",
-        "intro": "S lḥukum n usaḍuf 18-07, tesɛiḍ izerfan-agi:",
-        "items": [
-          "Azref ad twaliḍ isefka-k",
-          "Azref ad tesseɣtiḍ ayen ur nellin ara d ameɣtu",
-          "Azref ad tekkseḍ isefka-k (azref n uttun)",
-          "Azref ad tmeggleḍ asesfer",
-          "Azref ad tessettefeḍ asesfer",
-          "Azref ad tenkzeḍ isefka-k",
-          "Azref ad tuɣaleḍ deg wawal-ik melmi tebɣiḍ"
-        ],
-        "contact": "Izerfan-agi zemren ad ttwaselmden ma tnermseḍ-d ɣer"
+        "title": "Amagrad 4 – Imeẓla n beṛṛa d yimsesfren ifrawanen",
+        "intro": "Trokacha yesseqdac imeẓla n beṛṛa ilaqen i useddu. Imawlan-agi d imsesfren ifrawanen, qqnen-asen s umsaḍuf ad ḥerzen tuffra n yisefka:",
+        "s1": {
+          "title": "4.1 – Firebase (Google LLC)",
+          "items": [
+            "Firebase Authentication: asefrek n ukcem d umsikel",
+            "Cloud Firestore: aḥraz ilmawen n yisefka n useddu (talɣutin, imuɣna, iznan)",
+            "Firebase Storage: asekcem n tswirin (tiswirin n telɣutin, tiswirin n umaɣnu)",
+            "Firebase Cloud Messaging: tuzna n yilɣuten push",
+            "Firebase Crashlytics: tuṭṭfa d useɣti n tuccḍiwin (isefka udlisen)"
+          ],
+          "linkText": "Tasertit n tbaḍnit n Google"
+        },
+        "s2": {
+          "title": "4.2 – Expo / React Native",
+          "content": "Tasnakuda tatiknikant i usnulfu d ubḍu n useddu. Ulac isefka udmawanen yettwabḍan d Expo.",
+          "linkText": "Tasertit n tbaḍnit n Expo"
+        },
+        "s3": {
+          "title": "4.3 – Imeẓla n useskel",
+          "content": "Ma llan yifecka n useskel (Firebase Analytics neɣ am netta), isefka yettwalqḍen d udlisen, ttwaseqdacen kan i usnerni n termit n useqdac. Aseqdac yezmer ad yemmeggel di yiɣewwaṛen n useddu."
+        }
       },
       "a5": {
-        "title": "Amagrad 5 - Aḥraz n yisefka",
-        "intro": "Isefka-k ttwaḥerzen:",
+        "title": "Amagrad 5 – Izerfan-ik",
+        "intro": "S lḥukum n usaḍuf 18-07, tesɛiḍ izerfan-agi:",
         "items": [
-          "Yal mi tettsseqdaceḍ amiḍan-ik",
-          "3 n yiseggasen deffir tamahilt taneggarut",
-          "Dɣa ttwaǧǧan s lḥukum n tiḥuqranin",
-          "Ttwakksen maṛṛa deffir tegnit-agi"
-        ]
+          "Azref n unekcum: awi-d akk isefka-k udmawanen ɣer Trokacha",
+          "Azref n useɣti: seɣti yal asefka ur nellin ara d ameɣtu neɣ yenqes",
+          "Azref n tukksa: suter tukksa n yisefka-k (azref n uttun)",
+          "Azref n umeggli: meggel asesfer n yisefka-k ɣef yimensayen imeɣta",
+          "Azref n usettefi: suter asettefi n usesfer deg kra n tegnatin",
+          "Azref n unkaz: awi-d isefka-k deg umasal yettwabnan, yettwaɣṛan",
+          "Azref n tuɣalin deg uqbul: uɣal deg uqbul-ik melmi tebɣiḍ, bla ma yettwaɛṛaḍ usesfer amezwaru"
+        ],
+        "contact": "Izerfan-agi zemren ad ttwaselmden ma tnermseḍ-d ɣer",
+        "responseDelay": "Trokacha ad d-yerr i yal tuttra deg wakud afellay n 30 n wussan."
       },
       "a6": {
-        "title": "Amagrad 6 - Taɣellist n yisefka",
-        "intro": "Trokacha yesseqdac tarrayin n tɣellist:",
+        "title": "Amagrad 6 – Aḥraz n yisefka",
+        "intro": "Isefka udmawanen ttwaḥerzen akka:",
         "items": [
-          "Anegzum n yisefka iḥulfan",
-          "Aseqdec yettwaḥebbes",
-          "Asenqed n tɣellist yal tikkelt",
-          "Asileɣ n yimahalen-nneɣ"
+          "Isefka n umiḍan armid: ttwaḥerzen mi yettwaseqdac umiḍan",
+          "Amiḍan ur nermid ara: isefka ttwaḥerzen 3 n yiseggasen deffir tamahilt taneggarut",
+          "Deffir tukksa n umiḍan: isefka ttwaskelsen s lḥukum dɣa ttwakksen nig",
+          "Isefka n usenqed n timagit (tiswirin ID/selfie): ttwakksen deg 30 n wussan deffir usentem",
+          "Iznan n chat: ttwaḥerzen mi yella umiḍan, dɣa ttwakksen yid-s",
+          "Isefka n uṣeggem d crashes: ttwaḥerzen 90 n wussan d afellay"
         ]
       },
       "a7": {
-        "title": "Amagrad 7 - Alɣu n trewla",
-        "content": "Ma tella trewla n yisefka i yzemren ad d-yawi ugur meqqren i yizerfan-ik, Trokacha ad ylɣu ANPDP deg 5 n wussan terna ad ylɣu iseqdacen yettwaɛnan deg wakud aẓayan."
+        "title": "Amagrad 7 – Taɣellist n yisefka",
+        "intro": "Trokacha yesseqdac tarrayin titeknikkanin d tunẓimin i ummesten n yisefka udmawanen:",
+        "items": [
+          "Anegzum n yisefka deg usenkez (TLS/SSL) d deg usgunfu",
+          "Anegzum yettwasnernayen i yisefka iḥulfan (tikarḍiwin n timagit, turagt n usfar)",
+          "Ilugan n tɣellist Firebase (Firestore Security Rules) ttaṭṭafen anekcum ɣer yisefka yettusirgen kan",
+          "Anekcum yettwaḥebbes s usenqed",
+          "Asenqed n tɣellist ilugan",
+          "Askelsen ilugan n yisefka"
+        ]
       },
       "a8": {
-        "title": "Amagrad 8 - Asenkez n yisefka",
-        "content": "Isefka-k llan di Lezzayer. Yal asenkez ɣer tmurt-nniḍen yesra turagt n ANPDP."
+        "title": "Amagrad 8 – Alɣu n trewla",
+        "intro": "Ma tella trewla n yisefka i yzemren ad d-tawi ugur meqqren i yizerfan-ik:",
+        "items": [
+          "ANPDP ad yettwilɣu deg 5 n wussan (s usaḍuf 11-25)",
+          "Iseqdacen yettwaɛnan ad ttwilɣun deg wakud aẓayan s ulɣu deg useddu d/neɣ s imayl",
+          "Alɣu ad yegber: anaw n trewla, isefka yettwaɛnan, tarrayin yettwaṭṭfen d yiwellihen i yiseqdacen"
+        ]
       },
       "a9": {
-        "title": "Amagrad 9 - Azref n tẓiḍḍert",
-        "content": "Tzemreḍ ad teǧǧeḍ taẓiḍḍert ɣer ANPDP ma tḥeqqeḍ izerfan-ik ur ttwaqadren ara.",
+        "title": "Amagrad 9 – Asenkez n yisefka",
+        "content": "Isefka udmawanen ttwasesferlen s yimeẓla Firebase n Google, iqeddacen-is zemren ad ilin beṛṛa i Lezzayer (Tamuḍa n Tuṛuft, Iwunak Yedduklen).",
+        "guarantees": "Trokacha yettḥaqaq d akken isenkaz-agi sɛan tiḍmanin ilaqen:",
+        "items": [
+          "Google yedda d yinizamiyen igraɣlanen n ummesten n yisefka (SOC 2, ISO 27001)",
+          "Iferdisen imṣadayen iluɣmayen ssebdaden isenkaz-agi",
+          "Yal turagt tamezwarut i yesra ANPDP ad tettwawi s usaḍuf amiran"
+        ]
+      },
+      "a10": {
+        "title": "Amagrad 10 – Iseqdacen imeẓyanen",
+        "content": "Trokacha ur yettwaxdem ara i yimdanen ddaw 18 n yiseggasen. Ulac ameẓyan i yzemren ad yexleq amiḍan ɣef useddu.",
+        "discovery": "Ma yaf-d Trokacha d akken aseqdac d ameẓyan, amiḍan-is ad yettwaḥbes srid, isefka-s ad ttwakksen deg 48 n yisragen.",
+        "parent": "Ma telliḍ d amaru neɣ d amserwes, tḥeqqeḍ mmi-k/yelli-k yexleq amiḍan ɣef Trokacha, nermes-aɣ-d ɣef"
+      },
+      "a11": {
+        "title": "Amagrad 11 – Isulayen itiknikanen d cookies",
+        "intro": "Aseddu aziraz Trokacha ur yesseqdac ara cookies. Maca, titiknulujiyin-agi zemrent ad ttwaseqdacent:",
+        "items": [
+          "Asulay n yibenk: i tuzna n yilɣuten push d tɣellist n umiḍan",
+          "Tokens n usenqed: ttwaḥerzen srid deg yibenk-ik i uḥraz n tɣimit-ik",
+          "Asulay n uselɣu (Advertising ID): ur yettwaseqdac ara sɣur Trokacha. Ulac isefka yettwabeḍḍen i uselɣu"
+        ],
+        "website": "Asmel trokacha.com yezmer ad yesseqdec cookies itiknikanen ilaqen. Ulac cookies n uḍfaṛ n uselɣu."
+      },
+      "a12": {
+        "title": "Amagrad 12 – Asnifel n tsertit",
+        "intro": "Trokacha yettḥaraz azref ad yesnfel tasertit-agi n tbaḍnit melmi yebɣa. Iseqdacen ad ttwilɣun s yal asnifel meqqren s:",
+        "items": [
+          "Alɣu deg useddu",
+          "Aleqqem n uzemz « aleqqem aneggaru » ufella n useddu-agi"
+        ],
+        "note": "Asseqdec igeddlen n Trokacha deffir ulɣu d aqbul n tsertit yettwasniflen."
+      },
+      "a13": {
+        "title": "Amagrad 13 – Azref n tẓiḍḍert",
+        "intro": "Ma tḥeqqeḍ izerfan-ik ur ttwaqadren ara, tzemreḍ:",
+        "items": [
+          "Ad tnermseḍ Trokacha ɣef contact@trokacha.com",
+          "Ad teǧǧeḍ taẓiḍḍert ɣer ANPDP (Tamawt Taɣlant n Ummesten n Yisefka Udmawanen)"
+        ],
         "website": "Asmel n ANPDP"
       }
+    },
+    "contactSection": {
+      "title": "Nermes-aɣ-d",
+      "intro": "I yal asteqsi ɣef tsertit-agi n tbaḍnit:",
+      "email": "Imayl",
+      "support": "Tallalt",
+      "website": "Asmel"
     },
     "footerLinks": {
       "terms": "Tiwtilin n useqdec",

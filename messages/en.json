@@ -268,83 +268,198 @@
   },
   "privacy": {
     "title": "Privacy Policy",
-    "lastUpdate": "Last updated: December 2025",
+    "lastUpdate": "Last updated: February 2026",
     "intro": "In accordance with Law 18-07 of June 10, 2018 relating to the protection of natural persons in the processing of personal data, amended by Law 11-25 of July 2025, Trokacha is committed to protecting the personal data of its users.",
     "backHome": "Back to home",
     "articles": {
       "a1": {
-        "title": "Article 1 - Data Controller",
-        "content": "Trokacha - Online intermediation platform - Algeria",
+        "title": "Article 1 – Data Controller",
+        "content": "Trokacha – Online intermediation platform – Algeria",
         "dpo": "Data Protection Officer (DPO)"
       },
       "a2": {
-        "title": "Article 2 - Data Collected",
+        "title": "Article 2 – Data Collected",
         "intro": "Trokacha only collects data necessary for the operation of the service:",
-        "items": [
-          "Identification data (name, first name, date of birth)",
-          "Contact details (email address, phone number)",
-          "For drivers: copy of driving license",
-          "Browsing and platform usage data",
-          "Transaction data (ad history, exchanges, reviews)"
-        ]
+        "s1": {
+          "title": "2.1 – Identification Data",
+          "items": [
+            "Last name, first name, date of birth",
+            "Email address, phone number",
+            "Profile photo (optional)"
+          ]
+        },
+        "s2": {
+          "title": "2.2 – Identity Verification Data",
+          "items": [
+            "Photo of an official identity document (national ID card, driver's license or passport)",
+            "Verification selfie for comparison with the identity document",
+            "For drivers (carpooling and transport services): copy of driver's license"
+          ],
+          "note": "This data is processed solely to verify the user's identity and assign the \"Verified User\" badge. Identity document images are stored encrypted during the verification period, then deleted within 30 days after badge validation. Only the verification status (verified/unverified) is retained thereafter."
+        },
+        "s3": {
+          "title": "2.3 – Geolocation Data",
+          "items": [
+            "User's geographic position (with explicit consent)",
+            "Used for: displaying nearby ads, carpooling and parcel transport services",
+            "Geolocation only works when the app is active (no background collection)",
+            "The user can disable geolocation at any time in their device settings"
+          ]
+        },
+        "s4": {
+          "title": "2.4 – Transaction and Usage Data",
+          "items": [
+            "History of published ads, proposed and completed exchanges",
+            "User ratings and reviews",
+            "Messages exchanged via built-in chat (text, photos, voice messages, documents)",
+            "Browsing and platform usage data (pages visited, session duration)",
+            "Points, badges and gamification data"
+          ]
+        },
+        "s5": {
+          "title": "2.5 – Technical Data",
+          "items": [
+            "IP address",
+            "Operating system type and version (iOS, Android)",
+            "Device model",
+            "Unique device identifier",
+            "Performance and diagnostic data (crashes, errors)"
+          ]
+        }
       },
       "a3": {
-        "title": "Article 3 - Legal Basis for Processing",
+        "title": "Article 3 – Legal Basis for Processing",
         "intro": "Processing is based on:",
         "items": [
-          "The express and informed consent of the user",
-          "The execution of the service contract",
-          "Trokacha's legal obligations",
-          "Legitimate interests (fraud prevention, service improvement)"
+          "Consent: the user gives express and informed consent during registration and activation of each feature (geolocation, identity verification, notifications)",
+          "Contract performance: data necessary for service delivery (ads, exchanges, chat, carpooling)",
+          "Legal obligations: data retention required by Algerian law",
+          "Legitimate interests: fraud prevention, platform security, service improvement"
         ]
       },
       "a4": {
-        "title": "Article 4 - Your Rights",
-        "intro": "In accordance with Law 18-07, you have the following rights:",
-        "items": [
-          "Right of access to your personal data",
-          "Right to rectification of inaccurate data",
-          "Right to erasure of data (right to be forgotten)",
-          "Right to object to processing",
-          "Right to restriction of processing",
-          "Right to data portability",
-          "Right to withdraw your consent at any time"
-        ],
-        "contact": "These rights can be exercised by contacting"
+        "title": "Article 4 – Third-Party Services and Processors",
+        "intro": "Trokacha uses third-party services necessary for the operation of the platform. These providers act as data processors and are contractually bound to respect data confidentiality:",
+        "s1": {
+          "title": "4.1 – Firebase (Google LLC)",
+          "items": [
+            "Firebase Authentication: user registration and login management",
+            "Cloud Firestore: secure storage of application data (ads, profiles, messages)",
+            "Firebase Storage: image hosting (ad photos, profile photos)",
+            "Firebase Cloud Messaging: push notification delivery",
+            "Firebase Crashlytics: technical error detection and correction (anonymized data)"
+          ],
+          "linkText": "Google Privacy Policy"
+        },
+        "s2": {
+          "title": "4.2 – Expo / React Native",
+          "content": "Technical infrastructure for the development and distribution of the mobile application. No personal user data is shared with Expo.",
+          "linkText": "Expo Privacy Policy"
+        },
+        "s3": {
+          "title": "4.3 – Analytics Services",
+          "content": "If analytics tools are enabled (Firebase Analytics or similar), the data collected is anonymized and used solely to improve the user experience. The user can opt out of this collection in the application settings."
+        }
       },
       "a5": {
-        "title": "Article 5 - Data Retention",
-        "intro": "Personal data is retained:",
+        "title": "Article 5 – Your Rights",
+        "intro": "In accordance with Law 18-07, you have the following rights:",
         "items": [
-          "During the period of active account use",
-          "3 years after the last account activity",
-          "Then archived in accordance with legal obligations",
-          "Permanently deleted at the end of this period"
-        ]
+          "Right of access: obtain all your personal data held by Trokacha",
+          "Right to rectification: correct any inaccurate or incomplete data",
+          "Right to erasure: request deletion of your data (right to be forgotten)",
+          "Right to object: object to the processing of your data on legitimate grounds",
+          "Right to restriction: request restriction of processing in certain circumstances",
+          "Right to portability: receive your data in a structured and readable format",
+          "Right to withdraw consent: withdraw your consent at any time, without affecting the lawfulness of prior processing"
+        ],
+        "contact": "These rights can be exercised by contacting",
+        "responseDelay": "Trokacha commits to responding to any request within a maximum of 30 days."
       },
       "a6": {
-        "title": "Article 6 - Data Security",
-        "intro": "Trokacha implements appropriate technical and organizational measures:",
+        "title": "Article 6 – Data Retention",
+        "intro": "Personal data is retained according to the following periods:",
         "items": [
-          "Encryption of sensitive data",
-          "Strict access controls",
-          "Regular security audits",
-          "Staff training"
+          "Active account data: retained during the period of account use",
+          "Inactive account: data is retained for 3 years after last activity",
+          "After account deletion: data is archived in accordance with legal obligations then permanently deleted",
+          "Identity verification data (ID photos/selfie): deleted within 30 days of validation",
+          "Chat messages: retained during the account lifetime, then deleted with the account",
+          "Diagnostic and crash data: retained for a maximum of 90 days"
         ]
       },
       "a7": {
-        "title": "Article 7 - Breach Notification",
-        "content": "In the event of a data breach likely to result in a high risk to your rights and freedoms, Trokacha will notify the ANPDP within 5 days (in accordance with Law 11-25) and affected users as soon as possible."
+        "title": "Article 7 – Data Security",
+        "intro": "Trokacha implements appropriate technical and organizational measures to protect personal data:",
+        "items": [
+          "Data encryption in transit (TLS/SSL) and at rest",
+          "Enhanced encryption for sensitive data (identity documents, driver's licenses)",
+          "Firebase security rules (Firestore Security Rules) limiting access to authorized data only",
+          "Strict authentication-based access controls",
+          "Regular security audits",
+          "Regular data backups"
+        ]
       },
       "a8": {
-        "title": "Article 8 - Data Transfers",
-        "content": "Personal data is hosted in Algeria. Any transfer to a foreign country will require prior authorization from the ANPDP and appropriate guarantees."
+        "title": "Article 8 – Breach Notification",
+        "intro": "In the event of a data breach likely to result in a high risk to your rights and freedoms:",
+        "items": [
+          "The ANPDP will be notified within 5 days (in accordance with Law 11-25)",
+          "Affected users will be informed as soon as possible via in-app notification and/or email",
+          "The notification will include: the nature of the breach, the data concerned, the measures taken and recommendations for users"
+        ]
       },
       "a9": {
-        "title": "Article 9 - Right to Complain",
-        "content": "You can file a complaint with the National Personal Data Protection Authority (ANPDP) if you believe your rights have not been respected.",
+        "title": "Article 9 – Data Transfers",
+        "content": "Personal data is processed through Google's Firebase services, whose servers may be located outside Algeria (European Union, United States).",
+        "guarantees": "Trokacha ensures that these transfers benefit from adequate safeguards:",
+        "items": [
+          "Google complies with international data protection standards (SOC 2, ISO 27001 certifications)",
+          "Standard contractual clauses govern these transfers",
+          "Any prior authorization required from the ANPDP will be obtained in accordance with applicable law"
+        ]
+      },
+      "a10": {
+        "title": "Article 10 – Minor Users",
+        "content": "Trokacha is not intended for persons under 18 years of age. No minor user may create an account on the platform.",
+        "discovery": "If Trokacha discovers that a user is a minor, their account will be immediately suspended and their data deleted within 48 hours.",
+        "parent": "If you are a parent or guardian and believe your child has created an account on Trokacha, please contact us at"
+      },
+      "a11": {
+        "title": "Article 11 – Technical Identifiers and Cookies",
+        "intro": "The Trokacha mobile application does not use cookies. However, the following technologies may be used:",
+        "items": [
+          "Device identifier: used for push notification delivery and account security",
+          "Authentication tokens: stored locally on your device to maintain your logged-in session",
+          "Advertising identifier (Advertising ID): not used by Trokacha. No data is shared for advertising purposes"
+        ],
+        "website": "The trokacha.com website may use technical cookies necessary for its operation. No advertising tracking cookies are used."
+      },
+      "a12": {
+        "title": "Article 12 – Policy Modifications",
+        "intro": "Trokacha reserves the right to modify this privacy policy at any time. Users will be informed of any substantial modification by:",
+        "items": [
+          "In-app notification",
+          "Update of the \"last updated\" date at the top of this document"
+        ],
+        "note": "Continued use of Trokacha after notification constitutes acceptance of the modified policy."
+      },
+      "a13": {
+        "title": "Article 13 – Right to Complain",
+        "intro": "If you believe your rights have not been respected, you may:",
+        "items": [
+          "Contact Trokacha at contact@trokacha.com",
+          "File a complaint with the National Personal Data Protection Authority (ANPDP)"
+        ],
         "website": "ANPDP website"
       }
+    },
+    "contactSection": {
+      "title": "Contact",
+      "intro": "For any questions regarding this privacy policy:",
+      "email": "Email",
+      "support": "Support",
+      "website": "Website"
     },
     "footerLinks": {
       "terms": "Terms of Use",
