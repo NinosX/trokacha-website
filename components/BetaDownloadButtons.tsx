@@ -29,7 +29,7 @@ export function BetaDownloadButtons({ variant = "default" }: { variant?: "defaul
 
       {/* Android APK */}
       <a
-        href="https://expo.dev/artifacts/eas/sq6WofN5TU49gcBRoxdNc4.apk"
+        href="https://expo.dev/artifacts/eas/wZMUSdtUfjAA6BVgSPcBLt.apk"
         target="_blank"
         rel="noopener noreferrer"
         className={`inline-flex items-center justify-center bg-white hover:bg-gray-100 text-gray-800 font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none ${
