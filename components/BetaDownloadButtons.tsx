@@ -23,7 +23,7 @@ export function BetaDownloadButtons({ variant = "default" }: { variant?: "defaul
         </svg>
         <div className="text-start">
           <div className={`${isCompact ? "text-[9px] sm:text-[10px]" : "text-[10px] sm:text-xs"} opacity-80`}>{t("betaVersion")}</div>
-          <div className={`${isCompact ? "text-xs sm:text-sm" : "text-sm sm:text-lg"} font-bold`}>TestFlight</div>
+          <div className={`${isCompact ? "text-xs sm:text-sm" : "text-sm sm:text-lg"} font-bold`}>{t("download")}</div>
         </div>
       </a>
 
@@ -41,7 +41,7 @@ export function BetaDownloadButtons({ variant = "default" }: { variant?: "defaul
         </svg>
         <div className="text-start">
           <div className={`${isCompact ? "text-[9px] sm:text-[10px]" : "text-[10px] sm:text-xs"} opacity-80`}>{t("betaVersion")}</div>
-          <div className={`${isCompact ? "text-xs sm:text-sm" : "text-sm sm:text-lg"} font-bold`}>Android APK</div>
+          <div className={`${isCompact ? "text-xs sm:text-sm" : "text-sm sm:text-lg"} font-bold`}>{t("download")}</div>
         </div>
       </a>
     </div>

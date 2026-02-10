@@ -224,7 +224,7 @@ export default function Home() {
                   </svg>
                   <div className="text-start">
                     <div className="text-[9px] sm:text-xs opacity-80">{t("hero.betaVersion")}</div>
-                    <div className="text-xs sm:text-lg font-bold">TestFlight</div>
+                    <div className="text-xs sm:text-lg font-bold">{t("hero.download")}</div>
                   </div>
                 </a>
 
@@ -240,7 +240,7 @@ export default function Home() {
                   </svg>
                   <div className="text-start">
                     <div className="text-[9px] sm:text-xs opacity-80">{t("hero.betaVersion")}</div>
-                    <div className="text-xs sm:text-lg font-bold">Android APK</div>
+                    <div className="text-xs sm:text-lg font-bold">{t("hero.download")}</div>
                   </div>
                 </a>
               </div>
@@ -342,7 +342,7 @@ export default function Home() {
                 </svg>
                 <div className="text-start">
                   <div className="text-[10px] sm:text-xs opacity-80">{t("hero.betaVersion")}</div>
-                  <div className="text-sm sm:text-lg font-bold">TestFlight</div>
+                  <div className="text-sm sm:text-lg font-bold">{t("hero.download")}</div>
                 </div>
               </a>
 
@@ -357,7 +357,7 @@ export default function Home() {
                 </svg>
                 <div className="text-start">
                   <div className="text-[10px] sm:text-xs opacity-80">{t("hero.betaVersion")}</div>
-                  <div className="text-sm sm:text-lg font-bold">Android APK</div>
+                  <div className="text-sm sm:text-lg font-bold">{t("hero.download")}</div>
                 </div>
               </a>
             </div>
