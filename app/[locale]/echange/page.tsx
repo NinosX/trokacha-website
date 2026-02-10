@@ -6,9 +6,23 @@ import { Link } from "@/i18n/navigation";
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import { BetaDownloadButtons } from "@/components/BetaDownloadButtons";
 import { useInView } from "@/hooks/useInView";
-import { VideoPhone } from "@/components/VideoPhone";
+import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
 import { useState } from "react";
 import { SHOW_TRANSPORT } from "@/lib/featureFlags";
+
+const parcourScreenshots = [
+  { src: "/screenshots/2.png", alt: "Accueil – Explorer les annonces" },
+  { src: "/screenshots/3.png", alt: "Carte annonce – Aperçu rapide" },
+  { src: "/screenshots/swipe-proposer.png", alt: "Swipe – Bouton Proposer" },
+  { src: "/screenshots/4.png", alt: "Détail de l'annonce" },
+  { src: "/screenshots/modal-cash.png", alt: "Proposition Cash" },
+  { src: "/screenshots/5.png", alt: "Proposition mixte Cash & Échange" },
+  { src: "/screenshots/7.png", alt: "Suivi des propositions envoyées" },
+  { src: "/screenshots/detail-match.png", alt: "Détail du match – Confirmation" },
+  { src: "/screenshots/09_Messages.png", alt: "Liste des conversations" },
+  { src: "/screenshots/chat.png", alt: "Chat – Faire une offre" },
+  { src: "/screenshots/6.png", alt: "Chat – Proposition envoyée" },
+];
 
 const steps = [
   { number: 1, icon: "📝", color: "from-blue-500 to-cyan-500", timestamp: 0 },
@@ -88,7 +102,7 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 
 export default function EchangePage() {
   const t = useTranslations("echange");
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep] = useState(0);
 
   return (
     <main className="min-h-screen bg-white">
@@ -132,12 +146,11 @@ export default function EchangePage() {
             </p>
           </AnimatedSection>
 
-          {/* Video Phone */}
+          {/* Screenshots Carousel - Parcours complet */}
           <div className="flex justify-center mb-16">
-            <VideoPhone 
-              src="/videos/troc-vente.mp4"
-              steps={steps}
-              onStepChange={setActiveStep}
+            <ScreenshotCarousel
+              screenshots={parcourScreenshots}
+              interval={3500}
             />
           </div>
 
