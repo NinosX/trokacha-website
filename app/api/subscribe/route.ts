@@ -46,7 +46,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const { email } = await request.json();
+    const { email, source } = await request.json();
 
     // Improved email validation
     if (!email || !EMAIL_REGEX.test(email)) {
@@ -56,9 +56,13 @@ export async function POST(request: Request) {
       );
     }
 
+    // Validate source field
+    const validSources = ['website', 'beta-android'] as const;
+    const emailSource = validSources.includes(source) ? source : 'website';
+
     // Write to Firestore using REST API
     const url = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/subscribers?key=${API_KEY}`;
-    
+
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -67,7 +71,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         fields: {
           email: { stringValue: email.toLowerCase().trim() },
-          source: { stringValue: 'website' },
+          source: { stringValue: emailSource },
           createdAt: { stringValue: new Date().toISOString() },
         },
       }),

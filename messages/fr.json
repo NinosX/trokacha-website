@@ -267,6 +267,14 @@
     "errorServer": "Erreur serveur",
     "errorInvalid": "Email invalide"
   },
+  "androidBeta": {
+    "modalTitle": "Testez sur Android",
+    "modalDescription": "L'app est en test fermé sur le Play Store. Entrez votre adresse Gmail pour recevoir l'invitation.",
+    "placeholder": "votre-gmail@gmail.com",
+    "submit": "Recevoir l'invitation",
+    "success": "C'est noté ! Vous recevrez l'invitation Play Store très bientôt.",
+    "gmailNote": "Utilisez l'adresse Gmail associée à votre compte Google Play"
+  },
   "privacy": {
     "title": "Politique de Confidentialité",
     "lastUpdate": "Dernière mise à jour : Février 2026",

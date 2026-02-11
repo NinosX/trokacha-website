@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { Sparkles } from "lucide-react";
 import { EmailForm } from "@/components/EmailForm";
+import { AndroidBetaModal } from "@/components/AndroidBetaModal";
 import { Navbar } from "@/components/Navbar";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
@@ -122,6 +124,7 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 
 export default function Home() {
   const t = useTranslations();
+  const [showAndroidModal, setShowAndroidModal] = useState(false);
 
   const pillarsList = [
     {
@@ -228,12 +231,10 @@ export default function Home() {
                   </div>
                 </a>
 
-                {/* Play Store Button - APK BETA */}
-                <a
-                  href="https://expo.dev/artifacts/eas/wZMUSdtUfjAA6BVgSPcBLt.apk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-2 sm:px-6 py-2 sm:py-4 bg-white hover:bg-gray-100 text-gray-800 rounded-lg sm:rounded-2xl font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none"
+                {/* Play Store Button - Closed Beta */}
+                <button
+                  onClick={() => setShowAndroidModal(true)}
+                  className="inline-flex items-center justify-center px-2 sm:px-6 py-2 sm:py-4 bg-white hover:bg-gray-100 text-gray-800 rounded-lg sm:rounded-2xl font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none cursor-pointer"
                 >
                   <svg className="w-5 h-5 sm:w-8 sm:h-8 me-1.5 sm:me-3" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
@@ -242,7 +243,7 @@ export default function Home() {
                     <div className="text-[9px] sm:text-xs opacity-80">{t("hero.betaVersion")}</div>
                     <div className="text-xs sm:text-lg font-bold">{t("hero.download")}</div>
                   </div>
-                </a>
+                </button>
               </div>
 
             </div>
@@ -346,11 +347,9 @@ export default function Home() {
                 </div>
               </a>
 
-              <a
-                href="https://expo.dev/artifacts/eas/wZMUSdtUfjAA6BVgSPcBLt.apk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 bg-white hover:bg-gray-100 text-gray-800 rounded-xl sm:rounded-2xl font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none"
+              <button
+                onClick={() => setShowAndroidModal(true)}
+                className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 bg-white hover:bg-gray-100 text-gray-800 rounded-xl sm:rounded-2xl font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none cursor-pointer"
               >
                 <svg className="w-6 h-6 sm:w-8 sm:h-8 me-2 sm:me-3" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
@@ -359,7 +358,7 @@ export default function Home() {
                   <div className="text-[10px] sm:text-xs opacity-80">{t("hero.betaVersion")}</div>
                   <div className="text-sm sm:text-lg font-bold">{t("hero.download")}</div>
                 </div>
-              </a>
+              </button>
             </div>
 
             {/* Email Form CTA */}
@@ -428,6 +427,8 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      <AndroidBetaModal isOpen={showAndroidModal} onClose={() => setShowAndroidModal(false)} />
     </main>
   );
 }

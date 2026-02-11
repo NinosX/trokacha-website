@@ -267,6 +267,14 @@
     "errorServer": "خطأ في الخادم",
     "errorInvalid": "بريد إلكتروني غير صالح"
   },
+  "androidBeta": {
+    "modalTitle": "جرّب على أندرويد",
+    "modalDescription": "التطبيق في اختبار مغلق على بلاي ستور. أدخل عنوان Gmail الخاص بك لتلقي الدعوة.",
+    "placeholder": "بريدك@gmail.com",
+    "submit": "استلم الدعوة",
+    "success": "تم! ستتلقى دعوة بلاي ستور قريباً جداً.",
+    "gmailNote": "استخدم عنوان Gmail المرتبط بحساب Google Play الخاص بك"
+  },
   "privacy": {
     "title": "سياسة الخصوصية",
     "lastUpdate": "آخر تحديث: فبراير 2026",
