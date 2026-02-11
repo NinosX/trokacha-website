@@ -269,7 +269,7 @@
   },
   "androidBeta": {
     "modalTitle": "Testez sur Android",
-    "modalDescription": "L'app est en test fermé sur le Play Store. Entrez votre adresse Gmail pour recevoir l'invitation.",
+    "modalDescription": "Entrez votre adresse Gmail pour recevoir le lien de téléchargement Play Store.",
     "placeholder": "votre-gmail@gmail.com",
     "submit": "Recevoir l'invitation",
     "success": "C'est noté ! Vous recevrez l'invitation Play Store très bientôt.",

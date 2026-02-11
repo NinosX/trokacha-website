@@ -269,7 +269,7 @@
   },
   "androidBeta": {
     "modalTitle": "Test on Android",
-    "modalDescription": "The app is in closed testing on the Play Store. Enter your Gmail address to receive the invitation.",
+    "modalDescription": "Enter your Gmail address to receive the Play Store download link.",
     "placeholder": "your-gmail@gmail.com",
     "submit": "Get the invitation",
     "success": "Got it! You'll receive the Play Store invitation very soon.",
