@@ -11,17 +11,13 @@ import { useState } from "react";
 import { SHOW_TRANSPORT } from "@/lib/featureFlags";
 
 const parcourScreenshots = [
-  { src: "/screenshots/2.png", alt: "Accueil – Explorer les annonces" },
-  { src: "/screenshots/3.png", alt: "Carte annonce – Aperçu rapide" },
-  { src: "/screenshots/swipe-proposer.png", alt: "Swipe – Bouton Proposer" },
-  { src: "/screenshots/4.png", alt: "Détail de l'annonce" },
-  { src: "/screenshots/modal-cash.png", alt: "Proposition Cash" },
-  { src: "/screenshots/5.png", alt: "Proposition mixte Cash & Échange" },
-  { src: "/screenshots/7.png", alt: "Suivi des propositions envoyées" },
-  { src: "/screenshots/detail-match.png", alt: "Détail du match – Confirmation" },
-  { src: "/screenshots/09_Messages.png", alt: "Liste des conversations" },
-  { src: "/screenshots/chat.png", alt: "Chat – Faire une offre" },
-  { src: "/screenshots/6.png", alt: "Chat – Proposition envoyée" },
+  { src: "/screenshots/1.png", alt: "Accueil – Explorer les annonces" },
+  { src: "/screenshots/2.png", alt: "Détail de l'annonce" },
+  { src: "/screenshots/3.png", alt: "Swipe – Bouton Proposer" },
+  { src: "/screenshots/4.png", alt: "Proposition Cash – 9000 DA" },
+  { src: "/screenshots/5.png", alt: "Suivi des propositions envoyées" },
+  { src: "/screenshots/6.png", alt: "Messages – Conversations" },
+  { src: "/screenshots/7.png", alt: "Détail du match – Confirmation" },
 ];
 
 const steps = [
