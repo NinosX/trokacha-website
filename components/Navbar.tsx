@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import Image from "next/image";
 import { SHOW_TRANSPORT } from "@/lib/featureFlags";
+import Image from "next/image";
 
 const localeNames: Record<string, string> = {
   fr: "FR",
@@ -27,23 +27,25 @@ export function Navbar() {
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   const isHomePage = pathname === "/" || pathname === "";
-  
+
   const navLinks = [
-    ...(isHomePage ? [
-      { href: "#features", label: t("features"), isSection: true },
-      { href: "#faq", label: t("faq"), isSection: true },
-    ] : [
-      { href: "/echange", label: t("echange"), isSection: false },
-      ...(SHOW_TRANSPORT ? [{ href: "/transport", label: t("transport"), isSection: false }] : []),
-      { href: "/chat", label: t("chat"), isSection: false },
-      { href: "/verification", label: t("verification"), isSection: false },
-    ]),
+    ...(isHomePage
+      ? [
+          { href: "#features", label: t("features"), isSection: true },
+          { href: "#faq", label: t("faq"), isSection: true },
+        ]
+      : [
+          { href: "/echange", label: t("echange"), isSection: false },
+          ...(SHOW_TRANSPORT ? [{ href: "/transport", label: t("transport"), isSection: false }] : []),
+          { href: "/chat", label: t("chat"), isSection: false },
+          { href: "/verification", label: t("verification"), isSection: false },
+        ]),
+    { href: "/contact", label: t("contact"), isSection: false },
   ];
 
   const mobileNavLinks = [
@@ -61,11 +63,6 @@ export function Navbar() {
 
   useEffect(() => {
     setIsVisible(true);
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (href: string) => {
@@ -85,39 +82,30 @@ export function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-lg"
-            : "bg-transparent"
-        } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
+        className={`sticky top-0 left-0 right-0 z-[60] border-b border-line bg-paper/[0.86] backdrop-blur-md transition-transform duration-300 ${
+          isVisible ? "translate-y-0" : "-translate-y-full"
+        }`}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 md:h-24 pt-[max(env(safe-area-inset-top),0.5rem)] md:pt-3">
-            <Link
-              href="/"
-              className={`flex items-center transition-colors ${
-                isScrolled ? "text-primary" : "text-white"
-              }`}
-            >
+        <div className="mx-auto max-w-[1200px] px-6">
+          <div className="flex h-[72px] items-center justify-between gap-6">
+            <Link href="/" aria-label="Trokacha" className="shrink-0">
               <Image
                 src="/logo-text.png"
                 alt="Trokacha"
                 width={295}
                 height={351}
-                className="w-10 h-auto md:w-16"
+                className="h-11 w-auto md:h-12"
                 priority
               />
             </Link>
 
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
+            <div className="hidden items-center gap-1 md:flex">
+              {navLinks.map((link) =>
                 link.isSection ? (
                   <button
                     key={link.href}
                     onClick={() => scrollToSection(link.href)}
-                    className={`font-medium transition-colors hover:opacity-80 ${
-                      isScrolled ? "text-gray-700" : "text-white/90"
-                    }`}
+                    className="rounded-[10px] px-[14px] py-[9px] text-[15px] font-semibold text-inkSoft transition-colors hover:bg-paperHard"
                   >
                     {link.label}
                   </button>
@@ -125,46 +113,41 @@ export function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`font-medium transition-colors hover:opacity-80 ${
-                      isScrolled ? "text-gray-700" : "text-white/90"
-                    }`}
+                    className="rounded-[10px] px-[14px] py-[9px] text-[15px] font-semibold text-inkSoft transition-colors hover:bg-paperHard"
                   >
                     {link.label}
                   </Link>
                 )
-              ))}
+              )}
+            </div>
 
-              {/* Language Switcher */}
+            <div className="hidden items-center gap-[10px] md:flex">
+              {/* Language switcher */}
               <div className="relative">
                 <button
                   onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-full font-medium transition-all hover:scale-105 ${
-                    isScrolled
-                      ? "bg-gray-100 text-gray-700"
-                      : "bg-white/20 text-white"
-                  }`}
+                  className="inline-flex items-center gap-[6px] rounded-full bg-paperHard px-3 py-[7px] text-[13px] font-bold tracking-[0.02em] text-inkSoft transition-colors hover:bg-line"
                 >
-                  <Globe className="w-4 h-4" />
-                  <img src={localeFlags[locale]} alt="" className="w-5 h-4 object-cover rounded-sm" />
+                  <img src={localeFlags[locale]} alt="" className="h-4 w-5 rounded-sm object-cover" />
                   <span>{localeNames[locale]}</span>
                 </button>
 
                 <div
-                  className={`absolute top-full end-0 mt-2 bg-white rounded-xl shadow-xl overflow-hidden min-w-[120px] transition-all duration-200 ${
+                  className={`absolute end-0 top-full mt-2 min-w-[120px] overflow-hidden rounded-xl border border-line bg-white shadow-[0_12px_32px_rgba(26,24,20,0.10)] transition-all duration-200 ${
                     isLangMenuOpen
-                      ? "opacity-100 translate-y-0 pointer-events-auto"
-                      : "opacity-0 -translate-y-2 pointer-events-none"
+                      ? "pointer-events-auto translate-y-0 opacity-100"
+                      : "pointer-events-none -translate-y-2 opacity-0"
                   }`}
                 >
                   {routing.locales.map((loc) => (
                     <button
                       key={loc}
                       onClick={() => switchLocale(loc)}
-                      className={`w-full px-4 py-3 text-start font-medium transition-colors hover:bg-gray-50 flex items-center gap-2 ${
-                        locale === loc ? "bg-primary/10 text-primary" : "text-gray-700"
+                      className={`flex w-full items-center gap-2 px-4 py-3 text-start font-medium transition-colors hover:bg-paperSoft ${
+                        locale === loc ? "bg-cashBg text-cashInk" : "text-inkSoft"
                       }`}
                     >
-                      <img src={localeFlags[loc]} alt="" className="w-5 h-4 object-cover rounded-sm" />
+                      <img src={localeFlags[loc]} alt="" className="h-4 w-5 rounded-sm object-cover" />
                       <span>{localeNames[loc]}</span>
                     </button>
                   ))}
@@ -173,32 +156,25 @@ export function Navbar() {
 
               <button
                 onClick={() => scrollToSection("#cta")}
-                className={`px-5 py-2.5 rounded-full font-semibold transition-all hover:scale-105 ${
-                  isScrolled
-                    ? "bg-primary text-white"
-                    : "bg-white text-primary"
-                }`}
+                className="inline-flex items-center rounded-full bg-cash px-[18px] py-[10px] text-[14px] font-bold text-white shadow-cash transition-transform hover:scale-105"
               >
                 {t("signup")}
               </button>
             </div>
 
             <div className="flex items-center gap-2 md:hidden">
-              {/* Mobile Language Switcher */}
               <button
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                className={`p-2 rounded-lg transition-colors ${
-                  isScrolled ? "text-gray-700" : "text-white"
-                }`}
+                className="rounded-lg p-2 text-inkSoft"
+                aria-label="Langue"
               >
-                <img src={localeFlags[locale]} alt="" className="w-6 h-5 object-cover rounded-sm" />
+                <img src={localeFlags[locale]} alt="" className="h-5 w-6 rounded-sm object-cover" />
               </button>
 
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className={`p-2 rounded-lg transition-colors ${
-                  isScrolled ? "text-gray-700" : "text-white"
-                }`}
+                className="rounded-lg p-2 text-inkSoft"
+                aria-label="Menu"
               >
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -207,47 +183,45 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Language Menu */}
+      {/* Mobile language menu */}
       <div
-        className={`fixed inset-x-0 top-16 z-50 bg-white shadow-xl md:hidden transition-all duration-200 ${
+        className={`fixed inset-x-0 top-[72px] z-50 border-b border-line bg-paper shadow-[0_12px_32px_rgba(26,24,20,0.10)] md:hidden ${
           isLangMenuOpen
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-4 pointer-events-none"
-        }`}
+            ? "pointer-events-auto translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-4 opacity-0"
+        } transition-all duration-200`}
       >
-        <div className="container mx-auto px-4 py-4 flex justify-center gap-4">
+        <div className="mx-auto flex justify-center gap-4 px-4 py-4">
           {routing.locales.map((loc) => (
             <button
               key={loc}
               onClick={() => switchLocale(loc)}
-              className={`px-4 py-2 rounded-full font-medium transition-colors flex items-center gap-2 ${
-                locale === loc
-                  ? "bg-primary text-white"
-                  : "bg-gray-100 text-gray-700"
+              className={`flex items-center gap-2 rounded-full px-4 py-2 font-medium transition-colors ${
+                locale === loc ? "bg-cash text-white" : "bg-paperHard text-inkSoft"
               }`}
             >
-              <img src={localeFlags[loc]} alt="" className="w-5 h-4 object-cover rounded-sm" />
+              <img src={localeFlags[loc]} alt="" className="h-4 w-5 rounded-sm object-cover" />
               <span>{localeNames[loc]}</span>
             </button>
           ))}
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       <div
-        className={`fixed inset-x-0 top-16 z-40 bg-white shadow-xl md:hidden transition-all duration-200 ${
+        className={`fixed inset-x-0 top-[72px] z-40 border-b border-line bg-paper shadow-[0_12px_32px_rgba(26,24,20,0.10)] md:hidden ${
           isMobileMenuOpen
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-4 pointer-events-none"
-        }`}
+            ? "pointer-events-auto translate-y-0 opacity-100"
+            : "pointer-events-none -translate-y-4 opacity-0"
+        } transition-all duration-200`}
       >
-        <div className="container mx-auto px-4 py-6 space-y-4">
-          {mobileNavLinks.map((link) => (
+        <div className="mx-auto space-y-1 px-4 py-6">
+          {mobileNavLinks.map((link) =>
             link.isSection ? (
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
-                className="block w-full text-start px-4 py-3 text-gray-700 font-medium hover:bg-gray-50 rounded-lg transition-colors"
+                className="block w-full rounded-lg px-4 py-3 text-start font-medium text-inkSoft transition-colors hover:bg-paperSoft"
               >
                 {link.label}
               </button>
@@ -256,15 +230,15 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full text-start px-4 py-3 text-gray-700 font-medium hover:bg-gray-50 rounded-lg transition-colors"
+                className="block w-full rounded-lg px-4 py-3 text-start font-medium text-inkSoft transition-colors hover:bg-paperSoft"
               >
                 {link.label}
               </Link>
             )
-          ))}
+          )}
           <button
             onClick={() => scrollToSection("#cta")}
-            className="w-full px-4 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+            className="w-full rounded-full bg-cash px-4 py-3 font-semibold text-white shadow-cash"
           >
             {t("signup")}
           </button>

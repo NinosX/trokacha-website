@@ -81,7 +81,7 @@ export function AndroidBetaModal({ isOpen, onClose }: AndroidBetaModalProps) {
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+          className="absolute top-4 right-4 text-inkMuted hover:text-ink transition-colors"
           aria-label="Close"
         >
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -91,31 +91,31 @@ export function AndroidBetaModal({ isOpen, onClose }: AndroidBetaModalProps) {
 
         {/* Play Store icon */}
         <div className="flex justify-center mb-4">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center shadow-lg">
-            <svg className="w-9 h-9 text-white" viewBox="0 0 24 24" fill="currentColor">
+          <div className="w-16 h-16 rounded-2xl bg-matchBg text-match flex items-center justify-center">
+            <svg className="w-9 h-9" viewBox="0 0 24 24" fill="currentColor">
               <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
             </svg>
           </div>
         </div>
 
         {/* Title */}
-        <h3 className="text-2xl font-bold text-center text-gray-900 mb-2">
+        <h3 className="font-display text-2xl font-bold text-center text-ink mb-2">
           {t("modalTitle")}
         </h3>
 
         {/* Description */}
-        <p className="text-gray-600 text-center text-sm mb-6">
+        <p className="text-inkMuted text-center text-sm mb-6">
           {t("modalDescription")}
         </p>
 
         {status === "success" ? (
           <div className="flex flex-col items-center gap-3 py-4">
-            <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-              <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-12 h-12 rounded-full bg-matchBg flex items-center justify-center">
+              <svg className="w-6 h-6 text-match" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <p className="text-green-600 font-medium text-center">{message}</p>
+            <p className="text-match font-medium text-center">{message}</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -127,9 +127,9 @@ export function AndroidBetaModal({ isOpen, onClose }: AndroidBetaModalProps) {
                 placeholder={t("placeholder")}
                 required
                 dir="ltr"
-                className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-gray-900 placeholder-gray-400"
+                className="w-full px-4 py-3 rounded-xl border border-line focus:border-cash focus:outline-none focus:ring-2 focus:ring-cash/20 transition-all text-ink placeholder-inkMuted"
               />
-              <p className="text-gray-400 text-xs mt-2 text-center">
+              <p className="text-inkMuted text-xs mt-2 text-center">
                 {t("gmailNote")}
               </p>
             </div>
@@ -137,7 +137,7 @@ export function AndroidBetaModal({ isOpen, onClose }: AndroidBetaModalProps) {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+              className="w-full py-3 bg-cash hover:bg-cashInk text-white font-semibold rounded-xl shadow-cash transition-all duration-300 hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               {status === "loading" ? (
                 <span className="flex items-center justify-center gap-2">
@@ -152,7 +152,7 @@ export function AndroidBetaModal({ isOpen, onClose }: AndroidBetaModalProps) {
             </button>
 
             {status === "error" && (
-              <p className="text-red-500 text-sm text-center">{message}</p>
+              <p className="text-danger text-sm text-center">{message}</p>
             )}
           </form>
         )}

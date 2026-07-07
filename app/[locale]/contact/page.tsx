@@ -1,5 +1,8 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
+import Image from "next/image";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -11,158 +14,134 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+const stroke = {
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.7,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+};
+
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("contact");
-  const tPrivacy = await getTranslations("privacy");
   const tFooter = await getTranslations("footer");
+  const tPrivacy = await getTranslations("privacy");
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-primary to-secondary text-white py-8">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-4 transition-colors">
-            <svg className="w-5 h-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+    <main className="min-h-screen overflow-x-hidden bg-paper">
+      <Navbar />
+
+      {/* Hero */}
+      <section className="border-b border-line bg-paperSoft px-6 pb-10 pt-14">
+        <div className="mx-auto max-w-[1000px]">
+          <Link href="/" className="mb-6 inline-flex items-center gap-[7px] text-[14px] font-semibold text-inkMuted transition-colors hover:text-ink">
+            <svg width="16" height="16" viewBox="0 0 24 24" {...stroke} strokeWidth={2} className="rtl:rotate-180">
+              <path d="M19 12H5M11 6l-6 6 6 6" />
             </svg>
             {tPrivacy("backHome")}
           </Link>
-          <h1 className="text-4xl font-bold">{t("title")}</h1>
-          <p className="text-white/80 mt-2">{t("subtitle")}</p>
+          <span className="mb-[14px] inline-flex items-center gap-[10px] text-[12px] font-bold uppercase tracking-[0.16em] text-inkMuted">
+            <span className="h-[3px] w-[26px] rounded-[2px] dz-bar" />
+            {tFooter("contact")}
+          </span>
+          <h1 className="mb-3 font-display text-[36px] font-bold leading-[1.05] tracking-[-0.03em] text-ink md:text-[44px]">
+            {t("title")}
+          </h1>
+          <p className="text-[18px] leading-[1.6] text-inkSoft">{t("subtitle")}</p>
         </div>
-      </header>
+      </section>
 
       {/* Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
-
-            {/* Contact Info */}
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">{tFooter("contactTitle")}</h2>
-
-              <div className="space-y-6">
-                {/* Email */}
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Email</h3>
-                    <a href="mailto:contact@trokacha.com" className="text-primary hover:underline">
-                      contact@trokacha.com
-                    </a>
-                  </div>
-                </div>
-
-                {/* Support */}
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Support</h3>
-                    <a href="mailto:support@trokacha.com" className="text-primary hover:underline">
-                      support@trokacha.com
-                    </a>
-                  </div>
-                </div>
-
-                {/* Location */}
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Location</h3>
-                    <p className="text-gray-600">Algerie 🇩🇿</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Social Links */}
-              <div className="mt-8 pt-6 border-t border-gray-200">
-                <div className="flex gap-4">
-                  <a href="#" className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                  </a>
-                  <a href="#" className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
+      <section className="px-6 pb-20 pt-14">
+        <div className="mx-auto grid max-w-[1000px] grid-cols-1 gap-6 md:grid-cols-2">
+          {/* Coordonnées */}
+          <div className="rounded-[22px] border border-line bg-white p-9 shadow-card">
+            <h2 className="mb-[26px] font-display text-[22px] font-bold tracking-[-0.02em] text-ink">
+              {tFooter("contactTitle")}
+            </h2>
+            <div className="flex flex-col gap-[22px]">
+              <div className="flex items-start gap-[15px]">
+                <span className="flex h-[46px] w-[46px] flex-none items-center justify-center rounded-[13px] bg-cashBg text-cash">
+                  <svg width="22" height="22" viewBox="0 0 24 24" {...stroke}>
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="M3 7l9 6 9-6" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 className="mb-[3px] text-[15px] font-bold text-ink">Email</h3>
+                  <a href="mailto:contact@trokacha.com" className="text-[15px] text-cash hover:underline">
+                    contact@trokacha.com
                   </a>
                 </div>
               </div>
-            </div>
-
-            {/* Quick Info */}
-            <div className="bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">🚀 Trokacha</h2>
-              <p className="text-gray-600 mb-6">
-                {tFooter("tagline")}
-              </p>
-
-              <div className="space-y-4">
-                <div className="p-4 bg-primary/5 rounded-xl">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-2xl">🔄</span>
-                    <span className="font-semibold text-gray-900">Troc</span>
-                  </div>
+              <div className="flex items-start gap-[15px]">
+                <span className="flex h-[46px] w-[46px] flex-none items-center justify-center rounded-[13px] bg-matchBg text-match">
+                  <svg width="22" height="22" viewBox="0 0 24 24" {...stroke}>
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 className="mb-[3px] text-[15px] font-bold text-ink">Support</h3>
+                  <a href="mailto:support@trokacha.com" className="text-[15px] text-cash hover:underline">
+                    support@trokacha.com
+                  </a>
                 </div>
-                <div className="p-4 bg-primary/5 rounded-xl">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-2xl">🛍️</span>
-                    <span className="font-semibold text-gray-900">Vente</span>
-                  </div>
-                </div>
-                <div className="p-4 bg-primary/5 rounded-xl">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-2xl">🚚</span>
-                    <span className="font-semibold text-gray-900">Transport</span>
-                  </div>
-                </div>
-                <div className="p-4 bg-primary/5 rounded-xl">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-2xl">🚗</span>
-                    <span className="font-semibold text-gray-900">Covoiturage</span>
-                  </div>
+              </div>
+              <div className="flex items-start gap-[15px]">
+                <span className="flex h-[46px] w-[46px] flex-none items-center justify-center rounded-[13px] bg-[#FEF3C7] text-warning">
+                  <svg width="22" height="22" viewBox="0 0 24 24" {...stroke}>
+                    <path d="M12 22s8-7 8-13a8 8 0 1 0-16 0c0 6 8 13 8 13z" />
+                    <circle cx="12" cy="9" r="3" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 className="mb-[3px] text-[15px] font-bold text-ink">Localisation</h3>
+                  <p className="text-[15px] text-inkSoft">Algérie</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Footer links */}
-          <div className="mt-8 text-center">
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/terms" className="text-primary hover:underline font-medium">
-                {tFooter("terms")}
-              </Link>
-              <span className="text-gray-300">•</span>
-              <Link href="/privacy" className="text-primary hover:underline font-medium">
-                {tFooter("privacy")}
-              </Link>
+          {/* Récap marque */}
+          <div className="rounded-[22px] bg-ink p-9 text-line2">
+            <div className="mb-4 flex items-center gap-[10px]">
+              <Image src="/logo.png" alt="" width={512} height={512} className="h-8 w-8" />
+              <span className="font-display text-[20px] font-bold tracking-[-0.03em] text-paperSoft">trokacha</span>
+            </div>
+            <p className="mb-6 text-[15px] leading-[1.6] text-inkMuted">{tFooter("tagline")}</p>
+            <div className="flex flex-col gap-[10px]">
+              <div className="flex items-center gap-[11px] rounded-xl bg-[#2A2620] px-[15px] py-[13px]">
+                <span className="flex h-[30px] w-[30px] items-center justify-center rounded-[9px] bg-[#3D1A1F] text-[#E27187]">
+                  <svg width="16" height="16" viewBox="0 0 24 24" {...stroke} strokeWidth={1.8}>
+                    <path d="M4 7h14l-3-3M20 17H6l3 3" />
+                  </svg>
+                </span>
+                <span className="text-[15px] font-semibold text-paperSoft">{tFooter("echange")}</span>
+              </div>
+              <div className="flex items-center gap-[11px] rounded-xl bg-[#2A2620] px-[15px] py-[13px]">
+                <span className="flex h-[30px] w-[30px] items-center justify-center rounded-[9px] bg-[#0E2B47] text-[#5FA8E8]">
+                  <svg width="16" height="16" viewBox="0 0 24 24" {...stroke} strokeWidth={1.8}>
+                    <path d="M6 2l1.5 3h9L18 2M4 7h16l-1.5 12a2 2 0 0 1-2 1.8H7.5a2 2 0 0 1-2-1.8z" />
+                  </svg>
+                </span>
+                <span className="text-[15px] font-semibold text-paperSoft">Vente</span>
+              </div>
+              <div className="flex items-center gap-[11px] rounded-xl bg-[#2A2620] px-[15px] py-[13px]">
+                <span className="flex h-[30px] w-[30px] items-center justify-center rounded-[9px] bg-[#1A3D2E] text-[#5BB585]">
+                  <svg width="16" height="16" viewBox="0 0 24 24" {...stroke} strokeWidth={1.8}>
+                    <path d="M12 3l9 4v5c0 5-4 9-9 9s-9-4-9-9V7z" />
+                  </svg>
+                </span>
+                <span className="text-[15px] font-semibold text-paperSoft">{tFooter("verification")}</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-400">© 2025 {tFooter("copyright")}</p>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

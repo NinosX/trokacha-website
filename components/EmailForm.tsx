@@ -77,7 +77,7 @@ export function EmailForm({ variant = "hero" }: EmailFormProps) {
       <button
         type="submit"
         disabled={status === "loading"}
-        className={`bg-white text-primary font-semibold rounded-xl hover:bg-white/90 transition-all duration-300 hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed ${
+        className={`bg-white text-cash font-semibold rounded-xl hover:bg-white/90 transition-all duration-300 hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed ${
           isHero ? "px-6 py-3" : "px-8 py-4 font-bold"
         }`}
       >

@@ -18,7 +18,7 @@ export function BetaDownloadButtons({ variant = "default" }: { variant?: "defaul
           href="https://testflight.apple.com/join/8bUpfbkS"
           target="_blank"
           rel="noopener noreferrer"
-          className={`inline-flex items-center justify-center bg-black hover:bg-gray-800 text-white font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none ${
+          className={`inline-flex items-center justify-center bg-ink hover:bg-inkSoft text-paperSoft font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none ${
             isCompact ? "px-3 sm:px-5 py-2 sm:py-3 rounded-xl" : "px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl"
           }`}
         >
@@ -34,7 +34,7 @@ export function BetaDownloadButtons({ variant = "default" }: { variant?: "defaul
         {/* Android - Play Store closed beta */}
         <button
           onClick={() => setShowModal(true)}
-          className={`inline-flex items-center justify-center bg-white hover:bg-gray-100 text-gray-800 font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none cursor-pointer ${
+          className={`inline-flex items-center justify-center bg-white hover:bg-paperSoft text-ink border border-line font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none cursor-pointer ${
             isCompact ? "px-3 sm:px-5 py-2 sm:py-3 rounded-xl" : "px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl"
           }`}
         >

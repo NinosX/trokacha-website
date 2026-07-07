@@ -39,7 +39,7 @@
     "step1": "Parcourez les annonces",
     "step2": "Cette annonce vous intéresse ?",
     "step3": "Sélectionnez 1 ou 2 de vos annonces",
-    "step4": "Swipe droite = échange, gauche = cash",
+    "step4": "Choisissez : échange ou offre cash",
     "step5": "Proposition envoyée !"
   },
   "mobileFeatures": {
@@ -54,7 +54,7 @@
     "learnMore": "En savoir plus",
     "trocVenteAchat": {
       "title": "Troc, Vente & Achat",
-      "description": "Publiez vos annonces, swipez pour proposer un échange ou une offre cash. Trouvez ce que vous cherchez grâce au système de match unique de Trokacha."
+      "description": "Publiez vos annonces, puis proposez un échange ou une offre cash en un tap. Trouvez ce que vous cherchez grâce au système de match unique de Trokacha."
     },
     "transport": {
       "title": "Transport de Colis",
@@ -156,8 +156,8 @@
       "description": "Ajoutez vos annonces ou découvrez celles des autres utilisateurs"
     },
     "step3": {
-      "title": "Swipez et proposez",
-      "description": "Sélectionnez vos annonces en bas, puis swipez à droite pour proposer un échange ou à gauche pour une offre en argent"
+      "title": "Proposez une offre",
+      "description": "Ouvrez une annonce et appuyez sur « Proposer » : choisissez un échange ou une offre en argent"
     },
     "step4": {
       "title": "Échangez !",
@@ -217,7 +217,7 @@
       },
       "q2": {
         "question": "Comment fonctionne le troc sur Trokacha ?",
-        "answer": "Publiez votre annonce, parcourez les offres. Pour proposer un échange : sélectionnez 1 ou 2 de vos annonces dans la barre en bas, puis swipez à droite. Pour faire une offre en argent, swipez à gauche. Si l'autre accepte, vous avez un match et pouvez discuter !"
+        "answer": "Publiez votre annonce, parcourez les offres. Pour faire une proposition : ouvrez l'annonce qui vous intéresse et appuyez sur « Proposer », puis choisissez un échange (avec 1 ou 2 de vos annonces) ou une offre en argent. Si l'autre accepte, vous avez un match et pouvez discuter !"
       },
       "q3": {
         "question": "Le transport de colis est-il sécurisé ?",
@@ -502,8 +502,8 @@
       },
       "step3": {
         "title": "Faites une proposition",
-        "description": "Une annonce vous intéresse ? Sélectionnez 1 ou 2 de vos annonces dans la barre en bas, puis swipez à droite pour proposer un échange, ou swipez à gauche pour faire une offre en argent.",
-        "tip": "Swipe droite = échange, swipe gauche = offre cash. Simple et rapide !"
+        "description": "Une annonce vous intéresse ? Ouvrez-la et appuyez sur « Proposer », puis choisissez un échange (avec 1 ou 2 de vos annonces) ou une offre en argent.",
+        "tip": "Un bouton dédié pour chaque action : échange ou offre cash. Simple et rapide !"
       },
       "step4": {
         "title": "C'est un Match !",

@@ -1,432 +1,344 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles } from "lucide-react";
 import { EmailForm } from "@/components/EmailForm";
 import { AndroidBetaModal } from "@/components/AndroidBetaModal";
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import dynamic from "next/dynamic";
 import { useInView } from "@/hooks/useInView";
 import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
-import { SHOW_TRANSPORT } from "@/lib/featureFlags";
 
 // Lazy load composants below the fold
-const HowItWorks = dynamic(() => import("@/components/HowItWorks").then(mod => mod.HowItWorks), {
-  loading: () => <div className="py-24 bg-white" />,
+const HowItWorks = dynamic(() => import("@/components/HowItWorks").then((mod) => mod.HowItWorks), {
+  loading: () => <div className="bg-paperSoft py-[70px]" />,
 });
-const FAQ = dynamic(() => import("@/components/FAQ").then(mod => mod.FAQ), {
-  loading: () => <div className="py-24 bg-gray-50" />,
+const FAQ = dynamic(() => import("@/components/FAQ").then((mod) => mod.FAQ), {
+  loading: () => <div className="bg-paper py-[70px]" />,
 });
 
-// Phone mockup avec vidéo intro
-function SwipeTutorial() {
-  return (
-    <div className="relative w-full h-[600px] flex items-center justify-center">
-      {/* Phone mockup */}
-      <div className="relative w-[320px] h-[600px] animate-fade-in-up">
-        {/* Phone frame */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-3">
-          <div className="w-full h-full bg-black rounded-[2.5rem] overflow-hidden relative">
-            {/* Video */}
-            <video
-              className="absolute inset-0 w-full h-full object-cover"
-              autoPlay
-              loop
-              muted
-              playsInline
-            >
-              <source src="/videos/intro.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </div>
+const stroke = {
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.7,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+};
 
-        {/* Floating emojis */}
-        <div className="absolute -top-8 -right-8 text-6xl animate-float">
-          ✨
-        </div>
-        <div className="absolute -bottom-8 -left-8 text-6xl animate-float-reverse">
-          💫
-        </div>
-      </div>
-    </div>
-  );
+// Icônes ligne
+const IconSwap = (p: { size?: number }) => (
+  <svg width={p.size ?? 24} height={p.size ?? 24} viewBox="0 0 24 24" {...stroke}>
+    <path d="M4 7h14l-3-3M20 17H6l3 3" />
+  </svg>
+);
+const IconChat = (p: { size?: number }) => (
+  <svg width={p.size ?? 24} height={p.size ?? 24} viewBox="0 0 24 24" {...stroke}>
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+  </svg>
+);
+const IconShield = (p: { size?: number }) => (
+  <svg width={p.size ?? 24} height={p.size ?? 24} viewBox="0 0 24 24" {...stroke}>
+    <path d="M12 3l9 4v5c0 5-4 9-9 9s-9-4-9-9V7z" />
+    <path d="M9 12l2 2 4-4" />
+  </svg>
+);
+const IconTrophy = (p: { size?: number }) => (
+  <svg width={p.size ?? 24} height={p.size ?? 24} viewBox="0 0 24 24" {...stroke}>
+    <path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 0-3 3" />
+  </svg>
+);
+const IconArrow = (p: { size?: number }) => (
+  <svg width={p.size ?? 18} height={p.size ?? 18} viewBox="0 0 24 24" {...stroke} strokeWidth={2}>
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
+);
+const AppleIcon = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+  </svg>
+);
+const AndroidIcon = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+  </svg>
+);
+
+// Petit trait bicolore (motif drapeau)
+function EyebrowBar() {
+  return <span className="h-[3px] w-[30px] rounded-[2px] dz-bar" />;
 }
 
-// Composant pour les 3 grandes cards piliers avec lien
-function PillarCard({ feature, index }: { feature: { emoji: string; title: string; description: string; color: string; href: string; learnMore: string }; index: number }) {
+function SupportCard({
+  icon,
+  tint,
+  tintBg,
+  title,
+  description,
+  href,
+  index,
+}: {
+  icon: React.ReactNode;
+  tint: string;
+  tintBg: string;
+  title: string;
+  description: string;
+  href?: string;
+  index: number;
+}) {
   const { ref, isInView } = useInView();
-
-  return (
-    <div
-      ref={ref}
-      className={`${isInView ? "animate-fade-in-up" : "opacity-0"}`}
-      style={{ animationDelay: `${index * 0.1}s` }}
-    >
-      <Link
-        href={feature.href}
-        className="group relative bg-white rounded-3xl p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover-lift block h-full"
+  const inner = (
+    <>
+      <span
+        className="mb-[18px] flex h-[52px] w-[52px] items-center justify-center rounded-[15px]"
+        style={{ background: tintBg, color: tint }}
       >
-        <div className={`w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-          <span className="text-5xl md:text-6xl">{feature.emoji}</span>
-        </div>
-        <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">{feature.title}</h3>
-        <p className="text-gray-600 leading-relaxed text-base md:text-lg mb-6">{feature.description}</p>
-        <span className="inline-flex items-center gap-2 text-primary font-semibold group-hover:gap-3 transition-all">
-          {feature.learnMore}
-          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-        </span>
-      </Link>
-    </div>
+        {icon}
+      </span>
+      <h3 className="mb-2 text-[19px] font-bold text-ink">{title}</h3>
+      <p className="text-[14.5px] leading-[1.55] text-inkMuted">{description}</p>
+    </>
   );
-}
-
-// Composant pour les feature cards secondaires avec animation au scroll
-function FeatureCard({ feature, index }: { feature: { emoji: string; title: string; description: string; color: string; href?: string }; index: number }) {
-  const { ref, isInView } = useInView();
-
-  const content = (
-    <div
-      ref={ref}
-      className={`group relative bg-white rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover-lift ${
-        isInView ? "animate-fade-in-up" : "opacity-0"
-      }`}
-      style={{ animationDelay: `${index * 0.1}s` }}
-    >
-      <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-        <span className="text-3xl">{feature.emoji}</span>
-      </div>
-      <h3 className="text-xl font-bold mb-2 text-gray-900">{feature.title}</h3>
-      <p className="text-gray-600 leading-relaxed text-sm">{feature.description}</p>
-    </div>
-  );
-
-  if (feature.href) {
-    return <Link href={feature.href}>{content}</Link>;
-  }
-  return content;
-}
-
-// Composant pour les sections avec animation au scroll
-function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const { ref, isInView } = useInView();
-
+  const cls = `block h-full rounded-card border border-line bg-white p-[28px] text-left shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-cardHover ${
+    isInView ? "animate-fade-in-up" : "opacity-0"
+  }`;
   return (
-    <div
-      ref={ref}
-      className={`${className} ${isInView ? "animate-fade-in-up" : "opacity-0"}`}
-    >
-      {children}
+    <div ref={ref} style={{ animationDelay: `${index * 0.1}s` }} className="h-full">
+      {href ? (
+        <Link href={href} className={cls}>
+          {inner}
+        </Link>
+      ) : (
+        <div className={cls}>{inner}</div>
+      )}
     </div>
   );
 }
+
+const heroScreens = [
+  { src: "/screenshots/app-accueil.png", alt: "Accueil — parcourir les annonces" },
+  { src: "/screenshots/app-annonce.png", alt: "Annonce — proposer un échange ou une offre cash" },
+  { src: "/screenshots/app-offres.png", alt: "Suivi des propositions" },
+  { src: "/screenshots/app-matchs.png", alt: "Vos matchs" },
+  { src: "/screenshots/app-chat.png", alt: "Discussion intégrée" },
+];
 
 export default function Home() {
   const t = useTranslations();
   const [showAndroidModal, setShowAndroidModal] = useState(false);
 
-  const pillarsList = [
-    {
-      emoji: "🔄",
-      title: t("features.trocVenteAchat.title"),
-      description: t("features.trocVenteAchat.description"),
-      color: "from-red-500 to-pink-500",
-      href: "/echange",
-      learnMore: t("features.learnMore"),
-    },
-    ...(SHOW_TRANSPORT ? [
-      {
-        emoji: "📦",
-        title: t("features.transport.title"),
-        description: t("features.transport.description"),
-        color: "from-green-500 to-emerald-500",
-        href: "/transport#colis",
-        learnMore: t("features.learnMore"),
-      },
-      {
-        emoji: "🚗",
-        title: t("features.covoiturage.title"),
-        description: t("features.covoiturage.description"),
-        color: "from-yellow-500 to-orange-500",
-        href: "/transport#covoiturage",
-        learnMore: t("features.learnMore"),
-      },
-    ] : []),
-  ];
-
-  const supportFeaturesList = [
-    {
-      emoji: "💬",
-      title: t("features.chat.title"),
-      description: t("features.chat.description"),
-      color: "from-rose-500 to-red-500",
-      href: "/chat",
-    },
-    {
-      emoji: "✅",
-      title: t("features.verification.title"),
-      description: t("features.verification.description"),
-      color: "from-teal-500 to-cyan-500",
-      href: "/verification",
-    },
-    {
-      emoji: "🏆",
-      title: t("features.gamification.title"),
-      description: t("features.gamification.description"),
-      color: "from-amber-500 to-yellow-500",
-    },
-  ];
+  const categories = t("hero.description")
+    .split(/[.·]/)
+    .map((s) => s.trim())
+    .filter((s) => s && !/transport|covoiturage|colis/i.test(s));
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen overflow-x-hidden bg-paper">
       <Navbar />
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-secondary min-h-screen flex items-center">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse-slow" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse-slow-reverse" />
-        </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-24 md:pt-28">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div className="text-white animate-fade-in-up">
-              <div className="flex items-center gap-2 md:gap-4 mb-1 animate-fade-in-up delay-300">
-                <h1 className="text-4xl md:text-7xl font-bold leading-tight">
-                  {t("hero.title")}
-                </h1>
-                <span className="inline-flex items-center gap-1 md:gap-2 px-2 md:px-4 py-1 md:py-2 bg-gradient-to-r from-orange-400 to-yellow-400 text-white rounded-full text-[10px] md:text-sm font-semibold shadow-lg whitespace-nowrap animate-scale-in delay-500">
-                  <Sparkles className="w-3 h-3 md:w-4 md:h-4" />
-                  {t("hero.badge")}
-                </span>
-              </div>
-
-              <p className="text-base md:text-xl mb-10 text-white/80 animate-fade-in-up delay-400">
-                <span className="inline-flex items-center gap-2">
-                  {t("hero.subtitle")} <img src="/flags/dz.png" alt="🇩🇿" className="inline w-5 h-4 object-cover rounded-sm" />
-                </span>
-              </p>
-
-              {/* Mobile Screenshot Carousel */}
-              <div className="lg:hidden mb-8 animate-fade-in-up delay-500">
-                <ScreenshotCarousel size="compact" />
-              </div>
-
-              <div className="flex flex-row gap-2 sm:gap-4 mb-10 animate-fade-in-up delay-500">
-                {/* App Store Button - TestFlight BETA */}
-                <a
-                  href="https://testflight.apple.com/join/8bUpfbkS"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-2 sm:px-6 py-2 sm:py-4 bg-black hover:bg-gray-800 text-white rounded-lg sm:rounded-2xl font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none"
-                >
-                  <svg className="w-5 h-5 sm:w-8 sm:h-8 me-1.5 sm:me-3" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                  </svg>
-                  <div className="text-start">
-                    <div className="text-[9px] sm:text-xs opacity-80">{t("hero.betaVersion")}</div>
-                    <div className="text-xs sm:text-lg font-bold">{t("hero.download")}</div>
-                  </div>
-                </a>
-
-                {/* Play Store Button - Closed Beta */}
-                <button
-                  onClick={() => setShowAndroidModal(true)}
-                  className="inline-flex items-center justify-center px-2 sm:px-6 py-2 sm:py-4 bg-white hover:bg-gray-100 text-gray-800 rounded-lg sm:rounded-2xl font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none cursor-pointer"
-                >
-                  <svg className="w-5 h-5 sm:w-8 sm:h-8 me-1.5 sm:me-3" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                  </svg>
-                  <div className="text-start">
-                    <div className="text-[9px] sm:text-xs opacity-80">{t("hero.betaVersion")}</div>
-                    <div className="text-xs sm:text-lg font-bold">{t("hero.download")}</div>
-                  </div>
-                </button>
-              </div>
-
-            </div>
-
-            {/* Right Content - Screenshot Carousel */}
-            <div className="relative lg:flex justify-center hidden animate-fade-in-up delay-500">
-              <ScreenshotCarousel />
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-3 bg-white/50 rounded-full animate-scroll-bounce" />
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
-              {t("features.title")} 🎯
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              {t("features.subtitle")}
-            </p>
-          </AnimatedSection>
-
-          {/* 3 Piliers principaux */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {pillarsList.map((feature, index) => (
-              <PillarCard key={index} feature={feature} index={index} />
-            ))}
-          </div>
-
-          {/* 3 Features de support */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {supportFeaturesList.map((feature, index) => (
-              <FeatureCard key={index} feature={feature} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-      {/* How it works */}
-      <HowItWorks />
-
-
-
-      {/* FAQ */}
-      <FAQ />
-
-      {/* CTA Section */}
-      <section id="cta" className="py-24 bg-gradient-to-br from-primary to-secondary text-white relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 text-9xl">✨</div>
-          <div className="absolute bottom-10 right-10 text-9xl">💫</div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-9xl opacity-5">🚀</div>
-        </div>
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <AnimatedSection>
-            {/* Social Proof */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur-sm rounded-full mb-6">
-              <span className="flex -space-x-2">
-                <span className="w-7 h-7 rounded-full bg-green-400 flex items-center justify-center text-xs font-bold text-white ring-2 ring-white/20">A</span>
-                <span className="w-7 h-7 rounded-full bg-blue-400 flex items-center justify-center text-xs font-bold text-white ring-2 ring-white/20">K</span>
-                <span className="w-7 h-7 rounded-full bg-orange-400 flex items-center justify-center text-xs font-bold text-white ring-2 ring-white/20">S</span>
-              </span>
-              <span className="text-sm font-medium text-white/90">
-                {t("socialProof.text", { count: "50" })}
-              </span>
-            </div>
-
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              {t("cta.title")} 🚀
-            </h2>
-            <p className="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
-              {t("cta.subtitle")}
+      {/* HERO */}
+      <section className="px-6 pb-10 pt-[56px] md:pt-[72px]">
+        <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="animate-fade-in-up">
+            <span className="mb-[22px] inline-flex items-center gap-[11px] text-[12px] font-bold uppercase tracking-[0.16em] text-inkMuted">
+              <EyebrowBar />
+              {t("hero.badge")} · Algérie
+            </span>
+            <h1 className="mb-5 font-display text-[40px] font-bold leading-[1.02] tracking-[-0.035em] text-ink text-balance md:text-[60px]">
+              {t("hero.subtitle")}
+            </h1>
+            <p className="mb-[14px] max-w-[34ch] text-[19px] leading-[1.55] text-inkSoft text-pretty">
+              {t("footer.tagline")}
             </p>
 
-            {/* Beta Download Buttons */}
-            <div className="flex flex-row justify-center gap-3 sm:gap-4 mb-8 max-w-lg mx-auto">
+            <div className="mb-[30px] flex flex-wrap gap-2">
+              {categories.map((c) => (
+                <span
+                  key={c}
+                  className="rounded-full border border-line bg-paperSoft px-3 py-[5px] text-[13px] font-semibold text-inkMuted"
+                >
+                  {c}
+                </span>
+              ))}
+            </div>
+
+            {/* Mobile carousel */}
+            <div className="mb-8 lg:hidden">
+              <ScreenshotCarousel size="compact" screenshots={heroScreens} />
+            </div>
+
+            <div className="mb-[26px] flex flex-wrap gap-3">
               <a
                 href="https://testflight.apple.com/join/8bUpfbkS"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 bg-black hover:bg-gray-800 text-white rounded-xl sm:rounded-2xl font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none"
+                className="inline-flex items-center gap-[11px] rounded-2xl bg-ink px-[22px] py-[14px] font-semibold text-paperSoft transition-transform hover:scale-[1.03]"
               >
-                <svg className="w-6 h-6 sm:w-8 sm:h-8 me-2 sm:me-3" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                </svg>
-                <div className="text-start">
-                  <div className="text-[10px] sm:text-xs opacity-80">{t("hero.betaVersion")}</div>
-                  <div className="text-sm sm:text-lg font-bold">{t("hero.download")}</div>
-                </div>
+                <AppleIcon />
+                <span className="text-left">
+                  <span className="block text-[11px] opacity-70">{t("hero.betaVersion")}</span>
+                  <span className="block text-[16px] font-bold">{t("hero.download")} iOS</span>
+                </span>
               </a>
-
               <button
                 onClick={() => setShowAndroidModal(true)}
-                className="inline-flex items-center justify-center px-4 sm:px-6 py-3 sm:py-4 bg-white hover:bg-gray-100 text-gray-800 rounded-xl sm:rounded-2xl font-semibold transition-all duration-300 hover:scale-105 flex-1 sm:flex-none cursor-pointer"
+                className="inline-flex items-center gap-[11px] rounded-2xl border border-line bg-white px-[22px] py-[14px] font-semibold text-ink transition-transform hover:scale-[1.03]"
               >
-                <svg className="w-6 h-6 sm:w-8 sm:h-8 me-2 sm:me-3" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                </svg>
-                <div className="text-start">
-                  <div className="text-[10px] sm:text-xs opacity-80">{t("hero.betaVersion")}</div>
-                  <div className="text-sm sm:text-lg font-bold">{t("hero.download")}</div>
-                </div>
+                <AndroidIcon />
+                <span className="text-left">
+                  <span className="block text-[11px] opacity-60">{t("hero.betaVersion")}</span>
+                  <span className="block text-[16px] font-bold">{t("hero.download")} Android</span>
+                </span>
               </button>
             </div>
 
-            {/* Email Form CTA */}
-            <div className="max-w-md mx-auto border-t border-white/20 pt-8">
-              <p className="text-white/70 text-sm mb-3">
-                🔔 {t("hero.notifyTitle")}
-              </p>
-              <EmailForm variant="cta" />
-              <p className="text-white/50 text-xs mt-3">
-                {t("hero.notifyNote")}
-              </p>
+            {/* Social proof */}
+            <div className="inline-flex items-center gap-[11px]">
+              <span className="flex">
+                <span className="flex h-[30px] w-[30px] items-center justify-center rounded-full border-2 border-paper bg-cash text-[13px] font-bold text-white">A</span>
+                <span className="-ml-[9px] flex h-[30px] w-[30px] items-center justify-center rounded-full border-2 border-paper bg-trade text-[13px] font-bold text-white">K</span>
+                <span className="-ml-[9px] flex h-[30px] w-[30px] items-center justify-center rounded-full border-2 border-paper bg-match text-[13px] font-bold text-white">S</span>
+              </span>
+              <span className="text-[14px] font-semibold text-inkSoft">
+                {t("socialProof.text", { count: "50" })}
+              </span>
             </div>
-          </AnimatedSection>
+          </div>
+
+          {/* Phone */}
+          <div className="hidden animate-fade-in-up justify-center lg:flex">
+            <div className="relative w-[320px] animate-float">
+              <ScreenshotCarousel screenshots={heroScreens} />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-            {/* Brand */}
-            <div className="col-span-2 md:col-span-1">
-              <h3 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                Trokacha <span className="text-3xl">✨</span>
-              </h3>
-              <p className="text-gray-400">
-                {t("footer.tagline")}
-              </p>
-            </div>
-
-            {/* Features */}
-            <div>
-              <h4 className="font-semibold mb-4">{t("footer.features")}</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/echange" className="hover:text-white transition-colors">{t("footer.echange")}</Link></li>
-                {SHOW_TRANSPORT && <li><Link href="/transport" className="hover:text-white transition-colors">{t("footer.transport")}</Link></li>}
-                <li><Link href="/chat" className="hover:text-white transition-colors">{t("footer.chat")}</Link></li>
-                <li><Link href="/verification" className="hover:text-white transition-colors">{t("footer.verification")}</Link></li>
-              </ul>
-            </div>
-
-            {/* Links */}
-            <div>
-              <h4 className="font-semibold mb-4">{t("footer.links")}</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><Link href="/terms" className="hover:text-white transition-colors">{t("footer.terms")}</Link></li>
-                <li><Link href="/privacy" className="hover:text-white transition-colors">{t("footer.privacy")}</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition-colors">{t("footer.contact")}</Link></li>
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h4 className="font-semibold mb-4">{t("footer.contactTitle")}</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="mailto:contact@trokacha.com" className="hover:text-white transition-colors">contact@trokacha.com</a></li>
-                <li><a href="mailto:support@trokacha.com" className="hover:text-white transition-colors">support@trokacha.com</a></li>
-              </ul>
-            </div>
+      {/* PILIERS / FEATURES */}
+      <section id="features" className="px-6 py-[70px]">
+        <div className="mx-auto max-w-[1200px]">
+          <div className="mx-auto mb-12 max-w-[620px] text-center">
+            <span className="mb-4 inline-flex items-center gap-[10px] text-[12px] font-bold uppercase tracking-[0.16em] text-inkMuted">
+              <span className="h-[3px] w-[24px] rounded-[2px] dz-bar" />
+              {t("navbar.features")}
+              <span className="h-[3px] w-[24px] rounded-[2px] dz-bar" />
+            </span>
+            <h2 className="mb-3 font-display text-[38px] font-bold tracking-[-0.025em] text-ink">
+              {t("features.title")}
+            </h2>
+            <p className="text-[17px] leading-[1.6] text-inkMuted">{t("features.subtitle")}</p>
           </div>
 
-          <div className="border-t border-gray-800 pt-8 text-center">
-            <div className="text-gray-500 text-sm">
-              © 2025 {t("footer.copyright")}
+          {/* Grand pilier Troc/Vente/Achat */}
+          <Link
+            href="/echange"
+            className="group mb-5 block overflow-hidden rounded-[24px] border border-line bg-white shadow-card transition-shadow hover:shadow-cardHover"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr]">
+              <div className="p-10">
+                <span className="mb-[22px] flex h-[60px] w-[60px] items-center justify-center rounded-[18px] bg-tradeBg text-trade">
+                  <IconSwap size={30} />
+                </span>
+                <h3 className="mb-3 font-display text-[26px] font-bold tracking-[-0.02em] text-ink">
+                  {t("features.trocVenteAchat.title")}
+                </h3>
+                <p className="mb-5 max-w-[44ch] text-[16px] leading-[1.6] text-inkSoft">
+                  {t("features.trocVenteAchat.description")}
+                </p>
+                <span className="inline-flex items-center gap-2 text-[15px] font-bold text-trade transition-all group-hover:gap-3">
+                  {t("features.learnMore")}
+                  <IconArrow />
+                </span>
+              </div>
+              <div className="relative hidden items-center justify-center border-l border-line bg-paperSoft p-8 md:flex">
+                <div className="w-[150px] rounded-[26px] bg-ink p-[7px] shadow-[0_18px_40px_rgba(26,24,20,0.2)]">
+                  <div className="aspect-[150/300] overflow-hidden rounded-[20px] bg-paperSoft">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src="/screenshots/app-annonce.png" alt="" className="h-full w-full object-cover object-top" />
+                  </div>
+                </div>
+              </div>
             </div>
+          </Link>
+
+          {/* 3 supports */}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <SupportCard
+              index={0}
+              icon={<IconChat size={26} />}
+              tint="#0A66C2"
+              tintBg="#E6F0FA"
+              title={t("features.chat.title")}
+              description={t("features.chat.description")}
+              href="/chat"
+            />
+            <SupportCard
+              index={1}
+              icon={<IconShield size={26} />}
+              tint="#2E8B57"
+              tintBg="#E6F2EB"
+              title={t("features.verification.title")}
+              description={t("features.verification.description")}
+              href="/verification"
+            />
+            <SupportCard
+              index={2}
+              icon={<IconTrophy size={26} />}
+              tint="#D97706"
+              tintBg="#FEF3C7"
+              title={t("features.gamification.title")}
+              description={t("features.gamification.description")}
+            />
           </div>
         </div>
-      </footer>
+      </section>
+
+      {/* COMMENT ÇA MARCHE */}
+      <HowItWorks />
+
+      {/* FAQ */}
+      <FAQ />
+
+      {/* CTA */}
+      <section id="cta" className="px-6 pb-20 pt-5">
+        <div className="mx-auto max-w-[1100px] overflow-hidden rounded-[28px] bg-ink px-10 py-[60px] text-center">
+          <span className="mb-6 inline-block h-[4px] w-[56px] rounded-[2px] dz-bar" />
+          <h2 className="mb-[14px] font-display text-[40px] font-bold tracking-[-0.025em] text-paperSoft">
+            {t("cta.title")}
+          </h2>
+          <p className="mx-auto mb-[30px] max-w-[52ch] text-[18px] leading-[1.55] text-line2">
+            {t("cta.subtitle")}
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <a
+              href="https://testflight.apple.com/join/8bUpfbkS"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-[11px] rounded-2xl bg-paperSoft px-6 py-[14px] font-bold text-ink transition-transform hover:scale-[1.03]"
+            >
+              <AppleIcon />
+              {t("hero.appStore")}
+            </a>
+            <button
+              onClick={() => setShowAndroidModal(true)}
+              className="inline-flex items-center gap-[11px] rounded-2xl border border-inkSoft bg-transparent px-6 py-[14px] font-bold text-paperSoft transition-colors hover:bg-white/5"
+            >
+              <AndroidIcon />
+              {t("hero.playStore")}
+            </button>
+          </div>
+
+          {/* Notification email (optionnel) */}
+          <div className="mx-auto mt-9 max-w-md border-t border-inkSoft pt-7">
+            <p className="mb-3 text-sm text-line2">{t("hero.notifyTitle")}</p>
+            <EmailForm variant="cta" />
+            <p className="mt-3 text-xs text-inkMuted">{t("hero.notifyNote")}</p>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
 
       <AndroidBetaModal isOpen={showAndroidModal} onClose={() => setShowAndroidModal(false)} />
     </main>

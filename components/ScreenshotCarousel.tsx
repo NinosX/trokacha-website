@@ -126,12 +126,12 @@ export function ScreenshotCarousel({
         style={{ width: `${phoneWidth}px`, height: `${phoneHeight}px` }}
       >
         {/* Phone frame */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[2rem] sm:rounded-[3rem] shadow-2xl p-[4px] sm:p-[6px]">
+        <div className="absolute inset-0 bg-ink rounded-[2rem] sm:rounded-[3rem] shadow-[0_30px_60px_rgba(26,24,20,0.28)] p-[4px] sm:p-[6px]">
           {/* Notch */}
-          <div className={`absolute ${isCompact ? 'top-2 w-16 h-4' : 'top-3 w-24 h-6'} left-1/2 transform -translate-x-1/2 bg-black rounded-full z-20`} />
-          
+          <div className={`absolute ${isCompact ? 'top-2 w-16 h-4' : 'top-3 w-24 h-6'} left-1/2 transform -translate-x-1/2 bg-ink rounded-b-2xl z-20`} />
+
           {/* Screen - même ratio que les screenshots */}
-          <div className="w-full h-full bg-black rounded-[1.7rem] sm:rounded-[2.7rem] overflow-hidden relative">
+          <div className="w-full h-full bg-paperSoft rounded-[1.7rem] sm:rounded-[2.7rem] overflow-hidden relative">
             {/* Screenshots */}
             {screenshots.map((screenshot, index) => (
               <div
@@ -159,17 +159,17 @@ export function ScreenshotCarousel({
         <>
           <button
             onClick={goToPrev}
-            className="absolute left-0 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+            className="absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-line hover:bg-paperSoft shadow-card rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
             aria-label="Previous screenshot"
           >
-            <ChevronLeft className="w-5 h-5 text-white" />
+            <ChevronLeft className="w-5 h-5 text-inkSoft" />
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-0 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+            className="absolute right-0 sm:-right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-line hover:bg-paperSoft shadow-card rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
             aria-label="Next screenshot"
           >
-            <ChevronRight className="w-5 h-5 text-white" />
+            <ChevronRight className="w-5 h-5 text-inkSoft" />
           </button>
         </>
       )}
@@ -182,8 +182,8 @@ export function ScreenshotCarousel({
             onClick={() => goToSlide(index)}
             className={`rounded-full transition-all duration-300 ${
               index === currentIndex
-                ? `${isCompact ? 'w-4 h-1.5' : 'w-6 h-2'} bg-white`
-                : `${isCompact ? 'w-1.5 h-1.5' : 'w-2 h-2'} bg-white/40 hover:bg-white/60`
+                ? `${isCompact ? 'w-4 h-1.5' : 'w-6 h-2'} bg-ink`
+                : `${isCompact ? 'w-1.5 h-1.5' : 'w-2 h-2'} bg-line2 hover:bg-inkMuted`
             }`}
             aria-label={`Go to screenshot ${index + 1}`}
           />

@@ -39,7 +39,7 @@
     "step1": "Wali-d talɣutin",
     "step2": "Teɛǧeb-ik talɣut-agi?",
     "step3": "Fren yiwet neɣ snat seg telɣutin-ik",
-    "step4": "Zluẓ ɣer uyeffus = amsenfel, ɣer uzelmaḍ = idrimen",
+    "step4": "Fren: amsenfel neɣ idrimen",
     "step5": "Tuzna tedda!"
   },
   "mobileFeatures": {
@@ -54,7 +54,7 @@
     "learnMore": "Issin ugar",
     "trocVenteAchat": {
       "title": "Amsenfel, Tizwert & Tiɣin",
-      "description": "Ssufeɣ talɣutin-ik, zluẓ akken ad tessumeṛ amsenfel neɣ idrimen. Af ayen tettnadi s unagraw n umṣada amaynut n Trokacha."
+      "description": "Ssufeɣ talɣutin-ik, sakin sumer amsenfel neɣ idrimen s usenned kan. Af ayen tettnadi s unagraw n umṣada amaynut n Trokacha."
     },
     "transport": {
       "title": "Assiweḍ n tqecwalt",
@@ -156,8 +156,8 @@
       "description": "Rnu talɣutin-ik neɣ wali tid n medden"
     },
     "step3": {
-      "title": "Zluẓ, sumer",
-      "description": "Fren talɣutin-ik sdaw, zluẓ ɣer uyeffus i umsenfel neɣ ɣer uzelmaḍ i yidrimen"
+      "title": "Err asumer",
+      "description": "Ldi talɣut sakin senned ɣef « Sumer »: fren amsenfel neɣ idrimen"
     },
     "step4": {
       "title": "Senfel!",
@@ -217,7 +217,7 @@
       },
       "q2": {
         "question": "Amek i yeddu umsenfel di Trokacha?",
-        "answer": "Ssufeɣ talɣut-ik, wali tid n medden. I usumer n umsenfel: fren yiwet neɣ snat seg telɣutin-ik sdaw, zluẓ ɣer uyeffus. I yidrimen, zluẓ ɣer uzelmaḍ. Ma yeqbel wayeḍ, tedda! Tzemreḍ ad tmeslayeḍ yid-s."
+        "answer": "Ssufeɣ talɣut-ik, wali tid n medden. I usumer: ldi talɣut i k-iɛeǧben sakin senned ɣef « Sumer », fren amsenfel (s yiwet neɣ snat seg telɣutin-ik) neɣ idrimen. Ma yeqbel wayeḍ, tedda! Tzemreḍ ad tmeslayeḍ yid-s."
       },
       "q3": {
         "question": "Assiweḍ n tqecwalt d laman?",
@@ -502,8 +502,8 @@
       },
       "step3": {
         "title": "Sumer",
-        "description": "Talɣut teɛǧeb-ik? Fren yiwet neɣ snat seg telɣutin-ik sdaw, zluẓ ɣer uyeffus i umsenfel, neɣ ɣer uzelmaḍ i yidrimen.",
-        "tip": "Zluẓ ayeffus = amsenfel, zluẓ azelmaḍ = idrimen. Ulac acu!"
+        "description": "Talɣut teɛǧeb-ik? Ldi-tt sakin senned ɣef « Sumer », fren amsenfel (s yiwet neɣ snat seg telɣutin-ik) neɣ idrimen.",
+        "tip": "Yal tigawt s tqeffalt-is: amsenfel neɣ idrimen. D ayen fessusen!"
       },
       "step4": {
         "title": "Tedda!",

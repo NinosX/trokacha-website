@@ -39,7 +39,7 @@
     "step1": "Browse the ads",
     "step2": "Interested in this ad?",
     "step3": "Select 1 or 2 of your ads",
-    "step4": "Swipe right = exchange, left = cash",
+    "step4": "Choose: exchange or cash offer",
     "step5": "Proposal sent!"
   },
   "mobileFeatures": {
@@ -54,7 +54,7 @@
     "learnMore": "Learn more",
     "trocVenteAchat": {
       "title": "Barter, Buy & Sell",
-      "description": "Post your ads, swipe to propose an exchange or a cash offer. Find what you're looking for with Trokacha's unique matching system."
+      "description": "Post your ads, then propose an exchange or a cash offer in one tap. Find what you're looking for with Trokacha's unique matching system."
     },
     "transport": {
       "title": "Parcel Transport",
@@ -156,8 +156,8 @@
       "description": "Add your ads or discover those of other users"
     },
     "step3": {
-      "title": "Swipe and propose",
-      "description": "Select your ads at the bottom, then swipe right for an exchange or left for a cash offer"
+      "title": "Make an offer",
+      "description": "Open a listing and tap \"Propose\": choose an exchange or a cash offer"
     },
     "step4": {
       "title": "Exchange!",
@@ -217,7 +217,7 @@
       },
       "q2": {
         "question": "How does bartering work on Trokacha?",
-        "answer": "Post your ad, browse the offers. To propose an exchange: select 1 or 2 of your ads in the bottom bar, then swipe right. For a cash offer, swipe left."
+        "answer": "Post your ad, browse the offers. To make a proposal: open the listing you like and tap \"Propose\", then choose an exchange (with 1 or 2 of your ads) or a cash offer. If the other person accepts, it's a match and you can chat!"
       },
       "q3": {
         "question": "Is parcel transport secure?",
@@ -502,8 +502,8 @@
       },
       "step3": {
         "title": "Make a proposal",
-        "description": "Interested in an ad? Select 1 or 2 of your ads in the bottom bar, then swipe right for an exchange or left for a cash offer.",
-        "tip": "Select your ads first, then swipe in the chosen direction!"
+        "description": "Interested in an ad? Open it and tap \"Propose\", then choose an exchange (with 1 or 2 of your ads) or a cash offer.",
+        "tip": "A dedicated button for each action: exchange or cash offer. Simple and fast!"
       },
       "step4": {
         "title": "It's a Match!",

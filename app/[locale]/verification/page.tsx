@@ -2,12 +2,60 @@
 
 import { useTranslations } from "next-intl";
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 import { Link } from "@/i18n/navigation";
-import { Shield, UserCheck, Star, Lock, BadgeCheck, Car, Package, ArrowLeft, ArrowRight } from "lucide-react";
-import { BetaDownloadButtons } from "@/components/BetaDownloadButtons";
 import { useInView } from "@/hooks/useInView";
-import Image from "next/image";
-import { SHOW_TRANSPORT } from "@/lib/featureFlags";
+
+const stroke = {
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.7,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+};
+const svg = (path: React.ReactNode, size = 24) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" {...stroke}>
+    {path}
+  </svg>
+);
+const IconArrowLeft = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" {...stroke} strokeWidth={2}>
+    <path d="M19 12H5M11 6l-6 6 6 6" />
+  </svg>
+);
+const IconCheck = () => (
+  <span className="text-match">
+    <svg width="16" height="16" viewBox="0 0 24 24" {...stroke} strokeWidth={2}>
+      <path d="M20 6L9 17l-5-5" />
+    </svg>
+  </span>
+);
+
+const IdCard = <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M7 15h4M14 9h4M14 12h3" /></>;
+const Selfie = <><circle cx="12" cy="9" r="4" /><path d="M5 20a7 7 0 0 1 14 0" /></>;
+const Account = <><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></>;
+const Clock = <><circle cx="12" cy="12" r="9" /><path d="M12 8v4l2 2" /></>;
+const CheckCircle = <><circle cx="12" cy="12" r="9" /><path d="M8 12.5l2.5 2.5L16 9.5" /></>;
+const ShieldCheck = <><path d="M12 3l9 4v5c0 5-4 9-9 9s-9-4-9-9V7z" /><path d="M9 12l2 2 4-4" /></>;
+const Star = <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" />;
+const Lock = <><rect x="4" y="10" width="16" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></>;
+const Shield = <path d="M12 3l9 4v5c0 5-4 9-9 9s-9-4-9-9V7z" />;
+
+const processItems = [Account, IdCard, Selfie, Clock, CheckCircle];
+
+const featureItems = [
+  { tint: "#0A66C2", tintBg: "#E6F0FA", icon: Account },
+  { tint: "#D97706", tintBg: "#FEF3C7", icon: Star },
+  { tint: "#C8324A", tintBg: "#FBE9EC", icon: Lock },
+  { tint: "#2E8B57", tintBg: "#E6F2EB", icon: Shield },
+];
+
+const stats = [
+  { value: "100%", color: "#5FA8E8" },
+  { value: "24/7", color: "#5BB585" },
+  { value: "5★", color: "#E8A94B" },
+  { value: "0", color: "#E27187" },
+];
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isInView } = useInView();
@@ -18,302 +66,130 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
   );
 }
 
-function BadgeCard({ type, t }: { type: "blue" | "green"; t: (key: string) => string }) {
-  const { ref, isInView } = useInView();
-  const isBlue = type === "blue";
-
-  return (
-    <div
-      ref={ref}
-      className={`${
-        isBlue
-          ? "bg-white border-blue-200 shadow-blue-100"
-          : "bg-white border-green-200 shadow-green-100"
-      } rounded-3xl p-8 border shadow-lg relative overflow-hidden ${
-        isInView ? (isBlue ? "animate-slide-in-left" : "animate-slide-in-right") : "opacity-0"
-      }`}
-    >
-      <div className="absolute top-4 right-4">
-        <span className={`px-3 py-1 ${isBlue ? "bg-blue-100 text-blue-600" : "bg-green-100 text-green-600"} text-xs font-medium rounded-full`}>
-          {isBlue ? t("badges.blue.optional") : t("badges.green.required")}
-        </span>
-      </div>
-
-      <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${isBlue ? "from-blue-400 to-blue-600" : "from-green-400 to-emerald-600"} flex items-center justify-center mb-6 shadow-lg`}>
-        <BadgeCheck className="w-10 h-10 text-white" />
-      </div>
-
-      <h3 className={`text-2xl font-bold mb-3 ${isBlue ? "text-blue-600" : "text-green-600"}`}>
-        {t(`badges.${type}.title`)}
-      </h3>
-      <p className="text-gray-600 mb-6">{t(`badges.${type}.description`)}</p>
-
-      <div className="space-y-3 mb-6">
-        <div className="flex items-center gap-3">
-          <div className={`w-8 h-8 rounded-lg ${isBlue ? "bg-blue-100" : "bg-green-100"} flex items-center justify-center`}>
-            <span className="text-lg">🪪</span>
-          </div>
-          <span className="text-gray-700">{t(`badges.${type}.req1`)}</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <div className={`w-8 h-8 rounded-lg ${isBlue ? "bg-blue-100" : "bg-green-100"} flex items-center justify-center`}>
-            <span className="text-lg">🤳</span>
-          </div>
-          <span className="text-gray-700">{t(`badges.${type}.req2`)}</span>
-        </div>
-        {!isBlue && (
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center">
-              <span className="text-lg">🚗</span>
-            </div>
-            <span className="text-gray-700">{t("badges.green.req3")}</span>
-          </div>
-        )}
-      </div>
-
-      <div className={`pt-4 border-t ${isBlue ? "border-blue-100" : "border-green-100"}`}>
-        {isBlue ? (
-          <>
-            <p className="text-sm text-blue-600 font-medium mb-2">{t("badges.benefits")}</p>
-            <ul className="text-sm text-gray-500 space-y-1">
-              <li>✓ {t("badges.blue.benefit1")}</li>
-              <li>✓ {t("badges.blue.benefit2")}</li>
-              <li>✓ {t("badges.blue.benefit3")}</li>
-            </ul>
-          </>
-        ) : (
-          <>
-            <p className="text-sm text-green-600 font-medium mb-2">{t("badges.green.whoNeeds")}</p>
-            <div className="flex flex-wrap gap-2">
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 rounded-full text-xs text-green-700">
-                <Car className="w-3 h-3" /> {t("badges.green.driver")}
-              </span>
-              <span className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 rounded-full text-xs text-green-700">
-                <Package className="w-3 h-3" /> {t("badges.green.transporter")}
-              </span>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function ProcessStep({ item, index }: { item: { icon: string; step: number }; index: number }) {
-  const { ref, isInView } = useInView();
-
-  return (
-    <div className="flex items-center">
-      <div
-        ref={ref}
-        className={`flex flex-col items-center ${isInView ? "animate-scale-in" : "opacity-0"}`}
-        style={{ animationDelay: `${index * 0.1}s` }}
-      >
-        <div className="w-16 h-16 rounded-2xl bg-white shadow-md flex items-center justify-center text-3xl mb-3">
-          {item.icon}
-        </div>
-        <span className="text-sm text-gray-600 text-center max-w-[100px]">
-          Step {item.step}
-        </span>
-      </div>
-      {index < 4 && <div className="hidden md:block w-12 h-0.5 bg-gray-200 mx-2" />}
-    </div>
-  );
-}
-
 export default function VerificationPage() {
   const t = useTranslations("security");
 
-  const features = [
-    { icon: UserCheck, bgColor: "bg-blue-100", iconColor: "text-blue-600" },
-    { icon: Star, bgColor: "bg-yellow-100", iconColor: "text-yellow-600" },
-    { icon: Lock, bgColor: "bg-purple-100", iconColor: "text-purple-600" },
-    { icon: Shield, bgColor: "bg-green-100", iconColor: "text-green-600" },
-  ];
-
-  const processSteps = [
-    { icon: "📱", step: 1 },
-    { icon: "🪪", step: 2 },
-    { icon: "🤳", step: 3 },
-    { icon: "⏳", step: 4 },
-    { icon: "✅", step: 5 },
-  ];
-
-  const stats = [
-    { value: "100%", label: t("stats.stat1"), color: "text-blue-400" },
-    { value: "24/7", label: t("stats.stat2"), color: "text-green-400" },
-    { value: "5★", label: t("stats.stat3"), color: "text-yellow-400" },
-    { value: "0", label: t("stats.stat4"), color: "text-red-400" },
-  ];
-
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <main className="min-h-screen overflow-x-hidden bg-paper">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-16">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200/50 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-green-200/50 rounded-full blur-3xl" />
-        </div>
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center animate-fade-in-up">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              {t("backHome")}
-            </Link>
-
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 rounded-full text-blue-700 text-sm font-medium mb-6">
-              <Shield className="w-4 h-4" />
+      {/* Hero */}
+      <section className="border-b border-line bg-paperSoft px-6 pb-10 pt-14">
+        <div className="mx-auto max-w-[1100px] text-center">
+          <Link href="/" className="mb-6 inline-flex items-center gap-[7px] text-[14px] font-semibold text-inkMuted transition-colors hover:text-ink">
+            <IconArrowLeft />
+            {t("backHome")}
+          </Link>
+          <div className="mb-5">
+            <span className="inline-flex items-center gap-2 rounded-full bg-matchBg px-[15px] py-[7px] text-[13px] font-bold text-matchInk">
+              {svg(Shield, 16)}
               {t("badge")}
-            </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gray-900">
-              {t("title")} 🛡️
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {t("subtitle")}
-            </p>
+            </span>
           </div>
+          <h1 className="mb-4 font-display text-[36px] font-bold leading-[1.05] tracking-[-0.03em] text-ink md:text-[46px]">
+            {t("title")}
+          </h1>
+          <p className="mx-auto max-w-[60ch] text-[18px] leading-[1.6] text-inkSoft">{t("subtitle")}</p>
         </div>
       </section>
 
-      {/* Phone Screenshot Section */}
-      <section className="py-12 relative z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="flex justify-center">
-            <div className="relative" style={{ width: '270px', height: '585px' }}>
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-[3rem] shadow-2xl p-[6px]">
-                <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20" />
-                <div className="w-full h-full bg-black rounded-[2.7rem] overflow-hidden relative">
-                  <Image
-                    src="/screenshots/verif.png"
-                    alt="Vérification d'identité"
-                    fill
-                    className="object-cover"
-                    sizes="270px"
-                    priority
-                  />
-                </div>
+      {/* Badge + phone */}
+      <section className="px-6 py-14">
+        <div className="mx-auto grid max-w-[1000px] grid-cols-1 items-center gap-11 md:grid-cols-[270px_1fr]">
+          <div className="mx-auto w-[262px] justify-self-center rounded-[38px] bg-ink p-[9px] shadow-[0_24px_50px_rgba(26,24,20,0.24)]">
+            <div className="aspect-[262/536] overflow-hidden rounded-[30px] bg-paperSoft">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/screenshots/verif.png" alt="" className="h-full w-full object-cover" />
+            </div>
+          </div>
+
+          <AnimatedSection className="relative rounded-[24px] border border-line bg-white p-9 shadow-card">
+            <span className="absolute right-[26px] top-[26px] rounded-full bg-cashBg px-3 py-[5px] text-[12px] font-bold text-cashInk">
+              {t("badges.blue.optional")}
+            </span>
+            <span className="mb-5 flex h-[60px] w-[60px] items-center justify-center rounded-[17px] bg-cash text-white">
+              {svg(ShieldCheck, 30)}
+            </span>
+            <h3 className="mb-[10px] font-display text-[24px] font-bold tracking-[-0.02em] text-cashInk">
+              {t("badges.blue.title")}
+            </h3>
+            <p className="mb-[22px] text-[15px] leading-[1.6] text-inkSoft">{t("badges.blue.description")}</p>
+            <div className="mb-[22px] flex flex-col gap-[11px]">
+              <div className="flex items-center gap-[11px]">
+                <span className="flex h-8 w-8 items-center justify-center rounded-[9px] bg-cashBg text-cash">{svg(IdCard, 17)}</span>
+                <span className="text-[14.5px] text-inkSoft">{t("badges.blue.req1")}</span>
+              </div>
+              <div className="flex items-center gap-[11px]">
+                <span className="flex h-8 w-8 items-center justify-center rounded-[9px] bg-cashBg text-cash">{svg(Selfie, 17)}</span>
+                <span className="text-[14.5px] text-inkSoft">{t("badges.blue.req2")}</span>
               </div>
             </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Two Badges Section */}
-      <section className="py-16 relative z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`grid ${SHOW_TRANSPORT ? "md:grid-cols-2" : "md:grid-cols-1 max-w-xl"} gap-8 max-w-5xl mx-auto`}>
-            <BadgeCard type="blue" t={t} />
-            {SHOW_TRANSPORT && <BadgeCard type="green" t={t} />}
-          </div>
-        </div>
-      </section>
-
-      {/* Verification Process */}
-      <section className="py-16 relative z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-gray-900">{t("processTitle")}</h2>
-
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              {processSteps.map((item, index) => (
-                <ProcessStep key={item.step} item={item} index={index} />
-              ))}
+            <div className="border-t border-line pt-[18px]">
+              <p className="mb-[10px] text-[13px] font-bold text-cashInk">{t("badges.benefits")}</p>
+              <ul className="flex flex-col gap-[7px]">
+                <li className="flex items-center gap-2 text-[14px] text-inkMuted"><IconCheck />{t("badges.blue.benefit1")}</li>
+                <li className="flex items-center gap-2 text-[14px] text-inkMuted"><IconCheck />{t("badges.blue.benefit2")}</li>
+                <li className="flex items-center gap-2 text-[14px] text-inkMuted"><IconCheck />{t("badges.blue.benefit3")}</li>
+              </ul>
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Security Features Grid */}
-      <section className="py-16 relative z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl p-5 shadow-md text-center animate-fade-in-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className={`w-12 h-12 rounded-xl ${feature.bgColor} flex items-center justify-center mx-auto mb-3`}>
-                    <Icon className={`w-6 h-6 ${feature.iconColor}`} />
-                  </div>
-                  <h4 className="font-semibold text-sm mb-1 text-gray-900">{t(`features.feature${index + 1}.title`)}</h4>
-                  <p className="text-gray-500 text-xs">{t(`features.feature${index + 1}.description`)}</p>
+      {/* Process */}
+      <section className="px-6 pb-10 pt-5">
+        <div className="mx-auto max-w-[960px]">
+          <h2 className="mb-[34px] text-center font-display text-[30px] font-bold tracking-[-0.02em] text-ink">
+            {t("processTitle")}
+          </h2>
+          <div className="flex flex-wrap items-start justify-between gap-2">
+            {processItems.map((icon, i) => (
+              <div key={i} className="flex min-w-[130px] flex-1 flex-col items-center gap-3 text-center">
+                <span className="flex h-14 w-14 items-center justify-center rounded-[16px] border border-line bg-white text-cash shadow-card">
+                  {svg(icon, 24)}
+                </span>
+                <div>
+                  <div className="mb-[3px] font-display text-[13px] font-bold text-trade">0{i + 1}</div>
+                  <div className="text-[13.5px] font-semibold leading-[1.4] text-inkSoft">{t(`process.step${i + 1}`)}</div>
                 </div>
-              );
-            })}
-          </AnimatedSection>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Piliers sécurité */}
+      <section className="px-6 pb-[60px] pt-10">
+        <div className="mx-auto grid max-w-[960px] grid-cols-2 gap-4 md:grid-cols-4">
+          {featureItems.map((f, i) => (
+            <div key={i} className="rounded-[18px] border border-line bg-white p-[22px] text-center shadow-card">
+              <span className="mx-auto mb-[13px] flex h-[46px] w-[46px] items-center justify-center rounded-[13px]" style={{ background: f.tintBg, color: f.tint }}>
+                {svg(f.icon, 22)}
+              </span>
+              <h4 className="mb-[5px] text-[15px] font-bold text-ink">{t(`features.feature${i + 1}.title`)}</h4>
+              <p className="text-[13px] leading-[1.5] text-inkMuted">{t(`features.feature${i + 1}.description`)}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Stats */}
-      <section className="py-16 relative z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="text-center p-6 bg-white rounded-2xl shadow-md animate-fade-in-up"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className={`text-3xl md:text-4xl font-bold ${stat.color} mb-2`}>{stat.value}</div>
-                <div className="text-gray-500 text-sm">{stat.label}</div>
+      <section className="px-6 pb-20">
+        <div className="mx-auto max-w-[960px] rounded-[24px] bg-ink px-10 py-11">
+          <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
+            {stats.map((s, i) => (
+              <div key={i}>
+                <div className="mb-1 font-display text-[36px] font-bold" style={{ color: s.color }}>
+                  {s.value}
+                </div>
+                <div className="text-[13px] text-inkMuted">{t(`stats.stat${i + 1}`)}</div>
               </div>
             ))}
-          </AnimatedSection>
+          </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 relative z-10">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <AnimatedSection>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
-              {t("ctaTitle")} 🚀
-            </h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              {t("ctaSubtitle")}
-            </p>
-            <div className="mb-8">
-              <BetaDownloadButtons variant="compact" />
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/echange"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gray-100 text-gray-700 rounded-2xl font-semibold hover:bg-gray-200 transition-colors"
-              >
-                {t("discoverEchange")}
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              {SHOW_TRANSPORT && (
-                <Link
-                  href="/transport"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-gray-100 text-gray-700 rounded-2xl font-semibold hover:bg-gray-200 transition-colors"
-                >
-                  {t("discoverTransport")}
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              )}
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 relative z-10">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-400">
-            © 2025 Trokacha. {t("allRightsReserved")}
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

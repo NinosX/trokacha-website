@@ -1,5 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -19,24 +21,25 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
   const tFooter = await getTranslations("footer");
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-paper">
+      <Navbar />
       {/* Header */}
-      <header className="bg-gradient-to-r from-primary to-secondary text-white py-8">
+      <header className="bg-ink text-paperSoft py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-4 transition-colors">
+          <Link href="/" className="inline-flex items-center gap-2 text-line2 hover:text-paperSoft mb-4 transition-colors">
             <svg className="w-5 h-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
             {tPrivacy("backHome")}
           </Link>
-          <h1 className="text-4xl font-bold">{t("title")}</h1>
-          <p className="text-white/80 mt-2">{t("lastUpdate")}</p>
+          <h1 className="font-display text-4xl font-bold tracking-[-0.02em]">{t("title")}</h1>
+          <p className="text-line2 mt-2">{t("lastUpdate")}</p>
         </div>
       </header>
 
       {/* Content - Keep in French as legal document */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 md:p-12">
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl border border-line shadow-card p-8 md:p-12">
 
           {/* Article 1 */}
           <Section title="Article 1 - Nature du Service">
@@ -127,12 +130,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-400">© 2025 {tFooter("copyright")}</p>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
@@ -140,8 +138,8 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-8">
-      <h2 className="text-xl font-bold text-gray-900 mb-4">{title}</h2>
-      <div className="text-gray-600 leading-relaxed">{children}</div>
+      <h2 className="font-display text-xl font-bold text-ink mb-4">{title}</h2>
+      <div className="text-inkSoft leading-relaxed">{children}</div>
     </section>
   );
 }

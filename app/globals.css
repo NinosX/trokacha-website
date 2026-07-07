@@ -4,17 +4,36 @@
 
 @layer base {
   :root {
-    --font-inter: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-inter: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
   }
 
   body {
-    @apply bg-gray-50 text-gray-900 antialiased;
+    @apply bg-paper text-ink antialiased;
+  }
+
+  a {
+    color: #0A66C2;
+  }
+  a:hover {
+    color: #0747A6;
+  }
+
+  ::selection {
+    background: #C8324A;
+    color: #fff;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  /* Motif de marque : barre bicolore nette vert|rouge (drapeau algérien) */
+  .dz-bar {
+    background: linear-gradient(90deg, #0B8A43 0 50%, #D21034 50% 100%);
   }
 }
 

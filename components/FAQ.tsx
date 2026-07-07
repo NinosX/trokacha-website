@@ -12,22 +12,22 @@ function FAQItem({ faq, index, isOpen, onToggle }: { faq: { question: string; an
   return (
     <div
       ref={ref}
-      className={`bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden ${
+      className={`overflow-hidden rounded-2xl border border-line bg-white ${
         isInView ? "animate-fade-in-up" : "opacity-0"
       }`}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <button
         onClick={onToggle}
-        className="w-full px-6 py-5 flex items-center justify-between text-start"
+        className="flex w-full items-center justify-between gap-4 px-[22px] py-5 text-start"
       >
-        <span className="font-semibold text-gray-900 pe-4">{faq.question}</span>
+        <span className="text-[16.5px] font-bold text-ink pe-2">{faq.question}</span>
         <div
-          className={`flex-shrink-0 transition-transform duration-200 ${
+          className={`flex-shrink-0 text-inkMuted transition-transform duration-200 ${
             isOpen ? "rotate-180" : "rotate-0"
           }`}
         >
-          <ChevronDown className="w-5 h-5 text-gray-500" />
+          <ChevronDown className="h-5 w-5" />
         </div>
       </button>
       <div
@@ -36,7 +36,7 @@ function FAQItem({ faq, index, isOpen, onToggle }: { faq: { question: string; an
         }`}
       >
         <div className="overflow-hidden">
-          <div className="px-6 pb-5 text-gray-600 leading-relaxed">
+          <div className="px-[22px] pb-5 text-[15px] leading-[1.65] text-inkSoft">
             {faq.answer}
           </div>
         </div>
@@ -78,21 +78,21 @@ export function FAQ() {
   ];
 
   return (
-    <section id="faq" className="py-24 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="bg-paper px-6 py-[70px]">
+      <div className="mx-auto max-w-[760px]">
         <div
           ref={headerRef}
-          className={`text-center mb-16 ${headerInView ? "animate-fade-in-up" : "opacity-0"}`}
+          className={`mb-11 text-center ${headerInView ? "animate-fade-in-up" : "opacity-0"}`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+          <h2 className="mb-3 font-display text-[38px] font-bold tracking-[-0.025em] text-ink">
             {t("title")}
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-[17px] leading-[1.6] text-inkMuted">
             {t("subtitle")}
           </p>
         </div>
 
-        <div className="max-w-3xl mx-auto space-y-4">
+        <div className="mx-auto flex max-w-[760px] flex-col gap-3">
           {faqs.map((faq, index) => (
             <FAQItem
               key={index}

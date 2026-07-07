@@ -3,92 +3,141 @@
 import { useTranslations } from "next-intl";
 import { useInView } from "@/hooks/useInView";
 
-function StepCard({ step, index, totalSteps }: { step: { number: string; title: string; description: string; icon: string; color: string }; index: number; totalSteps: number }) {
+type Step = {
+  number: string;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  tint: string;
+  tintBg: string;
+  badge: string;
+};
+
+function StepCard({ step, index }: { step: Step; index: number }) {
   const { ref, isInView } = useInView();
 
   return (
     <div
       ref={ref}
-      className={`relative ${isInView ? "animate-fade-in-up" : "opacity-0"}`}
-      style={{ animationDelay: `${index * 0.15}s` }}
+      className={`relative rounded-card border border-line bg-white p-[30px_24px] shadow-card ${
+        isInView ? "animate-fade-in-up" : "opacity-0"
+      }`}
+      style={{ animationDelay: `${index * 0.1}s` }}
     >
-      {/* Connector line */}
-      {index < totalSteps - 1 && (
-        <div className="hidden lg:block absolute top-16 start-1/2 w-full h-0.5 bg-gradient-to-r from-gray-200 to-gray-100 rtl:bg-gradient-to-l" />
-      )}
+      {/* Numéro */}
+      <span
+        className="absolute -top-[15px] left-[26px] flex h-[34px] w-[34px] items-center justify-center rounded-[11px] font-display text-[15px] font-bold text-white"
+        style={{ background: step.badge }}
+      >
+        {step.number}
+      </span>
 
-      <div className="relative bg-gray-50 rounded-3xl p-8 text-center hover:shadow-xl transition-shadow duration-300">
-        {/* Number badge */}
-        <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-          <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center text-white font-bold text-sm shadow-lg`}>
-            {step.number}
-          </div>
-        </div>
+      {/* Icône */}
+      <span
+        className="my-4 mt-[14px] flex h-12 w-12 items-center justify-center rounded-[14px]"
+        style={{ background: step.tintBg, color: step.tint }}
+      >
+        {step.icon}
+      </span>
 
-        {/* Icon */}
-        <div className="text-6xl mb-6 mt-4">{step.icon}</div>
-
-        {/* Content */}
-        <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
-        <p className="text-gray-600">{step.description}</p>
-      </div>
+      <h3 className="mb-2 text-[17px] font-bold text-ink">{step.title}</h3>
+      <p className="text-[14px] leading-[1.55] text-inkMuted">{step.description}</p>
     </div>
   );
 }
+
+const stroke = {
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.7,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+};
 
 export function HowItWorks() {
   const t = useTranslations("howItWorks");
   const { ref: headerRef, isInView: headerInView } = useInView();
 
-  const steps = [
+  const steps: Step[] = [
     {
       number: "01",
       title: t("step1.title"),
       description: t("step1.description"),
-      icon: "📱",
-      color: "from-blue-500 to-cyan-500",
+      tint: "#0A66C2",
+      tintBg: "#E6F0FA",
+      badge: "#0A66C2",
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" {...stroke}>
+          <circle cx="12" cy="8" r="4" />
+          <path d="M4 21a8 8 0 0 1 16 0" />
+        </svg>
+      ),
     },
     {
       number: "02",
       title: t("step2.title"),
       description: t("step2.description"),
-      icon: "📸",
-      color: "from-purple-500 to-pink-500",
+      tint: "#0A66C2",
+      tintBg: "#E6F0FA",
+      badge: "#0A66C2",
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" {...stroke}>
+          <rect x="4" y="5" width="16" height="14" rx="2" />
+          <circle cx="9" cy="11" r="2" />
+          <path d="M4 17l5-4 5 4 3-2 3 2" />
+        </svg>
+      ),
     },
     {
       number: "03",
       title: t("step3.title"),
       description: t("step3.description"),
-      icon: "👆",
-      color: "from-orange-500 to-red-500",
+      tint: "#C8324A",
+      tintBg: "#FBE9EC",
+      badge: "#C8324A",
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" {...stroke}>
+          <path d="M4 7h14l-3-3M20 17H6l3 3" />
+        </svg>
+      ),
     },
     {
       number: "04",
       title: t("step4.title"),
       description: t("step4.description"),
-      icon: "🤝",
-      color: "from-green-500 to-emerald-500",
+      tint: "#2E8B57",
+      tintBg: "#E6F2EB",
+      badge: "#2E8B57",
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" {...stroke}>
+          <circle cx="12" cy="12" r="9" />
+          <path d="M8 12.5l2.5 2.5L16 9.5" />
+        </svg>
+      ),
     },
   ];
 
   return (
-    <section id="how-it-works" className="py-24 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="how-it-works"
+      className="border-y border-line bg-paperSoft px-6 py-[70px]"
+    >
+      <div className="mx-auto max-w-[1100px]">
         <div
           ref={headerRef}
-          className={`text-center mb-16 ${headerInView ? "animate-fade-in-up" : "opacity-0"}`}
+          className={`mx-auto mb-[52px] max-w-[600px] text-center ${
+            headerInView ? "animate-fade-in-up" : "opacity-0"
+          }`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">
+          <h2 className="mb-3 font-display text-[38px] font-bold tracking-[-0.025em] text-ink">
             {t("title")}
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            {t("subtitle")}
-          </p>
+          <p className="text-[17px] leading-[1.6] text-inkMuted">{t("subtitle")}</p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, index) => (
-            <StepCard key={index} step={step} index={index} totalSteps={steps.length} />
+            <StepCard key={index} step={step} index={index} />
           ))}
         </div>
       </div>
