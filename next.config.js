@@ -24,6 +24,15 @@ const nextConfig = {
   async headers() {
     return [
       {
+        // Universal Links iOS : Apple exige application/json sur le fichier
+        // AASA (servi sans extension depuis public/.well-known/)
+        source: '/.well-known/apple-app-site-association',
+        headers: [
+          { key: 'Content-Type', value: 'application/json' },
+          { key: 'Cache-Control', value: 'public, max-age=3600' },
+        ],
+      },
+      {
         source: '/:all*(svg|jpg|jpeg|png|gif|ico|webp|avif)',
         headers: [
           {

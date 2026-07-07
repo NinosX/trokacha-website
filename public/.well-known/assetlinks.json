@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.trokacha.app",
+      "sha256_cert_fingerprints": [
+        "A2:FE:42:F8:39:38:63:F5:7F:13:62:CA:0F:D7:D5:F2:74:71:09:9A:52:36:00:09:FC:77:70:6B:30:17:76:C5"
+      ]
+    }
+  }
+]
