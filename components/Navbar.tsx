@@ -86,8 +86,9 @@ export function Navbar() {
             </Link>
 
             <div className="hidden items-center gap-1 md:flex">
-              {navLinks.map((link) =>
-                link.isSection ? (
+              {navLinks.map((link) => {
+                const active = !link.isSection && pathname === link.href;
+                return link.isSection ? (
                   <button
                     key={link.href}
                     onClick={() => scrollToSection(link.href)}
@@ -99,12 +100,18 @@ export function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="rounded-[10px] px-[14px] py-[9px] text-[15px] font-semibold text-inkSoft transition-colors hover:bg-paperHard"
+                    aria-current={active ? "page" : undefined}
+                    className={`relative rounded-[10px] px-[14px] py-[9px] text-[15px] font-semibold transition-colors ${
+                      active ? "text-ink" : "text-inkSoft hover:bg-paperHard"
+                    }`}
                   >
                     {link.label}
+                    {active && (
+                      <span className="absolute bottom-[5px] left-1/2 h-[2px] w-4 -translate-x-1/2 rounded-full bg-cash" />
+                    )}
                   </Link>
-                )
-              )}
+                );
+              })}
             </div>
 
             <div className="hidden items-center gap-[10px] md:flex">
@@ -202,8 +209,9 @@ export function Navbar() {
         } transition-all duration-200`}
       >
         <div className="mx-auto space-y-1 px-4 py-6">
-          {mobileNavLinks.map((link) =>
-            link.isSection ? (
+          {mobileNavLinks.map((link) => {
+            const active = !link.isSection && pathname === link.href;
+            return link.isSection ? (
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
@@ -216,12 +224,16 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full rounded-lg px-4 py-3 text-start font-medium text-inkSoft transition-colors hover:bg-paperSoft"
+                aria-current={active ? "page" : undefined}
+                className={`flex w-full items-center gap-2 rounded-lg px-4 py-3 text-start font-medium transition-colors ${
+                  active ? "bg-paperSoft text-ink" : "text-inkSoft hover:bg-paperSoft"
+                }`}
               >
+                {active && <span className="h-4 w-[3px] rounded-full bg-cash" />}
                 {link.label}
               </Link>
-            )
-          )}
+            );
+          })}
           <button
             onClick={() => scrollToSection("#cta")}
             className="w-full rounded-full bg-cash px-4 py-3 font-semibold text-white shadow-cash"
