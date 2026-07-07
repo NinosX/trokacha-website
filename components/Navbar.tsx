@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
@@ -29,7 +29,6 @@ export function Navbar() {
   const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
 
   const isHomePage = pathname === "/" || pathname === "";
 
@@ -54,10 +53,6 @@ export function Navbar() {
     { href: "/contact", label: t("contact"), isSection: false },
   ];
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -75,9 +70,7 @@ export function Navbar() {
   return (
     <>
       <nav
-        className={`sticky top-0 left-0 right-0 z-[60] border-b border-line bg-paper/[0.86] backdrop-blur-md transition-transform duration-300 ${
-          isVisible ? "translate-y-0" : "-translate-y-full"
-        }`}
+        className="sticky top-0 left-0 right-0 z-[60] border-b border-line bg-paper/[0.86] backdrop-blur-md"
       >
         <div className="mx-auto max-w-[1200px] px-6">
           <div className="flex h-[72px] items-center justify-between gap-6">
