@@ -117,9 +117,9 @@ export default function EchangePage() {
             {/* Sticky phone */}
             <div className="static flex flex-col items-center gap-4 md:sticky md:top-[96px]">
               <div className="w-[270px] rounded-[40px] bg-ink p-[9px] shadow-[0_24px_50px_rgba(26,24,20,0.24)]">
-                <div className="aspect-[270/552] overflow-hidden rounded-[31px] bg-paperSoft">
+                <div className="aspect-[1320/2868] overflow-hidden rounded-[31px] bg-paperSoft">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/screenshots/app-annonce.png" alt="" className="h-full w-full object-cover object-top" />
+                  <img src="/screenshots/app-annonce.png" alt="" className="h-full w-full object-cover" />
                 </div>
               </div>
               <div className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-[14px] py-2 text-[13px] font-bold text-inkSoft">

@@ -87,39 +87,11 @@ export default function ChatPage() {
               <p className="max-w-[46ch] text-[18px] leading-[1.6] text-inkSoft">{t("subtitle")}</p>
             </div>
 
-            {/* Chat mock */}
-            <div className="mx-auto w-[280px] justify-self-center rounded-[32px] bg-ink p-2 shadow-[0_24px_50px_rgba(26,24,20,0.22)]">
-              <div className="overflow-hidden rounded-[26px] bg-paper">
-                <div className="flex items-center gap-[10px] bg-cash px-4 py-[14px]">
-                  <span className="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-paperSoft text-[14px] font-extrabold text-cash">
-                    {t("mockup.userName").charAt(0)}
-                  </span>
-                  <div>
-                    <div className="text-[14px] font-bold text-white">{t("mockup.userName")}</div>
-                    <div className="text-[11px] text-[#CFE3F7]">{t("mockup.status")}</div>
-                  </div>
-                </div>
-                <div className="flex min-h-[220px] flex-col gap-[10px] p-4">
-                  <div className="max-w-[82%] self-start rounded-[14px_14px_14px_4px] border border-line bg-white px-3 py-[9px] text-[13px] text-ink">
-                    {t("mockup.message1")}
-                  </div>
-                  <div className="max-w-[82%] self-end rounded-[14px_14px_4px_14px] bg-cash px-3 py-[9px] text-[13px] text-white">
-                    {t("mockup.message2")}
-                  </div>
-                  <div className="max-w-[82%] self-start rounded-[14px_14px_14px_4px] border border-line bg-white px-3 py-[9px] text-[13px] text-ink">
-                    {t("mockup.message3")}
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 border-t border-line px-3 py-[10px]">
-                  <span className="flex-1 rounded-full border border-line bg-white px-3 py-2 text-[12px] text-inkMuted">
-                    {t("mockup.placeholder")}
-                  </span>
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-trade text-white">
-                    <svg width="15" height="15" viewBox="0 0 24 24" {...stroke} strokeWidth={2}>
-                      <path d="M5 12h14M13 6l6 6-6 6" />
-                    </svg>
-                  </span>
-                </div>
+            {/* Chat — capture réelle */}
+            <div className="mx-auto w-[280px] justify-self-center rounded-[40px] bg-ink p-[9px] shadow-[0_24px_50px_rgba(26,24,20,0.22)]">
+              <div className="aspect-[1320/2868] overflow-hidden rounded-[31px] bg-paperSoft">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/screenshots/app-chat.png" alt="Chat Trokacha" className="h-full w-full object-cover" />
               </div>
             </div>
           </div>

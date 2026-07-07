@@ -50,7 +50,8 @@ export function ScreenshotCarousel({
   // Tailles selon le mode
   const isCompact = size === "compact" || className.includes("h-[400px]");
   const phoneWidth = isCompact ? 180 : 270;
-  const phoneHeight = isCompact ? 390 : 585;
+  // Hauteur alignée sur le ratio des captures (~9:19.5) pour ne pas rogner la bottombar
+  const phoneHeight = isCompact ? 382 : 574;
 
   const goToSlide = useCallback((index: number) => {
     setCurrentIndex(index);
