@@ -88,8 +88,8 @@ export default function ChatPage() {
             </div>
 
             {/* Chat — capture réelle */}
-            <div className="mx-auto w-[280px] justify-self-center rounded-[40px] bg-ink p-[9px] shadow-[0_24px_50px_rgba(26,24,20,0.22)]">
-              <div className="aspect-[1320/2868] overflow-hidden rounded-[31px] bg-paperSoft">
+            <div className="mx-auto w-[280px] justify-self-center rounded-[40px] bg-ink p-[6px] shadow-[0_24px_50px_rgba(26,24,20,0.22)]">
+              <div className="aspect-[1320/2868] overflow-hidden rounded-[34px] bg-paperSoft">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/screenshots/app-chat.png" alt="Chat Trokacha" className="h-full w-full object-cover" />
               </div>

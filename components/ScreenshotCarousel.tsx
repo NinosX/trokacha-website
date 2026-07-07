@@ -132,7 +132,7 @@ export function ScreenshotCarousel({
           <div className={`absolute ${isCompact ? 'top-2 w-16 h-4' : 'top-3 w-24 h-6'} left-1/2 transform -translate-x-1/2 bg-ink rounded-b-2xl z-20`} />
 
           {/* Screen - même ratio que les screenshots */}
-          <div className="w-full h-full bg-paperSoft rounded-[1.7rem] sm:rounded-[2.7rem] overflow-hidden relative">
+          <div className="w-full h-full bg-paperSoft rounded-[1.75rem] sm:rounded-[2.625rem] overflow-hidden relative">
             {/* Screenshots */}
             {screenshots.map((screenshot, index) => (
               <div

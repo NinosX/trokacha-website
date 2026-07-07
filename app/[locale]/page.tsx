@@ -252,8 +252,8 @@ export default function Home() {
                 </span>
               </div>
               <div className="relative hidden items-center justify-center border-l border-line bg-paperSoft p-8 md:flex">
-                <div className="w-[150px] rounded-[26px] bg-ink p-[7px] shadow-[0_18px_40px_rgba(26,24,20,0.2)]">
-                  <div className="aspect-[1320/2868] overflow-hidden rounded-[20px] bg-paperSoft">
+                <div className="w-[150px] rounded-[26px] bg-ink p-[5px] shadow-[0_18px_40px_rgba(26,24,20,0.2)]">
+                  <div className="aspect-[1320/2868] overflow-hidden rounded-[21px] bg-paperSoft">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src="/screenshots/app-annonce.png" alt="" className="h-full w-full object-cover" />
                   </div>

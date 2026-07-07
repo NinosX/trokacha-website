@@ -96,8 +96,8 @@ export default function VerificationPage() {
       {/* Badge + phone */}
       <section className="px-6 py-14">
         <div className="mx-auto grid max-w-[1000px] grid-cols-1 items-center gap-11 md:grid-cols-[270px_1fr]">
-          <div className="mx-auto w-[262px] justify-self-center rounded-[38px] bg-ink p-[9px] shadow-[0_24px_50px_rgba(26,24,20,0.24)]">
-            <div className="aspect-[1290/2796] overflow-hidden rounded-[30px] bg-paperSoft">
+          <div className="mx-auto w-[262px] justify-self-center rounded-[38px] bg-ink p-[6px] shadow-[0_24px_50px_rgba(26,24,20,0.24)]">
+            <div className="aspect-[1290/2796] overflow-hidden rounded-[32px] bg-paperSoft">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/screenshots/verif.png" alt="" className="h-full w-full object-cover" />
             </div>
