@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 const OG_IMAGE = 'https://trokacha.com/logo.png';
 
 export const metadata: Metadata = {
-  title: 'Test DZ — One, Two, Three... | Trokacha',
+  title: 'Test DZ — One, Two, Three...',
   description:
     "À quel point t'es Algérien dans l'âme ? 5 questions, 1 minute. Fais le Test DZ sur Trokacha 🇩🇿",
   openGraph: {
