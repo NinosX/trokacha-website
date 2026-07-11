@@ -5,11 +5,53 @@
       {
         "appIDs": ["DL9U4C6D7T.com.trokacha.app"],
         "appID": "DL9U4C6D7T.com.trokacha.app",
-        "paths": ["/ad/*"],
+        "paths": [
+          "/ad/*",
+          "/match/*",
+          "/proposal/*",
+          "/conversation/*",
+          "/profile",
+          "/profile/*",
+          "/verify",
+          "/create-ad",
+          "/testDZ"
+        ],
         "components": [
           {
             "/": "/ad/*",
             "comment": "Fiche annonce partagée : ouvre l'app sur l'annonce"
+          },
+          {
+            "/": "/match/*",
+            "comment": "Lien email match : ouvre MatchesDetail"
+          },
+          {
+            "/": "/proposal/*",
+            "comment": "Lien email proposition : ouvre PropositionsDetail"
+          },
+          {
+            "/": "/conversation/*",
+            "comment": "Lien email message : ouvre le chat (?sender=)"
+          },
+          {
+            "/": "/profile",
+            "comment": "Lien email avis reçu : ouvre mon profil"
+          },
+          {
+            "/": "/profile/*",
+            "comment": "Lien email nouveau follower : profil public"
+          },
+          {
+            "/": "/verify",
+            "comment": "Lien email vérification refusée : re-soumission"
+          },
+          {
+            "/": "/create-ad",
+            "comment": "Lien email bienvenue : créer une annonce"
+          },
+          {
+            "/": "/testDZ",
+            "comment": "Test DZ : boucle virale carte partagée"
           }
         ]
       }
