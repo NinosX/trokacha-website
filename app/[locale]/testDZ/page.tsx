@@ -6,7 +6,7 @@ import Image from 'next/image';
 // Reprend le patron de app/[locale]/ad/[id]/page.tsx : on tente le deep link
 // vers l'app, et si elle n'est pas installée on retombe sur le store.
 // Cible : la boucle virale du Test DZ (URL gravée dans la carte partagée).
-const APP_STORE_URL = 'https://apps.apple.com/app/trokacha/id6740211562';
+const APP_STORE_URL = 'https://apps.apple.com/app/trokacha/id6757157373';
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.trokacha.app';
 
 export default function TestDZPage() {

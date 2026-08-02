@@ -8,7 +8,9 @@
 // iOS     : scheme `trokacha://` puis repli App Store après un court délai,
 //           SAUF si l'onglet est passé en arrière-plan (= l'app s'est ouverte).
 
-export const APP_STORE_URL = 'https://apps.apple.com/app/trokacha/id6740211562';
+// ⚠️ 6757157373 = ascAppId officiel (eas.json de l'app, build 38 approuvé).
+// L'ancien id6740211562 pointait vers une mauvaise fiche.
+export const APP_STORE_URL = 'https://apps.apple.com/app/trokacha/id6757157373';
 export const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.trokacha.app';
 export const ANDROID_PACKAGE = 'com.trokacha.app';
 

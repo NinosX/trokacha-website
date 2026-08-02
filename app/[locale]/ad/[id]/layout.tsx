@@ -85,7 +85,7 @@ export async function generateMetadata({
     other: {
       // Deep link pour l'app
       'al:ios:url': `trokacha://ad/${id}`,
-      'al:ios:app_store_id': '6740211562',
+      'al:ios:app_store_id': '6757157373',
       'al:ios:app_name': 'Trokacha',
       'al:android:url': `trokacha://ad/${id}`,
       'al:android:package': 'com.trokacha.app',
