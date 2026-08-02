@@ -2,21 +2,26 @@
 
 import { useParams, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
-import { Suspense } from 'react';
+import { Suspense, useCallback, useEffect, useRef } from 'react';
+import { APP_STORE_URL, PLAY_STORE_URL, openTrokachaApp } from '@/lib/openInApp';
 
 // Page interstitielle générique pour les liens des emails de notification
-// (match, proposition, conversation, profil, vérification). Reprend le patron
-// éprouvé de testDZ/page.tsx : bouton (geste utilisateur requis par Chrome
-// pour les schemes) → app si installée, sinon store.
+// (match, proposition, conversation, profil, vérification).
+//
+// 1. TENTATIVE AUTOMATIQUE au montage (sans clic) : c'est le cas nominal quand
+//    l'utilisateur a l'app — il ne doit pas avoir à cliquer.
+// 2. BOUTON MANUEL conservé : Chrome/Safari bloquent les navigations vers un
+//    scheme custom sans geste utilisateur dans plusieurs contextes (webviews
+//    in-app WhatsApp/Instagram notamment) → le bouton reste indispensable.
 //
 // Android : URL intent:// = Chrome ouvre l'app OU bascule Play Store nativement
 // (S.browser_fallback_url) — chemin principal tant que les App Links natifs
 // (/match, /proposal, …) ne sont pas dans le manifest du build courant.
 // iOS : trokacha://… (l'app est déclarée sur le scheme) + fallback App Store.
+// Mécanique partagée avec /ad/[id] : lib/openInApp.ts.
 
-const APP_STORE_URL = 'https://apps.apple.com/app/trokacha/id6740211562';
-const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.trokacha.app';
-const ANDROID_PACKAGE = 'com.trokacha.app';
+/** Laisse la page se peindre (bouton visible) avant la tentative auto. */
+const AUTO_OPEN_DELAY_MS = 400;
 
 export interface InterstitialTexts {
   emoji: string;
@@ -49,28 +54,19 @@ function InterstitialInner({ deepPath, forwardQueryParams = [], texts }: OpenInA
     .join('&');
   const fullPath = forwarded ? `${deepPath}?${forwarded}` : deepPath;
 
-  const openInApp = () => {
-    const ua = navigator.userAgent.toLowerCase();
-    const isAndroid = /android/.test(ua);
-    const isIOS = /iphone|ipad|ipod/.test(ua);
+  const openInApp = useCallback(() => {
+    openTrokachaApp(fullPath);
+  }, [fullPath]);
 
-    if (isAndroid) {
-      // intent:// : Chrome ouvre l'app si installée, sinon redirige Play Store.
-      // Pas besoin de timeout — le fallback est géré nativement par Chrome.
-      window.location.href =
-        `intent://${fullPath}#Intent;scheme=trokacha;package=${ANDROID_PACKAGE};` +
-        `S.browser_fallback_url=${encodeURIComponent(PLAY_STORE_URL)};end`;
-      return;
-    }
-
-    window.location.href = `trokacha://${fullPath}`;
-    // Non installé → store après un court délai (patron identique à testDZ).
-    setTimeout(() => {
-      if (isIOS) {
-        window.location.href = APP_STORE_URL;
-      }
-    }, 1500);
-  };
+  // Tentative automatique au chargement (mobile uniquement). Le ref évite le
+  // double déclenchement du StrictMode de React 19 en dev.
+  const autoAttemptedRef = useRef(false);
+  useEffect(() => {
+    if (autoAttemptedRef.current) return;
+    autoAttemptedRef.current = true;
+    const timer = window.setTimeout(() => openTrokachaApp(fullPath, { auto: true }), AUTO_OPEN_DELAY_MS);
+    return () => window.clearTimeout(timer);
+  }, [fullPath]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F2E7D3] to-[#FBF6EC] flex flex-col items-center justify-center px-6 py-12">

@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
+import { APP_STORE_URL, PLAY_STORE_URL, openTrokachaApp } from '@/lib/openInApp';
 
 interface Ad {
   id: string;
@@ -21,8 +22,8 @@ interface Ad {
   userId?: string;
 }
 
-const APP_STORE_URL = 'https://apps.apple.com/app/trokacha/id6740211562';
-const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.trokacha.app';
+/** Laisse la page se peindre avant la tentative auto d'ouverture de l'app. */
+const AUTO_OPEN_DELAY_MS = 400;
 
 export default function AdPage() {
   const params = useParams();
@@ -57,23 +58,24 @@ export default function AdPage() {
     fetchAd();
   }, [id]);
 
-  // Essayer d'ouvrir l'app
-  const openInApp = () => {
-    const deepLink = `trokacha://ad/${id}`;
+  // Ouverture de l'app — mécanique alignée sur l'interstitiel (lib/openInApp) :
+  // Android via intent:// (repli Play Store natif) au lieu du simple scheme
+  // trokacha:// qui ne repliait sur rien, iOS via scheme + repli App Store.
+  const openInApp = useCallback(() => {
+    openTrokachaApp(`ad/${id}`);
+  }, [id]);
 
-    // Essayer d'ouvrir l'app
-    window.location.href = deepLink;
-
-    // Si l'app n'est pas installée, rediriger vers le store après un délai
-    setTimeout(() => {
-      const userAgent = navigator.userAgent.toLowerCase();
-      if (/iphone|ipad|ipod/.test(userAgent)) {
-        window.location.href = APP_STORE_URL;
-      } else if (/android/.test(userAgent)) {
-        window.location.href = PLAY_STORE_URL;
-      }
-    }, 1500);
-  };
+  // Tentative automatique une fois l'annonce chargée (mobile uniquement).
+  // On attend la fin du fetch pour ne pas envoyer vers l'app/le store si
+  // l'annonce n'existe plus — dans ce cas l'écran « introuvable » doit rester.
+  const autoAttemptedRef = useRef(false);
+  useEffect(() => {
+    if (loading || error || !ad) return;
+    if (autoAttemptedRef.current) return;
+    autoAttemptedRef.current = true;
+    const timer = window.setTimeout(() => openTrokachaApp(`ad/${id}`, { auto: true }), AUTO_OPEN_DELAY_MS);
+    return () => window.clearTimeout(timer);
+  }, [loading, error, ad, id]);
 
   const texts = {
     fr: {
