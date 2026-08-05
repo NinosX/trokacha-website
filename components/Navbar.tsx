@@ -5,7 +5,7 @@ import { Menu, X } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
-import { SHOW_TRANSPORT } from "@/lib/featureFlags";
+import { SHOW_BOUTIQUES, SHOW_TRANSPORT } from "@/lib/featureFlags";
 import Image from "next/image";
 
 const localeNames: Record<string, string> = {
@@ -35,6 +35,7 @@ export function Navbar() {
   const navLinks = [
     { href: "/echange", label: t("echange"), isSection: false },
     ...(SHOW_TRANSPORT ? [{ href: "/transport", label: t("transport"), isSection: false }] : []),
+    ...(SHOW_BOUTIQUES ? [{ href: "/boutiques", label: t("boutiques"), isSection: false }] : []),
     { href: "/chat", label: t("chat"), isSection: false },
     { href: "/verification", label: t("verification"), isSection: false },
     { href: "/contact", label: t("contact"), isSection: false },
@@ -45,6 +46,7 @@ export function Navbar() {
     ...(isHomePage ? [{ href: "#features", label: t("features"), isSection: true }] : []),
     { href: "/echange", label: t("echange"), isSection: false },
     ...(SHOW_TRANSPORT ? [{ href: "/transport", label: t("transport"), isSection: false }] : []),
+    ...(SHOW_BOUTIQUES ? [{ href: "/boutiques", label: t("boutiques"), isSection: false }] : []),
     { href: "/chat", label: t("chat"), isSection: false },
     { href: "/verification", label: t("verification"), isSection: false },
     ...(isHomePage ? [{ href: "#faq", label: t("faq"), isSection: true }] : []),
