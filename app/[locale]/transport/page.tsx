@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { Navbar } from "@/components/Navbar";
 import { Link } from "@/i18n/navigation";
 import { ArrowLeft, ArrowRight, Package, Car, MapPin, Clock, Shield, Users } from "lucide-react";
-import { BetaDownloadButtons } from "@/components/BetaDownloadButtons";
+import { DownloadButtons } from "@/components/DownloadButtons";
 import { useInView } from "@/hooks/useInView";
 import { VideoPhone } from "@/components/VideoPhone";
 import { SHOW_TRANSPORT } from "@/lib/featureFlags";
@@ -256,7 +256,7 @@ export default function TransportPage() {
               {t("ctaSubtitle")}
             </p>
             <div className="mb-8">
-              <BetaDownloadButtons variant="compact" />
+              <DownloadButtons variant="compact" />
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Trokacha - La plateforme algérienne tout-en-un",
-    "description": "BETA disponible ! L'app algérienne pour troquer, vendre, transporter des colis et covoiturer. Téléchargez et testez maintenant."
+    "description": "L'app algérienne pour troquer, vendre et acheter entre particuliers. Disponible sur l'App Store et Google Play."
   },
   "navbar": {
     "home": "Accueil",
@@ -12,13 +12,13 @@
     "chat": "Chat",
     "verification": "Vérification",
     "faq": "FAQ",
-    "signup": "Tester la Beta",
+    "signup": "Télécharger l'app",
     "terms": "Conditions d'utilisation",
     "privacy": "Politique de confidentialité",
     "contact": "Contact"
   },
   "hero": {
-    "badge": "BETA disponible",
+    "badge": "Disponible sur iOS & Android",
     "title": "Trokacha",
     "subtitle": "Vendez, achetez, échangez — à notre façon",
     "description": "Troc . Vente . Achat . Services . Immobilier . Transport de Colis . Covoiturage",
@@ -28,7 +28,6 @@
       "covoiturage": "Covoiturage"
     },
     "comingSoon": "Bientôt sur",
-    "betaVersion": "Version BETA",
     "download": "Télécharger",
     "appStore": "App Store",
     "playStore": "Play Store",
@@ -140,7 +139,7 @@
     },
     "backHome": "Retour à l'accueil",
     "ctaTitle": "Prêt à rejoindre la communauté ?",
-    "ctaSubtitle": "Téléchargez la BETA et vérifiez votre profil pour échanger en toute confiance",
+    "ctaSubtitle": "Téléchargez l'app et vérifiez votre profil pour échanger en toute confiance",
     "discoverEchange": "Découvrir le Troc",
     "discoverTransport": "Découvrir le Transport",
     "allRightsReserved": "Tous droits réservés."
@@ -213,8 +212,8 @@
     "subtitle": "Tout ce que vous devez savoir sur Trokacha",
     "questions": {
       "q1": {
-        "question": "Comment tester Trokacha ?",
-        "answer": "Trokacha est disponible en version BETA ! Téléchargez-la sur TestFlight (iOS) ou en APK (Android) directement depuis cette page. Vos retours nous aident à améliorer l'app avant le lancement officiel."
+        "question": "Comment télécharger Trokacha ?",
+        "answer": "Trokacha est disponible gratuitement sur l'App Store (iOS) et Google Play (Android). Téléchargez l'app et créez votre compte en quelques secondes."
       },
       "q2": {
         "question": "Comment fonctionne le troc sur Trokacha ?",
@@ -239,8 +238,8 @@
     }
   },
   "cta": {
-    "title": "Testez la BETA !",
-    "subtitle": "Téléchargez Trokacha, testez et aidez-nous à construire la meilleure app d'échange en Algérie.",
+    "title": "Téléchargez Trokacha !",
+    "subtitle": "Téléchargez Trokacha et rejoignez la communauté d'échange en Algérie.",
     "button": "Je m'inscris",
     "note": "Vos retours nous aident à améliorer l'app avant le lancement officiel"
   },
@@ -259,7 +258,7 @@
     "copyright": "Trokacha. Tous droits réservés."
   },
   "socialProof": {
-    "text": "Déjà {count}+ beta testeurs"
+    "text": "Déjà {count}+ membres"
   },
   "emailForm": {
     "placeholder": "votre@email.com",
@@ -267,14 +266,6 @@
     "errorConnection": "Erreur de connexion",
     "errorServer": "Erreur serveur",
     "errorInvalid": "Email invalide"
-  },
-  "androidBeta": {
-    "modalTitle": "Testez sur Android",
-    "modalDescription": "Entrez votre adresse Gmail pour recevoir le lien de téléchargement Play Store.",
-    "placeholder": "votre-gmail@gmail.com",
-    "submit": "Recevoir l'invitation",
-    "success": "C'est noté ! Vous recevrez l'invitation Play Store très bientôt.",
-    "gmailNote": "Utilisez l'adresse Gmail associée à votre compte Google Play"
   },
   "privacy": {
     "title": "Politique de Confidentialité",
@@ -531,7 +522,7 @@
     "screenshotsSubtitle": "Découvrez l'interface intuitive de Trokacha",
     "screenshotPlaceholder": "Capture d'écran bientôt disponible",
     "ctaTitle": "Prêt à échanger ?",
-    "ctaSubtitle": "Téléchargez la BETA et testez le troc, la vente et l'achat sur Trokacha",
+    "ctaSubtitle": "Téléchargez l'app et lancez-vous dans le troc, la vente et l'achat sur Trokacha",
     "discoverTransport": "Découvrir le Transport",
     "discoverChat": "Découvrir le Chat",
     "allRightsReserved": "Tous droits réservés."
@@ -627,7 +618,7 @@
       "description": "Visualisez instantanément les places restantes sur chaque trajet. Plus besoin de demander, l'information est mise à jour automatiquement !"
     },
     "ctaTitle": "Prêt à voyager ?",
-    "ctaSubtitle": "Téléchargez la BETA et testez le transport collaboratif sur Trokacha",
+    "ctaSubtitle": "Téléchargez l'app et découvrez le transport collaboratif sur Trokacha",
     "discoverEchange": "Découvrir le Troc",
     "discoverChat": "Découvrir le Chat",
     "allRightsReserved": "Tous droits réservés."
@@ -696,7 +687,7 @@
       "placeholder": "Écrivez un message..."
     },
     "ctaTitle": "Prêt à discuter ?",
-    "ctaSubtitle": "Téléchargez la BETA et testez le chat intégré de Trokacha",
+    "ctaSubtitle": "Téléchargez l'app et discutez directement dans Trokacha",
     "discoverEchange": "Découvrir le Troc",
     "discoverTransport": "Découvrir le Transport",
     "allRightsReserved": "Tous droits réservés."

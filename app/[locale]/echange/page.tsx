@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Link } from "@/i18n/navigation";
 import { useInView } from "@/hooks/useInView";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/storeLinks";
 
 const stroke = {
   fill: "none",
@@ -155,12 +156,20 @@ export default function EchangePage() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a
-              href="https://testflight.apple.com/join/8bUpfbkS"
+              href={APP_STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-[14px] bg-ink px-[22px] py-[13px] text-[15px] font-bold text-paperSoft transition-transform hover:scale-[1.03]"
             >
-              {tHero("download")}
+              {tHero("download")} iOS
+            </a>
+            <a
+              href={PLAY_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-[14px] bg-ink px-[22px] py-[13px] text-[15px] font-bold text-paperSoft transition-transform hover:scale-[1.03]"
+            >
+              {tHero("download")} Android
             </a>
             <Link
               href="/chat"

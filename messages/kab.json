@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Trokacha - Aseddu azzayri i yal taɣawsa",
-    "description": "BETA tella! Aseddu azzayri n umsenfel, tizwert, assiweḍ n tqecwalt d umyafaṛ. Sider-it, ɛreḍ-it tura."
+    "description": "Aseddu azzayri n umsenfel, tizwert d tiɣin gar yemdanen. Yella deg App Store d Google Play."
   },
   "navbar": {
     "home": "Axxam",
@@ -12,13 +12,13 @@
     "chat": "Ameslay",
     "verification": "Asenqed",
     "faq": "Isteqsiyen",
-    "signup": "Ɛreḍ Beta",
+    "signup": "Sider aseddu",
     "terms": "Tiwtilin n useqdec",
     "privacy": "Aḥraz n tbaḍnit",
     "contact": "Nermes-aɣ-d"
   },
   "hero": {
-    "badge": "BETA tella",
+    "badge": "Yella deg iOS d Android",
     "title": "Trokacha",
     "subtitle": "Zenz, aɣ, senfel — s tarrayt-nneɣ",
     "description": "Amsenfel . Tizwert . Tiɣin . Imeẓla . Axxam . Assiweḍ n tqecwalt . Amyafaṛ",
@@ -28,7 +28,6 @@
       "covoiturage": "Amyafaṛ"
     },
     "comingSoon": "Qrib ad yili ɣef",
-    "betaVersion": "Lqem BETA",
     "download": "Sader",
     "appStore": "App Store",
     "playStore": "Play Store",
@@ -140,7 +139,7 @@
     },
     "backHome": "Uɣal ɣer uxxam",
     "ctaTitle": "Theggiḍ ad d-ternuḍ ɣur-neɣ?",
-    "ctaSubtitle": "Sider lqem BETA, senqed amaɣnu-k akken ad tsenfleḍ bla ccekk",
+    "ctaSubtitle": "Sider aseddu, senqed amaɣnu-k akken ad tsenfleḍ bla ccekk",
     "discoverEchange": "Wali amsenfel",
     "discoverTransport": "Wali assiweḍ",
     "allRightsReserved": "Akk izerfan ttwaḥerzen."
@@ -213,8 +212,8 @@
     "subtitle": "Akk ayen tesriḍ ɣef Trokacha",
     "questions": {
       "q1": {
-        "question": "Amek ara ɛerḍeɣ Trokacha?",
-        "answer": "Trokacha yella s lqem BETA! Sider-it seg TestFlight (iOS) neɣ d APK (Android) srid seg usebter-agi. Tikkin-nwen tɛawen-aɣ ad nesnerni aseddu send ad d-yeffeɣ s wudem unṣib."
+        "question": "Amek ara d-sidreɣ Trokacha?",
+        "answer": "Trokacha yella baṭel deg App Store (iOS) d Google Play (Android). Sider aseddu, rnu amiḍan-ik deg kra n tesdatin."
       },
       "q2": {
         "question": "Amek i yeddu umsenfel di Trokacha?",
@@ -239,8 +238,8 @@
     }
   },
   "cta": {
-    "title": "Ɛreḍ lqem BETA!",
-    "subtitle": "Sider Trokacha, ɛreḍ-it, ɛawen-aɣ ad nebnu aseddu igerrzen n umsenfel di Lezzayer.",
+    "title": "Sider Trokacha!",
+    "subtitle": "Sider Trokacha, rnu ɣer tmezdagnut n umsenfel di Lezzayer.",
     "button": "Ad jerreɣ",
     "note": "Tikkin-nwen tɛawen-aɣ ad nesnerni aseddu send ad d-yeffeɣ s wudem unṣib"
   },
@@ -259,7 +258,7 @@
     "copyright": "Trokacha. Akk izerfan ttwaḥerzen."
   },
   "socialProof": {
-    "text": "Yakan {count}+ i yettɛerriḍen beta"
+    "text": "Yakan {count}+ n yiɛeggalen"
   },
   "emailForm": {
     "placeholder": "imayl-ik@amedya.com",
@@ -267,14 +266,6 @@
     "errorConnection": "Tuqqna ur teddi ara",
     "errorServer": "Ugur deg uqeddac",
     "errorInvalid": "Imayl-agi mačči d ameɣtu"
-  },
-  "androidBeta": {
-    "modalTitle": "Ɛreḍ ɣef Android",
-    "modalDescription": "Sekcem tansa Gmail-ik akken ad d-tawiḍ aseɣwen n usider seg Play Store.",
-    "placeholder": "imayl-ik@gmail.com",
-    "submit": "Awi-d tinubga",
-    "success": "Tedda! Ad d-tawiḍ tinubga n Play Store qrib.",
-    "gmailNote": "Seqdec tansa Gmail yeqqnen ɣer umiḍan-ik Google Play"
   },
   "privacy": {
     "title": "Aḥraz n tbaḍnit",
@@ -531,7 +522,7 @@
     "screenshotsSubtitle": "Wali udem n Trokacha",
     "screenshotPlaceholder": "Tiswirin ad d-asent",
     "ctaTitle": "Theggiḍ?",
-    "ctaSubtitle": "Sider lqem BETA, ɛreḍ amsenfel, tizwert d tiɣin ɣef Trokacha",
+    "ctaSubtitle": "Sider aseddu, bdu amsenfel, tizwert d tiɣin ɣef Trokacha",
     "discoverTransport": "Wali assiweḍ",
     "discoverChat": "Wali ameslay",
     "allRightsReserved": "Akk izerfan ttwaḥerzen."
@@ -627,7 +618,7 @@
       "description": "Wali srid acḥal n yidigen i d-yeqqimen ɣef yal abrid. Talɣut tettwaleqqem weḥd-s!"
     },
     "ctaTitle": "Theggiḍ ad tefareḍ?",
-    "ctaSubtitle": "Sider lqem BETA, ɛreḍ assiweḍ n twizi ɣef Trokacha",
+    "ctaSubtitle": "Sider aseddu, af-d assiweḍ n twizi ɣef Trokacha",
     "discoverEchange": "Wali amsenfel",
     "discoverChat": "Wali ameslay",
     "allRightsReserved": "Akk izerfan ttwaḥerzen."
@@ -696,7 +687,7 @@
       "placeholder": "Aru izen..."
     },
     "ctaTitle": "Theggiḍ ad tmeslayeḍ?",
-    "ctaSubtitle": "Sider lqem BETA, ɛreḍ ameslay yeddan n Trokacha",
+    "ctaSubtitle": "Sider aseddu, meslay srid deg Trokacha",
     "discoverEchange": "Wali amsenfel",
     "discoverTransport": "Wali assiweḍ",
     "allRightsReserved": "Akk izerfan ttwaḥerzen."

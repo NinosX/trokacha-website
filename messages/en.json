@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Trokacha - The Algerian All-in-One Platform",
-    "description": "BETA available! The Algerian app for bartering, selling, parcel transport and carpooling. Download and test now."
+    "description": "The Algerian app to barter, sell and buy between individuals. Available on the App Store and Google Play."
   },
   "navbar": {
     "home": "Home",
@@ -12,13 +12,13 @@
     "chat": "Chat",
     "verification": "Verification",
     "faq": "FAQ",
-    "signup": "Try the Beta",
+    "signup": "Download the app",
     "terms": "Terms of Use",
     "privacy": "Privacy Policy",
     "contact": "Contact"
   },
   "hero": {
-    "badge": "BETA available",
+    "badge": "Available on iOS & Android",
     "title": "Trokacha",
     "subtitle": "Sell, buy, trade — our way",
     "description": "Barter . Sale . Purchase . Services . Real Estate . Parcel Transport . Carpooling",
@@ -28,7 +28,6 @@
       "covoiturage": "Carpooling"
     },
     "comingSoon": "Coming soon on",
-    "betaVersion": "BETA Version",
     "download": "Download",
     "appStore": "App Store",
     "playStore": "Play Store",
@@ -140,7 +139,7 @@
     },
     "backHome": "Back to home",
     "ctaTitle": "Ready to join the community?",
-    "ctaSubtitle": "Download the BETA and verify your profile to exchange with confidence",
+    "ctaSubtitle": "Download the app and verify your profile to exchange with confidence",
     "discoverEchange": "Discover Barter",
     "discoverTransport": "Discover Transport",
     "allRightsReserved": "All rights reserved."
@@ -213,8 +212,8 @@
     "subtitle": "Everything you need to know about Trokacha",
     "questions": {
       "q1": {
-        "question": "How to test Trokacha?",
-        "answer": "Trokacha is available in BETA! Download it on TestFlight (iOS) or as an APK (Android) directly from this page. Your feedback helps us improve the app before the official launch."
+        "question": "How to download Trokacha?",
+        "answer": "Trokacha is available for free on the App Store (iOS) and Google Play (Android). Download the app and create your account in seconds."
       },
       "q2": {
         "question": "How does bartering work on Trokacha?",
@@ -239,8 +238,8 @@
     }
   },
   "cta": {
-    "title": "Try the BETA!",
-    "subtitle": "Download Trokacha, test it and help us build the best exchange app in Algeria.",
+    "title": "Download Trokacha!",
+    "subtitle": "Download Trokacha and join the exchange community in Algeria.",
     "button": "Sign me up",
     "note": "Your feedback helps us improve the app before the official launch"
   },
@@ -259,7 +258,7 @@
     "copyright": "Trokacha. All rights reserved."
   },
   "socialProof": {
-    "text": "Already {count}+ beta testers"
+    "text": "Already {count}+ members"
   },
   "emailForm": {
     "placeholder": "your@email.com",
@@ -267,14 +266,6 @@
     "errorConnection": "Connection error",
     "errorServer": "Server error",
     "errorInvalid": "Invalid email"
-  },
-  "androidBeta": {
-    "modalTitle": "Test on Android",
-    "modalDescription": "Enter your Gmail address to receive the Play Store download link.",
-    "placeholder": "your-gmail@gmail.com",
-    "submit": "Get the invitation",
-    "success": "Got it! You'll receive the Play Store invitation very soon.",
-    "gmailNote": "Use the Gmail address linked to your Google Play account"
   },
   "privacy": {
     "title": "Privacy Policy",
@@ -531,7 +522,7 @@
     "screenshotsSubtitle": "Discover Trokacha's intuitive interface",
     "screenshotPlaceholder": "Screenshot coming soon",
     "ctaTitle": "Ready to exchange?",
-    "ctaSubtitle": "Download the BETA and test bartering, buying and selling on Trokacha",
+    "ctaSubtitle": "Download the app and start bartering, buying and selling on Trokacha",
     "discoverTransport": "Discover Transport",
     "discoverChat": "Discover Chat",
     "allRightsReserved": "All rights reserved."
@@ -627,7 +618,7 @@
       "description": "Instantly see remaining seats on each trip. No need to ask, the information is automatically updated!"
     },
     "ctaTitle": "Ready to travel?",
-    "ctaSubtitle": "Download the BETA and test collaborative transport on Trokacha",
+    "ctaSubtitle": "Download the app and discover collaborative transport on Trokacha",
     "discoverEchange": "Discover Barter",
     "discoverChat": "Discover Chat",
     "allRightsReserved": "All rights reserved."
@@ -696,7 +687,7 @@
       "placeholder": "Write a message..."
     },
     "ctaTitle": "Ready to chat?",
-    "ctaSubtitle": "Download the BETA and test Trokacha's built-in chat",
+    "ctaSubtitle": "Download the app and chat directly in Trokacha",
     "discoverEchange": "Discover Barter",
     "discoverTransport": "Discover Transport",
     "allRightsReserved": "All rights reserved."

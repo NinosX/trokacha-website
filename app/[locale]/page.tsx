@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { EmailForm } from "@/components/EmailForm";
-import { AndroidBetaModal } from "@/components/AndroidBetaModal";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/storeLinks";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { useTranslations } from "next-intl";
@@ -126,7 +125,6 @@ const heroScreens = [
 
 export default function Home() {
   const t = useTranslations();
-  const [showAndroidModal, setShowAndroidModal] = useState(false);
 
   const categories = t("hero.description")
     .split(/[.·]/)
@@ -170,27 +168,29 @@ export default function Home() {
 
             <div className="mb-[26px] flex flex-wrap gap-3">
               <a
-                href="https://testflight.apple.com/join/8bUpfbkS"
+                href={APP_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-[11px] rounded-2xl bg-ink px-[22px] py-[14px] font-semibold text-paperSoft transition-transform hover:scale-[1.03]"
               >
                 <AppleIcon />
                 <span className="text-left">
-                  <span className="block text-[11px] opacity-70">{t("hero.betaVersion")}</span>
+                  <span className="block text-[11px] opacity-70">{t("hero.appStore")}</span>
                   <span className="block text-[16px] font-bold">{t("hero.download")} iOS</span>
                 </span>
               </a>
-              <button
-                onClick={() => setShowAndroidModal(true)}
+              <a
+                href={PLAY_STORE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-[11px] rounded-2xl border border-line bg-white px-[22px] py-[14px] font-semibold text-ink transition-transform hover:scale-[1.03]"
               >
                 <AndroidIcon />
                 <span className="text-left">
-                  <span className="block text-[11px] opacity-60">{t("hero.betaVersion")}</span>
+                  <span className="block text-[11px] opacity-60">{t("hero.playStore")}</span>
                   <span className="block text-[16px] font-bold">{t("hero.download")} Android</span>
                 </span>
-              </button>
+              </a>
             </div>
 
             {/* Social proof */}
@@ -312,7 +312,7 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <a
-              href="https://testflight.apple.com/join/8bUpfbkS"
+              href={APP_STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-[11px] rounded-2xl bg-paperSoft px-6 py-[14px] font-bold text-ink transition-transform hover:scale-[1.03]"
@@ -320,13 +320,15 @@ export default function Home() {
               <AppleIcon />
               {t("hero.appStore")}
             </a>
-            <button
-              onClick={() => setShowAndroidModal(true)}
+            <a
+              href={PLAY_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-[11px] rounded-2xl border border-inkSoft bg-transparent px-6 py-[14px] font-bold text-paperSoft transition-colors hover:bg-white/5"
             >
               <AndroidIcon />
               {t("hero.playStore")}
-            </button>
+            </a>
           </div>
 
           {/* Notification email (optionnel) */}
@@ -339,8 +341,6 @@ export default function Home() {
       </section>
 
       <Footer />
-
-      <AndroidBetaModal isOpen={showAndroidModal} onClose={() => setShowAndroidModal(false)} />
     </main>
   );
 }
