@@ -5,7 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Link } from "@/i18n/navigation";
 import { useInView } from "@/hooks/useInView";
-import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/storeLinks";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/openInApp";
 
 const stroke = {
   fill: "none",

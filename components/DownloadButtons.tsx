@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/storeLinks";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/openInApp";
 
 export function DownloadButtons({ variant = "default" }: { variant?: "default" | "compact" }) {
   const t = useTranslations("hero");

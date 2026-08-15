@@ -1,7 +1,7 @@
 "use client";
 
 import { EmailForm } from "@/components/EmailForm";
-import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/storeLinks";
+import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/openInApp";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { useTranslations } from "next-intl";
