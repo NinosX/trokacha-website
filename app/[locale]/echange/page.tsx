@@ -154,12 +154,12 @@ export default function EchangePage() {
           <p className="mx-auto mb-6 max-w-[46ch] text-[16px] leading-[1.55] text-inkSoft">
             {t("ctaSubtitle")}
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="mx-auto flex w-full max-w-[360px] flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center">
             <a
               href={APP_STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-[14px] bg-ink px-[22px] py-[13px] text-[15px] font-bold text-paperSoft transition-transform hover:scale-[1.03]"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-[14px] bg-ink px-[22px] py-[13px] text-[15px] font-bold text-paperSoft transition-transform hover:scale-[1.03] sm:w-auto"
             >
               {tHero("download")} iOS
             </a>
@@ -167,13 +167,13 @@ export default function EchangePage() {
               href={PLAY_STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-[14px] bg-ink px-[22px] py-[13px] text-[15px] font-bold text-paperSoft transition-transform hover:scale-[1.03]"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-[14px] bg-ink px-[22px] py-[13px] text-[15px] font-bold text-paperSoft transition-transform hover:scale-[1.03] sm:w-auto"
             >
               {tHero("download")} Android
             </a>
             <Link
               href="/chat"
-              className="inline-flex items-center gap-2 rounded-[14px] border border-line bg-white px-[22px] py-[13px] text-[15px] font-bold text-ink transition-colors hover:bg-paperSoft"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-[14px] border border-line bg-white px-[22px] py-[13px] text-[15px] font-bold text-ink transition-colors hover:bg-paperSoft sm:w-auto"
             >
               {t("discoverChat")}
               <IconArrowRight />

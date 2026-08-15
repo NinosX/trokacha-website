@@ -166,30 +166,32 @@ export default function Home() {
               <ScreenshotCarousel size="compact" screenshots={heroScreens} />
             </div>
 
-            <div className="mb-[26px] flex flex-wrap gap-3">
+            <div className="mx-auto mb-[26px] flex w-full max-w-[360px] flex-col gap-3 sm:mx-0 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap">
               <a
                 href={APP_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-[11px] rounded-2xl bg-ink px-[22px] py-[14px] font-semibold text-paperSoft transition-transform hover:scale-[1.03]"
+                className="inline-flex w-full items-center gap-[12px] rounded-2xl bg-ink px-[22px] py-[14px] font-semibold text-paperSoft transition-transform hover:scale-[1.03] sm:w-auto"
               >
                 <AppleIcon />
-                <span className="text-left">
+                <span className="flex-1 text-left sm:flex-none">
                   <span className="block text-[11px] opacity-70">{t("hero.appStore")}</span>
                   <span className="block text-[16px] font-bold">{t("hero.download")} iOS</span>
                 </span>
+                <span aria-hidden className="text-[18px] opacity-40 sm:hidden">›</span>
               </a>
               <a
                 href={PLAY_STORE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-[11px] rounded-2xl border border-line bg-white px-[22px] py-[14px] font-semibold text-ink transition-transform hover:scale-[1.03]"
+                className="inline-flex w-full items-center gap-[12px] rounded-2xl border border-line bg-white px-[22px] py-[14px] font-semibold text-ink transition-transform hover:scale-[1.03] sm:w-auto"
               >
                 <AndroidIcon />
-                <span className="text-left">
+                <span className="flex-1 text-left sm:flex-none">
                   <span className="block text-[11px] opacity-60">{t("hero.playStore")}</span>
                   <span className="block text-[16px] font-bold">{t("hero.download")} Android</span>
                 </span>
+                <span aria-hidden className="text-[18px] opacity-40 sm:hidden">›</span>
               </a>
             </div>
 
@@ -310,12 +312,12 @@ export default function Home() {
           <p className="mx-auto mb-[30px] max-w-[52ch] text-[18px] leading-[1.55] text-line2">
             {t("cta.subtitle")}
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="mx-auto flex w-full max-w-[360px] flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:justify-center">
             <a
               href={APP_STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-[11px] rounded-2xl bg-paperSoft px-6 py-[14px] font-bold text-ink transition-transform hover:scale-[1.03]"
+              className="inline-flex w-full items-center justify-center gap-[11px] rounded-2xl bg-paperSoft px-6 py-[14px] font-bold text-ink transition-transform hover:scale-[1.03] sm:w-auto"
             >
               <AppleIcon />
               {t("hero.appStore")}
@@ -324,7 +326,7 @@ export default function Home() {
               href={PLAY_STORE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-[11px] rounded-2xl border border-inkSoft bg-transparent px-6 py-[14px] font-bold text-paperSoft transition-colors hover:bg-white/5"
+              className="inline-flex w-full items-center justify-center gap-[11px] rounded-2xl border border-inkSoft bg-transparent px-6 py-[14px] font-bold text-paperSoft transition-colors hover:bg-white/5 sm:w-auto"
             >
               <AndroidIcon />
               {t("hero.playStore")}
