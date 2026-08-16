@@ -118,7 +118,7 @@ function InterstitialInner({ deepPath, forwardQueryParams = [], texts }: OpenInA
         </div>
       </div>
 
-      <p className="text-xs text-[#a08e75] mt-8">Trokacha — le troc nouvelle génération 🇩🇿</p>
+      <p className="text-xs text-[#a08e75] mt-8">Trokacha, le troc nouvelle génération 🇩🇿</p>
     </div>
   );
 }

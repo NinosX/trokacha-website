@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
-  title: 'Trokacha — Message',
+  title: 'Trokacha · Message',
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

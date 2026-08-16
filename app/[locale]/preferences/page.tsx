@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
-  title: 'Trokacha — Préférences email',
+  title: 'Trokacha · Préférences email',
 };
 
 export default async function PreferencesPage({ params }: { params: Promise<{ locale: string }> }) {

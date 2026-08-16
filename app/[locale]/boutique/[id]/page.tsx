@@ -47,7 +47,7 @@ const TEXTS: Record<SiteLocale, Record<string, string>> = {
     metaSuffix: 'Boutique à',
     metaFallbackTitle: 'Boutique Trokacha',
     metaFallbackDesc: 'Découvrez cette boutique sur Trokacha.',
-    hiddenTitle: 'Trokacha — Boutique',
+    hiddenTitle: 'Trokacha · Boutique',
     sectors: 'Secteurs',
     hours: 'Horaires',
     ramadan: 'Horaires Ramadan',
@@ -69,7 +69,7 @@ const TEXTS: Record<SiteLocale, Record<string, string>> = {
     metaSuffix: 'Shop in',
     metaFallbackTitle: 'Trokacha shop',
     metaFallbackDesc: 'Discover this shop on Trokacha.',
-    hiddenTitle: 'Trokacha — Shop',
+    hiddenTitle: 'Trokacha · Shop',
     sectors: 'Sectors',
     hours: 'Opening hours',
     ramadan: 'Ramadan hours',
@@ -91,7 +91,7 @@ const TEXTS: Record<SiteLocale, Record<string, string>> = {
     metaSuffix: 'محل في',
     metaFallbackTitle: 'محل تروكاشا',
     metaFallbackDesc: 'اكتشف هاد المحل في تروكاشا.',
-    hiddenTitle: 'تروكاشا — محل',
+    hiddenTitle: 'تروكاشا · محل',
     sectors: 'القطاعات',
     hours: 'أوقات العمل',
     ramadan: 'أوقات رمضان',
@@ -114,7 +114,7 @@ const TEXTS: Record<SiteLocale, Record<string, string>> = {
 function metaTitle(boutique: Boutique, t: Record<string, string>): string {
   const nom = (boutique.nom || '').trim() || t.metaFallbackTitle;
   const city = boutiqueCity(boutique);
-  return city ? `${nom} — ${t.metaSuffix} ${city}` : `${nom} — ${t.metaFallbackTitle}`;
+  return city ? `${nom} · ${t.metaSuffix} ${city}` : `${nom} · ${t.metaFallbackTitle}`;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -381,7 +381,7 @@ export default async function BoutiquePublicPage({ params }: PageProps) {
 
                     <div className="p-3">
                       <p className="line-clamp-2 text-[14.5px] font-semibold text-ink">
-                        {ad.title || '—'}
+                        {ad.title || '·'}
                       </p>
                       <p className="mt-1 font-display text-[15px] font-bold text-cash">
                         {typeof ad.price === 'number' ? `${formatAmount(ad.price)} DA` : t.onRequest}

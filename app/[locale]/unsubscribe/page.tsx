@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
-  title: 'Trokacha — Désinscription',
+  title: 'Trokacha · Désinscription',
 };
 
 export default async function UnsubscribePage({ params }: { params: Promise<{ locale: string }> }) {

@@ -33,7 +33,7 @@ const TEXTS: Record<SiteLocale, Record<string, string>> = {
     metaDesc: 'Découvrez les boutiques algériennes présentes sur Trokacha.',
     subtitle: 'Des vitrines de commerçants algériens, wilaya par wilaya.',
     empty: 'Aucune boutique pour le moment. Reviens vite !',
-    hiddenTitle: 'Trokacha — Boutiques',
+    hiddenTitle: 'Trokacha · Boutiques',
   },
   en: {
     title: 'Trokacha shops',
@@ -41,7 +41,7 @@ const TEXTS: Record<SiteLocale, Record<string, string>> = {
     metaDesc: 'Discover the Algerian shops on Trokacha.',
     subtitle: 'Storefronts from Algerian sellers, wilaya by wilaya.',
     empty: 'No shop yet. Check back soon!',
-    hiddenTitle: 'Trokacha — Shops',
+    hiddenTitle: 'Trokacha · Shops',
   },
   ar: {
     title: 'حوانت تروكاشا',
@@ -49,7 +49,7 @@ const TEXTS: Record<SiteLocale, Record<string, string>> = {
     metaDesc: 'اكتشف الحوانت الجزائرية الموجودة في تروكاشا.',
     subtitle: 'واجهات تجار جزائريين، ولاية بولاية.',
     empty: 'ما كاين حتى حانوت للدرك. ارجع قريب!',
-    hiddenTitle: 'تروكاشا — الحوانت',
+    hiddenTitle: 'تروكاشا · الحوانت',
   },
 };
 
@@ -129,7 +129,7 @@ export default async function BoutiquesDirectoryPage({ params }: PageProps) {
                   </div>
 
                   <div className="min-w-0">
-                    <p className="truncate text-[16px] font-bold text-ink">{boutique.nom || '—'}</p>
+                    <p className="truncate text-[16px] font-bold text-ink">{boutique.nom || '·'}</p>
                     {place && (
                       <p className="mt-[2px] flex items-center gap-1 truncate text-[14px] text-inkMuted">
                         <MapPin className="h-[14px] w-[14px] shrink-0" />

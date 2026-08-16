@@ -10,7 +10,7 @@ import { BoutiqueInterstitial } from '@/components/BoutiqueInterstitial';
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
-  title: 'Trokacha — Ma boutique',
+  title: 'Trokacha · Ma boutique',
 };
 
 export default function Page() {

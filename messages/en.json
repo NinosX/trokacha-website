@@ -20,7 +20,7 @@
   "hero": {
     "badge": "Available on iOS & Android",
     "title": "Trokacha",
-    "subtitle": "Sell, buy, trade — our way",
+    "subtitle": "Sell, buy, trade. Our way",
     "description": "Barter . Sale . Purchase . Services . Real Estate . Parcel Transport . Carpooling",
     "categories": {
       "trocVenteAchat": "Barter, Buy & Sell",
@@ -50,7 +50,7 @@
   },
   "features": {
     "title": "What can you do?",
-    "subtitle": "Three pillars, one app — discover everything Trokacha lets you do",
+    "subtitle": "Three pillars, one app: discover everything Trokacha lets you do",
     "learnMore": "Learn more",
     "trocVenteAchat": {
       "title": "Barter, Buy & Sell",

@@ -5,11 +5,11 @@ import type { Metadata } from 'next';
 const OG_IMAGE = 'https://trokacha.com/logo.png';
 
 export const metadata: Metadata = {
-  title: 'Test DZ — One, Two, Three...',
+  title: 'Test DZ · One, Two, Three...',
   description:
     "À quel point t'es Algérien dans l'âme ? 5 questions, 1 minute. Fais le Test DZ sur Trokacha 🇩🇿",
   openGraph: {
-    title: "Test DZ — Toi t'es à combien ? 🇩🇿",
+    title: "Test DZ · Toi t'es à combien ? 🇩🇿",
     description: "À quel point t'es Algérien dans l'âme ? Fais le test sur Trokacha.",
     url: 'https://trokacha.com/testDZ',
     siteName: 'Trokacha',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Test DZ — Toi t'es à combien ? 🇩🇿",
+    title: "Test DZ · Toi t'es à combien ? 🇩🇿",
     description: "À quel point t'es Algérien dans l'âme ? Fais le test sur Trokacha.",
     images: [OG_IMAGE],
   },

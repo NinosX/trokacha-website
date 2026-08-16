@@ -116,8 +116,8 @@ function SupportCard({
 }
 
 const heroScreens = [
-  { src: "/screenshots/app-accueil.png", alt: "Accueil — parcourir les annonces" },
-  { src: "/screenshots/app-annonce.png", alt: "Annonce — proposer un échange ou une offre cash" },
+  { src: "/screenshots/app-accueil.png", alt: "Accueil : parcourir les annonces" },
+  { src: "/screenshots/app-annonce.png", alt: "Annonce : proposer un échange ou une offre cash" },
   { src: "/screenshots/app-offres.png", alt: "Suivi des propositions" },
   { src: "/screenshots/app-matchs.png", alt: "Vos matchs" },
   { src: "/screenshots/app-chat.png", alt: "Discussion intégrée" },

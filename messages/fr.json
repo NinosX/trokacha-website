@@ -20,7 +20,7 @@
   "hero": {
     "badge": "Disponible sur iOS & Android",
     "title": "Trokacha",
-    "subtitle": "Vendez, achetez, échangez — à notre façon",
+    "subtitle": "Vendez, achetez, échangez. À notre façon",
     "description": "Troc . Vente . Achat . Services . Immobilier . Transport de Colis . Covoiturage",
     "categories": {
       "trocVenteAchat": "Troc, Vente & Achat",
@@ -50,7 +50,7 @@
   },
   "features": {
     "title": "Que pouvez-vous faire ?",
-    "subtitle": "Trois piliers, une seule app — découvrez tout ce que Trokacha vous permet de faire",
+    "subtitle": "Trois piliers, une seule app : découvrez tout ce que Trokacha vous permet de faire",
     "learnMore": "En savoir plus",
     "trocVenteAchat": {
       "title": "Troc, Vente & Achat",
