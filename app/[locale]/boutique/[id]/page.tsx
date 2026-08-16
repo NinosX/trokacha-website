@@ -107,7 +107,7 @@ const TEXTS: Record<SiteLocale, Record<string, string>> = {
     onRequest: 'السعر على الطلب',
     openInApp: 'شوفها في تطبيق تروكاشا',
     appPitch: 'اطلب، هدر مع البائع وتبّع التوصيل ديريكت في التطبيق.',
-    directory: 'كل الحوانت',
+    directory: 'كل المحلات',
   },
 };
 

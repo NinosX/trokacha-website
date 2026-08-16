@@ -44,12 +44,12 @@ const TEXTS: Record<SiteLocale, Record<string, string>> = {
     hiddenTitle: 'Trokacha · Shops',
   },
   ar: {
-    title: 'حوانت تروكاشا',
-    metaTitle: 'الحوانت',
-    metaDesc: 'اكتشف الحوانت الجزائرية الموجودة في تروكاشا.',
+    title: 'محلات تروكاشا',
+    metaTitle: 'المحلات',
+    metaDesc: 'اكتشف المحلات الجزائرية الموجودة في تروكاشا.',
     subtitle: 'واجهات تجار جزائريين، ولاية بولاية.',
-    empty: 'ما كاين حتى حانوت للدرك. ارجع قريب!',
-    hiddenTitle: 'تروكاشا · الحوانت',
+    empty: 'ما كاين حتى محل للدرك. ارجع قريب!',
+    hiddenTitle: 'تروكاشا · المحلات',
   },
 };
 
