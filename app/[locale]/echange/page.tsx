@@ -21,12 +21,12 @@ const IconSwap = ({ size = 20 }: { size?: number }) => (
   </svg>
 );
 const IconArrowLeft = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" {...stroke} strokeWidth={2}>
+  <svg width="16" height="16" viewBox="0 0 24 24" {...stroke} strokeWidth={2} className="rtl:rotate-180">
     <path d="M19 12H5M11 6l-6 6 6 6" />
   </svg>
 );
 const IconArrowRight = () => (
-  <svg width="17" height="17" viewBox="0 0 24 24" {...stroke} strokeWidth={2}>
+  <svg width="17" height="17" viewBox="0 0 24 24" {...stroke} strokeWidth={2} className="rtl:rotate-180">
     <path d="M5 12h14M13 6l6 6-6 6" />
   </svg>
 );

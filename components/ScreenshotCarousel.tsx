@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLocale } from "next-intl";
 import Image from "next/image";
 
 type Screenshot = string | { src: string; alt?: string };
@@ -46,6 +47,9 @@ export function ScreenshotCarousel({
   const touchEndX = useRef<number>(0);
 
   const effectiveInterval = autoPlayInterval ?? interval;
+  // En arabe (RTL) la lecture avance vers la gauche : « suivant » est à
+  // gauche, la flèche ← et le glissé vers la droite avancent.
+  const isRtl = useLocale() === "ar";
   
   // Tailles selon le mode
   const isCompact = size === "compact" || className.includes("h-[400px]");
@@ -87,12 +91,12 @@ export function ScreenshotCarousel({
   useEffect(() => {
     if (isCompact) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") goToPrev();
-      if (e.key === "ArrowRight") goToNext();
+      if (e.key === "ArrowLeft") (isRtl ? goToNext : goToPrev)();
+      if (e.key === "ArrowRight") (isRtl ? goToPrev : goToNext)();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [goToNext, goToPrev, isCompact]);
+  }, [goToNext, goToPrev, isCompact, isRtl]);
 
   // Touch/swipe handlers
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -104,7 +108,7 @@ export function ScreenshotCarousel({
   };
 
   const handleTouchEnd = () => {
-    const diff = touchStartX.current - touchEndX.current;
+    const diff = (touchStartX.current - touchEndX.current) * (isRtl ? -1 : 1);
     const threshold = 50;
     if (diff > threshold) {
       goToNext();
@@ -160,17 +164,17 @@ export function ScreenshotCarousel({
         <>
           <button
             onClick={goToPrev}
-            className="absolute left-0 sm:-left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-line hover:bg-paperSoft shadow-card rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+            className="absolute start-0 sm:-start-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-line hover:bg-paperSoft shadow-card rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
             aria-label="Previous screenshot"
           >
-            <ChevronLeft className="w-5 h-5 text-inkSoft" />
+            <ChevronLeft className="w-5 h-5 text-inkSoft rtl:rotate-180" />
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-0 sm:-right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-line hover:bg-paperSoft shadow-card rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+            className="absolute end-0 sm:-end-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-line hover:bg-paperSoft shadow-card rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
             aria-label="Next screenshot"
           >
-            <ChevronRight className="w-5 h-5 text-inkSoft" />
+            <ChevronRight className="w-5 h-5 text-inkSoft rtl:rotate-180" />
           </button>
         </>
       )}

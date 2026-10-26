@@ -19,7 +19,7 @@ const svg = (path: React.ReactNode, size = 24) => (
   </svg>
 );
 const IconArrowLeft = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" {...stroke} strokeWidth={2}>
+  <svg width="16" height="16" viewBox="0 0 24 24" {...stroke} strokeWidth={2} className="rtl:rotate-180">
     <path d="M19 12H5M11 6l-6 6 6 6" />
   </svg>
 );
@@ -104,7 +104,7 @@ export default function VerificationPage() {
           </div>
 
           <AnimatedSection className="relative rounded-[24px] border border-line bg-white p-9 shadow-card">
-            <span className="absolute right-[26px] top-[26px] rounded-full bg-cashBg px-3 py-[5px] text-[12px] font-bold text-cashInk">
+            <span className="absolute end-[26px] top-[26px] rounded-full bg-cashBg px-3 py-[5px] text-[12px] font-bold text-cashInk">
               {t("badges.blue.optional")}
             </span>
             <span className="mb-5 flex h-[60px] w-[60px] items-center justify-center rounded-[17px] bg-cash text-white">

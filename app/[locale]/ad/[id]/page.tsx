@@ -176,12 +176,12 @@ export default function AdPage() {
 
           {/* Info */}
           <div className="p-6">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">
+            <h1 dir="auto" className="text-2xl font-bold text-gray-900 mb-2">
               {ad.title || 'Annonce Trokacha'}
             </h1>
 
             {locationText && (
-              <p className="text-gray-500 flex items-center gap-2 mb-4">
+              <p dir="auto" className="text-gray-500 flex items-center gap-2 mb-4">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -191,7 +191,7 @@ export default function AdPage() {
             )}
 
             {ad.description && (
-              <p className="text-gray-700 mb-6 line-clamp-3">
+              <p dir="auto" className="text-gray-700 mb-6 line-clamp-3">
                 {ad.description}
               </p>
             )}

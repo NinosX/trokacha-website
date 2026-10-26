@@ -121,10 +121,10 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
           {/* Footer links */}
           <div className="mt-12 pt-8 border-t border-gray-200 flex flex-wrap gap-4">
             <Link href="/privacy" className="text-primary hover:underline font-medium">
-              {tPrivacy("title")} →
+              {tPrivacy("title")} <span aria-hidden className="inline-block rtl:rotate-180">→</span>
             </Link>
             <Link href="/contact" className="text-primary hover:underline font-medium">
-              {tFooter("contact")} →
+              {tFooter("contact")} <span aria-hidden className="inline-block rtl:rotate-180">→</span>
             </Link>
           </div>
         </div>

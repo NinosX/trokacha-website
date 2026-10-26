@@ -49,7 +49,7 @@ const IconTrophy = (p: { size?: number }) => (
   </svg>
 );
 const IconArrow = (p: { size?: number }) => (
-  <svg width={p.size ?? 18} height={p.size ?? 18} viewBox="0 0 24 24" {...stroke} strokeWidth={2}>
+  <svg width={p.size ?? 18} height={p.size ?? 18} viewBox="0 0 24 24" {...stroke} strokeWidth={2} className="rtl:rotate-180">
     <path d="M5 12h14M13 6l6 6-6 6" />
   </svg>
 );
@@ -99,7 +99,7 @@ function SupportCard({
       <p className="text-[14.5px] leading-[1.55] text-inkMuted">{description}</p>
     </>
   );
-  const cls = `block h-full rounded-card border border-line bg-white p-[28px] text-left shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-cardHover ${
+  const cls = `block h-full rounded-card border border-line bg-white p-[28px] text-start shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-cardHover ${
     isInView ? "animate-fade-in-up" : "opacity-0"
   }`;
   return (
@@ -174,7 +174,7 @@ export default function Home() {
                 className="inline-flex w-full items-center gap-[12px] rounded-2xl bg-ink px-[22px] py-[14px] font-semibold text-paperSoft transition-transform hover:scale-[1.03] sm:w-auto"
               >
                 <AppleIcon />
-                <span className="flex-1 text-left sm:flex-none">
+                <span className="flex-1 text-start sm:flex-none">
                   <span className="block text-[11px] opacity-70">{t("hero.appStore")}</span>
                   <span className="block text-[16px] font-bold">{t("hero.download")} iOS</span>
                 </span>
@@ -187,7 +187,7 @@ export default function Home() {
                 className="inline-flex w-full items-center gap-[12px] rounded-2xl border border-line bg-white px-[22px] py-[14px] font-semibold text-ink transition-transform hover:scale-[1.03] sm:w-auto"
               >
                 <AndroidIcon />
-                <span className="flex-1 text-left sm:flex-none">
+                <span className="flex-1 text-start sm:flex-none">
                   <span className="block text-[11px] opacity-60">{t("hero.playStore")}</span>
                   <span className="block text-[16px] font-bold">{t("hero.download")} Android</span>
                 </span>
@@ -199,8 +199,8 @@ export default function Home() {
             <div className="inline-flex items-center gap-[11px]">
               <span className="flex">
                 <span className="flex h-[30px] w-[30px] items-center justify-center rounded-full border-2 border-paper bg-cash text-[13px] font-bold text-white">A</span>
-                <span className="-ml-[9px] flex h-[30px] w-[30px] items-center justify-center rounded-full border-2 border-paper bg-trade text-[13px] font-bold text-white">K</span>
-                <span className="-ml-[9px] flex h-[30px] w-[30px] items-center justify-center rounded-full border-2 border-paper bg-match text-[13px] font-bold text-white">S</span>
+                <span className="-ms-[9px] flex h-[30px] w-[30px] items-center justify-center rounded-full border-2 border-paper bg-trade text-[13px] font-bold text-white">K</span>
+                <span className="-ms-[9px] flex h-[30px] w-[30px] items-center justify-center rounded-full border-2 border-paper bg-match text-[13px] font-bold text-white">S</span>
               </span>
               <span className="text-[14px] font-semibold text-inkSoft">
                 {t("socialProof.text", { count: "50" })}
@@ -253,7 +253,7 @@ export default function Home() {
                   <IconArrow />
                 </span>
               </div>
-              <div className="relative hidden items-center justify-center border-l border-line bg-paperSoft p-8 md:flex">
+              <div className="relative hidden items-center justify-center border-s border-line bg-paperSoft p-8 md:flex">
                 <div className="w-[150px] rounded-[26px] bg-ink p-[5px] shadow-[0_18px_40px_rgba(26,24,20,0.2)]">
                   <div className="aspect-[1320/2868] overflow-hidden rounded-[21px] bg-paperSoft">
                     {/* eslint-disable-next-line @next/next/no-img-element */}

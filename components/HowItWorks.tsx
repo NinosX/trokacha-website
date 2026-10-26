@@ -26,7 +26,7 @@ function StepCard({ step, index }: { step: Step; index: number }) {
     >
       {/* Numéro */}
       <span
-        className="absolute -top-[15px] left-[26px] flex h-[34px] w-[34px] items-center justify-center rounded-[11px] font-display text-[15px] font-bold text-white"
+        className="absolute -top-[15px] start-[26px] flex h-[34px] w-[34px] items-center justify-center rounded-[11px] font-display text-[15px] font-bold text-white"
         style={{ background: step.badge }}
       >
         {step.number}

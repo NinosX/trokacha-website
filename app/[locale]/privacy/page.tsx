@@ -100,7 +100,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
               <ItemList items={t.raw("articles.a4.s1.items") as string[]} />
               <p className="mt-3">
                 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm">
-                  {t("articles.a4.s1.linkText")} →
+                  {t("articles.a4.s1.linkText")} <span aria-hidden className="inline-block rtl:rotate-180">→</span>
                 </a>
               </p>
             </SubSection>
@@ -110,7 +110,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
               <p>{t("articles.a4.s2.content")}</p>
               <p className="mt-3">
                 <a href="https://expo.dev/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm">
-                  {t("articles.a4.s2.linkText")} →
+                  {t("articles.a4.s2.linkText")} <span aria-hidden className="inline-block rtl:rotate-180">→</span>
                 </a>
               </p>
             </SubSection>
@@ -214,10 +214,10 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           {/* Footer links */}
           <div className="mt-12 pt-8 border-t border-gray-200 flex flex-wrap gap-4">
             <Link href="/terms" className="text-primary hover:underline font-medium">
-              {t("footerLinks.terms")} →
+              {t("footerLinks.terms")} <span aria-hidden className="inline-block rtl:rotate-180">→</span>
             </Link>
             <Link href="/contact" className="text-primary hover:underline font-medium">
-              {t("footerLinks.contact")} →
+              {t("footerLinks.contact")} <span aria-hidden className="inline-block rtl:rotate-180">→</span>
             </Link>
           </div>
         </div>

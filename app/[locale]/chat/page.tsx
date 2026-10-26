@@ -21,7 +21,7 @@ const svg = (path: React.ReactNode, size = 24) => (
 );
 
 const IconArrowLeft = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" {...stroke} strokeWidth={2}>
+  <svg width="16" height="16" viewBox="0 0 24 24" {...stroke} strokeWidth={2} className="rtl:rotate-180">
     <path d="M19 12H5M11 6l-6 6 6 6" />
   </svg>
 );
@@ -127,7 +127,7 @@ export default function ChatPage() {
           <p className="mx-auto mb-[30px] max-w-[56ch] text-[16px] leading-[1.6] text-inkSoft">
             {t("marketplace.description")}
           </p>
-          <div className="grid grid-cols-1 gap-4 text-left sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 text-start sm:grid-cols-2">
             {useCases.map((u, i) => (
               <div key={i} className="flex items-start gap-[13px] rounded-[14px] border border-line bg-white p-4">
                 <span className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-[11px]" style={{ background: u.tintBg, color: u.tint }}>
