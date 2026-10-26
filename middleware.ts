@@ -6,6 +6,9 @@ const handleI18nRouting = createMiddleware(routing);
 
 const DEFAULT_LOCALE = routing.defaultLocale;
 
+/** Indice de langue des liens app/emails : `https://trokacha.com/match/x?lang=fr`. */
+const LANG_PARAM = 'lang';
+
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const firstSegment = pathname.split('/')[1];
@@ -20,15 +23,22 @@ export default function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 308);
   }
 
-  // 2. URL sans préfixe = arabe. Seule exception : le visiteur a choisi une
-  //    autre langue avec le sélecteur (cookie posé par la Navbar) → on le
-  //    renvoie vers sa langue, en TEMPORAIRE (307) puisque c'est par personne.
-  //    Les robots n'ont pas de cookie : ils voient toujours l'arabe sur `/x`.
+  // 2. URL sans préfixe = arabe. Deux exceptions, en TEMPORAIRE (307)
+  //    puisque c'est par personne (les robots n'ont ni cookie ni ?lang= :
+  //    ils voient toujours l'arabe sur `/x`) :
+  //    a. le visiteur a choisi une autre langue avec le sélecteur (cookie) ;
+  //    b. sinon, le lien porte `?lang=fr|en|kab` : liens des emails / de
+  //       l'app, qui gardent ainsi un chemin SANS préfixe (`/match/x`), seul
+  //       format reconnu par les Universal Links iOS (AASA), les App Links
+  //       Android et le routeur de l'app. Le choix manuel (a) reste prioritaire.
   if (!isLocale(firstSegment)) {
     const chosen = request.cookies.get(LOCALE_COOKIE)?.value;
-    if (isLocale(chosen) && chosen !== DEFAULT_LOCALE) {
+    const hinted = request.nextUrl.searchParams.get(LANG_PARAM)?.toLowerCase();
+    const target = isLocale(chosen) ? chosen : isLocale(hinted) ? hinted : undefined;
+    if (target && target !== DEFAULT_LOCALE) {
       const url = request.nextUrl.clone();
-      url.pathname = `/${chosen}${pathname === '/' ? '' : pathname}`;
+      url.pathname = `/${target}${pathname === '/' ? '' : pathname}`;
+      url.searchParams.delete(LANG_PARAM);
       return NextResponse.redirect(url, 307);
     }
   }
