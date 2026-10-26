@@ -37,8 +37,8 @@ const TEXTS: Record<BoutiqueInterstitialVariant, Record<'fr' | 'en' | 'ar', Inte
     },
     ar: {
       emoji: '🏪',
-      title: 'دير الحانوت تاعك في تطبيق تروكاشا',
-      subtitle: 'حلّ تروكاشا باش تزيد السلعة، تتبع البيع، وتحيّن الحانوت تاعك.',
+      title: 'دير المحل تاعك في تطبيق تروكاشا',
+      subtitle: 'حلّ تروكاشا باش تزيد السلعة، تتبع البيع، وتحيّن المحل تاعك.',
       cta: 'حلّ التطبيق',
     },
   },
@@ -57,8 +57,8 @@ const TEXTS: Record<BoutiqueInterstitialVariant, Record<'fr' | 'en' | 'ar', Inte
     },
     ar: {
       emoji: '🛍️',
-      title: 'هاد الحانوت يستنى فيك في التطبيق',
-      subtitle: 'حلّ تروكاشا باش تشوف الحانوت، السلعة، وتكلّم البائع.',
+      title: 'هاد المحل يستنى فيك في التطبيق',
+      subtitle: 'حلّ تروكاشا باش تشوف المحل، السلعة، وتكلّم البائع.',
       cta: 'حلّ التطبيق',
     },
   },
@@ -77,8 +77,8 @@ const TEXTS: Record<BoutiqueInterstitialVariant, Record<'fr' | 'en' | 'ar', Inte
     },
     ar: {
       emoji: '🇩🇿',
-      title: 'الحوانت راهم في تطبيق تروكاشا',
-      subtitle: 'حلّ تروكاشا باش تكتشف الحوانت اللي قريبة منك.',
+      title: 'المحلات راهم في تطبيق تروكاشا',
+      subtitle: 'حلّ تروكاشا باش تكتشف المحلات اللي قريبة منك.',
       cta: 'حلّ التطبيق',
     },
   },
