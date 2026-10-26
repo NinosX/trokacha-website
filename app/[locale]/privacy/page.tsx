@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { localeAlternates } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -10,6 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: `${t("title")} - Trokacha`,
     description: t("title"),
+    alternates: localeAlternates(locale, "/privacy"),
   };
 }
 

@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: 'Test DZ · One, Two, Three...',
   description:
     "À quel point t'es Algérien dans l'âme ? 5 questions, 1 minute. Fais le Test DZ sur Trokacha 🇩🇿",
+  // Contenu identique dans toutes les langues (non traduit) : une seule URL
+  // canonique, sans hreflang.
+  alternates: { canonical: 'https://trokacha.com/testDZ' },
   openGraph: {
     title: "Test DZ · Toi t'es à combien ? 🇩🇿",
     description: "À quel point t'es Algérien dans l'âme ? Fais le test sur Trokacha.",

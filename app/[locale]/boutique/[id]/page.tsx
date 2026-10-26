@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer';
 import { BoutiqueInterstitial } from '@/components/BoutiqueInterstitial';
 import { OpenInAppButton } from '@/components/OpenInAppButton';
 import { SHOW_BOUTIQUES } from '@/lib/featureFlags';
+import { localeAlternates, localizedUrl } from '@/lib/seo';
 import {
   boutiqueBio,
   boutiqueCity,
@@ -135,12 +136,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = metaTitle(boutique, t);
   const description = (boutiqueBio(boutique, 'fr') || t.metaFallbackDesc).slice(0, 160);
   const image = boutique.logo || boutique.banner || 'https://trokacha.com/logo.png';
-  const url = `https://trokacha.com/${locale === 'fr' ? '' : `${locale}/`}boutique/${id}`;
+  const url = localizedUrl(locale, `/boutique/${id}`);
 
   return {
     title,
     description,
-    alternates: { canonical: url },
+    alternates: localeAlternates(locale, `/boutique/${id}`),
     openGraph: {
       title: `${title} | Trokacha`,
       description,

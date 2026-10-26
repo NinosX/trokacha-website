@@ -5,6 +5,7 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { BoutiqueInterstitial } from '@/components/BoutiqueInterstitial';
 import { SHOW_BOUTIQUES } from '@/lib/featureFlags';
+import { localeAlternates, localizedUrl } from '@/lib/seo';
 import {
   boutiquePlaceLabel,
   listActiveBoutiques,
@@ -61,11 +62,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: t.hiddenTitle, robots: { index: false, follow: false } };
   }
 
-  const url = `https://trokacha.com/${locale === 'fr' ? '' : `${locale}/`}boutiques`;
+  const url = localizedUrl(locale, '/boutiques');
   return {
     title: t.metaTitle,
     description: t.metaDesc,
-    alternates: { canonical: url },
+    alternates: localeAlternates(locale, '/boutiques'),
     openGraph: {
       title: `${t.title} | Trokacha`,
       description: t.metaDesc,

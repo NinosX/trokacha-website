@@ -8,7 +8,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/_next/'],
+        // /_next/ n'est plus bloqué : Google doit pouvoir charger le JS/CSS
+        // pour rendre les pages (et voir le sélecteur de langue, le dir=rtl…).
+        disallow: ['/api/'],
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,

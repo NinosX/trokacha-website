@@ -2,6 +2,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import type { Metadata } from 'next';
+import { localeAlternates, localizedUrl, ogLocale } from '@/lib/seo';
 
 // Firebase config pour le serveur
 const firebaseConfig = {
@@ -60,11 +61,12 @@ export async function generateMetadata({
   return {
     title,
     description: location ? `${description} - ${location}` : description,
+    alternates: localeAlternates(locale, `/ad/${id}`),
     openGraph: {
       title,
       description,
       type: 'website',
-      url: `https://trokacha.com/${locale}/ad/${id}`,
+      url: localizedUrl(locale, `/ad/${id}`),
       siteName: 'Trokacha',
       images: [
         {
@@ -74,7 +76,7 @@ export async function generateMetadata({
           alt: title,
         },
       ],
-      locale: locale === 'ar' ? 'ar_DZ' : locale === 'en' ? 'en_US' : 'fr_FR',
+      locale: ogLocale(locale),
     },
     twitter: {
       card: 'summary_large_image',

@@ -8,6 +8,7 @@ import { ScrollToTop } from '@/components/ScrollToTop';
 import type { Viewport } from 'next';
 import '../globals.css';
 import { SHOW_TRANSPORT } from '@/lib/featureFlags';
+import { SITE_URL, ogLocale } from '@/lib/seo';
 
 // Police display de l'app (titres, prix, wordmark)
 const spaceGrotesk = Space_Grotesk({
@@ -32,13 +33,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const messages = await getMessages({ locale });
   const metadata = messages.metadata as { title: string; description: string };
 
-  const baseUrl = "https://trokacha.com";
-  const localeUrls: Record<string, string> = {
-    fr: baseUrl,
-    en: `${baseUrl}/en`,
-    ar: `${baseUrl}/ar`,
-  };
-
   return {
     title: {
       default: metadata.title,
@@ -53,15 +47,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     authors: [{ name: "Trokacha" }],
     creator: "Trokacha",
     publisher: "Trokacha",
-    metadataBase: new URL(baseUrl),
-    alternates: {
-      canonical: localeUrls[locale] || baseUrl,
-      languages: {
-        "fr": baseUrl,
-        "en": `${baseUrl}/en`,
-        "ar": `${baseUrl}/ar`,
-      },
-    },
+    metadataBase: new URL(SITE_URL),
+    // Pas de `alternates` ici : canonical + hreflang sont déclarés PAGE PAR
+    // PAGE (lib/seo.ts → localeAlternates). Déclarés dans ce layout, ils
+    // étaient hérités par toutes les pages, qui pointaient alors leur
+    // canonical vers l'accueil.
     icons: {
       icon: [
         { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -74,8 +64,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     manifest: "/manifest.json",
     openGraph: {
       type: "website",
-      locale: locale === "ar" ? "ar_DZ" : locale === "en" ? "en_US" : "fr_FR",
-      url: localeUrls[locale] || baseUrl,
+      locale: ogLocale(locale),
+      // Pas d'og:url global : hérité, il désignait l'accueil sur toutes les
+      // pages. Sans lui, les aperçus (WhatsApp, Facebook) prennent l'URL partagée.
       siteName: "Trokacha",
       title: metadata.title,
       description: metadata.description,
