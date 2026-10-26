@@ -129,7 +129,10 @@ export default function Home() {
   const categories = t("hero.description")
     .split(/[.·]/)
     .map((s) => s.trim())
-    .filter((s) => s && !/transport|covoiturage|colis/i.test(s));
+    // Transport masqué (lancement Goods) : les libellés à retirer existent
+    // dans les 4 langues, pas seulement en français (l'arabe et le kabyle
+    // affichaient « نقل الطرود », « مشاركة السيارات »…).
+    .filter((s) => s && !/transport|covoiturage|colis|carpool|parcel|الطرود|السيارات|tqecwalt|amyafa/i.test(s));
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-paper">
@@ -141,7 +144,7 @@ export default function Home() {
           <div className="animate-fade-in-up">
             <span className="mb-[22px] inline-flex items-center gap-[11px] text-[12px] font-bold uppercase tracking-[0.16em] text-inkMuted">
               <EyebrowBar />
-              {t("hero.badge")} · Algérie
+              {t("hero.badge")} · {t("hero.country")}
             </span>
             <h1 className="mb-5 font-display text-[40px] font-bold leading-[1.02] tracking-[-0.035em] text-ink text-balance md:text-[60px]">
               {t("hero.subtitle")}
