@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
-import { Link, usePathname, useRouter } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { LanguageQuickSwitch, LocaleLink } from "@/components/LocaleSwitch";
 import { SHOW_BOUTIQUES, SHOW_TRANSPORT } from "@/lib/featureFlags";
 import Image from "next/image";
 
@@ -26,7 +27,6 @@ export function Navbar() {
   const t = useTranslations("navbar");
   const locale = useLocale();
   const pathname = usePathname();
-  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
 
@@ -63,8 +63,7 @@ export function Navbar() {
     setIsMobileMenuOpen(false);
   };
 
-  const switchLocale = (newLocale: string) => {
-    router.replace(pathname, { locale: newLocale });
+  const closeMenus = () => {
     setIsLangMenuOpen(false);
     setIsMobileMenuOpen(false);
   };
@@ -117,6 +116,9 @@ export function Navbar() {
             </div>
 
             <div className="hidden items-center gap-[10px] md:flex">
+              {/* Bascule arabe ⇄ français en un geste (l'arabe est la langue par défaut) */}
+              <LanguageQuickSwitch onSwitched={closeMenus} />
+
               {/* Language switcher */}
               <div className="relative">
                 <button
@@ -135,16 +137,17 @@ export function Navbar() {
                   }`}
                 >
                   {routing.locales.map((loc) => (
-                    <button
+                    <LocaleLink
                       key={loc}
-                      onClick={() => switchLocale(loc)}
+                      locale={loc}
+                      onSwitched={closeMenus}
                       className={`flex w-full items-center gap-2 px-4 py-3 text-start font-medium transition-colors hover:bg-paperSoft ${
                         locale === loc ? "bg-cashBg text-cashInk" : "text-inkSoft"
                       }`}
                     >
                       <img src={localeFlags[loc]} alt="" className="h-4 w-5 rounded-sm object-cover" />
                       <span>{localeNames[loc]}</span>
-                    </button>
+                    </LocaleLink>
                   ))}
                 </div>
               </div>
@@ -158,6 +161,7 @@ export function Navbar() {
             </div>
 
             <div className="flex items-center gap-2 md:hidden">
+              <LanguageQuickSwitch onSwitched={closeMenus} />
               <button
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
                 className="rounded-lg p-2 text-inkSoft"
@@ -188,16 +192,17 @@ export function Navbar() {
       >
         <div className="mx-auto flex justify-center gap-4 px-4 py-4">
           {routing.locales.map((loc) => (
-            <button
+            <LocaleLink
               key={loc}
-              onClick={() => switchLocale(loc)}
+              locale={loc}
+              onSwitched={closeMenus}
               className={`flex items-center gap-2 rounded-full px-4 py-2 font-medium transition-colors ${
                 locale === loc ? "bg-cash text-white" : "bg-paperHard text-inkSoft"
               }`}
             >
               <img src={localeFlags[loc]} alt="" className="h-4 w-5 rounded-sm object-cover" />
               <span>{localeNames[loc]}</span>
-            </button>
+            </LocaleLink>
           ))}
         </div>
       </div>

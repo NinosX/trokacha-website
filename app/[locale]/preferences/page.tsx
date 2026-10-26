@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { LanguageQuickSwitch } from '@/components/LocaleSwitch';
 
 // Cible du lien « Préférences » du footer des emails de notification.
 // Les préférences email se gèrent dans l'app (Profil → Réglages → Notifications).
@@ -31,7 +32,8 @@ export default async function PreferencesPage({ params }: { params: Promise<{ lo
   const t = texts[locale] || texts.fr;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#F2E7D3] to-[#FBF6EC] flex flex-col items-center justify-center px-6 py-12">
+    <div className="relative min-h-screen bg-gradient-to-b from-[#F2E7D3] to-[#FBF6EC] flex flex-col items-center justify-center px-6 py-12">
+      <LanguageQuickSwitch className="absolute top-4 end-4" />
       <div className="flex items-center gap-3 mb-10">
         <Image src="/logo.png" alt="Trokacha" width={44} height={44} className="rounded-xl" />
         <span className="font-bold text-2xl text-[#0D4F2E]">Trokacha</span>

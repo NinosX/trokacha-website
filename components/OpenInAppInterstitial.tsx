@@ -2,6 +2,7 @@
 
 import { useParams, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
+import { LanguageQuickSwitch } from '@/components/LocaleSwitch';
 import { Suspense, useCallback, useEffect, useRef } from 'react';
 import { APP_STORE_URL, PLAY_STORE_URL, openTrokachaApp } from '@/lib/openInApp';
 
@@ -69,7 +70,8 @@ function InterstitialInner({ deepPath, forwardQueryParams = [], texts }: OpenInA
   }, [fullPath]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#F2E7D3] to-[#FBF6EC] flex flex-col items-center justify-center px-6 py-12">
+    <div className="relative min-h-screen bg-gradient-to-b from-[#F2E7D3] to-[#FBF6EC] flex flex-col items-center justify-center px-6 py-12">
+      <LanguageQuickSwitch className="absolute top-4 end-4" />
       {/* Header marque */}
       <div className="flex items-center gap-3 mb-10">
         <Image src="/logo.png" alt="Trokacha" width={44} height={44} className="rounded-xl" />

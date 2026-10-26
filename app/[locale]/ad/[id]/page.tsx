@@ -6,6 +6,7 @@ import { db } from '@/lib/firebase';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import { APP_STORE_URL, PLAY_STORE_URL, openTrokachaApp } from '@/lib/openInApp';
+import { LanguageQuickSwitch } from '@/components/LocaleSwitch';
 
 interface Ad {
   id: string;
@@ -155,6 +156,7 @@ export default function AdPage() {
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center gap-3">
           <Image src="/logo.png" alt="Trokacha" width={40} height={40} className="rounded-lg" />
           <span className="font-bold text-xl text-emerald-600">Trokacha</span>
+          <LanguageQuickSwitch className="ms-auto" />
         </div>
       </header>
 
