@@ -1,14 +1,13 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Navbar } from "@/components/Navbar";
-import { Link } from "@/i18n/navigation";
+import { Link, redirect } from "@/i18n/navigation";
 import { ArrowLeft, ArrowRight, Package, Car, MapPin, Clock, Shield, Users } from "lucide-react";
 import { DownloadButtons } from "@/components/DownloadButtons";
 import { useInView } from "@/hooks/useInView";
 import { VideoPhone } from "@/components/VideoPhone";
 import { SHOW_TRANSPORT } from "@/lib/featureFlags";
-import { redirect } from "next/navigation";
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isInView } = useInView();
@@ -72,7 +71,9 @@ function StepCard({ step, index, t, prefix, bgClass = "" }: { step: { icon: stri
 }
 
 export default function TransportPage() {
-  if (!SHOW_TRANSPORT) { redirect("/"); }
+  const locale = useLocale();
+  // Flag off → accueil DANS LA LANGUE COURANTE (un `/` nu = arabe désormais).
+  if (!SHOW_TRANSPORT) { redirect({ href: "/", locale }); }
   const t = useTranslations("transport");
 
   const colisSteps = [
