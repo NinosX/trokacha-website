@@ -55,7 +55,7 @@
     "learnMore": "Learn more",
     "trocVenteAchat": {
       "title": "Barter, Buy & Sell",
-      "description": "Post your ads, then propose an exchange or a cash offer in one tap. Find what you're looking for with Trokacha's unique matching system."
+      "description": "Post your ads, then make an offer in one tap: a swap, cash, or both. Whoever receives it then chooses who to conclude with."
     },
     "transport": {
       "title": "Parcel Transport",
@@ -158,7 +158,7 @@
     },
     "step3": {
       "title": "Make an offer",
-      "description": "Open a listing and tap \"Propose\": choose an exchange or a cash offer"
+      "description": "Open a listing and tap \"Make an offer\": a swap, cash, or both"
     },
     "step4": {
       "title": "Exchange!",
@@ -218,7 +218,7 @@
       },
       "q2": {
         "question": "How does bartering work on Trokacha?",
-        "answer": "Post your ad, browse the offers. To make a proposal: open the listing you like and tap \"Propose\", then choose an exchange (with 1 or 2 of your ads) or a cash offer. If the other person accepts, it's a match and you can chat!"
+        "answer": "Post your ad and browse other people's. To propose a swap: open the listing you like, tap \"Make an offer\" and pick 1 or 2 of your items, with or without extra cash. Whoever receives it can tap \"I'm interested\" to talk it over, then \"Conclude\" with the offer they choose."
       },
       "q3": {
         "question": "Is parcel transport secure?",
@@ -494,23 +494,23 @@
         "tip": "Use filters to find exactly what you're looking for faster."
       },
       "step3": {
-        "title": "Make a proposal",
-        "description": "Interested in an ad? Open it and tap \"Propose\", then choose an exchange (with 1 or 2 of your ads) or a cash offer.",
+        "title": "Make an offer",
+        "description": "Interested in a listing? Open it, tap \"Make an offer\" and pick 1 or 2 of your items, cash, or both.",
         "tip": "A dedicated button for each action: exchange or cash offer. Simple and fast!"
       },
       "step4": {
-        "title": "It's a Match!",
-        "description": "If the other user accepts your proposal, you have a match! You can now discuss the details.",
-        "tip": "A match means both parties are interested - negotiation can begin."
+        "title": "\"I'm interested\"",
+        "description": "Whoever receives your offer can tap \"I'm interested\": the chat opens and nothing is reserved yet. They can be interested in several offers before choosing.",
+        "tip": "Until it is concluded, either side can change their mind."
       },
       "step5": {
-        "title": "Confirm the commitment",
-        "description": "Once the details are settled, confirm the engagement. This blocks the articles: they can no longer receive new proposals.",
-        "tip": "Mutual commitment protects both parties and guarantees the seriousness of the transaction."
+        "title": "Conclude",
+        "description": "Made their choice? They tap \"Conclude with you\": the items are reserved for this exchange and the other offers are notified.",
+        "tip": "Your offer is a commitment: no need to confirm again, the exchange moves on right away."
       },
       "step6": {
-        "title": "Proceed with the exchange",
-        "description": "Meet to perform the physical exchange of goods or finalize the sale according to your agreements.",
+        "title": "Set the meeting",
+        "description": "Pick the day, the time and a public place together. On the spot, check what each of you brings, then tap \"The exchange is done\".",
         "tip": "Choose a public and secure place for your in-person exchanges."
       },
       "step7": {

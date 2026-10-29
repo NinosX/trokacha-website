@@ -55,7 +55,7 @@
     "learnMore": "En savoir plus",
     "trocVenteAchat": {
       "title": "Troc, Vente & Achat",
-      "description": "Publiez vos annonces, puis proposez un échange ou une offre cash en un tap. Trouvez ce que vous cherchez grâce au système de match unique de Trokacha."
+      "description": "Publiez vos annonces, puis faites une offre en un geste : un échange, de l'argent, ou les deux. Celui qui la reçoit choisit ensuite avec qui conclure."
     },
     "transport": {
       "title": "Transport de Colis",
@@ -157,8 +157,8 @@
       "description": "Ajoutez vos annonces ou découvrez celles des autres utilisateurs"
     },
     "step3": {
-      "title": "Proposez une offre",
-      "description": "Ouvrez une annonce et appuyez sur « Proposer » : choisissez un échange ou une offre en argent"
+      "title": "Faites une offre",
+      "description": "Ouvrez une annonce et touchez « Faire une offre » : un échange, de l'argent, ou les deux"
     },
     "step4": {
       "title": "Échangez !",
@@ -218,7 +218,7 @@
       },
       "q2": {
         "question": "Comment fonctionne le troc sur Trokacha ?",
-        "answer": "Publiez votre annonce, parcourez les offres. Pour faire une proposition : ouvrez l'annonce qui vous intéresse et appuyez sur « Proposer », puis choisissez un échange (avec 1 ou 2 de vos annonces) ou une offre en argent. Si l'autre accepte, vous avez un match et pouvez discuter !"
+        "answer": "Publiez votre annonce et parcourez celles des autres. Pour proposer un troc : ouvrez l'annonce qui vous intéresse, touchez « Faire une offre » et choisissez 1 ou 2 de vos objets, avec ou sans complément. Celui qui la reçoit peut dire « Ça m'intéresse » pour en discuter, puis « Conclure » avec l'offre de son choix."
       },
       "q3": {
         "question": "Le transport de colis est-il sécurisé ?",
@@ -494,23 +494,23 @@
         "tip": "Utilisez les filtres pour trouver exactement ce que vous cherchez plus rapidement."
       },
       "step3": {
-        "title": "Faites une proposition",
-        "description": "Une annonce vous intéresse ? Ouvrez-la et appuyez sur « Proposer », puis choisissez un échange (avec 1 ou 2 de vos annonces) ou une offre en argent.",
+        "title": "Faites une offre",
+        "description": "Une annonce vous intéresse ? Ouvrez-la, touchez « Faire une offre » et choisissez 1 ou 2 de vos objets, de l'argent, ou les deux.",
         "tip": "Un bouton dédié pour chaque action : échange ou offre cash. Simple et rapide !"
       },
       "step4": {
-        "title": "C'est un Match !",
-        "description": "Si l'autre utilisateur accepte votre proposition, vous avez un match ! Vous pouvez maintenant discuter des détails.",
-        "tip": "Le match signifie que les deux parties sont intéressées - la négociation peut commencer."
+        "title": "« Ça m'intéresse »",
+        "description": "Celui qui reçoit votre offre peut dire « Ça m'intéresse » : la discussion s'ouvre, rien n'est encore réservé. Il peut s'intéresser à plusieurs offres avant de choisir.",
+        "tip": "Tant que rien n'est conclu, chacun peut changer d'avis."
       },
       "step5": {
-        "title": "Confirmez l'engagement",
-        "description": "Une fois les détails réglés, confirmez votre engagement. Une fois engagés, vos articles sont réservés et ne peuvent plus être proposés à d'autres.",
-        "tip": "L'engagement bloque vos articles pour cet échange uniquement. Cela garantit le sérieux de la transaction."
+        "title": "Conclure",
+        "description": "Son choix est fait ? Il touche « Conclure avec vous » : les objets sont réservés pour cet échange et les autres offres sont prévenues.",
+        "tip": "Votre offre vaut engagement : pas besoin de reconfirmer, l'échange avance tout de suite."
       },
       "step6": {
-        "title": "Procédez à l'échange",
-        "description": "Rencontrez-vous pour effectuer l'échange physique des biens ou finalisez la vente selon vos accords.",
+        "title": "Fixez le rendez-vous",
+        "description": "Choisissez ensemble le jour, l'heure et un lieu public. Sur place, vérifiez ce que chacun apporte, puis touchez « L'échange est fait ».",
         "tip": "Choisissez un lieu public et sécurisé pour vos échanges en personne."
       },
       "step7": {
