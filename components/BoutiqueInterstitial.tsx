@@ -23,20 +23,17 @@ export type BoutiqueInterstitialVariant = 'manage' | 'shop' | 'directory';
 const TEXTS: Record<BoutiqueInterstitialVariant, Record<'fr' | 'en' | 'ar', InterstitialTexts>> = {
   manage: {
     fr: {
-      emoji: '🏪',
       title: 'Gérez votre boutique dans l’app Trokacha',
       subtitle:
         'Ouvrez Trokacha pour publier vos articles, suivre vos ventes et tenir votre vitrine à jour.',
       cta: 'Ouvrir dans l’app',
     },
     en: {
-      emoji: '🏪',
       title: 'Manage your shop in the Trokacha app',
       subtitle: 'Open Trokacha to publish your items, follow your sales and update your shop.',
       cta: 'Open in the app',
     },
     ar: {
-      emoji: '🏪',
       title: 'أدِر محلّك في تطبيق تروكاشا',
       subtitle: 'افتح تروكاشا لإضافة سلعك، ومتابعة مبيعاتك، وتحديث محلّك.',
       cta: 'افتح التطبيق',
@@ -44,19 +41,16 @@ const TEXTS: Record<BoutiqueInterstitialVariant, Record<'fr' | 'en' | 'ar', Inte
   },
   shop: {
     fr: {
-      emoji: '🛍️',
       title: 'Cette boutique vous attend dans l’app',
       subtitle: 'Ouvrez Trokacha pour voir la vitrine, les articles et contacter le vendeur.',
       cta: 'Ouvrir dans l’app',
     },
     en: {
-      emoji: '🛍️',
       title: 'This shop is waiting in the app',
       subtitle: 'Open Trokacha to browse the shop and contact the seller.',
       cta: 'Open in the app',
     },
     ar: {
-      emoji: '🛍️',
       title: 'هذا المحل في انتظارك في التطبيق',
       subtitle: 'افتح تروكاشا لرؤية المحل وسلعه والتواصل مع البائع.',
       cta: 'افتح التطبيق',
@@ -64,19 +58,16 @@ const TEXTS: Record<BoutiqueInterstitialVariant, Record<'fr' | 'en' | 'ar', Inte
   },
   directory: {
     fr: {
-      emoji: '🇩🇿',
       title: 'Les boutiques sont dans l’app Trokacha',
       subtitle: 'Ouvrez Trokacha pour découvrir les boutiques près de chez vous.',
       cta: 'Ouvrir dans l’app',
     },
     en: {
-      emoji: '🇩🇿',
       title: 'Shops live in the Trokacha app',
       subtitle: 'Open Trokacha to discover the shops near you.',
       cta: 'Open in the app',
     },
     ar: {
-      emoji: '🇩🇿',
       title: 'المحلات موجودة في تطبيق تروكاشا',
       subtitle: 'افتح تروكاشا لاكتشاف المحلات القريبة منك.',
       cta: 'افتح التطبيق',
@@ -98,7 +89,7 @@ export function BoutiqueInterstitial({ variant, boutiqueId }: BoutiqueInterstiti
         ? 'boutiques'
         : 'boutique';
 
-  return <OpenInAppInterstitial deepPath={deepPath} texts={TEXTS[variant]} />;
+  return <OpenInAppInterstitial deepPath={deepPath} texts={TEXTS[variant]} icon="shop" />;
 }
 
 export default BoutiqueInterstitial;

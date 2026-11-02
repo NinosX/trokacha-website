@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
-import { LanguageQuickSwitch } from '@/components/LocaleSwitch';
+import { LinkCard, LinkIconTile, LinkPageShell } from '@/components/LinkPage';
 
 // Cible du lien « Se désinscrire » du footer des emails de notification.
 // La désactivation fine (par catégorie) se fait dans l'app ; cette page guide
@@ -9,43 +8,50 @@ import { LanguageQuickSwitch } from '@/components/LocaleSwitch';
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
-  title: 'Trokacha · Désinscription',
+  title: { absolute: 'Trokacha' },
 };
 
 export default async function UnsubscribePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  const texts: Record<string, { title: string; body: string; steps: string }> = {
+  const texts: Record<string, { title: string; body: string; steps: string[] }> = {
     fr: {
       title: 'Se désinscrire des e-mails',
       body: 'Pour ne plus recevoir d’e-mails de notification, désactivez-les directement dans l’app Trokacha :',
-      steps: 'Compte → Notifications → E-mails',
+      steps: ['Compte', 'Notifications', 'E-mails'],
     },
     en: {
       title: 'Unsubscribe from emails',
       body: 'To stop receiving notification emails, turn them off directly in the Trokacha app:',
-      steps: 'Account → Notifications → Emails',
+      steps: ['Account', 'Notifications', 'Emails'],
     },
     ar: {
       title: 'إلغاء الاشتراك في البريد',
       body: 'لإيقاف رسائل البريد الإلكتروني، عطّلها مباشرة من تطبيق تروكاشا:',
-      steps: 'الحساب ← الإشعارات ← رسائل البريد الإلكتروني',
+      steps: ['الحساب', 'الإشعارات', 'رسائل البريد الإلكتروني'],
     },
   };
   const t = texts[locale] || texts.fr;
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-[#F2E7D3] to-[#FBF6EC] flex flex-col items-center justify-center px-6 py-12">
-      <LanguageQuickSwitch className="absolute top-4 end-4" />
-      <div className="flex items-center gap-3 mb-10">
-        <Image src="/logo.png" alt="Trokacha" width={44} height={44} className="rounded-xl" />
-        <span className="font-bold text-2xl text-[#0D4F2E]">Trokacha</span>
-      </div>
-      <div className="w-full max-w-md bg-white/70 backdrop-blur rounded-3xl shadow-xl shadow-[#0D4F2E]/10 border border-[#E8B86A]/40 px-8 py-10 text-center">
-        <div className="text-5xl mb-5">📭</div>
-        <h1 className="text-2xl font-extrabold text-[#0D4F2E] leading-snug mb-4">{t.title}</h1>
-        <p className="text-[#5b4a37] mb-6">{t.body}</p>
-        <p className="font-semibold text-[#0D4F2E]">{t.steps}</p>
-      </div>
-    </div>
+    <LinkPageShell locale={locale}>
+      <LinkCard className="grid justify-items-center gap-4 text-center">
+        <LinkIconTile name="mail" />
+        <h1 className="font-display text-[26px] font-bold leading-[1.15] tracking-[-0.02em] text-ink text-balance">{t.title}</h1>
+        <p className="max-w-[36ch] text-[16px] leading-[1.55] text-inkSoft">{t.body}</p>
+        {/* Chemin dans l'app, comme une suite d'onglets */}
+        <ol className="mt-1 flex flex-wrap items-center justify-center gap-2">
+          {t.steps.map((step, i) => (
+            <li key={step} className="flex items-center gap-2">
+              {i > 0 && (
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="text-inkMuted rtl:rotate-180" aria-hidden>
+                  <path d="M9 6l6 6-6 6" />
+                </svg>
+              )}
+              <span className="rounded-full bg-cashBg px-3 py-[6px] text-[14px] font-bold text-cashInk">{step}</span>
+            </li>
+          ))}
+        </ol>
+      </LinkCard>
+    </LinkPageShell>
   );
 }
