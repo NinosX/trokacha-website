@@ -65,13 +65,6 @@ export function JsonLd({ locale }: { locale: string }) {
       "price": "0",
       "priceCurrency": "DZD"
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "150",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
     "featureList": [
       "Troc et échange de biens",
       "Vente et achat sécurisés",
@@ -92,14 +85,6 @@ export function JsonLd({ locale }: { locale: string }) {
     "name": "Trokacha",
     "url": baseUrl,
     "inLanguage": locale === "ar" ? "ar-DZ" : locale === "en" ? "en" : "fr-FR",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": `${baseUrl}/search?q={search_term_string}`
-      },
-      "query-input": "required name=search_term_string"
-    }
   };
 
   // FAQ Schema (pour la page d'accueil)

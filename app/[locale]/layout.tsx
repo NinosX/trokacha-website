@@ -97,9 +97,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         "max-snippet": -1,
       },
     },
-    verification: {
-      google: "GOOGLE_VERIFICATION_CODE", // À remplacer avec ton code
-    },
   };
 }
 
