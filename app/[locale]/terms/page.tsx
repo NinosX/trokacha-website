@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { localeAlternates } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -8,11 +8,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "terms" });
 
-  return {
-    title: `${t("title")} - Trokacha`,
-    description: t("title"),
-    alternates: localeAlternates(locale, "/terms"),
-  };
+  return pageMetadata(locale, "/terms", t("title"), t("title"));
 }
 
 export default async function TermsPage({ params }: { params: Promise<{ locale: string }> }) {

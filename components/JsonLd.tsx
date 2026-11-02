@@ -1,26 +1,21 @@
-import { SHOW_TRANSPORT } from "@/lib/featureFlags";
+import { getTranslations } from "next-intl/server";
+import { SHOW_LOCATIONS, SHOW_TRANSPORT, withRentals } from "@/lib/featureFlags";
+import { SITE_URL } from "@/lib/seo";
 
-export function JsonLd({ locale }: { locale: string }) {
-  const baseUrl = "https://trokacha.com";
+// Données structurées (Google) : mêmes textes que les pages, dans la langue
+// de la page (messages/*.json). Pas de note moyenne ni de recherche interne :
+// l'app n'a pas encore d'avis publics agrégés, et /search n'existe pas.
+export async function JsonLd({ locale }: { locale: string }) {
+  const t = await getTranslations({ locale });
+  const description = t(withRentals("metadata.description"));
 
-  // Organization Schema
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Trokacha",
-    "url": baseUrl,
-    "logo": `${baseUrl}/logo.png`,
-    "description": locale === "ar"
-      ? SHOW_TRANSPORT
-        ? "تطبيق جزائري، للجزائريين! مقايضة، بيع، شراء، خدمات، عقارات، طرود، مشاركة السيارات"
-        : "تطبيق جزائري، للجزائريين! مقايضة، بيع، شراء، خدمات، عقارات"
-      : locale === "en"
-      ? SHOW_TRANSPORT
-        ? "An Algerian App, for Algerians! Barter, Sale, Purchase, Services, Real Estate, Parcels, Carpooling"
-        : "An Algerian App, for Algerians! Barter, Sale, Purchase, Services, Real Estate"
-      : SHOW_TRANSPORT
-        ? "Une App Algérienne, pour les Algériens ! Troc, Vente, Achat, Services, Immobilier, Colis, Covoiturage"
-        : "Une App Algérienne, pour les Algériens ! Troc, Vente, Achat, Services, Immobilier",
+    "url": SITE_URL,
+    "logo": `${SITE_URL}/logo.png`,
+    "description": description,
     "foundingDate": "2024",
     "foundingLocation": {
       "@type": "Place",
@@ -38,97 +33,59 @@ export function JsonLd({ locale }: { locale: string }) {
       "@type": "ContactPoint",
       "contactType": "customer service",
       "email": "contact@trokacha.com",
-      "availableLanguage": ["French", "English", "Arabic"]
+      "availableLanguage": ["Arabic", "French", "English", "Kabyle"]
     }
   };
 
-  // MobileApplication Schema
   const appSchema = {
     "@context": "https://schema.org",
     "@type": "MobileApplication",
     "name": "Trokacha",
     "operatingSystem": ["iOS", "Android"],
     "applicationCategory": "LifestyleApplication",
-    "description": locale === "ar"
-      ? SHOW_TRANSPORT
-        ? "تطبيق جزائري، للجزائريين! مقايضة، بيع، شراء، خدمات، عقارات، طرود، مشاركة السيارات"
-        : "تطبيق جزائري، للجزائريين! مقايضة، بيع، شراء، خدمات، عقارات"
-      : locale === "en"
-      ? SHOW_TRANSPORT
-        ? "An Algerian App, for Algerians! Barter, Sale, Purchase, Services, Real Estate, Parcels, Carpooling"
-        : "An Algerian App, for Algerians! Barter, Sale, Purchase, Services, Real Estate"
-      : SHOW_TRANSPORT
-        ? "Une App Algérienne, pour les Algériens ! Troc, Vente, Achat, Services, Immobilier, Colis, Covoiturage"
-        : "Une App Algérienne, pour les Algériens ! Troc, Vente, Achat, Services, Immobilier",
+    "description": description,
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "DZD"
     },
     "featureList": [
-      "Troc et échange de biens",
-      "Vente et achat sécurisés",
-      ...(SHOW_TRANSPORT ? [
-        "Transport collaboratif de colis",
-        "Covoiturage",
-      ] : []),
-      "Chat intégré avec messages vocaux",
-      "Vérification d'identité",
-      "Système de notation"
+      t(withRentals("features.trocVenteAchat.title")),
+      t("features.chat.title"),
+      t("features.verification.title"),
+      t("features.meetup.title"),
     ]
   };
 
-  // WebSite Schema with SearchAction
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Trokacha",
-    "url": baseUrl,
-    "inLanguage": locale === "ar" ? "ar-DZ" : locale === "en" ? "en" : "fr-FR",
+    "url": SITE_URL,
+    "inLanguage": locale === "ar" ? "ar-DZ" : locale === "fr" ? "fr-DZ" : locale,
   };
 
-  // FAQ Schema (pour la page d'accueil)
+  // Mêmes questions, dans le même ordre, que la FAQ affichée (components/FAQ.tsx).
+  const questions = [
+    "q1",
+    "q2",
+    ...(SHOW_LOCATIONS ? ["q7"] : []),
+    ...(SHOW_TRANSPORT ? ["q3"] : []),
+    "q4",
+    "q5",
+    ...(SHOW_TRANSPORT ? ["q6"] : []),
+  ];
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": locale === "en" ? "When will Trokacha be available?" : locale === "ar" ? "متى سيكون تروكاشا متاحاً؟" : "Quand sera disponible Trokacha ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": locale === "en"
-            ? "Trokacha will be available very soon on iOS and Android."
-            : locale === "ar"
-            ? "تروكاشا سيكون متاحاً قريباً جداً على iOS و Android."
-            : "Trokacha sera disponible très prochainement sur iOS et Android."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": locale === "en" ? "Is Trokacha free?" : locale === "ar" ? "هل تروكاشا مجاني؟" : "Trokacha est-il gratuit ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": locale === "en"
-            ? "Yes, Trokacha is completely free! No hidden fees, no subscription."
-            : locale === "ar"
-            ? "نعم، تروكاشا مجاني تماماً! بدون رسوم خفية، بدون اشتراك."
-            : "Oui, Trokacha est entièrement gratuit ! Pas de frais cachés, pas d'abonnement."
-        }
-      },
-      ...(SHOW_TRANSPORT ? [{
-        "@type": "Question",
-        "name": locale === "en" ? "Is parcel transport secure?" : locale === "ar" ? "هل نقل الطرود آمن؟" : "Le transport de colis est-il sécurisé ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": locale === "en"
-            ? "Yes! Each carrier is verified and rated by the community. You can track your parcel in real-time."
-            : locale === "ar"
-            ? "نعم! كل ناقل موثق ومُقيَّم من المجتمع. يمكنك تتبع طردك مباشرة."
-            : "Oui ! Chaque transporteur est vérifié et noté par la communauté. Vous pouvez suivre votre colis en temps réel."
-        }
-      }] : [])
-    ]
+    "mainEntity": questions.map((q) => ({
+      "@type": "Question",
+      "name": t(`faq.questions.${q}.question`),
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": t(`faq.questions.${q}.answer`)
+      }
+    }))
   };
 
   return (

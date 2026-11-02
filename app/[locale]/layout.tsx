@@ -7,7 +7,7 @@ import { JsonLd } from '@/components/JsonLd';
 import { ScrollToTop } from '@/components/ScrollToTop';
 import type { Viewport } from 'next';
 import '../globals.css';
-import { SHOW_TRANSPORT } from '@/lib/featureFlags';
+import { SHOW_LOCATIONS, SHOW_TRANSPORT, withRentals } from '@/lib/featureFlags';
 import { SITE_URL, ogLocale } from '@/lib/seo';
 
 // Police display de l'app (titres, prix, wordmark)
@@ -31,17 +31,19 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const messages = await getMessages({ locale });
-  const metadata = messages.metadata as { title: string; description: string };
+  const metadata = messages.metadata as Record<string, string>;
+  const description = metadata[withRentals('description')];
 
   return {
     title: {
       default: metadata.title,
       template: `%s | Trokacha`,
     },
-    description: metadata.description,
+    description,
     keywords: [
       "troc", "vente", "achat", "algerie", "marketplace", "echange",
       "annonces", "occasion", "particuliers", "trokacha", "application mobile",
+      ...(SHOW_LOCATIONS ? ["location", "louer", "location voiture", "location appartement"] : []),
       ...(SHOW_TRANSPORT ? ["transport", "colis", "covoiturage", "livraison"] : []),
     ],
     authors: [{ name: "Trokacha" }],
@@ -69,7 +71,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       // pages. Sans lui, les aperçus (WhatsApp, Facebook) prennent l'URL partagée.
       siteName: "Trokacha",
       title: metadata.title,
-      description: metadata.description,
+      description,
       images: [
         {
           url: "/logo.png",
@@ -82,7 +84,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     twitter: {
       card: "summary_large_image",
       title: metadata.title,
-      description: metadata.description,
+      description,
       images: ["/logo.png"],
       creator: "@trokacha",
     },
@@ -97,6 +99,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         "max-snippet": -1,
       },
     },
+    // Pas de balise google-site-verification tant qu'il n'y a pas de vrai code
+    // (l'ancienne valeur « GOOGLE_VERIFICATION_CODE » partait telle quelle).
   };
 }
 

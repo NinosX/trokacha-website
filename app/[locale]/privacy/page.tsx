@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { localeAlternates } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -8,11 +8,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "privacy" });
 
-  return {
-    title: `${t("title")} - Trokacha`,
-    description: t("title"),
-    alternates: localeAlternates(locale, "/privacy"),
-  };
+  return pageMetadata(locale, "/privacy", t("title"), t("title"));
 }
 
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {

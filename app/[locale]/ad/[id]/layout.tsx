@@ -53,8 +53,15 @@ export async function generateMetadata({
   const { id, locale } = await params;
   const ad = await getAd(id);
 
-  const title = ad?.title || 'Annonce Trokacha';
-  const description = ad?.description?.slice(0, 160) || 'Découvrez cette annonce sur Trokacha';
+  // Textes de repli dans la langue du lien partagé (kab : français).
+  const fallback =
+    locale === 'ar'
+      ? { title: 'إعلان على تروكاشا', description: 'اكتشف هذا الإعلان على تروكاشا' }
+      : locale === 'en'
+      ? { title: 'Trokacha listing', description: 'Discover this listing on Trokacha' }
+      : { title: 'Annonce Trokacha', description: 'Découvrez cette annonce sur Trokacha' };
+  const title = ad?.title || fallback.title;
+  const description = ad?.description?.slice(0, 160) || fallback.description;
   const imageUrl = ad?.images?.[0] || 'https://trokacha.com/logo.png';
   const location = [ad?.location?.city, ad?.location?.wilaya].filter(Boolean).join(', ');
 

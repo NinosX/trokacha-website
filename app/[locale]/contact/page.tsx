@@ -1,19 +1,16 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { localeAlternates } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import Image from "next/image";
+import { withRentals } from "@/lib/featureFlags";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contact" });
 
-  return {
-    title: `${t("title")} - Trokacha`,
-    description: t("subtitle"),
-    alternates: localeAlternates(locale, "/contact"),
-  };
+  return pageMetadata(locale, "/contact", t("title"), t("subtitle"));
 }
 
 const stroke = {
@@ -30,6 +27,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const t = await getTranslations("contact");
   const tFooter = await getTranslations("footer");
   const tPrivacy = await getTranslations("privacy");
+  const tHero = await getTranslations("hero");
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-paper">
@@ -99,8 +97,8 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                   </svg>
                 </span>
                 <div>
-                  <h3 className="mb-[3px] text-[15px] font-bold text-ink">Localisation</h3>
-                  <p className="text-[15px] text-inkSoft">Algérie</p>
+                  <h3 className="mb-[3px] text-[15px] font-bold text-ink">{t("locationTitle")}</h3>
+                  <p className="text-[15px] text-inkSoft">{tHero("country")}</p>
                 </div>
               </div>
             </div>
@@ -120,15 +118,15 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                     <path d="M4 7h14l-3-3M20 17H6l3 3" />
                   </svg>
                 </span>
-                <span className="text-[15px] font-semibold text-paperSoft">{tFooter("echange")}</span>
+                <span className="text-[15px] font-semibold text-paperSoft">{tFooter(withRentals("echange"))}</span>
               </div>
               <div className="flex items-center gap-[11px] rounded-xl bg-[#2A2620] px-[15px] py-[13px]">
                 <span className="flex h-[30px] w-[30px] items-center justify-center rounded-[9px] bg-[#0E2B47] text-[#5FA8E8]">
                   <svg width="16" height="16" viewBox="0 0 24 24" {...stroke} strokeWidth={1.8}>
-                    <path d="M6 2l1.5 3h9L18 2M4 7h16l-1.5 12a2 2 0 0 1-2 1.8H7.5a2 2 0 0 1-2-1.8z" />
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                   </svg>
                 </span>
-                <span className="text-[15px] font-semibold text-paperSoft">Vente</span>
+                <span className="text-[15px] font-semibold text-paperSoft">{tFooter("chat")}</span>
               </div>
               <div className="flex items-center gap-[11px] rounded-xl bg-[#2A2620] px-[15px] py-[13px]">
                 <span className="flex h-[30px] w-[30px] items-center justify-center rounded-[9px] bg-[#1A3D2E] text-[#5BB585]">

@@ -37,3 +37,33 @@ export function ogLocale(locale: string): string {
   if (locale === 'en') return 'en_US';
   return 'fr_FR';
 }
+
+/**
+ * Métadonnées propres à une page : titre (le layout ajoute « | Trokacha »),
+ * description, canonical + hreflang, et l'aperçu de partage (og / twitter).
+ * Sans elles, la page héritait du titre, de la description et de l'aperçu de
+ * l'accueil. openGraph est réécrit en entier : Next.js ne fusionne pas celui
+ * du layout, il le remplace.
+ */
+export function pageMetadata(locale: string, path: string, title: string, description: string) {
+  const fullTitle = `${title} | Trokacha`;
+  return {
+    title,
+    description,
+    alternates: localeAlternates(locale, path),
+    openGraph: {
+      type: 'website' as const,
+      locale: ogLocale(locale),
+      siteName: 'Trokacha',
+      title: fullTitle,
+      description,
+      images: [{ url: '/logo.png', width: 464, height: 520, alt: 'Trokacha Logo' }],
+    },
+    twitter: {
+      card: 'summary_large_image' as const,
+      title: fullTitle,
+      description,
+      images: ['/logo.png'],
+    },
+  };
+}
