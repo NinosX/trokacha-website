@@ -1,10 +1,11 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Link } from "@/i18n/navigation";
 import { useInView } from "@/hooks/useInView";
+import { screenshotSrc } from "@/lib/screenshots";
 
 const stroke = {
   fill: "none",
@@ -62,6 +63,8 @@ function FeatureCard({ index, t }: { index: number; t: (key: string) => string }
 
 export default function ChatPage() {
   const t = useTranslations("chatPage");
+  const tShots = useTranslations("screenshots");
+  const locale = useLocale();
   const tNav = useTranslations("navbar");
 
   return (
@@ -91,7 +94,7 @@ export default function ChatPage() {
             <div className="mx-auto w-[280px] justify-self-center rounded-[40px] bg-ink p-[6px] shadow-[0_24px_50px_rgba(26,24,20,0.22)]">
               <div className="aspect-[1320/2868] overflow-hidden rounded-[34px] bg-paperSoft">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/screenshots/app-chat.png" alt="Chat Trokacha" className="h-full w-full object-cover" />
+                <img src={screenshotSrc(locale, "app-chat")} alt={tShots("chat")} className="h-full w-full object-cover" />
               </div>
             </div>
           </div>

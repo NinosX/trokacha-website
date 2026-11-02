@@ -1,10 +1,11 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Link } from "@/i18n/navigation";
 import { useInView } from "@/hooks/useInView";
+import { screenshotSrc } from "@/lib/screenshots";
 import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/openInApp";
 
 const stroke = {
@@ -81,6 +82,7 @@ function StepItem({ n, t }: { n: number; t: (key: string) => string }) {
 
 export default function EchangePage() {
   const t = useTranslations("echange");
+  const locale = useLocale();
   const tHero = useTranslations("hero");
   const steps = [1, 2, 3, 4, 5, 6, 7];
 
@@ -120,7 +122,7 @@ export default function EchangePage() {
               <div className="w-[270px] rounded-[40px] bg-ink p-[6px] shadow-[0_24px_50px_rgba(26,24,20,0.24)]">
                 <div className="aspect-[1320/2868] overflow-hidden rounded-[34px] bg-paperSoft">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/screenshots/app-annonce.png" alt="" className="h-full w-full object-cover" />
+                  <img src={screenshotSrc(locale, "app-annonce")} alt="" className="h-full w-full object-cover" />
                 </div>
               </div>
               <div className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-[14px] py-2 text-[13px] font-bold text-inkSoft">

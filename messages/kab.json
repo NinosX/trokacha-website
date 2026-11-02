@@ -692,5 +692,13 @@
     "discoverEchange": "Wali amsenfel",
     "discoverTransport": "Wali assiweḍ",
     "allRightsReserved": "Akk izerfan ttwaḥerzen."
+  },
+  "screenshots": {
+    "accueil": "Accueil : vos rendez-vous du jour et les annonces près de chez vous",
+    "annonce": "Annonce : discuter ou faire une offre",
+    "offre": "Offre reçue : ce que vous donnez, ce que vous recevez",
+    "rendezVous": "Rendez-vous confirmé, avec ce que chacun apporte",
+    "chat": "Discussion intégrée",
+    "verif": "Vérification d'identité"
   }
 }

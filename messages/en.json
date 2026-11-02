@@ -692,5 +692,13 @@
     "discoverEchange": "Discover Barter",
     "discoverTransport": "Discover Transport",
     "allRightsReserved": "All rights reserved."
+  },
+  "screenshots": {
+    "accueil": "Home: today's meetings and listings near you",
+    "annonce": "Listing: chat or make an offer",
+    "offre": "Offer received: what you give, what you get",
+    "rendezVous": "Confirmed meeting, with what each person brings",
+    "chat": "Built-in chat",
+    "verif": "Identity verification"
   }
 }

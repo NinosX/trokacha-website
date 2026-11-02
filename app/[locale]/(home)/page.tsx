@@ -4,11 +4,12 @@ import { EmailForm } from "@/components/EmailForm";
 import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/openInApp";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import dynamic from "next/dynamic";
 import { useInView } from "@/hooks/useInView";
 import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
+import { screenshotSrc } from "@/lib/screenshots";
 
 // Lazy load composants below the fold
 const HowItWorks = dynamic(() => import("@/components/HowItWorks").then((mod) => mod.HowItWorks), {
@@ -115,16 +116,18 @@ function SupportCard({
   );
 }
 
-const heroScreens = [
-  { src: "/screenshots/app-accueil.png", alt: "Accueil : parcourir les annonces" },
-  { src: "/screenshots/app-annonce.png", alt: "Annonce : proposer un échange ou une offre cash" },
-  { src: "/screenshots/app-offres.png", alt: "Suivi des propositions" },
-  { src: "/screenshots/app-matchs.png", alt: "Vos matchs" },
-  { src: "/screenshots/app-chat.png", alt: "Discussion intégrée" },
-];
-
 export default function Home() {
   const t = useTranslations();
+  const locale = useLocale();
+
+  // Captures en arabe sur /ar, en français ailleurs (lib/screenshots.ts).
+  const heroScreens = [
+    { src: screenshotSrc(locale, "app-accueil"), alt: t("screenshots.accueil") },
+    { src: screenshotSrc(locale, "app-annonce"), alt: t("screenshots.annonce") },
+    { src: screenshotSrc(locale, "app-offre"), alt: t("screenshots.offre") },
+    { src: screenshotSrc(locale, "app-rendez-vous"), alt: t("screenshots.rendezVous") },
+    { src: screenshotSrc(locale, "app-chat"), alt: t("screenshots.chat") },
+  ];
 
   const categories = t("hero.description")
     .split(/[.·]/)
@@ -260,7 +263,7 @@ export default function Home() {
                 <div className="w-[150px] rounded-[26px] bg-ink p-[5px] shadow-[0_18px_40px_rgba(26,24,20,0.2)]">
                   <div className="aspect-[1320/2868] overflow-hidden rounded-[21px] bg-paperSoft">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src="/screenshots/app-annonce.png" alt="" className="h-full w-full object-cover" />
+                    <img src={screenshotSrc(locale, "app-annonce")} alt="" className="h-full w-full object-cover" />
                   </div>
                 </div>
               </div>

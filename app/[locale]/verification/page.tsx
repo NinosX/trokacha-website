@@ -1,10 +1,11 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Link } from "@/i18n/navigation";
 import { useInView } from "@/hooks/useInView";
+import { screenshotSrc } from "@/lib/screenshots";
 
 const stroke = {
   fill: "none",
@@ -68,6 +69,7 @@ function AnimatedSection({ children, className = "" }: { children: React.ReactNo
 
 export default function VerificationPage() {
   const t = useTranslations("security");
+  const locale = useLocale();
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-paper">
@@ -97,9 +99,9 @@ export default function VerificationPage() {
       <section className="px-6 py-14">
         <div className="mx-auto grid max-w-[1000px] grid-cols-1 items-center gap-11 md:grid-cols-[270px_1fr]">
           <div className="mx-auto w-[262px] justify-self-center rounded-[38px] bg-ink p-[6px] shadow-[0_24px_50px_rgba(26,24,20,0.24)]">
-            <div className="aspect-[1290/2796] overflow-hidden rounded-[32px] bg-paperSoft">
+            <div className="aspect-[1320/2868] overflow-hidden rounded-[32px] bg-paperSoft">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/screenshots/verif.png" alt="" className="h-full w-full object-cover" />
+              <img src={screenshotSrc(locale, "verif")} alt="" className="h-full w-full object-cover" />
             </div>
           </div>
 
