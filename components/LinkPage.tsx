@@ -18,7 +18,6 @@ const STORES_TITLE: Record<Loc, string> = {
   en: 'Don’t have the app yet?',
   ar: 'ليس لديك التطبيق بعد؟',
 };
-const DOWNLOAD: Record<Loc, string> = { fr: 'Télécharger', en: 'Download', ar: 'تحميل' };
 
 export function linkLocale(locale: string | undefined): Loc {
   return locale === 'ar' || locale === 'en' ? locale : 'fr';
@@ -161,7 +160,7 @@ export function StoreButtons({ locale }: { locale: string }) {
           className="inline-flex items-center justify-center gap-2 rounded-[14px] bg-ink px-4 py-[11px] text-[14px] font-bold text-paperSoft transition-transform hover:scale-[1.02]"
         >
           <AppleIcon />
-          {DOWNLOAD[l]} iOS
+          App Store
         </a>
         <a
           href={PLAY_STORE_URL}
@@ -170,7 +169,7 @@ export function StoreButtons({ locale }: { locale: string }) {
           className="inline-flex items-center justify-center gap-2 rounded-[14px] border border-line bg-white px-4 py-[11px] text-[14px] font-bold text-ink transition-transform hover:scale-[1.02]"
         >
           <AndroidIcon />
-          {DOWNLOAD[l]} Android
+          Google Play
         </a>
       </div>
     </div>

@@ -191,7 +191,8 @@ export default function AdPage() {
         </div>
         <div className="grid gap-5 p-6 sm:p-7">
           <div className="grid gap-2">
-            <h1 dir="auto" className="font-display text-[24px] font-bold leading-[1.2] tracking-[-0.02em] text-ink">
+            {/* En arabe, un titre en lettres latines reste aligné à droite, comme dans l'app */}
+            <h1 dir={locale === 'ar' ? 'rtl' : 'auto'} className="font-display text-[24px] font-bold leading-[1.2] tracking-[-0.02em] text-ink">
               {ad.title || t.fallbackTitle}
             </h1>
             {showPrice && (

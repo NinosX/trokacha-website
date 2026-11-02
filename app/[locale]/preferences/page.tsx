@@ -41,8 +41,9 @@ export default async function PreferencesPage({ params }: { params: Promise<{ lo
           {t.steps.map((step, i) => (
             <li key={step} className="flex items-center gap-2">
               {i > 0 && (
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="text-inkMuted rtl:rotate-180" aria-hidden>
-                  <path d="M9 6l6 6-6 6" />
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="text-inkMuted" aria-hidden>
+                  {/* Sens de lecture : vers la gauche en arabe */}
+                  <path d={locale === 'ar' ? 'M15 6l-6 6 6 6' : 'M9 6l6 6-6 6'} />
                 </svg>
               )}
               <span className="rounded-full bg-cashBg px-3 py-[6px] text-[14px] font-bold text-cashInk">{step}</span>
