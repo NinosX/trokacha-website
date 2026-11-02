@@ -88,6 +88,7 @@ export default function AdPage() {
       or: 'ou',
       category: 'Catégorie',
       location: 'Localisation',
+      fallbackTitle: 'Annonce Trokacha',
     },
     en: {
       loading: 'Loading...',
@@ -98,6 +99,7 @@ export default function AdPage() {
       or: 'or',
       category: 'Category',
       location: 'Location',
+      fallbackTitle: 'Trokacha listing',
     },
     ar: {
       loading: '...جاري التحميل',
@@ -108,6 +110,7 @@ export default function AdPage() {
       or: 'أو',
       category: 'الفئة',
       location: 'الموقع',
+      fallbackTitle: 'إعلان على تروكاشا',
     },
   };
 
@@ -167,7 +170,7 @@ export default function AdPage() {
           <div className="relative aspect-square bg-gray-100">
             <Image
               src={imageUrl}
-              alt={ad.title || 'Annonce'}
+              alt={ad.title || t.fallbackTitle}
               fill
               className="object-cover"
               unoptimized
@@ -177,7 +180,7 @@ export default function AdPage() {
           {/* Info */}
           <div className="p-6">
             <h1 dir="auto" className="text-2xl font-bold text-gray-900 mb-2">
-              {ad.title || 'Annonce Trokacha'}
+              {ad.title || t.fallbackTitle}
             </h1>
 
             {locationText && (

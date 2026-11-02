@@ -7,7 +7,7 @@ const TEXTS: Record<'fr' | 'en' | 'ar', InterstitialTexts> = {
   "fr": {
     "emoji": "💬",
     "title": "Nouveau message",
-    "subtitle": "Ouvre Trokacha pour lire le message et répondre.",
+    "subtitle": "Ouvrez Trokacha pour lire le message et répondre.",
     "cta": "Ouvrir la conversation"
   },
   "en": {
@@ -19,8 +19,8 @@ const TEXTS: Record<'fr' | 'en' | 'ar', InterstitialTexts> = {
   "ar": {
     "emoji": "💬",
     "title": "رسالة جديدة",
-    "subtitle": "حلّ تروكاشا باش تقرا الرسالة وتجاوب.",
-    "cta": "حلّ المحادثة"
+    "subtitle": "افتح تروكاشا لقراءة الرسالة والرد عليها.",
+    "cta": "افتح المحادثة"
   }
 };
 

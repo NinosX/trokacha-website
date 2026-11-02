@@ -6,7 +6,7 @@ const TEXTS: Record<'fr' | 'en' | 'ar', InterstitialTexts> = {
   "fr": {
     "emoji": "👤",
     "title": "Voir le profil",
-    "subtitle": "Ouvre Trokacha pour voir ce profil.",
+    "subtitle": "Ouvrez Trokacha pour voir ce profil.",
     "cta": "Ouvrir dans l’app"
   },
   "en": {
@@ -17,9 +17,9 @@ const TEXTS: Record<'fr' | 'en' | 'ar', InterstitialTexts> = {
   },
   "ar": {
     "emoji": "👤",
-    "title": "شوف البروفيل",
-    "subtitle": "حلّ تروكاشا باش تشوف هاد البروفيل.",
-    "cta": "حلّ التطبيق"
+    "title": "عرض الملف الشخصي",
+    "subtitle": "افتح تروكاشا لرؤية هذا الملف الشخصي.",
+    "cta": "افتح التطبيق"
   }
 };
 

@@ -6,7 +6,7 @@ const TEXTS: Record<'fr' | 'en' | 'ar', InterstitialTexts> = {
   "fr": {
     "emoji": "🪪",
     "title": "Vérification d’identité",
-    "subtitle": "Ouvre Trokacha pour finaliser ta vérification.",
+    "subtitle": "Ouvrez Trokacha pour finaliser votre vérification.",
     "cta": "Ouvrir dans l’app"
   },
   "en": {
@@ -18,8 +18,8 @@ const TEXTS: Record<'fr' | 'en' | 'ar', InterstitialTexts> = {
   "ar": {
     "emoji": "🪪",
     "title": "التحقق من الهوية",
-    "subtitle": "حلّ تروكاشا باش تكمّل التحقق تاعك.",
-    "cta": "حلّ التطبيق"
+    "subtitle": "افتح تروكاشا لإكمال التحقق من هويتك.",
+    "cta": "افتح التطبيق"
   }
 };
 

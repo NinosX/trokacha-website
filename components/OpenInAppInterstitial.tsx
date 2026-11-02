@@ -39,6 +39,14 @@ interface OpenInAppInterstitialProps {
   texts: Record<'fr' | 'en' | 'ar', InterstitialTexts>;
 }
 
+// Signature en bas de carte, dans la langue de la page (et plus « le troc
+// nouvelle génération » : l'app fait aussi vente, achat et location).
+const TAGLINE = {
+  fr: 'Trokacha, l’app algérienne qui fait tout 🇩🇿',
+  en: 'Trokacha, the Algerian app that does it all 🇩🇿',
+  ar: 'تروكاشا، التطبيق الجزائري الذي يفعل كل شيء 🇩🇿',
+};
+
 function InterstitialInner({ deepPath, forwardQueryParams = [], texts }: OpenInAppInterstitialProps) {
   const params = useParams();
   const searchParams = useSearchParams();
@@ -120,7 +128,7 @@ function InterstitialInner({ deepPath, forwardQueryParams = [], texts }: OpenInA
         </div>
       </div>
 
-      <p className="text-xs text-[#a08e75] mt-8">Trokacha, le troc nouvelle génération 🇩🇿</p>
+      <p className="text-xs text-[#a08e75] mt-8">{TAGLINE[locale as keyof typeof TAGLINE] || TAGLINE.fr}</p>
     </div>
   );
 }

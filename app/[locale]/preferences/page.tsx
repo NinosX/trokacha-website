@@ -14,19 +14,19 @@ export default async function PreferencesPage({ params }: { params: Promise<{ lo
   const { locale } = await params;
   const texts: Record<string, { title: string; body: string; steps: string }> = {
     fr: {
-      title: 'Préférences email',
-      body: 'Tes préférences de notifications (email et push) se gèrent directement dans l’app Trokacha.',
-      steps: 'Profil → Réglages → Notifications',
+      title: 'Préférences e-mail',
+      body: 'Vos préférences de notifications (e-mail et push) se gèrent directement dans l’app Trokacha.',
+      steps: 'Compte → Notifications',
     },
     en: {
       title: 'Email preferences',
       body: 'Your notification preferences (email and push) are managed directly in the Trokacha app.',
-      steps: 'Profile → Settings → Notifications',
+      steps: 'Account → Notifications',
     },
     ar: {
       title: 'إعدادات البريد الإلكتروني',
-      body: 'إعدادات الإشعارات (البريد والإشعارات) تتسيّر مباشرة من تطبيق تروكاشا.',
-      steps: 'البروفيل ← الإعدادات ← الإشعارات',
+      body: 'تُدار إعدادات الإشعارات (البريد الإلكتروني والإشعارات الفورية) مباشرة من تطبيق تروكاشا.',
+      steps: 'الحساب ← الإشعارات',
     },
   };
   const t = texts[locale] || texts.fr;

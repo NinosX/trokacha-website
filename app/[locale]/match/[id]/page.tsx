@@ -6,21 +6,21 @@ import OpenInAppInterstitial, { InterstitialTexts } from '@/components/OpenInApp
 const TEXTS: Record<'fr' | 'en' | 'ar', InterstitialTexts> = {
   "fr": {
     "emoji": "🤝",
-    "title": "Ton match t’attend",
-    "subtitle": "Ouvre Trokacha pour voir ton match et finaliser l’échange.",
+    "title": "Votre échange est en cours",
+    "subtitle": "Ouvrez Trokacha pour le suivre et fixer le rendez-vous.",
     "cta": "Ouvrir dans l’app"
   },
   "en": {
     "emoji": "🤝",
-    "title": "Your match is waiting",
-    "subtitle": "Open Trokacha to view your match and complete the trade.",
+    "title": "Your exchange is in progress",
+    "subtitle": "Open Trokacha to follow it and set the meeting.",
     "cta": "Open in the app"
   },
   "ar": {
     "emoji": "🤝",
-    "title": "الماتش تاعك يستنى فيك",
-    "subtitle": "حلّ تروكاشا باش تشوف الماتش وتكمّل الصفقة.",
-    "cta": "حلّ التطبيق"
+    "title": "لديك تبادل جارٍ",
+    "subtitle": "افتح تروكاشا لمتابعته وتحديد الموعد.",
+    "cta": "افتح التطبيق"
   }
 };
 

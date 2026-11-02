@@ -26,7 +26,7 @@ const TEXTS: Record<BoutiqueInterstitialVariant, Record<'fr' | 'en' | 'ar', Inte
       emoji: '🏪',
       title: 'Gérez votre boutique dans l’app Trokacha',
       subtitle:
-        'Ouvre Trokacha pour publier tes articles, suivre tes ventes et tenir ta vitrine à jour.',
+        'Ouvrez Trokacha pour publier vos articles, suivre vos ventes et tenir votre vitrine à jour.',
       cta: 'Ouvrir dans l’app',
     },
     en: {
@@ -37,16 +37,16 @@ const TEXTS: Record<BoutiqueInterstitialVariant, Record<'fr' | 'en' | 'ar', Inte
     },
     ar: {
       emoji: '🏪',
-      title: 'دير المحل تاعك في تطبيق تروكاشا',
-      subtitle: 'حلّ تروكاشا باش تزيد السلعة، تتبع البيع، وتحيّن المحل تاعك.',
-      cta: 'حلّ التطبيق',
+      title: 'أدِر محلّك في تطبيق تروكاشا',
+      subtitle: 'افتح تروكاشا لإضافة سلعك، ومتابعة مبيعاتك، وتحديث محلّك.',
+      cta: 'افتح التطبيق',
     },
   },
   shop: {
     fr: {
       emoji: '🛍️',
-      title: 'Cette boutique t’attend dans l’app',
-      subtitle: 'Ouvre Trokacha pour voir la vitrine, les articles et contacter le vendeur.',
+      title: 'Cette boutique vous attend dans l’app',
+      subtitle: 'Ouvrez Trokacha pour voir la vitrine, les articles et contacter le vendeur.',
       cta: 'Ouvrir dans l’app',
     },
     en: {
@@ -57,16 +57,16 @@ const TEXTS: Record<BoutiqueInterstitialVariant, Record<'fr' | 'en' | 'ar', Inte
     },
     ar: {
       emoji: '🛍️',
-      title: 'هاد المحل يستنى فيك في التطبيق',
-      subtitle: 'حلّ تروكاشا باش تشوف المحل، السلعة، وتكلّم البائع.',
-      cta: 'حلّ التطبيق',
+      title: 'هذا المحل في انتظارك في التطبيق',
+      subtitle: 'افتح تروكاشا لرؤية المحل وسلعه والتواصل مع البائع.',
+      cta: 'افتح التطبيق',
     },
   },
   directory: {
     fr: {
       emoji: '🇩🇿',
       title: 'Les boutiques sont dans l’app Trokacha',
-      subtitle: 'Ouvre Trokacha pour découvrir les boutiques près de chez toi.',
+      subtitle: 'Ouvrez Trokacha pour découvrir les boutiques près de chez vous.',
       cta: 'Ouvrir dans l’app',
     },
     en: {
@@ -77,9 +77,9 @@ const TEXTS: Record<BoutiqueInterstitialVariant, Record<'fr' | 'en' | 'ar', Inte
     },
     ar: {
       emoji: '🇩🇿',
-      title: 'المحلات راهم في تطبيق تروكاشا',
-      subtitle: 'حلّ تروكاشا باش تكتشف المحلات اللي قريبة منك.',
-      cta: 'حلّ التطبيق',
+      title: 'المحلات موجودة في تطبيق تروكاشا',
+      subtitle: 'افتح تروكاشا لاكتشاف المحلات القريبة منك.',
+      cta: 'افتح التطبيق',
     },
   },
 };

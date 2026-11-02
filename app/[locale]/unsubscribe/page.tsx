@@ -16,19 +16,19 @@ export default async function UnsubscribePage({ params }: { params: Promise<{ lo
   const { locale } = await params;
   const texts: Record<string, { title: string; body: string; steps: string }> = {
     fr: {
-      title: 'Se désinscrire des emails',
-      body: 'Pour ne plus recevoir d’emails de notification, désactive-les directement dans l’app Trokacha :',
-      steps: 'Profil → Réglages → Notifications → Emails',
+      title: 'Se désinscrire des e-mails',
+      body: 'Pour ne plus recevoir d’e-mails de notification, désactivez-les directement dans l’app Trokacha :',
+      steps: 'Compte → Notifications → E-mails',
     },
     en: {
       title: 'Unsubscribe from emails',
       body: 'To stop receiving notification emails, turn them off directly in the Trokacha app:',
-      steps: 'Profile → Settings → Notifications → Emails',
+      steps: 'Account → Notifications → Emails',
     },
     ar: {
       title: 'إلغاء الاشتراك في البريد',
-      body: 'باش ما تستقبلش الإيمايلات، عطّلها مباشرة من تطبيق تروكاشا:',
-      steps: 'البروفيل ← الإعدادات ← الإشعارات ← البريد',
+      body: 'لإيقاف رسائل البريد الإلكتروني، عطّلها مباشرة من تطبيق تروكاشا:',
+      steps: 'الحساب ← الإشعارات ← رسائل البريد الإلكتروني',
     },
   };
   const t = texts[locale] || texts.fr;
