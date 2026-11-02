@@ -116,15 +116,27 @@
         "description": "Encrypted information"
       },
       "feature4": {
-        "title": "Responsive Support",
-        "description": "Team available 24/7"
+        "title": "Reporting",
+        "description": "Report a listing or a profile, block a member"
       }
     },
     "stats": {
-      "stat1": "Secure verifications",
-      "stat2": "Support available",
-      "stat3": "Average rating",
-      "stat4": "Fraud tolerance"
+      "stat1": {
+        "title": "Verified email",
+        "description": "A verified email address is required to make an offer."
+      },
+      "stat2": {
+        "title": "Listings reviewed",
+        "description": "The team checks every listing before it goes live."
+      },
+      "stat3": {
+        "title": "Within 48 h",
+        "description": "Usual time to review a verification request."
+      },
+      "stat4": {
+        "title": "ID kept private",
+        "description": "Your ID document is never shown to members."
+      }
     },
     "backHome": "Back to home",
     "ctaTitle": "Ready to join the community?",
@@ -252,7 +264,7 @@
     "copyright": "Trokacha. All rights reserved."
   },
   "socialProof": {
-    "text": "Already {count}+ members"
+    "text": "More than {count} members"
   },
   "emailForm": {
     "placeholder": "your@email.com",

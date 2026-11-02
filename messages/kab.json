@@ -116,15 +116,27 @@
         "description": "Isefka-k d wid-ik kan"
       },
       "feature4": {
-        "title": "Tallalt tekka-d",
-        "description": "Tarbaɛt-nneɣ tella yal ass"
+        "title": "Signalement",
+        "description": "Signalez une annonce ou un profil, bloquez un membre"
       }
     },
     "stats": {
-      "stat1": "Asenqed ilmawen",
-      "stat2": "Tallalt tella",
-      "stat3": "Tazmilt talemmast",
-      "stat4": "Ulac amakir"
+      "stat1": {
+        "title": "E-mail vérifié",
+        "description": "Une adresse e-mail vérifiée est exigée pour faire une offre."
+      },
+      "stat2": {
+        "title": "Annonces relues",
+        "description": "L'équipe vérifie chaque annonce avant sa mise en ligne."
+      },
+      "stat3": {
+        "title": "Sous 48 h",
+        "description": "Délai habituel d'examen d'une demande de vérification."
+      },
+      "stat4": {
+        "title": "Pièce protégée",
+        "description": "Votre pièce d'identité n'est jamais montrée aux membres."
+      }
     },
     "backHome": "Uɣal ɣer uxxam",
     "ctaTitle": "Theggiḍ ad d-ternuḍ ɣur-neɣ?",

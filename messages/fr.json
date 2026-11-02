@@ -116,15 +116,27 @@
         "description": "Informations chiffrées"
       },
       "feature4": {
-        "title": "Support Réactif",
-        "description": "Équipe disponible 24/7"
+        "title": "Signalement",
+        "description": "Signalez une annonce ou un profil, bloquez un membre"
       }
     },
     "stats": {
-      "stat1": "Vérifications sécurisées",
-      "stat2": "Support disponible",
-      "stat3": "Note moyenne",
-      "stat4": "Tolérance fraude"
+      "stat1": {
+        "title": "E-mail vérifié",
+        "description": "Une adresse e-mail vérifiée est exigée pour faire une offre."
+      },
+      "stat2": {
+        "title": "Annonces relues",
+        "description": "L'équipe vérifie chaque annonce avant sa mise en ligne."
+      },
+      "stat3": {
+        "title": "Sous 48 h",
+        "description": "Délai habituel d'examen d'une demande de vérification."
+      },
+      "stat4": {
+        "title": "Pièce protégée",
+        "description": "Votre pièce d'identité n'est jamais montrée aux membres."
+      }
     },
     "backHome": "Retour à l'accueil",
     "ctaTitle": "Prêt à rejoindre la communauté ?",
@@ -252,7 +264,7 @@
     "copyright": "Trokacha. Tous droits réservés."
   },
   "socialProof": {
-    "text": "Déjà {count}+ membres"
+    "text": "Plus de {count} membres"
   },
   "emailForm": {
     "placeholder": "votre@email.com",

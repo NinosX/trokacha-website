@@ -41,6 +41,7 @@ const ShieldCheck = <><path d="M12 3l9 4v5c0 5-4 9-9 9s-9-4-9-9V7z" /><path d="M
 const Star = <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" />;
 const Lock = <><rect x="4" y="10" width="16" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></>;
 const Shield = <path d="M12 3l9 4v5c0 5-4 9-9 9s-9-4-9-9V7z" />;
+const Flag = <><path d="M5 21V4" /><path d="M5 4h11l-2 4 2 4H5" /></>;
 
 const processItems = [Account, IdCard, Selfie, Clock, CheckCircle];
 
@@ -48,15 +49,12 @@ const featureItems = [
   { tint: "#0A66C2", tintBg: "#E6F0FA", icon: Account },
   { tint: "#D97706", tintBg: "#FEF3C7", icon: Star },
   { tint: "#C8324A", tintBg: "#FBE9EC", icon: Lock },
-  { tint: "#2E8B57", tintBg: "#E6F2EB", icon: Shield },
+  { tint: "#2E8B57", tintBg: "#E6F2EB", icon: Flag },
 ];
 
-const stats = [
-  { value: "100%", color: "#5FA8E8" },
-  { value: "24/7", color: "#5BB585" },
-  { value: "5★", color: "#E8A94B" },
-  { value: "0", color: "#E27187" },
-];
+// Faits vérifiables dans l'app (plus de chiffres non prouvés : 100 %, 24/7, 5★,
+// 0 tolérance ; décision Lyes 02/11).
+const statColors = ["#5FA8E8", "#5BB585", "#E8A94B", "#E27187"];
 
 function AnimatedSection({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const { ref, isInView } = useInView();
@@ -179,12 +177,12 @@ export default function VerificationPage() {
       <section className="px-6 pb-20">
         <div className="mx-auto max-w-[960px] rounded-[24px] bg-ink px-10 py-11">
           <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
-            {stats.map((s, i) => (
+            {statColors.map((color, i) => (
               <div key={i}>
-                <div className="mb-1 font-display text-[36px] font-bold" style={{ color: s.color }}>
-                  {s.value}
+                <div className="mb-[6px] font-display text-[20px] font-bold leading-[1.2]" style={{ color }}>
+                  {t(`stats.stat${i + 1}.title`)}
                 </div>
-                <div className="text-[13px] text-inkMuted">{t(`stats.stat${i + 1}`)}</div>
+                <div className="text-[13px] leading-[1.5] text-inkMuted">{t(`stats.stat${i + 1}.description`)}</div>
               </div>
             ))}
           </div>

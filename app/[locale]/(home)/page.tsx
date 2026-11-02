@@ -212,7 +212,7 @@ export default function Home() {
                 <span className="-ms-[9px] flex h-[30px] w-[30px] items-center justify-center rounded-full border-2 border-paper bg-match text-[13px] font-bold text-white">S</span>
               </span>
               <span className="text-[14px] font-semibold text-inkSoft">
-                {t("socialProof.text", { count: "50" })}
+                {t("socialProof.text", { count: "100" })}
               </span>
             </div>
           </div>
