@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
+import { firebaseConfig } from '@/lib/firebaseConfig';
 
 export const runtime = 'edge';
 
-const PROJECT_ID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
-const API_KEY = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+const PROJECT_ID = firebaseConfig.projectId;
+const API_KEY = firebaseConfig.apiKey;
 
 // Simple in-memory rate limiter (resets on cold start)
 // For production at scale, consider Upstash Redis
