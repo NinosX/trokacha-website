@@ -8,7 +8,7 @@ import Image from "next/image";
 type Screenshot = string | { src: string; alt?: string };
 
 interface ScreenshotCarouselProps {
-  screenshots?: Screenshot[];
+  screenshots: Screenshot[];
   autoPlayInterval?: number;
   autoPlay?: boolean;
   interval?: number;
@@ -28,13 +28,7 @@ function getScreenshotAlt(screenshot: Screenshot, index: number): string {
 }
 
 export function ScreenshotCarousel({
-  screenshots = [
-    "/screenshots/1.png",
-    "/screenshots/2.png",
-    "/screenshots/3.png",
-    "/screenshots/6.png",
-    "/screenshots/7.png",
-  ],
+  screenshots,
   autoPlayInterval,
   autoPlay = true,
   interval = 4000,

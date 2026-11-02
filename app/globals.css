@@ -124,17 +124,6 @@
   }
 }
 
-@keyframes swipeHint {
-  0%, 100% {
-    transform: translateX(0);
-    opacity: 0;
-  }
-  50% {
-    transform: translateX(25%);
-    opacity: 1;
-  }
-}
-
 /* Classes d'animation */
 /* Note: "both" applique l'état initial pendant le délai ET garde l'état final après */
 .animate-fade-in-up {
@@ -179,10 +168,6 @@
 
 .animate-pulse-slow-reverse {
   animation: pulse 10s ease-in-out infinite reverse;
-}
-
-.animate-swipe-hint {
-  animation: swipeHint 2.5s ease-in-out infinite;
 }
 
 /* Délais d'animation */
