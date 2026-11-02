@@ -14,6 +14,7 @@
           "/profile/*",
           "/verify",
           "/create-ad",
+          "/rental-docs/*",
           "/testDZ"
         ],
         "components": [
@@ -48,6 +49,10 @@
           {
             "/": "/create-ad",
             "comment": "Lien email bienvenue : créer une annonce"
+          },
+          {
+            "/": "/rental-docs/*",
+            "comment": "Lien email documents de location : ouvre RentalDocs"
           },
           {
             "/": "/testDZ",
