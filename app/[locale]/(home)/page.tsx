@@ -121,8 +121,9 @@ export default function Home() {
   const locale = useLocale();
 
   // Captures en arabe sur /ar, en français ailleurs (lib/screenshots.ts).
+  // L'accueil V2 revient en tête quand les nouvelles tuiles d'annonces seront
+  // dans l'app (décision Lyes 02/11) : pas de mélange V1 / V2 d'ici là.
   const heroScreens = [
-    { src: screenshotSrc(locale, "app-accueil"), alt: t("screenshots.accueil") },
     { src: screenshotSrc(locale, "app-annonce"), alt: t("screenshots.annonce") },
     { src: screenshotSrc(locale, "app-offre"), alt: t("screenshots.offre") },
     { src: screenshotSrc(locale, "app-rendez-vous"), alt: t("screenshots.rendezVous") },
