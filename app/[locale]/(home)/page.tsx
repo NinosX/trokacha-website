@@ -10,6 +10,7 @@ import dynamic from "next/dynamic";
 import { useInView } from "@/hooks/useInView";
 import { ScreenshotCarousel } from "@/components/ScreenshotCarousel";
 import { screenshotSrc } from "@/lib/screenshots";
+import { withRentals } from "@/lib/featureFlags";
 
 // Lazy load composants below the fold
 const HowItWorks = dynamic(() => import("@/components/HowItWorks").then((mod) => mod.HowItWorks), {
@@ -44,9 +45,10 @@ const IconShield = (p: { size?: number }) => (
     <path d="M9 12l2 2 4-4" />
   </svg>
 );
-const IconTrophy = (p: { size?: number }) => (
+const IconCalendar = (p: { size?: number }) => (
   <svg width={p.size ?? 24} height={p.size ?? 24} viewBox="0 0 24 24" {...stroke}>
-    <path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 0-3 3" />
+    <rect x="3" y="5" width="18" height="16" rx="2" />
+    <path d="M3 10h18M8 3v4M16 3v4M12 14v3M10.5 15.5h3" />
   </svg>
 );
 const IconArrow = (p: { size?: number }) => (
@@ -130,7 +132,7 @@ export default function Home() {
     { src: screenshotSrc(locale, "app-chat"), alt: t("screenshots.chat") },
   ];
 
-  const categories = t("hero.description")
+  const categories = t(withRentals("hero.description"))
     .split(/[.·]/)
     .map((s) => s.trim())
     // Transport masqué (lancement Goods) : les libellés à retirer existent
@@ -236,10 +238,10 @@ export default function Home() {
             <h2 className="mb-3 font-display text-[38px] font-bold tracking-[-0.025em] text-ink">
               {t("features.title")}
             </h2>
-            <p className="text-[17px] leading-[1.6] text-inkMuted">{t("features.subtitle")}</p>
+            <p className="text-[17px] leading-[1.6] text-inkMuted">{t(withRentals("features.subtitle"))}</p>
           </div>
 
-          {/* Grand pilier Troc/Vente/Achat */}
+          {/* Grand pilier Troc/Vente/Achat (+ Location, cf. SHOW_LOCATIONS) */}
           <Link
             href="/echange"
             className="group mb-5 block overflow-hidden rounded-[24px] border border-line bg-white shadow-card transition-shadow hover:shadow-cardHover"
@@ -250,10 +252,10 @@ export default function Home() {
                   <IconSwap size={30} />
                 </span>
                 <h3 className="mb-3 font-display text-[26px] font-bold tracking-[-0.02em] text-ink">
-                  {t("features.trocVenteAchat.title")}
+                  {t(withRentals("features.trocVenteAchat.title"))}
                 </h3>
                 <p className="mb-5 max-w-[44ch] text-[16px] leading-[1.6] text-inkSoft">
-                  {t("features.trocVenteAchat.description")}
+                  {t(withRentals("features.trocVenteAchat.description"))}
                 </p>
                 <span className="inline-flex items-center gap-2 text-[15px] font-bold text-trade transition-all group-hover:gap-3">
                   {t("features.learnMore")}
@@ -293,11 +295,11 @@ export default function Home() {
             />
             <SupportCard
               index={2}
-              icon={<IconTrophy size={26} />}
+              icon={<IconCalendar size={26} />}
               tint="#D97706"
               tintBg="#FEF3C7"
-              title={t("features.gamification.title")}
-              description={t("features.gamification.description")}
+              title={t("features.meetup.title")}
+              description={t("features.meetup.description")}
             />
           </div>
         </div>

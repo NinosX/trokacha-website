@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useInView } from "@/hooks/useInView";
-import { SHOW_TRANSPORT } from "@/lib/featureFlags";
+import { SHOW_LOCATIONS, SHOW_TRANSPORT } from "@/lib/featureFlags";
 
 function FAQItem({ faq, index, isOpen, onToggle }: { faq: { question: string; answer: string }; index: number; isOpen: boolean; onToggle: () => void }) {
   const { ref, isInView } = useInView();
@@ -59,6 +59,10 @@ export function FAQ() {
       question: t("questions.q2.question"),
       answer: t("questions.q2.answer"),
     },
+    ...(SHOW_LOCATIONS ? [{
+      question: t("questions.q7.question"),
+      answer: t("questions.q7.answer"),
+    }] : []),
     ...(SHOW_TRANSPORT ? [{
       question: t("questions.q3.question"),
       answer: t("questions.q3.answer"),

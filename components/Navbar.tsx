@@ -6,7 +6,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { LanguageQuickSwitch, LocaleLink } from "@/components/LocaleSwitch";
-import { SHOW_BOUTIQUES, SHOW_TRANSPORT } from "@/lib/featureFlags";
+import { SHOW_BOUTIQUES, SHOW_TRANSPORT, withRentals } from "@/lib/featureFlags";
 import Image from "next/image";
 
 const localeNames: Record<string, string> = {
@@ -33,7 +33,7 @@ export function Navbar() {
   const isHomePage = pathname === "/" || pathname === "";
 
   const navLinks = [
-    { href: "/echange", label: t("echange"), isSection: false },
+    { href: "/echange", label: t(withRentals("echange")), isSection: false },
     ...(SHOW_TRANSPORT ? [{ href: "/transport", label: t("transport"), isSection: false }] : []),
     ...(SHOW_BOUTIQUES ? [{ href: "/boutiques", label: t("boutiques"), isSection: false }] : []),
     { href: "/chat", label: t("chat"), isSection: false },
@@ -44,7 +44,7 @@ export function Navbar() {
   const mobileNavLinks = [
     { href: "/", label: t("home"), isSection: false },
     ...(isHomePage ? [{ href: "#features", label: t("features"), isSection: true }] : []),
-    { href: "/echange", label: t("echange"), isSection: false },
+    { href: "/echange", label: t(withRentals("echange")), isSection: false },
     ...(SHOW_TRANSPORT ? [{ href: "/transport", label: t("transport"), isSection: false }] : []),
     ...(SHOW_BOUTIQUES ? [{ href: "/boutiques", label: t("boutiques"), isSection: false }] : []),
     { href: "/chat", label: t("chat"), isSection: false },

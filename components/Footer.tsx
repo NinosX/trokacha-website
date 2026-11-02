@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { SHOW_TRANSPORT } from "@/lib/featureFlags";
+import { SHOW_TRANSPORT, withRentals } from "@/lib/featureFlags";
 import Image from "next/image";
 
 export function Footer() {
@@ -32,7 +32,7 @@ export function Footer() {
             </h4>
             <div className="flex flex-col gap-[10px]">
               <Link href="/echange" className="text-[14.5px] text-line2 transition-colors hover:text-paperSoft">
-                {t("echange")}
+                {t(withRentals("echange"))}
               </Link>
               {SHOW_TRANSPORT && (
                 <Link href="/transport" className="text-[14.5px] text-line2 transition-colors hover:text-paperSoft">

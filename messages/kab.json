@@ -1,12 +1,14 @@
 {
   "metadata": {
     "title": "Trokacha - Aseddu azzayri i yal taɣawsa",
-    "description": "Aseddu azzayri n umsenfel, tizwert d tiɣin gar yemdanen. Yella deg App Store d Google Play."
+    "description": "Aseddu azzayri n umsenfel, tizwert d tiɣin gar yemdanen. Yella deg App Store d Google Play.",
+    "descriptionWithRentals": "Aseddu azzayri n umsenfel, tizwert d tiɣin gar yemdanen. Yella deg App Store d Google Play."
   },
   "navbar": {
     "home": "Axxam",
     "features": "D acu i d-yettawi",
     "echange": "Amsenfel & Tizwert",
+    "echangeWithRentals": "Amsenfel & Tizwert",
     "transport": "Assiweḍ",
     "boutiques": "Tiḥuna",
     "chat": "Ameslay",
@@ -23,12 +25,7 @@
     "title": "Trokacha",
     "subtitle": "Zenz, aɣ, senfel. S tarrayt-nneɣ",
     "description": "Amsenfel . Tizwert . Tiɣin . Imeẓla . Axxam . Assiweḍ n tqecwalt . Amyafaṛ",
-    "categories": {
-      "trocVenteAchat": "Amsenfel, Tizwert & Tiɣin",
-      "colis": "Assiweḍ n tqecwalt",
-      "covoiturage": "Amyafaṛ"
-    },
-    "comingSoon": "Qrib ad yili ɣef",
+    "descriptionWithRentals": "Amsenfel . Tizwert . Tiɣin . Imeẓla . Axxam . Assiweḍ n tqecwalt . Amyafaṛ",
     "download": "Sader",
     "appStore": "App Store",
     "playStore": "Play Store",
@@ -36,26 +33,16 @@
     "notifyButton": "Lɣu-yi-d",
     "notifyNote": "Ur k-nettheggi ara, kan aleqqam imeqqranen"
   },
-  "swipeTutorial": {
-    "step1": "Wali-d talɣutin",
-    "step2": "Teɛǧeb-ik talɣut-agi?",
-    "step3": "Fren yiwet neɣ snat seg telɣutin-ik",
-    "step4": "Fren: amsenfel neɣ idrimen",
-    "step5": "Tuzna tedda!"
-  },
-  "mobileFeatures": {
-    "troc": "Amsenfel",
-    "vente": "Tizwert",
-    "transport": "Assiweḍ",
-    "covoiturage": "Amyafaṛ"
-  },
   "features": {
     "title": "D acu i tzemreḍ ad txedmeḍ?",
-    "subtitle": "Tlata n yiɣallen, yiwen useddu: wali akk ayen i k-yettawi Trokacha",
+    "subtitle": "Une seule app pour troquer, vendre et acheter près de chez vous",
+    "subtitleWithRentals": "Une seule app pour troquer, vendre, acheter et louer près de chez vous",
     "learnMore": "Issin ugar",
     "trocVenteAchat": {
       "title": "Amsenfel, Tizwert & Tiɣin",
-      "description": "Ssufeɣ talɣutin-ik, sakin sumer amsenfel neɣ idrimen s usenned kan. Af ayen tettnadi s unagraw n umṣada amaynut n Trokacha."
+      "titleWithRentals": "Amsenfel, Tizwert & Tiɣin",
+      "description": "Publiez vos annonces, puis faites une offre en un geste : un échange, de l'argent, ou les deux. Celui qui la reçoit choisit ensuite avec qui conclure.",
+      "descriptionWithRentals": "Publiez vos annonces, puis faites une offre en un geste : un échange, de l'argent, ou les deux. Celui qui la reçoit choisit ensuite avec qui conclure. Pour une location, choisissez vos dates : elle est réservée dès que le propriétaire accepte."
     },
     "transport": {
       "title": "Assiweḍ n tqecwalt",
@@ -67,21 +54,22 @@
     },
     "chat": {
       "title": "Ameslay yeddan",
-      "description": "Iznan s taɣect, tiswirin, isedduyen d tiririt akken ad temṣakkaṛeḍ, ad tfakeḍ imsenfal-ik"
+      "description": "Messages vocaux, photos et réactions pour discuter et conclure vos affaires"
     },
     "verification": {
       "title": "Imdanen yettwasenqden",
       "description": "Asenqed s teswirt d selfie, ad teẓreḍ anwa yella d ṣṣaḥ"
     },
-    "gamification": {
-      "title": "Tibedyaḍ & Tinqiḍin",
-      "description": "Rbeḥ tinqiḍin, sali-d tibedyaḍ, ili deg yimezwura"
+    "meetup": {
+      "title": "Rendez-vous intégré",
+      "description": "Fixez ensemble le jour, l'heure et le lieu, avec ce que chacun apporte."
     }
   },
   "security": {
     "badge": "Laman & Taflest",
-    "title": "Senfel bla ccekk",
-    "subtitle": "Trokacha yesɛa anagraw n usenqed akken ad tissineḍ d anwa i d-yettmeslayen. D afran i yal yiwen, d aḥettem i yisufaṛen.",
+    "pageTitle": "Asenqed",
+    "title": "Faites affaire en toute confiance",
+    "subtitle": "Trokacha propose une vérification d'identité pour des échanges plus sûrs. Elle est facultative, et recommandée.",
     "badges": {
       "benefits": "D acu i d-yettawi",
       "blue": {
@@ -91,7 +79,7 @@
         "req1": "Takarḍa n timagit",
         "req2": "Selfie",
         "benefit1": "Ad ak-amnen medden",
-        "benefit2": "+50 tinqiḍin",
+        "benefit2": "Badge « Profil vérifié » sur vos annonces",
         "benefit3": "Ugar n tririyin"
       },
       "green": {
@@ -150,7 +138,7 @@
     "subtitle": "Rebɛa n yimecwaṛen fessusen akken ad tebduḍ",
     "step1": {
       "title": "Xleq amiḍan-ik",
-      "description": "Kcem s wuṭṭun n tilifun-ik di kra n tesdidin"
+      "description": "Inscription rapide avec votre adresse e-mail, Google ou Apple"
     },
     "step2": {
       "title": "Ssufeɣ neɣ wali",
@@ -161,8 +149,8 @@
       "description": "Ldi talɣut sakin senned ɣef « Sumer »: fren amsenfel neɣ idrimen"
     },
     "step4": {
-      "title": "Senfel!",
-      "description": "Meslay-d, twafqem, senflem"
+      "title": "Concluez et retrouvez-vous",
+      "description": "Discutez, concluez avec l'offre de votre choix, puis fixez le rendez-vous dans un lieu public."
     }
   },
   "transportSection": {
@@ -217,8 +205,8 @@
         "answer": "Trokacha yella baṭel deg App Store (iOS) d Google Play (Android). Sider aseddu, rnu amiḍan-ik deg kra n tesdatin."
       },
       "q2": {
-        "question": "Amek i yeddu umsenfel di Trokacha?",
-        "answer": "Ssufeɣ talɣut-ik, wali tid n medden. I usumer: ldi talɣut i k-iɛeǧben sakin senned ɣef « Sumer », fren amsenfel (s yiwet neɣ snat seg telɣutin-ik) neɣ idrimen. Ma yeqbel wayeḍ, tedda! Tzemreḍ ad tmeslayeḍ yid-s."
+        "question": "Comment faire une offre sur Trokacha ?",
+        "answer": "Ouvrez l'annonce qui vous intéresse et touchez « Faire une offre » : proposez 1 ou 2 de vos objets, une somme, ou les deux. Celui qui la reçoit peut dire « Ça m'intéresse » pour en discuter, puis « Conclure » avec l'offre de son choix. Vous fixez ensuite ensemble le rendez-vous."
       },
       "q3": {
         "question": "Assiweḍ n tqecwalt d laman?",
@@ -230,17 +218,21 @@
       },
       "q5": {
         "question": "Anida ara yili Trokacha?",
-        "answer": "Trokacha ad yili di yal tawilayit n Lezzayer seg tazwara. Iswi-nneɣ: ad neqqen Izzayriyen seg Tmanɣest ar Ɛennaba!"
+        "answer": "Trokacha est disponible dans toutes les wilayas d'Algérie. Notre objectif : connecter les Algériens de Tamanrasset à Annaba !"
       },
       "q6": {
         "question": "Amek ara iliɣ d asiwweḍ di Trokacha?",
         "answer": "Xleq amiḍan-ik, rmed afran n usiwweḍ. Ad tezmireḍ ad twaliḍ tussniwin n ussiweḍ ɣef yiberdan-ik, ad tessumeṛ lxedma-k."
+      },
+      "q7": {
+        "question": "Comment louer sur Trokacha ?",
+        "answer": "Ouvrez l'annonce de location, choisissez vos dates et touchez « Demander la location ». Dès que le propriétaire accepte, les dates sont réservées pour vous. Vous fixez ensuite ensemble la remise des clés."
       }
     }
   },
   "cta": {
     "title": "Sider Trokacha!",
-    "subtitle": "Sider Trokacha, rnu ɣer tmezdagnut n umsenfel di Lezzayer.",
+    "subtitle": "Téléchargez l'app et rejoignez la communauté Trokacha en Algérie.",
     "button": "Ad jerreɣ",
     "note": "Tikkin-nwen tɛawen-aɣ ad nesnerni aseddu send ad d-yeffeɣ s wudem unṣib"
   },
@@ -248,6 +240,7 @@
     "tagline": "Aseddu azzayri i yal taɣawsa",
     "features": "D acu i d-yettawi",
     "echange": "Amsenfel & Tizwert",
+    "echangeWithRentals": "Amsenfel & Tizwert",
     "transport": "Assiweḍ",
     "chat": "Ameslay",
     "verification": "Asenqed",
@@ -474,12 +467,17 @@
   },
   "contact": {
     "title": "Nermes-aɣ-d",
-    "subtitle": "Tesɛiḍ asteqsi? Asumer? Aru-yaɣ-d!"
+    "subtitle": "Tesɛiḍ asteqsi? Asumer? Aru-yaɣ-d!",
+    "locationTitle": "Localisation"
   },
   "echange": {
     "backHome": "Uɣal ɣer uxxam",
+    "eyebrow": "Amsenfel · Tizwert · Tiɣin",
+    "eyebrowWithRentals": "Amsenfel · Tizwert · Tiɣin",
     "title": "Amsenfel, Tizwert & Tiɣin",
+    "titleWithRentals": "Amsenfel, Tizwert & Tiɣin",
     "subtitle": "Wali amek ara tsenfleḍ, tzenzeḍ neɣ taɣeḍ s sshula ɣef Trokacha",
+    "subtitleWithRentals": "Wali amek ara tsenfleḍ, tzenzeḍ neɣ taɣeḍ s sshula ɣef Trokacha",
     "stepsTitle": "Abrid ummid",
     "stepsSubtitle": "Seg tazwara ar tagara, wali yal amecwaṛ",
     "steps": {
@@ -496,7 +494,7 @@
       "step3": {
         "title": "Sumer",
         "description": "Talɣut teɛǧeb-ik? Ldi-tt sakin senned ɣef « Sumer », fren amsenfel (s yiwet neɣ snat seg telɣutin-ik) neɣ idrimen.",
-        "tip": "Yal tigawt s tqeffalt-is: amsenfel neɣ idrimen. D ayen fessusen!"
+        "tip": "Proposez un prix juste ou un objet de valeur proche : votre offre a plus de chances d'intéresser."
       },
       "step4": {
         "title": "Tedda!",
@@ -519,11 +517,13 @@
         "tip": "Tazmilt tyelha teɛawen-ik ad tebniḍ isem-ik!"
       }
     },
-    "screenshotsTitle": "Aseddu yella",
-    "screenshotsSubtitle": "Wali udem n Trokacha",
-    "screenshotPlaceholder": "Tiswirin ad d-asent",
+    "rental": {
+      "title": "Et pour une location ?",
+      "description": "Voitures, logements : choisissez vos dates et touchez « Demander la location ». Dès que le propriétaire accepte, les dates sont réservées pour vous. La remise des clés et le retour se notent dans l'app."
+    },
     "ctaTitle": "Theggiḍ?",
     "ctaSubtitle": "Sider aseddu, bdu amsenfel, tizwert d tiɣin ɣef Trokacha",
+    "ctaSubtitleWithRentals": "Sider aseddu, bdu amsenfel, tizwert d tiɣin ɣef Trokacha",
     "discoverTransport": "Wali assiweḍ",
     "discoverChat": "Wali ameslay",
     "allRightsReserved": "Akk izerfan ttwaḥerzen."
@@ -644,8 +644,8 @@
         "description": "Azen tiswirin akken ad d-tsekneḍ iɣunas-ik"
       },
       "feature4": {
-        "title": "Isedduyen",
-        "description": "Bḍu isedduyen ma ilaq"
+        "title": "Réponses et modifications",
+        "description": "Répondez à un message précis, modifiez ou supprimez les vôtres"
       },
       "feature5": {
         "title": "Tiririt",
@@ -670,22 +670,14 @@
           "description": "Twafqem ɣef wadig d wakud"
         },
         "case3": {
-          "title": "Ḍfeṛ tiqecwalt-ik",
-          "description": "Qqim d usiwweḍ mi yella deg ubrid"
+          "title": "Faites votre offre depuis la discussion",
+          "description": "L'annonce reste en vue : faites une offre ou concluez sans quitter la conversation"
         },
         "case4": {
           "title": "Bnu taflest",
           "description": "Issin amdan-nniḍen send ad tfakeḍ"
         }
       }
-    },
-    "mockup": {
-      "userName": "Aḥmed B.",
-      "status": "Yeqqen",
-      "message1": "Azul, iPhone-ik mazal yella?",
-      "message2": "Ih! Bɣiɣ MacBook-ik i umsenfel",
-      "message3": "Igerrez, ad nemlil azekka?",
-      "placeholder": "Aru izen..."
     },
     "ctaTitle": "Theggiḍ ad tmeslayeḍ?",
     "ctaSubtitle": "Sider aseddu, meslay srid deg Trokacha",

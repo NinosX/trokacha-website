@@ -1,12 +1,14 @@
 {
   "metadata": {
     "title": "Trokacha - The Algerian All-in-One Platform",
-    "description": "The Algerian app to barter, sell and buy between individuals. Available on the App Store and Google Play."
+    "description": "The Algerian app to barter, sell and buy between individuals. Available on the App Store and Google Play.",
+    "descriptionWithRentals": "The Algerian app to barter, sell, buy and rent between individuals. Available on the App Store and Google Play."
   },
   "navbar": {
     "home": "Home",
     "features": "Features",
     "echange": "Barter & Sale",
+    "echangeWithRentals": "Barter, Sale & Rental",
     "transport": "Transport",
     "boutiques": "Shops",
     "chat": "Chat",
@@ -23,12 +25,7 @@
     "title": "Trokacha",
     "subtitle": "Sell, buy, trade. Our way",
     "description": "Barter . Sale . Purchase . Services . Real Estate . Parcel Transport . Carpooling",
-    "categories": {
-      "trocVenteAchat": "Barter, Buy & Sell",
-      "colis": "Parcel Transport",
-      "covoiturage": "Carpooling"
-    },
-    "comingSoon": "Coming soon on",
+    "descriptionWithRentals": "Barter . Sale . Purchase . Rental . Services . Real Estate . Parcel Transport . Carpooling",
     "download": "Download",
     "appStore": "App Store",
     "playStore": "Play Store",
@@ -36,26 +33,16 @@
     "notifyButton": "Notify me",
     "notifyNote": "No spam, just important updates"
   },
-  "swipeTutorial": {
-    "step1": "Browse the ads",
-    "step2": "Interested in this ad?",
-    "step3": "Select 1 or 2 of your ads",
-    "step4": "Choose: exchange or cash offer",
-    "step5": "Proposal sent!"
-  },
-  "mobileFeatures": {
-    "troc": "Barter",
-    "vente": "Sale",
-    "transport": "Transport",
-    "covoiturage": "Carpooling"
-  },
   "features": {
     "title": "What can you do?",
-    "subtitle": "Three pillars, one app: discover everything Trokacha lets you do",
+    "subtitle": "One app to swap, sell and buy near you",
+    "subtitleWithRentals": "One app to swap, sell, buy and rent near you",
     "learnMore": "Learn more",
     "trocVenteAchat": {
       "title": "Barter, Buy & Sell",
-      "description": "Post your ads, then make an offer in one tap: a swap, cash, or both. Whoever receives it then chooses who to conclude with."
+      "titleWithRentals": "Barter, Buy, Sell & Rent",
+      "description": "Post your ads, then make an offer in one tap: a swap, cash, or both. Whoever receives it then chooses who to conclude with.",
+      "descriptionWithRentals": "Post your ads, then make an offer in one tap: a swap, cash, or both. Whoever receives it then chooses who to conclude with. For a rental, pick your dates: it's booked as soon as the owner accepts."
     },
     "transport": {
       "title": "Parcel Transport",
@@ -67,21 +54,22 @@
     },
     "chat": {
       "title": "Built-in Chat",
-      "description": "Voice messages, photos, documents and reactions to negotiate and close your exchanges"
+      "description": "Voice messages, photos and reactions to negotiate and close your deals"
     },
     "verification": {
       "title": "Verified Users",
       "description": "Identity verification (ID photo + selfie) and visible trust badge"
     },
-    "gamification": {
-      "title": "Badges & Rewards",
-      "description": "Earn points, unlock badges and climb the leaderboard"
+    "meetup": {
+      "title": "Built-in meetups",
+      "description": "Agree on the day, time and place, along with what each side brings."
     }
   },
   "security": {
     "badge": "Security & Trust",
-    "title": "Exchange with confidence",
-    "subtitle": "Trokacha offers an identity verification system to guarantee secure exchanges. Optional for users, mandatory for drivers and transporters.",
+    "pageTitle": "Identity verification",
+    "title": "Deal with confidence",
+    "subtitle": "Trokacha offers identity verification for safer deals. It is optional, and recommended.",
     "badges": {
       "benefits": "Benefits",
       "blue": {
@@ -91,7 +79,7 @@
         "req1": "ID document",
         "req2": "Verification selfie",
         "benefit1": "Visible trust profile",
-        "benefit2": "+50 gamification points",
+        "benefit2": "“Verified profile” badge on your listings",
         "benefit3": "Better response rate"
       },
       "green": {
@@ -147,10 +135,10 @@
   },
   "howItWorks": {
     "title": "How does it work?",
-    "subtitle": "4 simple steps to start exchanging",
+    "subtitle": "4 simple steps to get started",
     "step1": {
       "title": "Create your account",
-      "description": "Quick registration in seconds with your phone number"
+      "description": "Quick sign-up with your email, Google or Apple"
     },
     "step2": {
       "title": "Post or browse",
@@ -161,8 +149,8 @@
       "description": "Open a listing and tap \"Make an offer\": a swap, cash, or both"
     },
     "step4": {
-      "title": "Exchange!",
-      "description": "Discuss, finalize and proceed with the exchange securely"
+      "title": "Conclude and meet up",
+      "description": "Chat, conclude with the offer of your choice, then set a meeting in a public place."
     }
   },
   "transportSection": {
@@ -217,8 +205,8 @@
         "answer": "Trokacha is available for free on the App Store (iOS) and Google Play (Android). Download the app and create your account in seconds."
       },
       "q2": {
-        "question": "How does bartering work on Trokacha?",
-        "answer": "Post your ad and browse other people's. To propose a swap: open the listing you like, tap \"Make an offer\" and pick 1 or 2 of your items, with or without extra cash. Whoever receives it can tap \"I'm interested\" to talk it over, then \"Conclude\" with the offer they choose."
+        "question": "How do I make an offer on Trokacha?",
+        "answer": "Open the listing you like and tap “Make an offer”: propose 1 or 2 of your items, an amount, or both. Whoever receives it can tap “I'm interested” to talk it over, then “Conclude” with the offer they choose. You then set the meeting together."
       },
       "q3": {
         "question": "Is parcel transport secure?",
@@ -230,17 +218,21 @@
       },
       "q5": {
         "question": "In which cities is Trokacha available?",
-        "answer": "Trokacha will be available in all wilayas of Algeria at launch. Our goal is to connect Algerians from Tamanrasset to Annaba!"
+        "answer": "Trokacha is available in all wilayas of Algeria. Our goal: to connect Algerians from Tamanrasset to Annaba!"
       },
       "q6": {
         "question": "How to become a carrier on Trokacha?",
         "answer": "Just create an account and activate the carrier option. You can then see transport requests on your routes and offer your services."
+      },
+      "q7": {
+        "question": "How do I rent on Trokacha?",
+        "answer": "Open the rental listing, pick your dates and tap “Request the rental”. As soon as the owner accepts, the dates are booked for you. You then agree together on the key handover."
       }
     }
   },
   "cta": {
     "title": "Download Trokacha!",
-    "subtitle": "Download Trokacha and join the exchange community in Algeria.",
+    "subtitle": "Download the app and join the Trokacha community in Algeria.",
     "button": "Sign me up",
     "note": "Your feedback helps us improve the app before the official launch"
   },
@@ -248,6 +240,7 @@
     "tagline": "The Algerian app that does it all",
     "features": "Features",
     "echange": "Barter & Sale",
+    "echangeWithRentals": "Barter, Sale & Rental",
     "transport": "Transport",
     "chat": "Chat",
     "verification": "Verification",
@@ -474,19 +467,24 @@
   },
   "contact": {
     "title": "Contact Us",
-    "subtitle": "Have a question? A suggestion? Don't hesitate to contact us"
+    "subtitle": "Have a question? A suggestion? Don't hesitate to contact us",
+    "locationTitle": "Location"
   },
   "echange": {
     "backHome": "Back to home",
+    "eyebrow": "Barter · Sale · Purchase",
+    "eyebrowWithRentals": "Barter · Sale · Purchase · Rental",
     "title": "Barter, Sale & Purchase",
+    "titleWithRentals": "Barter, Sale, Purchase & Rental",
     "subtitle": "Discover how to exchange, sell or buy easily on Trokacha",
+    "subtitleWithRentals": "Discover how to exchange, sell, buy or rent easily on Trokacha",
     "stepsTitle": "The complete journey",
     "stepsSubtitle": "From posting to rating, follow each step of your exchange",
     "steps": {
       "step1": {
         "title": "Post your ad",
         "description": "Take quality photos, add a detailed description and set your price or what you're looking for in exchange.",
-        "tip": "Clear photos and a complete description increase your chances of finding an exchange!"
+        "tip": "Clear photos and a complete description increase your chances of receiving offers!"
       },
       "step2": {
         "title": "Browse the ads",
@@ -496,7 +494,7 @@
       "step3": {
         "title": "Make an offer",
         "description": "Interested in a listing? Open it, tap \"Make an offer\" and pick 1 or 2 of your items, cash, or both.",
-        "tip": "A dedicated button for each action: exchange or cash offer. Simple and fast!"
+        "tip": "Suggest a fair price or an item of similar value: your offer is more likely to catch their interest."
       },
       "step4": {
         "title": "\"I'm interested\"",
@@ -519,11 +517,13 @@
         "tip": "A good rating helps you build your reputation on the platform!"
       }
     },
-    "screenshotsTitle": "The app in action",
-    "screenshotsSubtitle": "Discover Trokacha's intuitive interface",
-    "screenshotPlaceholder": "Screenshot coming soon",
-    "ctaTitle": "Ready to exchange?",
+    "rental": {
+      "title": "And for a rental?",
+      "description": "Cars, homes: pick your dates and tap “Request the rental”. As soon as the owner accepts, the dates are booked for you. Key handover and return are recorded in the app."
+    },
+    "ctaTitle": "Ready to get started?",
     "ctaSubtitle": "Download the app and start bartering, buying and selling on Trokacha",
+    "ctaSubtitleWithRentals": "Download the app and start bartering, selling, buying and renting on Trokacha",
     "discoverTransport": "Discover Transport",
     "discoverChat": "Discover Chat",
     "allRightsReserved": "All rights reserved."
@@ -644,8 +644,8 @@
         "description": "Send photos to show your items in detail"
       },
       "feature4": {
-        "title": "Documents",
-        "description": "Share documents if needed"
+        "title": "Replies and edits",
+        "description": "Reply to a specific message, edit or delete your own"
       },
       "feature5": {
         "title": "Reactions",
@@ -670,22 +670,14 @@
           "description": "Agree on the place and time for the physical exchange"
         },
         "case3": {
-          "title": "Track your parcels",
-          "description": "Stay in touch with the carrier during the trip"
+          "title": "Make your offer from the chat",
+          "description": "The listing stays in view: make an offer or conclude without leaving the conversation"
         },
         "case4": {
           "title": "Build trust",
           "description": "Get to know your contact before concluding"
         }
       }
-    },
-    "mockup": {
-      "userName": "Ahmed B.",
-      "status": "Online",
-      "message1": "Hi, is your iPhone still available?",
-      "message2": "Yes! I'm interested in your MacBook in exchange",
-      "message3": "Great, shall we meet tomorrow?",
-      "placeholder": "Write a message..."
     },
     "ctaTitle": "Ready to chat?",
     "ctaSubtitle": "Download the app and chat directly in Trokacha",

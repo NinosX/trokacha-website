@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { useInView } from "@/hooks/useInView";
 import { screenshotSrc } from "@/lib/screenshots";
 import { APP_STORE_URL, PLAY_STORE_URL } from "@/lib/openInApp";
+import { SHOW_LOCATIONS, withRentals } from "@/lib/featureFlags";
 
 const stroke = {
   fill: "none",
@@ -29,6 +30,12 @@ const IconArrowLeft = () => (
 const IconArrowRight = () => (
   <svg width="17" height="17" viewBox="0 0 24 24" {...stroke} strokeWidth={2} className="rtl:rotate-180">
     <path d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
+);
+const IconKey = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" {...stroke}>
+    <circle cx="8" cy="15" r="4" />
+    <path d="M10.8 12.2L20 3M17 6l3 3M14.5 8.5l2 2" />
   </svg>
 );
 const IconCheck = () => (
@@ -103,12 +110,12 @@ export default function EchangePage() {
           <div className="max-w-[640px]">
             <span className="mb-4 inline-flex items-center gap-[10px] text-[12px] font-bold uppercase tracking-[0.16em] text-trade">
               <IconSwap />
-              Troc · Vente · Achat
+              {t(withRentals("eyebrow"))}
             </span>
             <h1 className="mb-4 font-display text-[36px] font-bold leading-[1.05] tracking-[-0.03em] text-ink md:text-[46px]">
-              {t("title")}
+              {t(withRentals("title"))}
             </h1>
-            <p className="text-[18px] leading-[1.6] text-inkSoft">{t("subtitle")}</p>
+            <p className="text-[18px] leading-[1.6] text-inkSoft">{t(withRentals("subtitle"))}</p>
           </div>
         </div>
       </section>
@@ -118,22 +125,12 @@ export default function EchangePage() {
         <div className="mx-auto max-w-[960px]">
           <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-[300px_1fr]">
             {/* Sticky phone */}
-            <div className="static flex flex-col items-center gap-4 md:sticky md:top-[96px]">
+            <div className="static flex flex-col items-center md:sticky md:top-[96px]">
               <div className="w-[270px] rounded-[40px] bg-ink p-[6px] shadow-[0_24px_50px_rgba(26,24,20,0.24)]">
                 <div className="aspect-[1320/2868] overflow-hidden rounded-[34px] bg-paperSoft">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={screenshotSrc(locale, "app-annonce")} alt="" className="h-full w-full object-cover" />
                 </div>
-              </div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-[14px] py-2 text-[13px] font-bold text-inkSoft">
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-cash text-[11px] font-extrabold text-white">€</span>
-                Cash&nbsp;·&nbsp;
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-trade">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 7h14l-3-3M20 17H6l3 3" />
-                  </svg>
-                </span>
-                Troc
               </div>
             </div>
 
@@ -142,6 +139,19 @@ export default function EchangePage() {
               {steps.map((n) => (
                 <StepItem key={n} n={n} t={t} />
               ))}
+
+              {/* Location : parcours à part (pas d'offre ni de « Conclure ») */}
+              {SHOW_LOCATIONS && (
+                <div className="flex gap-[18px] rounded-card border border-line bg-paperSoft p-6">
+                  <span className="flex h-11 w-11 flex-none items-center justify-center rounded-[13px] bg-[#E6F0FA] text-[#0A66C2]">
+                    <IconKey />
+                  </span>
+                  <div>
+                    <h3 className="mb-2 text-[18px] font-bold text-ink">{t("rental.title")}</h3>
+                    <p className="text-[15px] leading-[1.6] text-inkSoft">{t("rental.description")}</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -154,7 +164,7 @@ export default function EchangePage() {
             {t("ctaTitle")}
           </h2>
           <p className="mx-auto mb-6 max-w-[46ch] text-[16px] leading-[1.55] text-inkSoft">
-            {t("ctaSubtitle")}
+            {t(withRentals("ctaSubtitle"))}
           </p>
           <div className="mx-auto flex w-full max-w-[360px] flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center">
             <a

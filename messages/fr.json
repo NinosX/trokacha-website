@@ -1,12 +1,14 @@
 {
   "metadata": {
     "title": "Trokacha - La plateforme algérienne tout-en-un",
-    "description": "L'app algérienne pour troquer, vendre et acheter entre particuliers. Disponible sur l'App Store et Google Play."
+    "description": "L'app algérienne pour troquer, vendre et acheter entre particuliers. Disponible sur l'App Store et Google Play.",
+    "descriptionWithRentals": "L'app algérienne pour troquer, vendre, acheter et louer entre particuliers. Disponible sur l'App Store et Google Play."
   },
   "navbar": {
     "home": "Accueil",
     "features": "Fonctionnalités",
     "echange": "Troc & Vente",
+    "echangeWithRentals": "Troc, Vente & Location",
     "transport": "Transport",
     "boutiques": "Boutiques",
     "chat": "Chat",
@@ -23,12 +25,7 @@
     "title": "Trokacha",
     "subtitle": "Vendez, achetez, échangez. À notre façon",
     "description": "Troc . Vente . Achat . Services . Immobilier . Transport de Colis . Covoiturage",
-    "categories": {
-      "trocVenteAchat": "Troc, Vente & Achat",
-      "colis": "Transport de Colis",
-      "covoiturage": "Covoiturage"
-    },
-    "comingSoon": "Bientôt sur",
+    "descriptionWithRentals": "Troc . Vente . Achat . Location . Services . Immobilier . Transport de Colis . Covoiturage",
     "download": "Télécharger",
     "appStore": "App Store",
     "playStore": "Play Store",
@@ -36,26 +33,16 @@
     "notifyButton": "M'avertir",
     "notifyNote": "Pas de spam, juste les mises à jour importantes"
   },
-  "swipeTutorial": {
-    "step1": "Parcourez les annonces",
-    "step2": "Cette annonce vous intéresse ?",
-    "step3": "Sélectionnez 1 ou 2 de vos annonces",
-    "step4": "Choisissez : échange ou offre cash",
-    "step5": "Proposition envoyée !"
-  },
-  "mobileFeatures": {
-    "troc": "Troc",
-    "vente": "Vente",
-    "transport": "Transport",
-    "covoiturage": "Covoiturage"
-  },
   "features": {
     "title": "Que pouvez-vous faire ?",
-    "subtitle": "Trois piliers, une seule app : découvrez tout ce que Trokacha vous permet de faire",
+    "subtitle": "Une seule app pour troquer, vendre et acheter près de chez vous",
+    "subtitleWithRentals": "Une seule app pour troquer, vendre, acheter et louer près de chez vous",
     "learnMore": "En savoir plus",
     "trocVenteAchat": {
       "title": "Troc, Vente & Achat",
-      "description": "Publiez vos annonces, puis faites une offre en un geste : un échange, de l'argent, ou les deux. Celui qui la reçoit choisit ensuite avec qui conclure."
+      "titleWithRentals": "Troc, Vente, Achat & Location",
+      "description": "Publiez vos annonces, puis faites une offre en un geste : un échange, de l'argent, ou les deux. Celui qui la reçoit choisit ensuite avec qui conclure.",
+      "descriptionWithRentals": "Publiez vos annonces, puis faites une offre en un geste : un échange, de l'argent, ou les deux. Celui qui la reçoit choisit ensuite avec qui conclure. Pour une location, choisissez vos dates : elle est réservée dès que le propriétaire accepte."
     },
     "transport": {
       "title": "Transport de Colis",
@@ -67,21 +54,22 @@
     },
     "chat": {
       "title": "Chat intégré",
-      "description": "Messages vocaux, photos, documents et réactions pour négocier et conclure vos échanges"
+      "description": "Messages vocaux, photos et réactions pour discuter et conclure vos affaires"
     },
     "verification": {
       "title": "Utilisateurs Vérifiés",
       "description": "Vérification d'identité (photo ID + selfie) et badge de confiance visible"
     },
-    "gamification": {
-      "title": "Badges & Récompenses",
-      "description": "Gagnez des points, débloquez des badges et grimpez dans le classement"
+    "meetup": {
+      "title": "Rendez-vous intégré",
+      "description": "Fixez ensemble le jour, l'heure et le lieu, avec ce que chacun apporte."
     }
   },
   "security": {
     "badge": "Sécurité & Confiance",
-    "title": "Échangez en toute confiance",
-    "subtitle": "Trokacha propose un système de vérification d'identité pour garantir des échanges sécurisés. Optionnel pour les utilisateurs, obligatoire pour les chauffeurs et transporteurs.",
+    "pageTitle": "Vérification d'identité",
+    "title": "Faites affaire en toute confiance",
+    "subtitle": "Trokacha propose une vérification d'identité pour des échanges plus sûrs. Elle est facultative, et recommandée.",
     "badges": {
       "benefits": "Avantages",
       "blue": {
@@ -91,7 +79,7 @@
         "req1": "Pièce d'identité",
         "req2": "Selfie de vérification",
         "benefit1": "Profil de confiance visible",
-        "benefit2": "+50 points de gamification",
+        "benefit2": "Badge « Profil vérifié » sur vos annonces",
         "benefit3": "Meilleur taux de réponse"
       },
       "green": {
@@ -147,10 +135,10 @@
   },
   "howItWorks": {
     "title": "Comment ça marche ?",
-    "subtitle": "4 étapes simples pour commencer à échanger",
+    "subtitle": "4 étapes simples pour commencer",
     "step1": {
       "title": "Créez votre compte",
-      "description": "Inscription rapide en quelques secondes avec votre numéro de téléphone"
+      "description": "Inscription rapide avec votre adresse e-mail, Google ou Apple"
     },
     "step2": {
       "title": "Publiez ou parcourez",
@@ -161,8 +149,8 @@
       "description": "Ouvrez une annonce et touchez « Faire une offre » : un échange, de l'argent, ou les deux"
     },
     "step4": {
-      "title": "Échangez !",
-      "description": "Discutez, finalisez et procédez à l'échange en toute sécurité"
+      "title": "Concluez et retrouvez-vous",
+      "description": "Discutez, concluez avec l'offre de votre choix, puis fixez le rendez-vous dans un lieu public."
     }
   },
   "transportSection": {
@@ -217,8 +205,8 @@
         "answer": "Trokacha est disponible gratuitement sur l'App Store (iOS) et Google Play (Android). Téléchargez l'app et créez votre compte en quelques secondes."
       },
       "q2": {
-        "question": "Comment fonctionne le troc sur Trokacha ?",
-        "answer": "Publiez votre annonce et parcourez celles des autres. Pour proposer un troc : ouvrez l'annonce qui vous intéresse, touchez « Faire une offre » et choisissez 1 ou 2 de vos objets, avec ou sans complément. Celui qui la reçoit peut dire « Ça m'intéresse » pour en discuter, puis « Conclure » avec l'offre de son choix."
+        "question": "Comment faire une offre sur Trokacha ?",
+        "answer": "Ouvrez l'annonce qui vous intéresse et touchez « Faire une offre » : proposez 1 ou 2 de vos objets, une somme, ou les deux. Celui qui la reçoit peut dire « Ça m'intéresse » pour en discuter, puis « Conclure » avec l'offre de son choix. Vous fixez ensuite ensemble le rendez-vous."
       },
       "q3": {
         "question": "Le transport de colis est-il sécurisé ?",
@@ -230,17 +218,21 @@
       },
       "q5": {
         "question": "Dans quelles villes Trokacha est-il disponible ?",
-        "answer": "Trokacha sera disponible dans toutes les wilayas d'Algérie dès le lancement. Notre objectif est de connecter les algériens de Tamanrasset à Annaba !"
+        "answer": "Trokacha est disponible dans toutes les wilayas d'Algérie. Notre objectif : connecter les Algériens de Tamanrasset à Annaba !"
       },
       "q6": {
         "question": "Comment devenir transporteur sur Trokacha ?",
         "answer": "Il suffit de créer un compte et d'activer l'option transporteur. Vous pourrez alors voir les demandes de transport sur vos trajets et proposer vos services."
+      },
+      "q7": {
+        "question": "Comment louer sur Trokacha ?",
+        "answer": "Ouvrez l'annonce de location, choisissez vos dates et touchez « Demander la location ». Dès que le propriétaire accepte, les dates sont réservées pour vous. Vous fixez ensuite ensemble la remise des clés."
       }
     }
   },
   "cta": {
     "title": "Téléchargez Trokacha !",
-    "subtitle": "Téléchargez Trokacha et rejoignez la communauté d'échange en Algérie.",
+    "subtitle": "Téléchargez l'app et rejoignez la communauté Trokacha en Algérie.",
     "button": "Je m'inscris",
     "note": "Vos retours nous aident à améliorer l'app avant le lancement officiel"
   },
@@ -248,6 +240,7 @@
     "tagline": "L'app algérienne qui fait tout",
     "features": "Fonctionnalités",
     "echange": "Troc & Vente",
+    "echangeWithRentals": "Troc, Vente & Location",
     "transport": "Transport",
     "chat": "Chat",
     "verification": "Vérification",
@@ -474,19 +467,24 @@
   },
   "contact": {
     "title": "Contactez-nous",
-    "subtitle": "Une question ? Une suggestion ? N'hésitez pas à nous contacter"
+    "subtitle": "Une question ? Une suggestion ? N'hésitez pas à nous contacter",
+    "locationTitle": "Localisation"
   },
   "echange": {
     "backHome": "Retour à l'accueil",
+    "eyebrow": "Troc · Vente · Achat",
+    "eyebrowWithRentals": "Troc · Vente · Achat · Location",
     "title": "Troc, Vente & Achat",
+    "titleWithRentals": "Troc, Vente, Achat & Location",
     "subtitle": "Découvrez comment échanger, vendre ou acheter en toute simplicité sur Trokacha",
+    "subtitleWithRentals": "Découvrez comment échanger, vendre, acheter ou louer en toute simplicité sur Trokacha",
     "stepsTitle": "Le parcours complet",
     "stepsSubtitle": "De la publication à la notation, suivez chaque étape de votre échange",
     "steps": {
       "step1": {
         "title": "Publiez votre annonce",
         "description": "Prenez des photos de qualité, ajoutez une description détaillée et fixez votre prix ou ce que vous recherchez en échange.",
-        "tip": "Des photos claires et une description complète augmentent vos chances de trouver un échange !"
+        "tip": "Des photos claires et une description complète augmentent vos chances de recevoir des offres !"
       },
       "step2": {
         "title": "Parcourez les annonces",
@@ -496,7 +494,7 @@
       "step3": {
         "title": "Faites une offre",
         "description": "Une annonce vous intéresse ? Ouvrez-la, touchez « Faire une offre » et choisissez 1 ou 2 de vos objets, de l'argent, ou les deux.",
-        "tip": "Un bouton dédié pour chaque action : échange ou offre cash. Simple et rapide !"
+        "tip": "Proposez un prix juste ou un objet de valeur proche : votre offre a plus de chances d'intéresser."
       },
       "step4": {
         "title": "« Ça m'intéresse »",
@@ -519,11 +517,13 @@
         "tip": "Une bonne notation vous aide à bâtir votre réputation sur la plateforme !"
       }
     },
-    "screenshotsTitle": "L'app en action",
-    "screenshotsSubtitle": "Découvrez l'interface intuitive de Trokacha",
-    "screenshotPlaceholder": "Capture d'écran bientôt disponible",
-    "ctaTitle": "Prêt à échanger ?",
+    "rental": {
+      "title": "Et pour une location ?",
+      "description": "Voitures, logements : choisissez vos dates et touchez « Demander la location ». Dès que le propriétaire accepte, les dates sont réservées pour vous. La remise des clés et le retour se notent dans l'app."
+    },
+    "ctaTitle": "Prêt à vous lancer ?",
     "ctaSubtitle": "Téléchargez l'app et lancez-vous dans le troc, la vente et l'achat sur Trokacha",
+    "ctaSubtitleWithRentals": "Téléchargez l'app et lancez-vous dans le troc, la vente, l'achat et la location sur Trokacha",
     "discoverTransport": "Découvrir le Transport",
     "discoverChat": "Découvrir le Chat",
     "allRightsReserved": "Tous droits réservés."
@@ -644,8 +644,8 @@
         "description": "Envoyez des photos pour montrer vos articles en détail"
       },
       "feature4": {
-        "title": "Documents",
-        "description": "Partagez des documents si nécessaire"
+        "title": "Réponses et modifications",
+        "description": "Répondez à un message précis, modifiez ou supprimez les vôtres"
       },
       "feature5": {
         "title": "Réactions",
@@ -670,22 +670,14 @@
           "description": "Convenez du lieu et de l'heure pour l'échange physique"
         },
         "case3": {
-          "title": "Suivez vos colis",
-          "description": "Restez en contact avec le transporteur pendant le trajet"
+          "title": "Faites votre offre depuis la discussion",
+          "description": "L'annonce reste en vue : faites une offre ou concluez sans quitter la conversation"
         },
         "case4": {
           "title": "Construisez la confiance",
           "description": "Apprenez à connaître votre interlocuteur avant de conclure"
         }
       }
-    },
-    "mockup": {
-      "userName": "Ahmed B.",
-      "status": "En ligne",
-      "message1": "Bonjour, votre iPhone est toujours disponible ?",
-      "message2": "Oui ! Je suis intéressé par votre MacBook en échange",
-      "message3": "Super, on se retrouve demain ?",
-      "placeholder": "Écrivez un message..."
     },
     "ctaTitle": "Prêt à discuter ?",
     "ctaSubtitle": "Téléchargez l'app et discutez directement dans Trokacha",

@@ -31,7 +31,7 @@ const features = [
   { tint: "#0A66C2", tintBg: "#E6F0FA", icon: <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /> },
   { tint: "#C8324A", tintBg: "#FBE9EC", icon: <><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></> },
   { tint: "#2E8B57", tintBg: "#E6F2EB", icon: <><rect x="4" y="5" width="16" height="14" rx="2" /><circle cx="9" cy="11" r="2" /><path d="M4 17l5-4 5 4 3-2 3 2" /></> },
-  { tint: "#D97706", tintBg: "#FEF3C7", icon: <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6" /></> },
+  { tint: "#D97706", tintBg: "#FEF3C7", icon: <path d="M9 14L4 9l5-5M4 9h10a6 6 0 0 1 6 6v5" /> },
   { tint: "#C8324A", tintBg: "#FBE9EC", icon: <path d="M12 21s-7-4.5-9.5-9A5 5 0 0 1 12 6a5 5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z" /> },
   { tint: "#0A66C2", tintBg: "#E6F0FA", icon: <><rect x="4" y="10" width="16" height="10" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></> },
 ];
@@ -39,7 +39,7 @@ const features = [
 const useCases = [
   { tint: "#2E8B57", tintBg: "#E6F2EB", icon: <><circle cx="12" cy="12" r="9" /><path d="M12 7v10M9 9.5c0-1.4 1.3-2.5 3-2.5s3 1.1 3 2.5-1.3 2-3 2-3 .9-3 2.3 1.3 2.5 3 2.5 3-1.1 3-2.5" /></> },
   { tint: "#0A66C2", tintBg: "#E6F0FA", icon: <><path d="M12 22s8-7 8-13a8 8 0 1 0-16 0c0 6 8 13 8 13z" /><circle cx="12" cy="9" r="3" /></> },
-  { tint: "#D97706", tintBg: "#FEF3C7", icon: <><circle cx="12" cy="12" r="9" /><path d="M12 8v4l2 2" /></> },
+  { tint: "#D97706", tintBg: "#FEF3C7", icon: <path d="M4 7h14l-3-3M20 17H6l3 3" /> },
   { tint: "#C8324A", tintBg: "#FBE9EC", icon: <><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></> },
 ];
 
