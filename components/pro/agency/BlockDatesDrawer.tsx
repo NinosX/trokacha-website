@@ -12,7 +12,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { daysBetween, type Operation } from '@/lib/pro-core';
 import { callPro, newProId } from '@/lib/pro/callables';
 import { unavailableRanges } from '@/lib/pro/agency/booking';
-import { blockRangeText, blockReasonText } from '@/lib/pro/agency/blocks';
+import { blockRangeOfPick, blockRangeText, blockReasonText } from '@/lib/pro/agency/blocks';
 import { errorReason } from '@/lib/pro/agency/errors';
 import { BLOCK_REASONS, type BlockReason, type RentalKind, type RentalUnit } from '@/lib/pro/agency/units';
 import type { ProTexts } from '@/lib/pro/texts';
@@ -34,8 +34,11 @@ export function BlockDatesDrawer({ bid, texts, today, units, ops, initialItemId,
   const unit = units.find((u) => u.id === itemId) ?? null;
   const kind: RentalKind = unit?.kind ?? 'car';
   const [reason, setReason] = useState<BlockReason>(kind === 'immo' ? 'menage' : 'garage');
+  // Sélection INCLUSIVE (passe du 15/11) : `last` = dernier jour bloqué, `null` = un seul jour.
   const [start, setStart] = useState<string | null>(null);
-  const [end, setEnd] = useState<string | null>(null);
+  const [last, setLast] = useState<string | null>(null);
+  // Plage enregistrée : fin exclusive, le lendemain du dernier jour bloqué.
+  const range = blockRangeOfPick(start, last);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   // Un identifiant par tentative : un double clic ou un rejeu ne bloque jamais deux fois.
@@ -48,24 +51,24 @@ export function BlockDatesDrawer({ bid, texts, today, units, ops, initialItemId,
       setError(t('ag.booking.unitNone'));
       return;
     }
-    if (!start || !end) {
+    if (!range) {
       setError(t('ag.web.blockPick'));
       return;
     }
     setBusy(true);
     setError(null);
     try {
-      await callPro('proBlockDates', { bid, itemId: unit.id, blocId, debut: start, fin: end, motif: reason });
-      onSaved(`${t('ag.unit.blockSaved')} ${blockRangeText({ start, end }, texts)} · ${unit.titre || t('ag.unit.untitled')}`);
+      await callPro('proBlockDates', { bid, itemId: unit.id, blocId, debut: range.start, fin: range.end, motif: reason });
+      onSaved(`${t('ag.unit.blockSaved')} ${blockRangeText(range, texts)} · ${unit.titre || t('ag.unit.untitled')}`);
     } catch (e) {
       const why = errorReason(e);
       setError(why === 'DATES_PRISES' ? t('ag.unit.blockTaken') : why === 'offline' ? t('ag.unit.blockOffline') : why === 'generic' ? t('ag.unit.blockFailed') : t(`ag.errors.${why}`));
     } finally {
       setBusy(false);
     }
-  }, [bid, blocId, busy, end, onSaved, reason, start, t, texts, unit]);
+  }, [bid, blocId, busy, onSaved, range, reason, t, texts, unit]);
 
-  const days = start && end ? daysBetween(start, end) : 0;
+  const days = range ? daysBetween(range.start, range.end) : 0;
 
   return (
     <Drawer
@@ -76,7 +79,7 @@ export function BlockDatesDrawer({ bid, texts, today, units, ops, initialItemId,
       footer={
         <div className="space-y-3">
           {error ? <Notice tone="error">{error}</Notice> : null}
-          <Button label={days > 0 ? texts.tp('ag.unit.blockConfirm', days) : t('ag.unit.block')} onClick={() => void submit()} busy={busy} disabled={!unit || !start || !end} full />
+          <Button label={days > 0 ? texts.tp('ag.unit.blockConfirm', days) : t('ag.unit.block')} onClick={() => void submit()} busy={busy} disabled={!unit || !range} full />
         </div>
       }
     >
@@ -94,7 +97,7 @@ export function BlockDatesDrawer({ bid, texts, today, units, ops, initialItemId,
               onClick={() => {
                 setItemId(u.id);
                 setStart(null);
-                setEnd(null);
+                setLast(null);
                 setError(null);
               }}
               className={`rounded-[14px] border px-4 py-3 text-start transition ${selected ? 'border-ink bg-white ring-2 ring-ink' : 'border-line bg-white hover:bg-paperSoft'}`}
@@ -119,16 +122,18 @@ export function BlockDatesDrawer({ bid, texts, today, units, ops, initialItemId,
             texts={texts}
             today={today}
             start={start}
-            end={end}
+            end={last}
             kind={kind}
             unavailable={unavailable}
+            inclusive
             onChange={(s, e) => {
               setStart(s);
-              setEnd(e);
+              setLast(e);
               setError(null);
             }}
           />
-          {start && end ? <p className="mt-2 text-[15px] font-semibold text-ink">{blockRangeText({ start, end }, texts)}</p> : null}
+          {/* Place gardée dès l'ouverture : la plage qui s'écrit ne fait pas bouger le tiroir. */}
+          <p className="mt-2 min-h-[24px] text-[15px] font-semibold text-ink">{range ? blockRangeText(range, texts) : ''}</p>
         </>
       ) : (
         <Notice tone="muted">{t('ag.web.blockPick')}</Notice>

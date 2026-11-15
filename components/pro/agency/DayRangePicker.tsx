@@ -2,13 +2,16 @@
 
 // components/pro/agency/DayRangePicker.tsx
 // Calendrier des dates d'une réservation : un clic pour le premier jour, un
-// second pour le jour du retour (fin EXCLUSIVE). Les jours déjà pris sont
+// second pour le jour du retour (fin EXCLUSIVE). `inclusive` (blocage) : le
+// second clic est le DERNIER jour bloqué, `end` = ce dernier jour, et un seul
+// clic suffit pour un seul jour. Les jours déjà pris sont
 // barrés (prévenus ; le serveur tranche), les jours passés sont éteints. La
 // ligne d'aide et « Effacer » ont leur place dès l'ouverture : la grille ne
 // bouge jamais entre deux clics (leçon du passage simulateur du 15/11).
 
 import { useMemo, useState } from 'react';
 import { addDays, type Plage } from '@/lib/pro-core';
+import { pickRangeDay } from '@/lib/pro/agency/blocks';
 import { monthBounds, shiftMonth } from '@/lib/pro/agency/planning';
 import { monthTitle, shortRange, weekdayLetter } from '@/lib/pro/agency/text';
 import type { ProTexts } from '@/lib/pro/texts';
@@ -17,7 +20,7 @@ import { AgencyIcon } from './icons';
 /** Une semaine qui commence un dimanche (15/11/2026) : les lettres des colonnes, du dimanche au samedi. */
 const REFERENCE_WEEK = ['2026-11-15', '2026-11-16', '2026-11-17', '2026-11-18', '2026-11-19', '2026-11-20', '2026-11-21'];
 
-export function DayRangePicker({ texts, today, start, end, kind, unavailable, onChange }: {
+export function DayRangePicker({ texts, today, start, end, kind, unavailable, onChange, inclusive = false }: {
   texts: ProTexts;
   today: string;
   start: string | null;
@@ -25,6 +28,8 @@ export function DayRangePicker({ texts, today, start, end, kind, unavailable, on
   kind: 'car' | 'immo';
   unavailable: readonly Plage[];
   onChange: (start: string | null, end: string | null) => void;
+  /** Blocage : `end` est le dernier jour choisi (compris), pas le jour du retour. */
+  inclusive?: boolean;
 }) {
   const t = texts.t;
   const [month, setMonth] = useState(() => monthBounds(start ?? today).first);
@@ -39,15 +44,20 @@ export function DayRangePicker({ texts, today, start, end, kind, unavailable, on
   const minMonth = monthBounds(today).first;
 
   const pick = (day: string) => {
-    if (!start || (start && end) || day <= start) onChange(day, null);
-    else onChange(start, day);
+    const [s, e] = pickRangeDay(start, end, day, inclusive);
+    onChange(s, e);
   };
 
-  const hint = !start
-    ? t(`ag.booking.datesSheet.pickStart.${kind}`)
-    : !end
-      ? t(`ag.booking.datesSheet.pickEnd.${kind}`)
-      : shortRange(start, end, texts);
+  // Blocage : la plage choisie s'écrit sous le calendrier (tiroir) ; ici, toujours le geste suivant.
+  const hint = inclusive
+    ? !start
+      ? t('ag.unit.blockPickStart')
+      : t(`ag.unit.blockPickEnd.${kind}`)
+    : !start
+      ? t(`ag.booking.datesSheet.pickStart.${kind}`)
+      : !end
+        ? t(`ag.booking.datesSheet.pickEnd.${kind}`)
+        : shortRange(start, end, texts);
 
   return (
     <div className="rounded-[16px] border border-line bg-white p-4">

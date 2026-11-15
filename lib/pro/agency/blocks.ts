@@ -28,3 +28,24 @@ export function blockReasonText(reason: BlockReason, kind: RentalKind, x: ProTex
 export function blockOfBar(unit: Pick<RentalUnit, 'blockedRanges'>, bar: { start: string; end: string }): BlockedRange | null {
   return unit.blockedRanges.find((b) => b.start <= bar.start && bar.end <= b.end) ?? null;
 }
+
+/**
+ * Un clic dans le calendrier des dates. Réservation : premier jour puis jour du retour (fin
+ * exclusive). Blocage (`inclusive`) : premier puis DERNIER jour bloqué ; le seul jour retouché
+ * s'efface, le dernier jour retouché laisse le premier seul. Rend `[début, fin]`.
+ */
+export function pickRangeDay(start: string | null, end: string | null, day: string, inclusive: boolean): [string | null, string | null] {
+  if (inclusive) {
+    if (start && !end && day === start) return [null, null];
+    if (start && end && day === end) return [start, null];
+    if (start && day > start) return [start, day];
+    return [day, null];
+  }
+  if (!start || end || day <= start) return [day, null];
+  return [start, day];
+}
+
+/** La plage enregistrée d'un blocage choisi (fin exclusive : le lendemain du dernier jour), `null` : rien. */
+export function blockRangeOfPick(start: string | null, last: string | null): { start: string; end: string } | null {
+  return start ? { start, end: addDays(last ?? start, 1) } : null;
+}

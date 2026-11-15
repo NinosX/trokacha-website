@@ -185,4 +185,29 @@ test('dates bloquées : raison privée lue sur l’article, texte de la période
   }
 });
 
+test('dates à bloquer : premier puis dernier jour compris, un seul clic pour un seul jour ; la réservation garde le jour du retour', () => {
+  const { pickRangeDay, blockRangeOfPick, blockRangeText } = require('../lib/pro/agency/blocks.ts');
+  const fr = proTexts('fr');
+  // Blocage (inclusif).
+  assert.deepEqual(pickRangeDay(null, null, '2026-11-27', true), ['2026-11-27', null]);
+  assert.deepEqual(blockRangeOfPick('2026-11-27', null), { start: '2026-11-27', end: '2026-11-28' });
+  assert.equal(blockRangeText(blockRangeOfPick('2026-11-27', null), fr), 'Bloqué le ven. 27 nov.');
+  assert.deepEqual(pickRangeDay('2026-11-27', null, '2026-11-28', true), ['2026-11-27', '2026-11-28']);
+  assert.deepEqual(blockRangeOfPick('2026-11-27', '2026-11-28'), { start: '2026-11-27', end: '2026-11-29' });
+  assert.equal(blockRangeText(blockRangeOfPick('2026-11-27', '2026-11-28'), fr), 'Bloqué du ven. 27 au sam. 28 nov.');
+  assert.deepEqual(pickRangeDay('2026-11-27', null, '2026-11-27', true), [null, null]);
+  assert.deepEqual(pickRangeDay('2026-11-27', '2026-11-29', '2026-11-29', true), ['2026-11-27', null]);
+  assert.deepEqual(pickRangeDay('2026-11-27', '2026-11-29', '2026-11-30', true), ['2026-11-27', '2026-11-30']);
+  assert.deepEqual(pickRangeDay('2026-11-27', '2026-11-29', '2026-11-25', true), ['2026-11-25', null]);
+  assert.equal(blockRangeOfPick(null, null), null);
+  // Réservation (fin exclusive, inchangée).
+  assert.deepEqual(pickRangeDay('2026-11-27', null, '2026-11-29', false), ['2026-11-27', '2026-11-29']);
+  assert.deepEqual(pickRangeDay('2026-11-27', '2026-11-29', '2026-11-30', false), ['2026-11-30', null]);
+  assert.deepEqual(pickRangeDay('2026-11-27', null, '2026-11-27', false), ['2026-11-27', null]);
+  for (const locale of ['fr', 'en', 'ar']) {
+    const text = proTexts(locale).t('ag.unit.blockPickEnd.car');
+    assert.ok(!/redevient|free again|من جديد/.test(text) && !/[\u2013\u2014]/.test(text), `${locale} blockPickEnd`);
+  }
+});
+
 console.log(`Bureau pro : ${passed} tests verts.`);
