@@ -6,6 +6,10 @@
 // par le cœur partagé) va dans un cadre caché (`srcdoc`, même origine, aucune
 // fenêtre qui s'ouvre), puis la boîte d'impression du navigateur, où le pro
 // choisit son imprimante ou « Enregistrer au format PDF ». Le cadre part après.
+// Cadre bac à sable (relecture de Main, 15/11, S5) : aucun script, aucun
+// formulaire, aucune navigation dans le document ; seulement la même origine
+// (pour lancer l'impression depuis la page) et les fenêtres modales (la boîte
+// d'impression elle-même, sinon le navigateur ignore `print()`).
 // =============================================================================
 
 const FRAME_ID = 'trk-pro-print-frame';
@@ -17,6 +21,7 @@ export function printDocumentHtml(html: string): Promise<void> {
     frame.id = FRAME_ID;
     frame.setAttribute('aria-hidden', 'true');
     frame.tabIndex = -1;
+    frame.setAttribute('sandbox', 'allow-same-origin allow-modals');
     frame.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;opacity:0;pointer-events:none;';
     let done = false;
     const cleanup = () => window.setTimeout(() => frame.remove(), 1000);
