@@ -10,15 +10,19 @@
 
 import { addDays } from '@/lib/pro-core';
 
+import { agencyTexts } from './texts/agency';
+import { sharedTexts } from './texts/shared';
+import { shopTexts } from './texts/shop';
+
 export type ProLocale = 'fr' | 'en' | 'ar';
 
 export function proLocale(locale: string | null | undefined): ProLocale {
   return locale === 'ar' || locale === 'en' ? locale : 'fr';
 }
 
-type Plural = { one: string; two?: string; few?: string; many?: string; other: string; zero?: string };
-type Entry = string | Plural;
-type Dict = Record<string, Entry>;
+export type Plural = { one: string; two?: string; few?: string; many?: string; other: string; zero?: string };
+export type Entry = string | Plural;
+export type Dict = Record<string, Entry>;
 
 const fr: Dict = {
   'common.loading': 'Chargement…',
@@ -296,7 +300,12 @@ const ar: Dict = {
   'shop.line.putAsideDue': 'محجوز للزبون · يبقى {{amount}} للتحصيل',
 };
 
-const DICTS: Record<ProLocale, Dict> = { fr, en, ar };
+// Textes par volet (`./texts/*.ts`, un fichier par chantier : agence, boutique,
+// commun) ajoutés à la base ; une clé de volet ne doit pas reprendre une clé de base.
+const AREAS = [agencyTexts, shopTexts, sharedTexts] as const;
+const withAreas = (locale: ProLocale, base: Dict): Dict => Object.assign({}, base, ...AREAS.map((a) => a[locale]));
+
+const DICTS: Record<ProLocale, Dict> = { fr: withAreas('fr', fr), en: withAreas('en', en), ar: withAreas('ar', ar) };
 
 export type ProTextKey = keyof typeof fr;
 
