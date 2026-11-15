@@ -42,6 +42,7 @@ import {
 import { bookingRangeText, errorText, lengthText, shortDay } from '@/lib/pro/agency/text';
 import type { RentalKind, RentalUnit } from '@/lib/pro/agency/units';
 import { buildDeskDocument, deskDocuments } from '@/lib/pro/shared/documents';
+import { groupDigits } from '@/lib/pro/shared/format';
 import { useClient, useReglagesDocuments } from '@/lib/pro/shared/hooks';
 import type { ProTexts } from '@/lib/pro/texts';
 import { useProDesk } from '../ProDeskShell';
@@ -303,7 +304,7 @@ function OperationBody({
 
   const etatLine = (etat: Operation['depart']) =>
     etat
-      ? [typeof etat.km === 'number' ? t('ag.operation.summary.km', { km: new Intl.NumberFormat('fr-FR').format(etat.km) }) : null, typeof etat.carburant === 'number' ? t('ag.operation.summary.fuel', { fuel: etat.carburant }) : null]
+      ? [typeof etat.km === 'number' ? t('ag.operation.summary.km', { km: groupDigits(etat.km) }) : null, typeof etat.carburant === 'number' ? t('ag.operation.summary.fuel', { fuel: etat.carburant }) : null]
           .filter(Boolean)
           .join(' · ')
       : '';
@@ -382,7 +383,7 @@ function OperationBody({
               {op.retour.notes ? <p className="text-[14px] text-inkMuted">{op.retour.notes}</p> : null}
             </div>
           ) : null}
-          {delta.km !== null && delta.km > 0 ? <p className="text-[15px] font-semibold text-cash">{t('ag.operation.summary.driven', { km: new Intl.NumberFormat('fr-FR').format(delta.km) })}</p> : null}
+          {delta.km !== null && delta.km > 0 ? <p className="text-[15px] font-semibold text-cash">{t('ag.operation.summary.driven', { km: groupDigits(delta.km) })}</p> : null}
           {delta.fuel !== null && delta.fuel > 0 ? <p className="text-[15px] font-semibold text-cash">{texts.tp('ag.operation.summary.fuelLess', delta.fuel)}</p> : null}
         </Block>
       ) : null}
@@ -526,7 +527,7 @@ function StepDialog({ op, step, kind, texts, busy, error, onClose, onSubmit }: {
     const departure = isDepart ? null : op.depart;
     return (
       <Dialog open title={title} onClose={onClose} closeLabel={t('ag.operation.confirm.no')}>
-        {departure && typeof departure.km === 'number' ? <p className="mb-3 text-[14px] font-semibold text-inkSoft">{t('ag.operation.etat.departWas', { km: new Intl.NumberFormat('fr-FR').format(departure.km) })}</p> : null}
+        {departure && typeof departure.km === 'number' ? <p className="mb-3 text-[14px] font-semibold text-inkSoft">{t('ag.operation.etat.departWas', { km: groupDigits(departure.km) })}</p> : null}
         {departure && typeof departure.carburant === 'number' && typeof departure.km !== 'number' ? <p className="mb-3 text-[14px] font-semibold text-inkSoft">{t('ag.operation.etat.departWasFuel', { fuel: departure.carburant })}</p> : null}
         {!immo ? (
           <>
@@ -569,7 +570,7 @@ function StepDialog({ op, step, kind, texts, busy, error, onClose, onSubmit }: {
             onClick={() => {
               const read = readEtatForm(form, departure);
               if (read.ok === false) {
-                setIssue(read.issue === 'km' ? t('ag.operation.issues.km') : t('ag.operation.issues.kmBelowDeparture', { km: new Intl.NumberFormat('fr-FR').format(departure?.km ?? 0) }));
+                setIssue(read.issue === 'km' ? t('ag.operation.issues.km') : t('ag.operation.issues.kmBelowDeparture', { km: groupDigits(departure?.km ?? 0) }));
                 return;
               }
               setIssue(null);

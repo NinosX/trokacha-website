@@ -49,3 +49,14 @@ const ALGIERS_TIME = new Intl.DateTimeFormat('fr-FR', { hour: '2-digit', minute:
 export function algiersTime(ms: number): string {
   return ALGIERS_TIME.format(new Date(ms));
 }
+
+const GROUP = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
+
+/**
+ * « 121 500 » : milliers séparés par une espace insécable ORDINAIRE (U+00A0), comme les
+ * documents. `Intl` en fr-FR met une espace fine (U+202F) que la police du bureau ne dessine
+ * presque pas : l'en-tête du planning lisait « 121500 DA » (passe du 15/11).
+ */
+export function groupDigits(n: number): string {
+  return GROUP.format(Math.round(n)).replace(/[\u202f\u2009]/g, '\u00a0');
+}

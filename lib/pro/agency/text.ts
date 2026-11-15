@@ -6,6 +6,7 @@
 // =============================================================================
 
 import { errorReason } from './errors';
+import { groupDigits } from '../shared/format';
 import type { ProTexts } from '../texts';
 import type { RentalKind } from './units';
 
@@ -66,11 +67,10 @@ export function monthRest(occupancyPct: number, revenue: number, x: ProTexts): s
   return x.t('ag.planning.monthRest', { pct: Math.max(0, Math.round(occupancyPct)), amount: x.money(revenue) });
 }
 
-const group = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
 
 /** « 3 × 6 500 = ». */
 export function priceCalcText(days: number, perDay: number, x: ProTexts): string {
-  return x.t('ag.booking.priceCalc', { days, perDay: group.format(Math.round(perDay)) });
+  return x.t('ag.booking.priceCalc', { days, perDay: groupDigits(perDay) });
 }
 
 /** « 6 500 DA/j » ou « 9 000 DA/nuit ». */

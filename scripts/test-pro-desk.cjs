@@ -92,10 +92,10 @@ test('wilaya : le nom, pas le code', () => {
 test('montant négatif : vrai signe moins dans un isolat gauche-à-droite', () => {
   const fr = proTexts('fr');
   const ar = proTexts('ar');
-  assert.equal(fr.money(-2000), '⁦−2 000⁩ DA');
+  assert.equal(fr.money(-2000), '\u2066\u22122\u00a0000\u2069 DA');
   assert.ok(ar.money(-2000).includes('⁦−2'));
   assert.ok(ar.money(-2000).endsWith('⁩ دج'));
-  assert.equal(fr.money(2000), '2 000 DA');
+  assert.equal(fr.money(2000), '2\u00a0000 DA');
 });
 
 test('documents : bon de livraison bilingue, wilaya en deux langues, taille, en-tête de l’espace', () => {
@@ -208,6 +208,15 @@ test('dates à bloquer : premier puis dernier jour compris, un seul clic pour un
     const text = proTexts(locale).t('ag.unit.blockPickEnd.car');
     assert.ok(!/redevient|free again|من جديد/.test(text) && !/[\u2013\u2014]/.test(text), `${locale} blockPickEnd`);
   }
+});
+
+test('montants : milliers séparés par une espace insécable ordinaire (l’en-tête du planning lisait « 121500 DA »)', () => {
+  const { groupDigits } = require('../lib/pro/shared/format.ts');
+  const { monthRest } = require('../lib/pro/agency/text.ts');
+  assert.equal(groupDigits(121500), '121\u00a0500');
+  assert.equal(proTexts('fr').money(121500), '121\u00a0500 DA');
+  assert.ok(!/[\u202f\u2009]/.test(proTexts('ar').money(2500000)));
+  assert.equal(monthRest(16, 121500, proTexts('fr')), '16 % loué · 121\u00a0500 DA');
 });
 
 console.log(`Bureau pro : ${passed} tests verts.`);

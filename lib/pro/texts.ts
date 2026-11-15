@@ -9,6 +9,7 @@
 // =============================================================================
 
 import { addDays } from '@/lib/pro-core';
+import { groupDigits } from './shared/format';
 
 import { agencyTexts } from './texts/agency';
 import { sharedTexts } from './texts/shared';
@@ -335,7 +336,6 @@ export function proTexts(rawLocale: string | null | undefined): ProTexts {
   const locale = proLocale(rawLocale);
   const dict = DICTS[locale];
   const rules = new Intl.PluralRules(locale === 'ar' ? 'ar' : locale);
-  const group = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
 
   const t = (key: ProTextKey, params?: Record<string, string | number>): string => {
     const entry = dict[key] ?? fr[key];
@@ -355,7 +355,7 @@ export function proTexts(rawLocale: string | null | undefined): ProTexts {
   const money = (amount: number): string => {
     const rounded = Math.round(amount);
     const negative = rounded < 0;
-    const n = signed(group.format(Math.abs(rounded)), negative);
+    const n = signed(groupDigits(Math.abs(rounded)), negative);
     if (locale === 'ar') return `‏${n} دج`;
     if (locale === 'en') return `${signed(new Intl.NumberFormat('en-GB', { maximumFractionDigits: 0 }).format(Math.abs(rounded)), negative)} DA`;
     return `${n} DA`;
