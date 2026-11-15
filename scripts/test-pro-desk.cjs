@@ -23,6 +23,7 @@ const { displayPhone } = require('../lib/pro/shared/format.ts');
 const { wilayaName } = require('../lib/pro/shared/wilayas.ts');
 const { proTexts } = require('../lib/pro/texts.ts');
 const { cleTitre } = require('../lib/pro-core');
+const { buildDeskDocument, deskDocuments, wilayaBilingue } = require('../lib/pro/shared/documents.ts');
 
 let passed = 0;
 const test = (name, fn) => {
@@ -95,6 +96,63 @@ test('montant négatif : vrai signe moins dans un isolat gauche-à-droite', () =
   assert.ok(ar.money(-2000).includes('⁦−2'));
   assert.ok(ar.money(-2000).endsWith('⁩ دج'));
   assert.equal(fr.money(2000), '2 000 DA');
+});
+
+test('documents : bon de livraison bilingue, wilaya en deux langues, taille, en-tête de l’espace', () => {
+  const op = {
+    id: 'op_lq3z00000000000yas7n',
+    type: 'vente',
+    origine: 'instagram',
+    statut: 'a_expedier',
+    itemId: 'it_1',
+    itemTitre: 'Abaya',
+    variante: 'm_noir',
+    quantite: 1,
+    clientNom: 'Amel <b>Kaci</b>',
+    clientTel: '+213770987654',
+    lignes: [{ libelle: 'Abaya', quantite: 1, prix: 7000 }],
+    total: 7000,
+    paiements: [],
+    solde: 7000,
+    garanties: [],
+    garantieOuverte: false,
+    expedition: { transporteur: 'Yalidine', mode: 'bureau', wilaya: '25', commune: 'El Khroub', frais: 500, suivi: null, etat: 'a_confirmer' },
+    creePar: 'u',
+    creeLe: 0,
+    modifieLe: 0,
+    version: 1,
+  };
+  assert.deepEqual(deskDocuments(op, 'car'), ['livraison']);
+  assert.deepEqual(deskDocuments({ ...op, statut: 'annulee' }, 'car'), []);
+  assert.deepEqual(wilayaBilingue('25'), { fr: 'Constantine', ar: 'قسنطينة' });
+  assert.equal(wilayaBilingue('Ailleurs'), null);
+  const doc = buildDeskDocument({
+    sorte: 'livraison',
+    op,
+    space: { nom: 'Dar El Yasmine', wilayaCode: '31', tel: '0770112233' },
+    bien: null,
+    client: null,
+    reglages: {},
+    variante: 'M · Noir',
+    now: Date.parse('2026-11-20T09:00:00Z'),
+  });
+  assert.equal(doc.nomFichier, 'Bon-livraison-0YAS7N');
+  assert.ok(doc.html.includes('وصل التسليم'));
+  assert.ok(doc.html.includes('Constantine') && doc.html.includes('قسنطينة'));
+  assert.ok(doc.html.includes('Oran') && doc.html.includes('وهران'));
+  assert.ok(doc.html.includes('0770 11 22 33'));
+  assert.ok(doc.html.includes('M · Noir'));
+  assert.ok(doc.html.includes('Amel &lt;b&gt;Kaci&lt;/b&gt;'));
+  assert.ok(!/[\u2013\u2014]/.test(doc.html));
+});
+
+test('textes des documents : les trois langues, mêmes clés', () => {
+  for (const key of ['doc.section', 'doc.kind.contrat', 'doc.kind.sejour', 'doc.kind.caution', 'doc.kind.livraison', 'doc.settingsTitle', 'doc.field.conditionsVente']) {
+    for (const locale of ['fr', 'en', 'ar']) {
+      const text = proTexts(locale).t(key);
+      assert.ok(text.trim() !== '' && !text.includes(key), `${locale} ${key}`);
+    }
+  }
 });
 
 console.log(`Bureau pro : ${passed} tests verts.`);

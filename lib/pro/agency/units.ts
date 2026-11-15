@@ -32,6 +32,9 @@ export interface RentalUnit {
   tamponJours: number;
   /** Caution annoncée du bien, en DA ; `null` si aucune. */
   caution: number | null;
+  /** Plaque d'une voiture, adresse d'un logement (documents). */
+  plaque: string | null;
+  adresse: string | null;
   creeLe: number;
 }
 
@@ -96,6 +99,8 @@ export function readRentalUnit(id: string, data: unknown): RentalUnit | null {
     blockedRanges: readBlocked(rental.blockedRanges),
     tamponJours: tampon === null ? 0 : Math.max(0, Math.min(30, Math.floor(tampon))),
     caution: caution !== null && caution > 0 ? Math.round(caution) : null,
+    plaque: readString(bien.plaque)?.trim() || null,
+    adresse: readString(bien.adresse)?.trim() || null,
     creeLe: millis(data.creeLe ?? data.createdAt),
   };
 }

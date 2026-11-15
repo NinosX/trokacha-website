@@ -40,8 +40,12 @@ import {
   type SettleChoice,
 } from '@/lib/pro/agency/operation';
 import { bookingRangeText, errorText, lengthText, shortDay } from '@/lib/pro/agency/text';
-import type { RentalKind } from '@/lib/pro/agency/units';
+import type { RentalKind, RentalUnit } from '@/lib/pro/agency/units';
+import { buildDeskDocument, deskDocuments } from '@/lib/pro/shared/documents';
+import { useClient, useReglagesDocuments } from '@/lib/pro/shared/hooks';
 import type { ProTexts } from '@/lib/pro/texts';
+import { useProDesk } from '../ProDeskShell';
+import { DocumentButtons } from '../shared/DocumentButtons';
 import { AgencyIcon } from './icons';
 import { Button, Chip, ChipRow, Dialog, Drawer, FieldLabel, Notice, inputClass } from './ui';
 
@@ -83,9 +87,48 @@ function AmountLine({ label, amount, strong = false, tone = 'ink' }: { label: st
   );
 }
 
-export function OperationDrawer({ bid, opId, texts, today, kind, onClose }: { bid: string; opId: string; texts: ProTexts; today: string; kind: RentalKind; onClose: () => void }) {
+export function OperationDrawer({
+  bid,
+  opId,
+  texts,
+  today,
+  kind,
+  units,
+  onClose,
+}: {
+  bid: string;
+  opId: string;
+  texts: ProTexts;
+  today: string;
+  kind: RentalKind;
+  /** Les biens de l'espace (plaque, adresse et sorte du bien, pour les documents). */
+  units: readonly RentalUnit[];
+  onClose: () => void;
+}) {
   const t = texts.t;
   const { op, status } = useOperation(bid, opId);
+  const { space } = useProDesk();
+  const reglages = useReglagesDocuments(bid);
+  const fiche = useClient(bid, op?.clientId ?? null);
+  const unit = op ? units.find((u) => u.id === op.itemId) ?? null : null;
+  const unitKind: RentalKind = unit?.kind ?? kind;
+  const docKinds = useMemo(() => (op ? deskDocuments(op, unitKind) : []), [op, unitKind]);
+  const buildDocument = useCallback(
+    (sorte: Parameters<typeof buildDeskDocument>[0]['sorte']) => {
+      if (!op) throw new Error('no-op');
+      return buildDeskDocument({
+        sorte,
+        op,
+        space,
+        bien: { titre: unit?.titre || op.itemTitre, plaque: unit?.plaque ?? null, adresse: unit?.adresse ?? null, kind: unitKind },
+        client: op.clientId && fiche.data?.id === op.clientId ? fiche.data : null,
+        reglages: reglages.data,
+        variante: null,
+        now: Date.now(),
+      });
+    },
+    [fiche.data, op, reglages.data, space, unit, unitKind],
+  );
   const [sheet, setSheet] = useState<Sheet | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -138,6 +181,15 @@ export function OperationDrawer({ bid, opId, texts, today, kind, onClose }: { bi
           onPay={(refund) => openSheet({ kind: 'pay', paiementId: newProId('pa'), refund })}
           onSettle={(garantie, choice) => openSheet({ kind: 'settle', garantie, choice })}
           onAddDeposit={() => openSheet({ kind: 'deposit' })}
+          documents={
+            docKinds.length ? (
+              <section className="mt-6">
+                <h3 className="mb-1 font-display text-[19px] font-bold text-ink">{t('doc.section')}</h3>
+                <p className="mb-3 text-[14px] text-inkMuted">{t('doc.hint')}</p>
+                <DocumentButtons kinds={docKinds} build={buildDocument} texts={texts} />
+              </section>
+            ) : null
+          }
         />
       ) : null}
 
@@ -223,6 +275,7 @@ function OperationBody({
   onPay,
   onSettle,
   onAddDeposit,
+  documents,
 }: {
   op: Operation;
   texts: ProTexts;
@@ -235,6 +288,8 @@ function OperationBody({
   onPay: (refund: boolean) => void;
   onSettle: (g: Garantie, choice: SettleChoice) => void;
   onAddDeposit: () => void;
+  /** Les documents (contrat, reçu de caution), sous les gestes. */
+  documents: ReactNode;
 }) {
   const t = texts.t;
   const steps = useMemo(() => operationSteps(op), [op]);
@@ -308,6 +363,8 @@ function OperationBody({
           {saved}
         </p>
       ) : null}
+
+      {documents}
 
       {op.depart || op.retour ? (
         <Block title={t('ag.operation.section.etat')}>

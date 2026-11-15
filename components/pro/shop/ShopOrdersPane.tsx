@@ -27,12 +27,15 @@ import { hoursLeft, needsSizeChoice, offerPriceLine, outsideSalesOf, saleActions
 import { assignVariant, recordPayment, saleStep, shopErrorKey } from '@/lib/pro/shop/writes';
 import { shortClientName } from '@/lib/pro/today';
 import type { ProTexts } from '@/lib/pro/texts';
+import { buildDeskDocument, deskDocuments } from '@/lib/pro/shared/documents';
 import { displayPhone } from '@/lib/pro/shared/format';
+import { useReglagesDocuments } from '@/lib/pro/shared/hooks';
 import { wilayaName } from '@/lib/pro/shared/wilayas';
 import { Ltr } from '../Ltr';
 import { useProDesk } from '../ProDeskShell';
 import { ProPaneTitle } from '../ProPane';
 import { ProCentered, useProSession } from '../ProSession';
+import { DocumentButtons } from '../shared/DocumentButtons';
 import { ArticleThumb, ChipRow, FormError, inputClass, NoticeBar, ShopButton, ShopChip, ShopDialog, ShopField, useNotice } from './ShopUi';
 
 const PAY_MOYENS: readonly MoyenPaiement[] = ['especes', 'cib', 'edahabia', 'baridimob', 'ccp', 'virement', 'cheque'];
@@ -122,6 +125,7 @@ export function ShopOrdersPane() {
   const ops = useOpenOps(bid);
   const catalogue = useShopCatalogue(bid);
   const offers = useShopOffers(user.uid, bid);
+  const reglages = useReglagesDocuments(bid);
   const [dialog, setDialog] = useState<Dialog | null>(null);
   const [busyOp, setBusyOp] = useState<string | null>(null);
   const { notice, show, clear } = useNotice();
@@ -175,6 +179,7 @@ export function ShopOrdersPane() {
             const article = byId.get(op.itemId);
             const line = carnetLine(op, x);
             const actions = saleActionsOf(op);
+            const docKinds = deskDocuments(op, 'car');
             return (
               <li key={op.id} className="rounded-card border border-line bg-white px-5 py-4 shadow-card">
                 <div className="flex items-start gap-3">
@@ -199,6 +204,27 @@ export function ShopOrdersPane() {
                     </p>
                   </div>
                 </div>
+                {docKinds.length ? (
+                  <div className="mt-3">
+                    <DocumentButtons
+                      small
+                      kinds={docKinds}
+                      texts={x}
+                      build={(sorte) =>
+                        buildDeskDocument({
+                          sorte,
+                          op,
+                          space,
+                          bien: null,
+                          client: null,
+                          reglages: reglages.data,
+                          variante: variantLabel(article, op.variante),
+                          now: Date.now(),
+                        })
+                      }
+                    />
+                  </div>
+                ) : null}
                 {actions.length ? (
                   <div className="mt-3 flex flex-wrap justify-end gap-2">
                     {actions.map((action, i) => (

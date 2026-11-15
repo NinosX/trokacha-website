@@ -9,9 +9,9 @@
 // =============================================================================
 
 import { useEffect, useState } from 'react';
-import { collection, doc, getDocs, limit, onSnapshot, orderBy, query, where } from 'firebase/firestore';
+import { collection, doc, getDocs, limit, onSnapshot, orderBy, query, setDoc, where } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
-import { cleTitre, type ClientFiche, type Operation } from '@/lib/pro-core';
+import { cleTitre, lireReglagesDocuments, type CleReglageDocument, type ClientFiche, type Operation, type ReglagesDocuments } from '@/lib/pro-core';
 import { isRecord, readClient, readOperation, readString } from '../carnet';
 import type { LiveStatus } from '../hooks';
 import { readCaisseJour, readMouvement, type CaisseJour, type CaisseMouvement, type DayRange } from './caisse';
@@ -182,4 +182,23 @@ export function useCatalogueKeys(bid: string): { existants: Existants; status: L
     [bid],
   );
   return state;
+}
+
+/** En-tête et conditions des documents (`prive/reglages.documents`) ; `{}` si rien n'est rempli. */
+export function useReglagesDocuments(bid: string): Live<ReglagesDocuments> {
+  const [state, setState] = useState<Live<ReglagesDocuments>>({ data: {}, status: 'loading', errorCode: null });
+  useEffect(() => {
+    setState({ data: {}, status: 'loading', errorCode: null });
+    return onSnapshot(
+      doc(db, 'boutiques', bid, 'prive', 'reglages'),
+      (snap) => setState({ data: lireReglagesDocuments(snap.exists() ? snap.data()?.documents : null), status: 'ready', errorCode: null }),
+      (error) => setState({ data: {}, status: 'error', errorCode: codeOf(error) }),
+    );
+  }, [bid]);
+  return state;
+}
+
+/** Enregistre l'en-tête et les conditions (tous les champs, déjà bornés par `saisieReglagesDocuments`). */
+export function saveReglagesDocuments(bid: string, value: Record<CleReglageDocument, string>): Promise<void> {
+  return setDoc(doc(db, 'boutiques', bid, 'prive', 'reglages'), { documents: value }, { merge: true });
 }

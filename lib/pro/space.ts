@@ -22,6 +22,10 @@ export interface ProSpace {
   secteurs: string[];
   kind: ProSpaceKind;
   hasRentals: boolean;
+  /** Code de la wilaya de l'espace (« 16 »), pour l'en-tête des documents. */
+  wilayaCode: string | null;
+  /** Téléphone public de l'espace (canal téléphone, sinon WhatsApp). */
+  tel: string | null;
 }
 
 /** Volets du bureau (adresse `/pro/[bid]/<volet>`). */
@@ -44,6 +48,8 @@ export function readProSpace(id: string, data: unknown): ProSpace | null {
   const statut = data.statut === 'active' || data.statut === 'pending' || data.statut === 'suspended' ? data.statut : null;
   if (!statut) return null;
   const secteurs = Array.isArray(data.secteurs) ? data.secteurs.filter((s): s is string => typeof s === 'string') : [];
+  const localisation = isRecord(data.localisation) ? data.localisation : {};
+  const canaux = isRecord(data.canaux) ? data.canaux : {};
   return {
     id,
     nom: readString(data.nom) ?? '',
@@ -51,6 +57,8 @@ export function readProSpace(id: string, data: unknown): ProSpace | null {
     secteurs,
     kind: proSpaceKindOf(secteurs),
     hasRentals: proSpaceHasRentals(secteurs),
+    wilayaCode: readString(localisation.wilayaCode)?.trim() || null,
+    tel: readString(canaux.phone)?.trim() || readString(canaux.whatsapp)?.trim() || null,
   };
 }
 

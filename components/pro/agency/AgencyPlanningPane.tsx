@@ -196,7 +196,7 @@ export function AgencyPlanningPane() {
           }}
         />
       ) : null}
-      {openOpId ? <OperationDrawer bid={space.id} opId={openOpId} texts={texts} today={today} kind={kind} onClose={() => setOpenOpId(null)} /> : null}
+      {openOpId ? <OperationDrawer bid={space.id} opId={openOpId} texts={texts} today={today} kind={kind} units={units.rows} onClose={() => setOpenOpId(null)} /> : null}
     </>
   );
 }

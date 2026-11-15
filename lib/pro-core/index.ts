@@ -14,3 +14,4 @@ export * from './variants';
 export * from './phone';
 export * from './input';
 export * from './import';
+export * from './documents';
