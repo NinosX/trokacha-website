@@ -186,6 +186,8 @@ const W = {
   kmDepart: m('Compteur au départ', 'العدّاد عند الخروج'),
   carburantDepart: m('Carburant au départ', 'الوقود عند الخروج'),
   notesDepart: m('Remarques au départ', 'ملاحظات عند الخروج'),
+  photosDepart: m('Photos au départ', 'صور عند الخروج'),
+  photosRetour: m('Photos au retour', 'صور عند الإرجاع'),
   logement: m('Logement', 'المسكن'),
   adresse: m('Adresse', 'العنوان'),
   periode: m('Période', 'مدة الكراء'),
@@ -427,6 +429,9 @@ function blocVehicule(d: DonneesDocument): string {
   ];
   let corps = grille(4, champs);
   if (op.depart?.notes) corps += grille(1, [champ(W.notesDepart, auto(op.depart.notes))]);
+  // Les photos restent dans le carnet (taille du PDF) : le contrat dit seulement combien.
+  const photos = op.depart?.photos?.length ?? 0;
+  if (photos > 0) corps += grille(1, [champ(W.photosDepart, ltr(String(photos)))]);
   return section(W.vehicule, corps);
 }
 
@@ -515,6 +520,8 @@ function blocRetour(d: DonneesDocument): string {
     champ(W.carburant, carburantDocument(r?.carburant)),
     champ(W.remarques, r?.notes ? auto(r.notes) : '', 'span4'),
   ];
+  const photos = r?.photos?.length ?? 0;
+  if (photos > 0) champs.push(champ(W.photosRetour, ltr(String(photos)), 'span4'));
   return section(W.retour, grille(4, champs));
 }
 

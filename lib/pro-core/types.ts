@@ -182,6 +182,8 @@ export interface Operation {
   conducteurs?: string[];
   depart?: EtatDesLieux | null;
   retour?: EtatDesLieux | null;
+  /** Photos du carnet (états des lieux, preuves d'une caution) à effacer 12 mois après `modifieLe` (`proDailySweep`). */
+  aDesPhotos?: boolean;
   /** Jours de tampon (ménage, préparation) projetés après `fin`. */
   tamponJours?: number;
   /** Location toujours dehors après `fin` (projection prolongée chaque nuit). */
