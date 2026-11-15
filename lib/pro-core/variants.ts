@@ -17,9 +17,11 @@ import type { StockParVariante, Variante } from './types';
 export const VARIANTES_MAX = 120;
 export const STOCK_MAX_PAR_VARIANTE = 100_000;
 const CLE_RE = /^[a-z0-9_]{1,40}$/;
+/** Noms qui désignent des propriétés d'objet en JavaScript : jamais une clé de stock (relecture de Main, M1). */
+const CLES_RESERVEES: ReadonlySet<string> = new Set(['constructor', '__proto__', 'prototype', 'hasownproperty', 'tostring', 'valueof']);
 
 export function isCleVariante(v: unknown): v is string {
-  return typeof v === 'string' && CLE_RE.test(v);
+  return typeof v === 'string' && CLE_RE.test(v) && !CLES_RESERVEES.has(v);
 }
 
 function slug(s: string | null | undefined): string {
@@ -39,10 +41,10 @@ function slug(s: string | null | undefined): string {
 export function nouvelleCle(taille: string | null | undefined, couleur: string | null | undefined, prises: readonly string[]): string {
   const base = [slug(taille), slug(couleur)].filter(Boolean).join('_');
   const taken = new Set(prises);
-  if (base && !taken.has(base)) return base;
+  if (base && !taken.has(base) && isCleVariante(base)) return base;
   for (let i = 1; i <= VARIANTES_MAX * 2; i++) {
     const cle = base ? `${base}_${i}`.slice(0, 40) : `v${i}`;
-    if (!taken.has(cle)) return cle;
+    if (!taken.has(cle) && isCleVariante(cle)) return cle;
   }
   return `v${Date.now().toString(36)}`;
 }

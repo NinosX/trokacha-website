@@ -225,13 +225,13 @@ export function lireSaisieOperation(raw: unknown): Resultat<SaisieOperation> {
   }
 
   const lignes = lireLignes(raw.lignes);
-  if (!lignes.ok) return lignes;
+  if (!lignes.ok) return lignes as { ok: false; reason: string };
   const paiement = lirePaiement(raw.paiement);
-  if (!paiement.ok) return paiement;
+  if (!paiement.ok) return paiement as { ok: false; reason: string };
   const garanties = lireGaranties(raw.garanties);
-  if (!garanties.ok) return garanties;
+  if (!garanties.ok) return garanties as { ok: false; reason: string };
   const client = lireClient(raw.client);
-  if (!client.ok) return client;
+  if (!client.ok) return client as { ok: false; reason: string };
 
   return {
     ok: true,

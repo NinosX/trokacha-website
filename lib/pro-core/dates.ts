@@ -16,8 +16,12 @@ const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const HEURE_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
 const DAY_MS = 24 * 60 * 60 * 1000;
 
+/** Bornes d'un jour du carnet : rien avant 2000 ni après 2100 (relecture de Main, M1 : « 9999 » passait). */
+export const JOUR_MIN = '2000-01-01';
+export const JOUR_MAX = '2100-12-31';
+
 export function isValidDay(v: unknown): v is string {
-  return typeof v === 'string' && DATE_RE.test(v) && !Number.isNaN(Date.parse(`${v}T00:00:00Z`));
+  return typeof v === 'string' && DATE_RE.test(v) && v >= JOUR_MIN && v <= JOUR_MAX && !Number.isNaN(Date.parse(`${v}T00:00:00Z`));
 }
 
 export function isValidHeure(v: unknown): v is string {
