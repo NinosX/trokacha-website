@@ -19,8 +19,11 @@
 // Les champs du domaine boutique sont EN FRANÇAIS (nom, statut, horaires,
 // modesVente…) : c'est la spec de l'app, ne pas angliciser.
 
-import { collection, doc, getDoc, getDocs, limit as fsLimit, query, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, limit as fsLimit, query, where, type Query } from 'firebase/firestore';
 import { db } from './firebase';
+import { formatAmount, toBoutiqueAd, visibleSorted, type BoutiqueAd, type SiteLocale } from './boutiquePublic';
+
+export { espaceKindOf, formatAmount, type BoutiqueAd, type EspaceKind, type SiteLocale } from './boutiquePublic';
 
 /* ============================== Types ==================================== */
 // Tout est optionnel : ce sont des données distantes, saisies par des vendeurs,
@@ -86,20 +89,7 @@ export interface Boutique {
   verified?: boolean;
 }
 
-export interface BoutiqueAd {
-  id: string;
-  title?: string;
-  price?: number | null;
-  images?: string[];
-  city?: string;
-  wilayaName?: string;
-  quantiteRestante?: number | null;
-  pinned?: boolean;
-  hidden?: boolean;
-  createdAtMs: number;
-}
-
-export type SiteLocale = 'fr' | 'en' | 'ar';
+// `BoutiqueAd` et `SiteLocale` : voir `lib/boutiquePublic.ts` (module pur, testé).
 
 /** Locale de rendu — `kab` et tout inconnu retombent sur `fr`. */
 export function toSiteLocale(locale: string | undefined): SiteLocale {
@@ -112,20 +102,6 @@ export function toSiteLocale(locale: string | undefined): SiteLocale {
 export const BOUTIQUES_LIST_LIMIT = 50;
 /** Garde-fou d'affichage : une vitrine web V1 ne déroule pas 500 articles. */
 export const BOUTIQUE_ADS_LIMIT = 48;
-
-function millisOf(value: unknown): number {
-  if (!value) return 0;
-  const v = value as { seconds?: number; toMillis?: () => number };
-  if (typeof v.toMillis === 'function') {
-    try {
-      return v.toMillis();
-    } catch {
-      return 0;
-    }
-  }
-  if (typeof v.seconds === 'number') return v.seconds * 1000;
-  return 0;
-}
 
 /**
  * Boutique publique. `null` couvre TOUS les cas non affichables — inexistante,
@@ -164,44 +140,28 @@ export async function listActiveBoutiques(): Promise<Boutique[]> {
 }
 
 /**
- * Annonces publiques d'une boutique.
- * Deux filtres d'ÉGALITÉ seulement (pas d'orderBy) : Firestore les sert sans
- * index composite à déployer. Le tri (épinglés d'abord, puis récents) et le
- * retrait des articles masqués (`hidden`) se font ici.
+ * Requête des annonces publiques d'une boutique, conforme aux rules pour un
+ * visiteur non connecté (`status == 'approved'` + limit <= 100). Deux filtres
+ * d'ÉGALITÉ seulement (pas d'orderBy) : servie sans index composite. Le tri et
+ * le retrait des articles masqués (`hidden`, dont la rupture de stock) se font
+ * après lecture (`visibleSorted`). Partagée par le rendu serveur et l'écoute en
+ * direct du navigateur (`BoutiqueAdsLive`).
  */
+export function boutiqueAdsQuery(boutiqueId: string): Query {
+  return query(
+    collection(db, 'ads'),
+    where('boutiqueId', '==', boutiqueId),
+    where('status', '==', 'approved'),
+    fsLimit(BOUTIQUE_ADS_LIMIT),
+  );
+}
+
+/** Annonces publiques d'une boutique (rendu serveur). */
 export async function listBoutiqueAds(boutiqueId: string): Promise<BoutiqueAd[]> {
   if (!boutiqueId) return [];
   try {
-    const snap = await getDocs(
-      query(
-        collection(db, 'ads'),
-        where('boutiqueId', '==', boutiqueId),
-        where('status', '==', 'approved'),
-        fsLimit(BOUTIQUE_ADS_LIMIT),
-      ),
-    );
-    return snap.docs
-      .map((d) => {
-        const data = d.data() as Record<string, unknown>;
-        return {
-          id: d.id,
-          title: typeof data.title === 'string' ? data.title : undefined,
-          price: typeof data.price === 'number' ? data.price : null,
-          images: Array.isArray(data.images) ? (data.images as string[]) : [],
-          city: typeof data.city === 'string' ? data.city : undefined,
-          wilayaName: typeof data.wilayaName === 'string' ? data.wilayaName : undefined,
-          quantiteRestante:
-            typeof data.quantiteRestante === 'number' ? data.quantiteRestante : null,
-          pinned: data.pinned === true,
-          hidden: data.hidden === true,
-          createdAtMs: millisOf(data.createdAt),
-        } as BoutiqueAd;
-      })
-      .filter((ad) => !ad.hidden)
-      .sort((a, b) => {
-        if (a.pinned !== b.pinned) return a.pinned ? -1 : 1;
-        return b.createdAtMs - a.createdAtMs;
-      });
+    const snap = await getDocs(boutiqueAdsQuery(boutiqueId));
+    return visibleSorted(snap.docs.map((d) => toBoutiqueAd(d.id, d.data() as Record<string, unknown>)));
   } catch (error) {
     console.error('[boutiques] listBoutiqueAds failed:', error);
     return [];
@@ -210,9 +170,9 @@ export async function listBoutiqueAds(boutiqueId: string): Promise<BoutiqueAd[]>
 
 /* ============================== Horaires ================================= */
 // Portage minimal de `utils/boutiqueHours.ts` (app mobile) : le stockage est en
-// minutes depuis minuit, l'affichage en « 09:00–12:30 · 14:00–19:00 ».
+// minutes depuis minuit, l'affichage en « 09:00-12:30 · 14:00-19:00 ».
 
-/** Marque LTR : empêche l'algorithme bidi de retourner « 09:00–12:30 » en arabe. */
+/** Marque LTR : empêche l'algorithme bidi de retourner « 09:00-12:30 » en arabe (trait d'union simple, jamais de tiret long). */
 const LRM = '\u200E';
 
 export function formatMinutes(minutes: number): string {
@@ -226,7 +186,7 @@ export function formatPlages(plages?: BoutiqueHorairePlage[] | null): string {
   if (!Array.isArray(plages) || plages.length === 0) return '';
   return plages
     .filter((p) => p && typeof p.debut === 'number' && typeof p.fin === 'number')
-    .map((p) => `${LRM}${formatMinutes(p.debut)}–${formatMinutes(p.fin)}`)
+    .map((p) => `${LRM}${formatMinutes(p.debut)}-${formatMinutes(p.fin)}`)
     .join(' · ');
 }
 
@@ -299,32 +259,45 @@ export function boutiqueCity(boutique: Boutique | null | undefined): string {
   return (boutique?.localisation?.city || '').trim();
 }
 
+// Libellés repris de l'app (translations `boutiques.sectors`), mêmes mots partout.
 export const SECTEUR_LABELS: Record<SiteLocale, Record<string, string>> = {
   fr: {
-    textile: 'Textile',
-    informatique: 'Informatique',
+    textile: 'Mode, chaussures',
+    informatique: 'Téléphones, informatique',
+    electromenager: 'Électroménager',
     jouets: 'Jouets',
     bazar: 'Bazar',
     mobilier: 'Mobilier',
-    droguerie: 'Droguerie',
+    locations: 'Locations',
+    location_voiture: 'Location de voitures',
+    location_immobilier: 'Location immobilière',
+    droguerie: 'Droguerie, quincaillerie',
     autre: 'Autre',
   },
   en: {
-    textile: 'Clothing',
-    informatique: 'Electronics',
+    textile: 'Fashion, shoes',
+    informatique: 'Phones, computers',
+    electromenager: 'Home appliances',
     jouets: 'Toys',
-    bazar: 'General store',
+    bazar: 'Bazaar',
     mobilier: 'Furniture',
-    droguerie: 'Household',
+    locations: 'Rentals',
+    location_voiture: 'Car rentals',
+    location_immobilier: 'Property rentals',
+    droguerie: 'Hardware, household',
     autre: 'Other',
   },
   ar: {
-    textile: 'ملابس',
-    informatique: 'إعلام آلي',
-    jouets: 'ألعاب',
+    textile: 'الملابس والأحذية',
+    informatique: 'الهواتف والإعلام الآلي',
+    electromenager: 'الأجهزة الكهرومنزلية',
+    jouets: 'الألعاب',
     bazar: 'بازار',
-    mobilier: 'أثاث',
-    droguerie: 'دروڨري',
+    mobilier: 'الأثاث',
+    locations: 'كراء',
+    location_voiture: 'كراء السيارات',
+    location_immobilier: 'كراء العقارات',
+    droguerie: 'الدروڨري والأدوات',
     autre: 'أخرى',
   },
 };
@@ -381,9 +354,4 @@ export function modesVenteBadges(
     badges.push(L.gratuite(formatAmount(modes.livraisonGratuiteDes)));
   }
   return badges;
-}
-
-/** Montant en DA, séparateur de milliers insécable (« 12 500 »). */
-export function formatAmount(value: number): string {
-  return new Intl.NumberFormat('fr-FR').format(Math.round(value));
 }

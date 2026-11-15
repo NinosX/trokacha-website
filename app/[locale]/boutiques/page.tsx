@@ -8,13 +8,16 @@ import { SHOW_BOUTIQUES } from '@/lib/featureFlags';
 import { localeAlternates, localizedUrl } from '@/lib/seo';
 import {
   boutiquePlaceLabel,
+  espaceKindOf,
   listActiveBoutiques,
   secteurLabel,
   toSiteLocale,
+  type Boutique,
   type SiteLocale,
 } from '@/lib/boutiques';
 
-// /boutiques — annuaire V1 (liste simple des boutiques actives).
+// /boutiques : annuaire V1 (liste simple des agences et boutiques actives,
+// en deux groupes : agences de location, puis boutiques ; 15/11, socle pros).
 // Flag off → interstitiel « ouvrir dans l'app », jamais un 404.
 //
 // La requête est bornée par firestore.rules pour un visiteur non authentifié
@@ -29,28 +32,34 @@ interface PageProps {
 
 const TEXTS: Record<SiteLocale, Record<string, string>> = {
   fr: {
-    title: 'Les boutiques Trokacha',
-    metaTitle: 'Boutiques',
-    metaDesc: 'Découvrez les boutiques algériennes présentes sur Trokacha.',
-    subtitle: 'Des vitrines de commerçants algériens, wilaya par wilaya.',
-    empty: 'Aucune boutique pour le moment. Reviens vite !',
+    title: 'Agences et boutiques',
+    metaTitle: 'Agences et boutiques',
+    metaDesc: 'Découvrez les agences de location et les boutiques algériennes présentes sur Trokacha.',
+    subtitle: 'Des agences de location et des commerçants algériens, wilaya par wilaya.',
+    empty: 'Aucune agence ni boutique pour le moment. Reviens vite !',
     hiddenTitle: 'Trokacha · Boutiques',
+    agences: 'Agences de location',
+    boutiques: 'Boutiques',
   },
   en: {
-    title: 'Trokacha shops',
-    metaTitle: 'Shops',
-    metaDesc: 'Discover the Algerian shops on Trokacha.',
-    subtitle: 'Storefronts from Algerian sellers, wilaya by wilaya.',
-    empty: 'No shop yet. Check back soon!',
+    title: 'Agencies and shops',
+    metaTitle: 'Agencies and shops',
+    metaDesc: 'Discover the Algerian rental agencies and shops on Trokacha.',
+    subtitle: 'Rental agencies and Algerian sellers, wilaya by wilaya.',
+    empty: 'No agency or shop yet. Check back soon!',
     hiddenTitle: 'Trokacha · Shops',
+    agences: 'Rental agencies',
+    boutiques: 'Shops',
   },
   ar: {
-    title: 'محلات تروكاشا',
-    metaTitle: 'المحلات',
-    metaDesc: 'اكتشف المحلات الجزائرية الموجودة في تروكاشا.',
-    subtitle: 'واجهات تجار جزائريين، ولاية بولاية.',
-    empty: 'ما كاين حتى محل للدرك. ارجع قريب!',
+    title: 'الوكالات والمحلات',
+    metaTitle: 'الوكالات والمحلات',
+    metaDesc: 'اكتشف وكالات الكراء والمحلات الجزائرية الموجودة في تروكاشا.',
+    subtitle: 'وكالات كراء وتجار جزائريون، ولاية بولاية.',
+    empty: 'لا توجد أي وكالة أو محل حاليًا. عد قريبًا!',
     hiddenTitle: 'تروكاشا · المحلات',
+    agences: 'وكالات الكراء',
+    boutiques: 'المحلات',
   },
 };
 
@@ -88,6 +97,8 @@ export default async function BoutiquesDirectoryPage({ params }: PageProps) {
   const site = toSiteLocale(locale);
   const t = TEXTS[site];
   const boutiques = await listActiveBoutiques();
+  const agences = boutiques.filter((b) => espaceKindOf(b.secteurs) === 'agence');
+  const shops = boutiques.filter((b) => espaceKindOf(b.secteurs) === 'boutique');
 
   return (
     <main className="min-h-screen bg-paper">
@@ -102,55 +113,63 @@ export default async function BoutiquesDirectoryPage({ params }: PageProps) {
         {boutiques.length === 0 ? (
           <p className="mt-10 text-[15px] text-inkMuted">{t.empty}</p>
         ) : (
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {boutiques.map((boutique) => {
-              const place = boutiquePlaceLabel(boutique);
-              const secteurs = Array.isArray(boutique.secteurs) ? boutique.secteurs.slice(0, 3) : [];
-
-              return (
-                <Link
-                  key={boutique.id}
-                  href={`/boutique/${boutique.id}`}
-                  className="flex items-center gap-4 rounded-card border border-line bg-white p-4 shadow-card transition-shadow hover:shadow-cardHover"
-                >
-                  <div className="h-16 w-16 shrink-0 overflow-hidden rounded-[14px] bg-paperHard">
-                    {boutique.logo ? (
-                      // Images Firebase Storage : hôtes non déclarés dans
-                      // next.config.js (images.domains = []) → balise native.
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={boutique.logo}
-                        alt={boutique.nom || ''}
-                        loading="lazy"
-                        className="h-full w-full object-cover"
-                      />
-                    ) : (
-                      <div className="flex h-full w-full items-center justify-center text-2xl">🏪</div>
-                    )}
-                  </div>
-
-                  <div className="min-w-0">
-                    <p className="truncate text-[16px] font-bold text-ink">{boutique.nom || '·'}</p>
-                    {place && (
-                      <p className="mt-[2px] flex items-center gap-1 truncate text-[14px] text-inkMuted">
-                        <MapPin className="h-[14px] w-[14px] shrink-0" />
-                        {place}
-                      </p>
-                    )}
-                    {secteurs.length > 0 && (
-                      <p className="mt-1 truncate text-[13px] text-inkSoft">
-                        {secteurs.map((s) => secteurLabel(s, site)).join(' · ')}
-                      </p>
-                    )}
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
+          [
+            { key: 'agence', title: t.agences, list: agences, icon: '🚗' },
+            { key: 'boutique', title: t.boutiques, list: shops, icon: '🏪' },
+          ]
+            .filter((group) => group.list.length > 0)
+            .map((group) => (
+              <section key={group.key} className="mt-10">
+                <h2 className="font-display text-[22px] font-bold tracking-[-0.02em] text-ink">{group.title}</h2>
+                <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {group.list.map((boutique) => (
+                    <DirectoryCard key={boutique.id} boutique={boutique} site={site} icon={group.icon} />
+                  ))}
+                </div>
+              </section>
+            ))
         )}
       </div>
 
       <Footer />
     </main>
+  );
+}
+
+function DirectoryCard({ boutique, site, icon }: { boutique: Boutique; site: SiteLocale; icon: string }) {
+  const place = boutiquePlaceLabel(boutique);
+  const secteurs = Array.isArray(boutique.secteurs) ? boutique.secteurs.slice(0, 3) : [];
+
+  return (
+    <Link
+      href={`/boutique/${boutique.id}`}
+      className="flex items-center gap-4 rounded-card border border-line bg-white p-4 shadow-card transition-shadow hover:shadow-cardHover"
+    >
+      <div className="h-16 w-16 shrink-0 overflow-hidden rounded-[14px] bg-paperHard">
+        {boutique.logo ? (
+          // Images Firebase Storage : hôtes non déclarés dans
+          // next.config.js (images.domains = []) → balise native.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={boutique.logo} alt={boutique.nom || ''} loading="lazy" className="h-full w-full object-cover" />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center text-2xl">{icon}</div>
+        )}
+      </div>
+
+      <div className="min-w-0">
+        <p className="truncate text-[16px] font-bold text-ink">{boutique.nom || '·'}</p>
+        {place && (
+          <p className="mt-[2px] flex items-center gap-1 truncate text-[14px] text-inkMuted">
+            <MapPin className="h-[14px] w-[14px] shrink-0" />
+            {place}
+          </p>
+        )}
+        {secteurs.length > 0 && (
+          <p className="mt-1 truncate text-[13px] text-inkSoft">
+            {secteurs.map((s) => secteurLabel(s, site)).join(' · ')}
+          </p>
+        )}
+      </div>
+    </Link>
   );
 }

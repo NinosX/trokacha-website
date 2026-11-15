@@ -8,7 +8,16 @@ export const SHOW_TRANSPORT = false;
 // des emails transactionnels), /boutique/[id] et /boutiques répondent alors
 // l'interstitiel « ouvrir dans l'app ». Seules la navbar et le sitemap sont
 // réellement conditionnés — flag off, le site est identique à l'actuel.
-export const SHOW_BOUTIQUES = false;
+//
+// Essai local (15/11, socle pros) : `NEXT_PUBLIC_SHOW_BOUTIQUES=1 npx next dev`
+// allume les pages sur la machine. Accès LITTÉRAUX à `process.env` (remplacés à la
+// compilation) : dans un `next build`, NODE_ENV vaut « production » et la seconde
+// moitié disparaît, la production ne lit que `SHOW_BOUTIQUES_PROD`.
+// Pour ouvrir les pages au public : `SHOW_BOUTIQUES_PROD = true` (livraison par Main).
+const SHOW_BOUTIQUES_PROD = false;
+export const SHOW_BOUTIQUES: boolean =
+  SHOW_BOUTIQUES_PROD ||
+  (process.env.NODE_ENV !== 'production' && process.env.NEXT_PUBLIC_SHOW_BOUTIQUES === '1');
 
 // Locations (voitures, logements) : ouverture de la V2 à tous (Objets +
 // Locations, décision Lyes 02/11). À `true`, le site dit « troc, vente, achat

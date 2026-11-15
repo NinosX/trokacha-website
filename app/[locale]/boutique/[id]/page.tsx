@@ -4,6 +4,7 @@ import { Link } from '@/i18n/navigation';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { BoutiqueInterstitial } from '@/components/BoutiqueInterstitial';
+import { BoutiqueAdsLive } from '@/components/BoutiqueAdsLive';
 import { OpenInAppButton } from '@/components/OpenInAppButton';
 import { SHOW_BOUTIQUES } from '@/lib/featureFlags';
 import { localeAlternates, localizedUrl } from '@/lib/seo';
@@ -13,7 +14,7 @@ import {
   boutiqueHoursLabel,
   boutiquePlaceLabel,
   buildItineraireUrl,
-  formatAmount,
+  espaceKindOf,
   getActiveBoutique,
   listBoutiqueAds,
   modesVenteBadges,
@@ -22,8 +23,10 @@ import {
   toSiteLocale,
   toWhatsAppNumber,
   type Boutique,
+  type EspaceKind,
   type SiteLocale,
 } from '@/lib/boutiques';
+import { todayInAlgiers } from '@/lib/boutiquePublic';
 
 // /boutique/[id] — page boutique PUBLIQUE (§7 des fondations : c'est la surface
 // SEO du chantier, la seule page Trokacha qu'un client peut envoyer à un ami
@@ -36,6 +39,13 @@ import {
 //
 // Flag off, boutique inexistante, `pending`/`suspended` ou lecture refusée par
 // les rules → interstitiel « ouvrir dans l'app ». JAMAIS de 404 ni d'erreur brute.
+//
+// Agence ou boutique (15/11, socle pros) : même page, mots différents. Une agence
+// ne déclare que des secteurs de location (`espaceKindOf`, miroir de l'app). Les
+// annonces sont écoutées EN DIRECT dans le navigateur (`BoutiqueAdsLive`) :
+// « Libre aujourd'hui » / « Libre à partir du … » pour une location, tailles en
+// stock pour un article. Jamais un article masqué, un brouillon ou le catalogue
+// privé du pro (seules les annonces publiques `approved` sont lues).
 
 export const revalidate = 300;
 
@@ -46,6 +56,12 @@ interface PageProps {
 const TEXTS: Record<SiteLocale, Record<string, string>> = {
   fr: {
     metaSuffix: 'Boutique à',
+    metaSuffixAgence: 'Agence de location à',
+    metaFallbackTitleAgence: 'Agence de location Trokacha',
+    metaFallbackDescAgence: 'Découvrez cette agence de location sur Trokacha.',
+    forRent: 'À louer',
+    noRentals: 'Aucune location publiée pour le moment.',
+    appPitchAgence: 'Choisis tes dates, discute et suis ta réservation directement dans l’app.',
     metaFallbackTitle: 'Boutique Trokacha',
     metaFallbackDesc: 'Découvrez cette boutique sur Trokacha.',
     hiddenTitle: 'Trokacha · Boutique',
@@ -64,10 +80,16 @@ const TEXTS: Record<SiteLocale, Record<string, string>> = {
     onRequest: 'Prix sur demande',
     openInApp: 'Voir dans l’app Trokacha',
     appPitch: 'Commande, discute et suis ta livraison directement dans l’app.',
-    directory: 'Toutes les boutiques',
+    directory: 'Toutes les agences et boutiques',
   },
   en: {
     metaSuffix: 'Shop in',
+    metaSuffixAgence: 'Rental agency in',
+    metaFallbackTitleAgence: 'Trokacha rental agency',
+    metaFallbackDescAgence: 'Discover this rental agency on Trokacha.',
+    forRent: 'For rent',
+    noRentals: 'No rental published yet.',
+    appPitchAgence: 'Pick your dates, chat and follow your booking straight from the app.',
     metaFallbackTitle: 'Trokacha shop',
     metaFallbackDesc: 'Discover this shop on Trokacha.',
     hiddenTitle: 'Trokacha · Shop',
@@ -86,10 +108,16 @@ const TEXTS: Record<SiteLocale, Record<string, string>> = {
     onRequest: 'Price on request',
     openInApp: 'Open in the Trokacha app',
     appPitch: 'Order, chat and follow your delivery straight from the app.',
-    directory: 'All shops',
+    directory: 'All agencies and shops',
   },
   ar: {
     metaSuffix: 'محل في',
+    metaSuffixAgence: 'وكالة كراء في',
+    metaFallbackTitleAgence: 'وكالة كراء في تروكاشا',
+    metaFallbackDescAgence: 'اكتشف وكالة الكراء هذه في تروكاشا.',
+    forRent: 'للكراء',
+    noRentals: 'لا يوجد أي كراء منشور حاليًا.',
+    appPitchAgence: 'اختر تواريخك، تحدّث مع الوكالة وتابع حجزك مباشرة في التطبيق.',
     metaFallbackTitle: 'محل تروكاشا',
     metaFallbackDesc: 'اكتشف هاد المحل في تروكاشا.',
     hiddenTitle: 'تروكاشا · محل',
@@ -104,18 +132,20 @@ const TEXTS: Record<SiteLocale, Record<string, string>> = {
     noArticles: 'ما كاين حتى سلعة منشورة للدرك.',
     remaining: 'باقين',
     lastOne: 'آخر قطعة',
-    soldOut: 'خلاص',
+    soldOut: 'نفدت الكمية',
     onRequest: 'السعر على الطلب',
     openInApp: 'شوفها في تطبيق تروكاشا',
     appPitch: 'اطلب، هدر مع البائع وتبّع التوصيل ديريكت في التطبيق.',
-    directory: 'كل المحلات',
+    directory: 'كل الوكالات والمحلات',
   },
 };
 
-function metaTitle(boutique: Boutique, t: Record<string, string>): string {
-  const nom = (boutique.nom || '').trim() || t.metaFallbackTitle;
+function metaTitle(boutique: Boutique, kind: EspaceKind, t: Record<string, string>): string {
+  const agence = kind === 'agence';
+  const fallback = agence ? t.metaFallbackTitleAgence : t.metaFallbackTitle;
+  const nom = (boutique.nom || '').trim() || fallback;
   const city = boutiqueCity(boutique);
-  return city ? `${nom} · ${t.metaSuffix} ${city}` : `${nom} · ${t.metaFallbackTitle}`;
+  return city ? `${nom} · ${agence ? t.metaSuffixAgence : t.metaSuffix} ${city}` : `${nom} · ${fallback}`;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -133,8 +163,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const site = toSiteLocale(locale);
-  const title = metaTitle(boutique, t);
-  const description = (boutiqueBio(boutique, 'fr') || t.metaFallbackDesc).slice(0, 160);
+  const kind = espaceKindOf(boutique.secteurs);
+  const title = metaTitle(boutique, kind, t);
+  const description = (
+    boutiqueBio(boutique, 'fr') || (kind === 'agence' ? t.metaFallbackDescAgence : t.metaFallbackDesc)
+  ).slice(0, 160);
   const image = boutique.logo || boutique.banner || 'https://trokacha.com/logo.png';
   const url = localizedUrl(locale, `/boutique/${id}`);
 
@@ -183,6 +216,8 @@ export default async function BoutiquePublicPage({ params }: PageProps) {
   const site = toSiteLocale(locale);
   const t = TEXTS[site];
   const ads = await listBoutiqueAds(id);
+  const kind = espaceKindOf(boutique.secteurs);
+  const agence = kind === 'agence';
 
   const place = boutiquePlaceLabel(boutique);
   const bio = boutiqueBio(boutique, site);
@@ -215,17 +250,19 @@ export default async function BoutiquePublicPage({ params }: PageProps) {
         </div>
 
         <div className="mx-auto max-w-[1200px] px-6">
-          <div className="-mt-12 flex flex-col gap-4 pb-8 sm:-mt-14 sm:flex-row sm:items-end">
+          {/* `relative` : sans lui, la bannière (positionnée) se peint PAR-DESSUS le logo qui la chevauche.
+              Le nom commence sous la bannière (`sm:pt-[60px]`), à côté du logo : jamais sur la bande verte et rouge. */}
+          <div className="relative -mt-12 flex flex-col gap-4 pb-8 sm:-mt-14 sm:flex-row sm:items-start">
             <div className="h-24 w-24 shrink-0 overflow-hidden rounded-[20px] border-4 border-paperSoft bg-white shadow-card sm:h-28 sm:w-28">
               {boutique.logo ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img src={boutique.logo} alt={boutique.nom || ''} className="h-full w-full object-cover" />
               ) : (
-                <div className="flex h-full w-full items-center justify-center text-3xl">🏪</div>
+                <div className="flex h-full w-full items-center justify-center text-3xl">{agence ? '🚗' : '🏪'}</div>
               )}
             </div>
 
-            <div className="min-w-0 flex-1">
+            <div className="min-w-0 flex-1 sm:pt-[60px]">
               <h1 className="flex flex-wrap items-center gap-2 font-display text-[28px] font-bold leading-tight tracking-[-0.02em] text-ink sm:text-[34px]">
                 {boutique.nom || 'Trokacha'}
                 {boutique.verified && (
@@ -329,75 +366,26 @@ export default async function BoutiquePublicPage({ params }: PageProps) {
           )}
         </div>
 
-        {/* Articles */}
-        <section className="mt-12">
-          <h2 className="font-display text-[22px] font-bold tracking-[-0.02em] text-ink">
-            {t.articles}
-          </h2>
-
-          {ads.length === 0 ? (
-            <p className="mt-4 text-[15px] text-inkMuted">{t.noArticles}</p>
-          ) : (
-            <div className="mt-5 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-              {ads.map((ad) => {
-                const image = ad.images?.[0];
-                const remaining = ad.quantiteRestante;
-                // Badge de rareté : « X restants » sous 5 pièces, « Épuisé » à 0.
-                const showRemaining =
-                  typeof remaining === 'number' && remaining >= 0 && remaining <= 5;
-
-                return (
-                  <Link
-                    key={ad.id}
-                    href={`/ad/${ad.id}`}
-                    className="group overflow-hidden rounded-card border border-line bg-white shadow-card transition-shadow hover:shadow-cardHover"
-                  >
-                    <div className="relative aspect-square bg-paperHard">
-                      {image ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={image}
-                          alt={ad.title || ''}
-                          loading="lazy"
-                          className="h-full w-full object-cover"
-                        />
-                      ) : (
-                        <div className="flex h-full w-full items-center justify-center text-3xl">🛍️</div>
-                      )}
-
-                      {showRemaining && (
-                        <span
-                          className={`absolute left-2 top-2 rounded-full px-[10px] py-1 text-[12px] font-bold ${
-                            remaining === 0 ? 'bg-ink/80 text-paperSoft' : 'bg-tradeBg text-tradeInk'
-                          }`}
-                        >
-                          {remaining === 0
-                            ? t.soldOut
-                            : remaining === 1
-                              ? t.lastOne
-                              : `${remaining} ${t.remaining}`}
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="p-3">
-                      <p className="line-clamp-2 text-[14.5px] font-semibold text-ink">
-                        {ad.title || '·'}
-                      </p>
-                      <p className="mt-1 font-display text-[15px] font-bold text-cash">
-                        {typeof ad.price === 'number' ? `${formatAmount(ad.price)} DA` : t.onRequest}
-                      </p>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          )}
-        </section>
+        {/* Annonces, en direct */}
+        <BoutiqueAdsLive
+          boutiqueId={id}
+          locale={site}
+          kind={kind}
+          initialAds={ads}
+          initialToday={todayInAlgiers()}
+          texts={{
+            title: agence ? t.forRent : t.articles,
+            empty: agence ? t.noRentals : t.noArticles,
+            remaining: t.remaining,
+            lastOne: t.lastOne,
+            soldOut: t.soldOut,
+            onRequest: t.onRequest,
+          }}
+        />
 
         {/* CTA app */}
         <section className="mt-14 rounded-card border border-line bg-white p-8 text-center shadow-card">
-          <p className="mx-auto max-w-[46ch] text-[16px] text-inkSoft">{t.appPitch}</p>
+          <p className="mx-auto max-w-[46ch] text-[16px] text-inkSoft">{agence ? t.appPitchAgence : t.appPitch}</p>
           <OpenInAppButton
             deepPath={`boutique/${id}`}
             label={t.openInApp}
