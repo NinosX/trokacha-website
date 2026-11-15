@@ -12,6 +12,8 @@ import { useProSession } from './ProSession';
 import { ProTodayPane } from './ProTodayPane';
 import { AgencyPlanningPane } from './agency/AgencyPlanningPane';
 import { AgencyRequestsPane } from './agency/AgencyRequestsPane';
+import { ShopCataloguePane } from './shop/ShopCataloguePane';
+import { ShopOrdersPane } from './shop/ShopOrdersPane';
 
 export function ProPaneTitle({ title, children }: { title: string; children?: React.ReactNode }) {
   return (
@@ -36,5 +38,7 @@ export function ProPane({ pane }: { pane: string }) {
   if (pane === 'aujourdhui') return <ProTodayPane />;
   if (pane === 'planning') return <AgencyPlanningPane />;
   if (pane === 'demandes') return <AgencyRequestsPane />;
+  if (pane === 'catalogue') return <ShopCataloguePane />;
+  if (pane === 'commandes') return <ShopOrdersPane />;
   return <ProPaneTitle title={texts.t(PANE_LABEL[pane])} />;
 }
