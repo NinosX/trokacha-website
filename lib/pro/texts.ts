@@ -348,10 +348,16 @@ export function proTexts(rawLocale: string | null | undefined): ProTexts {
     const form = rules.select(count) as keyof Plural;
     return fill(entry[form] ?? entry.other, { count, ...params });
   };
+  // Montant négatif (remboursement dans la caisse) : vrai signe moins (U+2212) collé au
+  // nombre, le tout dans un isolat gauche-à-droite (LRI…PDI), sinon une page arabe
+  // affiche « 2 000− ».
+  const signed = (digits: string, negative: boolean): string => (negative ? `\u2066\u2212${digits}\u2069` : digits);
   const money = (amount: number): string => {
-    const n = group.format(Math.round(amount));
+    const rounded = Math.round(amount);
+    const negative = rounded < 0;
+    const n = signed(group.format(Math.abs(rounded)), negative);
     if (locale === 'ar') return `‏${n} دج`;
-    if (locale === 'en') return `${new Intl.NumberFormat('en-GB', { maximumFractionDigits: 0 }).format(Math.round(amount))} DA`;
+    if (locale === 'en') return `${signed(new Intl.NumberFormat('en-GB', { maximumFractionDigits: 0 }).format(Math.abs(rounded)), negative)} DA`;
     return `${n} DA`;
   };
   const dayHeading = (day: string): string => {

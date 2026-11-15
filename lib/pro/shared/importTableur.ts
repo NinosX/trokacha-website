@@ -14,6 +14,9 @@ import {
   IMPORT_LIGNES_MAX,
   lireLigneArticle,
   lireLigneFlotte,
+  MEME_NOM_FLOTTE,
+  MEME_NOM_LIGNE,
+  nomsEnDouble,
   plaquesEnDouble,
   regrouperArticles,
   type ErreurLigne,
@@ -85,7 +88,11 @@ const SYNONYMES: Record<Colonne, readonly string[]> = {
   titre: ['titre', 'nom', 'article', 'modele', 'designation', 'produit', 'vehicule', 'voiture', 'logement', 'libelle', 'title', 'name', 'item', 'product', 'model', 'الاسم', 'المنتج', 'السلعة', 'العنوان', 'السيارة', 'الموديل', 'السكن'],
   plaque: ['plaque', 'immatriculation', 'matricule', 'plate', 'registration', 'الترقيم', 'رقم التسجيل', 'اللوحة', 'الماتريكول'],
   prixJour: ['prix jour', 'prix/jour', 'prix par jour', 'prix journalier', 'tarif jour', 'tarif', 'prix', 'price', 'daily price', 'price per day', 'السعر اليومي', 'سعر اليوم', 'السعر'],
-  prixSemaine: ['prix semaine', 'prix 7 jours', 'tarif semaine', 'prix long', 'prix longue duree', 'weekly price', 'price 7 days', 'سعر الأسبوع', 'السعر الأسبوعي'],
+  prixSemaine: [
+    'prix par jour des 7 jours', 'prix des 7 jours', 'prix a partir de 7 jours', 'prix semaine', 'prix 7 jours', 'prix 7j', 'tarif semaine', 'prix long', 'prix longue duree',
+    'price per day from 7 days', 'price from 7 days', 'weekly price', 'weekly rate', 'price 7 days',
+    'السعر اليومي من 7 أيام', 'السعر من 7 أيام', 'سعر 7 أيام', 'سعر الأسبوع', 'السعر الأسبوعي',
+  ],
   km: ['km', 'kilometrage', 'compteur', 'mileage', 'odometer', 'الكيلومتراج', 'العداد'],
   capacite: ['places', 'capacite', 'personnes', 'seats', 'capacity', 'المقاعد', 'السعة', 'عدد الأشخاص'],
   kind: ['type', 'sorte', 'genre', 'kind', 'النوع'],
@@ -101,14 +108,25 @@ const SYNONYMES: Record<Colonne, readonly string[]> = {
 const cleEntete = (s: string): string => searchKey(s).replace(/[._:()*]/g, ' ').replace(/\s+/g, ' ').trim();
 
 /**
- * La colonne que désigne un titre de colonne : exact d'abord, puis le plus long synonyme
- * par lequel il commence (« Prix semaine (DA) » est le prix à la semaine, pas le prix).
+ * Un titre qui parle d'une longue durée (« dès 7 jours », « semaine », « 7 days »,
+ * « أسبوع »…) désigne le prix dès 7 jours, même s'il commence par « Prix par jour »
+ * (« Prix par jour dès 7 jours », le titre que le bureau lui-même propose).
+ */
+const LONGUE_DUREE = /(^|\s)(7\s*(j|jours?|days?|ايام)|semaine|week(ly)?|longue duree|long stay|اسبوع|الاسبوعي)(\s|$)/;
+/** Lettres arabes sans leurs signes (la hamza de « أيام » est séparée par `searchKey`). */
+const sansSignesArabes = (s: string): string => s.replace(/[\u064B-\u065F\u0670]/g, '');
+
+/**
+ * La colonne que désigne un titre de colonne : exact d'abord, puis (flotte) un titre qui
+ * parle d'une longue durée, puis le plus long synonyme par lequel il commence
+ * (« Prix semaine (DA) » est le prix à la semaine, pas le prix).
  */
 export function colonneDeEntete(entete: string, sorte: SorteImport): Colonne | null {
   const e = cleEntete(entete);
   if (!e) return null;
   const candidates = COLONNES[sorte];
   for (const c of candidates) if (SYNONYMES[c].some((s) => cleEntete(s) === e)) return c;
+  if (sorte === 'flotte' && LONGUE_DUREE.test(sansSignesArabes(e))) return 'prixSemaine';
   let best: { c: Colonne; len: number } | null = null;
   for (const c of candidates) {
     for (const s of SYNONYMES[c]) {
@@ -214,8 +232,19 @@ export interface Existants {
 
 export const clePlaque = (plaque: string | null | undefined): string => (plaque ?? '').replace(/[\s-]/g, '').toUpperCase();
 
-/** Même contrôle que le serveur, ligne par ligne, avant l'envoi. */
-export function apercu(sorte: SorteImport, brutes: readonly Record<string, unknown>[], existants: Existants): LigneApercu[] {
+/** Raison « même nom » (ligne laissée de côté sauf si le pro coche la case). */
+export const estMemeNom = (raison: string | null): boolean => raison === MEME_NOM_FLOTTE || raison === MEME_NOM_LIGNE;
+
+/**
+ * Même contrôle que le serveur, ligne par ligne, avant l'envoi. `memesNoms` : le pro a
+ * coché « Importer aussi les lignes au même nom » (envoyé tel quel à `proImport`).
+ */
+export function apercu(
+  sorte: SorteImport,
+  brutes: readonly Record<string, unknown>[],
+  existants: Existants,
+  options: { memesNoms?: boolean } = {},
+): LigneApercu[] {
   const raisons = new Map<number, string>();
   const lues = brutes.map((b, index) => {
     const r = sorte === 'flotte' ? lireLigneFlotte(b) : lireLigneArticle(b);
@@ -233,6 +262,7 @@ export function apercu(sorte: SorteImport, brutes: readonly Record<string, unkno
     (lues as (LigneFlotte | null)[]).forEach((l, index) => {
       if (l?.plaque && existants.plaques.has(clePlaque(l.plaque)) && !raisons.has(index)) raisons.set(index, 'DEJA_AU_CATALOGUE');
     });
+    if (!options.memesNoms) ajouter(nomsEnDouble(lues as (LigneFlotte | null)[], existants.titres, new Set(raisons.keys())));
   } else {
     const groupes = regrouperArticles(lues as (LigneArticle | null)[]);
     ajouter(groupes.erreurs);

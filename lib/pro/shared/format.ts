@@ -1,20 +1,28 @@
 // lib/pro/shared/format.ts
 // =============================================================================
-// Petits formats communs aux volets Clients, Caisse et Import (module PUR).
+// Petits formats communs au bureau pro : agence, boutique, clients, caisse, import
+// (module PUR).
 // =============================================================================
 
+import { telInternational } from '@/lib/pro-core';
+
 /**
- * Numéro algérien lisible : « +213771554433 » → « 0771 55 44 33 », « +21321234567 »
- * → « 021 23 45 67 ». Un numéro d'un autre pays reste tel quel.
+ * Numéro lisible, LE format du bureau (agence, boutique, clients, caisse) : « +213771554433 »
+ * ou « 0771554433 » → « 0771 55 44 33 », un fixe « 021 23 45 67 ». Un numéro étranger
+ * (diaspora) garde son indicatif (« +33612345678 »). Illisible : rendu tel quel.
+ * À l'écran, toujours dans un isolat gauche-à-droite (`<Ltr>`), sinon une page arabe
+ * affiche « 213771554433+ ».
  */
 export function displayPhone(tel: string | null | undefined): string | null {
-  if (!tel) return null;
-  const digits = tel.replace(/\D/g, '');
-  const national = digits.startsWith('213') ? `0${digits.slice(3)}` : digits.startsWith('0') ? digits : null;
-  if (!national) return tel;
-  if (national.length === 10) return `${national.slice(0, 4)} ${national.slice(4, 6)} ${national.slice(6, 8)} ${national.slice(8)}`;
-  if (national.length === 9) return `${national.slice(0, 3)} ${national.slice(3, 5)} ${national.slice(5, 7)} ${national.slice(7)}`;
-  return tel;
+  const raw = tel?.trim();
+  if (!raw) return null;
+  const intl = telInternational(raw);
+  if (!intl) return raw;
+  if (!intl.startsWith('+213')) return intl;
+  const local = `0${intl.slice(4)}`;
+  if (local.length === 10) return `${local.slice(0, 4)} ${local.slice(4, 6)} ${local.slice(6, 8)} ${local.slice(8)}`;
+  if (local.length === 9) return `${local.slice(0, 3)} ${local.slice(3, 5)} ${local.slice(5, 7)} ${local.slice(7)}`;
+  return local;
 }
 
 /** Chiffres d'un numéro sous la forme internationale algérienne (« 0550… » → « 213550… »). */

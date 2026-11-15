@@ -133,14 +133,8 @@ export function normalizeHeure(text: string | null | undefined): string | null |
   return isValidHeure(out) ? out : false;
 }
 
-/** « +213550123456 » → « 0550 12 34 56 » ; un numéro étranger reste international. */
-export function displayPhone(tel: string | null | undefined): string | null {
-  const intl = telInternational(tel ?? '');
-  if (!intl) return tel?.trim() || null;
-  if (!intl.startsWith('+213')) return intl;
-  const local = `0${intl.slice(4)}`;
-  return local.length === 10 ? `${local.slice(0, 4)} ${local.slice(4, 6)} ${local.slice(6, 8)} ${local.slice(8)}` : local;
-}
+/** Format du numéro : un seul, celui du bureau (`lib/pro/shared/format.ts`). */
+export { displayPhone } from '@/lib/pro/shared/format';
 
 /** Fiches récentes qui répondent à la recherche (nom sans accents, ou chiffres du numéro). */
 export function searchClients(clients: readonly ClientFiche[], query: string, max = 6): ClientFiche[] {

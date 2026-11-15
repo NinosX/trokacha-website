@@ -13,6 +13,7 @@ import { useMemo } from 'react';
 import type { Operation } from '@/lib/pro-core';
 import { useAlgiersToday, useJour, useOpenOps, useVariantLabels, type VariantLabels } from '@/lib/pro/hooks';
 import { buildAgencyToday, buildShopToday, shortClientName, type TodayEntry } from '@/lib/pro/today';
+import { wilayaName } from '@/lib/pro/shared/wilayas';
 import type { ProTexts } from '@/lib/pro/texts';
 import { useProDesk } from './ProDeskShell';
 import { ProIcon } from './ProIcons';
@@ -179,7 +180,7 @@ function AgencyToday({ ops, today, bid }: { ops: Operation[]; today: string; bid
 
 function shopLine(op: Operation, x: ProTexts): Line {
   const exp = op.expedition;
-  const carrier = exp?.transporteur ? [exp.transporteur, exp.wilaya].filter(Boolean).join(' · ') : '';
+  const carrier = exp?.transporteur ? [exp.transporteur, wilayaName(exp.wilaya, x.locale)].filter(Boolean).join(' · ') : '';
   switch (op.statut) {
     case 'mise_de_cote':
       return op.solde > 0 ? { icon: 'cash', tone: 'warning', text: x.t('shop.line.putAsideDue', { amount: x.money(op.solde) }) } : { icon: 'cash', tone: 'muted', text: x.t('shop.line.putAside') };

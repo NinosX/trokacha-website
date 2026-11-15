@@ -259,6 +259,39 @@ export function plaquesEnDouble(lignes: readonly (LigneFlotte | null)[]): Erreur
   return erreurs;
 }
 
+/** Raisons « même nom » d'une ligne de flotte sans plaque (laissée de côté sauf demande du pro). */
+export const MEME_NOM_FLOTTE = 'MEME_NOM_FLOTTE';
+export const MEME_NOM_LIGNE = 'MEME_NOM_LIGNE';
+
+/**
+ * Véhicules ou logements SANS plaque qui portent le nom d'un bien déjà au catalogue
+ * (`MEME_NOM_FLOTTE`) ou d'une ligne plus haut dans le tableau (`MEME_NOM_LIGNE`).
+ * Une agence a souvent plusieurs voitures du même modèle : ces lignes ne sont pas des
+ * erreurs, mais recoller le même tableau ne doit pas doubler la flotte en silence. Elles
+ * sont donc laissées de côté, sauf si le pro coche « Importer aussi les lignes au même
+ * nom » (le site envoie alors `memesNoms: true` et cette règle ne s'applique pas).
+ * Une ligne AVEC plaque n'est jamais visée (la plaque distingue les voitures), mais son
+ * nom compte pour les lignes sans plaque qui la suivent. `ignorer` : lignes déjà refusées.
+ */
+export function nomsEnDouble(
+  lignes: readonly (LigneFlotte | null)[],
+  titresExistants: ReadonlySet<string>,
+  ignorer: ReadonlySet<number> = new Set(),
+): ErreurLigne[] {
+  const vus = new Set<string>();
+  const erreurs: ErreurLigne[] = [];
+  lignes.forEach((ligne, index) => {
+    if (!ligne || ignorer.has(index)) return;
+    const cle = cleTitre(ligne.titre);
+    if (!ligne.plaque) {
+      if (titresExistants.has(cle)) erreurs.push({ index, reason: MEME_NOM_FLOTTE });
+      else if (vus.has(cle)) erreurs.push({ index, reason: MEME_NOM_LIGNE });
+    }
+    vus.add(cle);
+  });
+  return erreurs;
+}
+
 /** Paliers de prix d'une ligne de flotte (forme de l'application : le dernier est ouvert). */
 export function paliersDeFlotte(ligne: Pick<LigneFlotte, 'prixJour' | 'prixSemaine'>): { upToDays: number | null; pricePerDay: number }[] {
   return ligne.prixSemaine !== null

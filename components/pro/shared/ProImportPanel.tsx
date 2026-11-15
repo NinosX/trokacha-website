@@ -19,6 +19,7 @@ import {
   COLONNES_REQUISES,
   compterCreations,
   detecterEntete,
+  estMemeNom,
   lignesBrutes,
   newImportId,
   paquets,
@@ -57,6 +58,8 @@ const KNOWN_REASONS = new Set([
   'TROP_DE_VARIANTES',
   'PLAQUE_EN_DOUBLE',
   'DEJA_AU_CATALOGUE',
+  'MEME_NOM_FLOTTE',
+  'MEME_NOM_LIGNE',
 ]);
 
 const reasonText = (x: ProTexts, reason: string): string => x.t((KNOWN_REASONS.has(reason) ? `imp.reason.${reason}` : 'imp.reason.generic') as ProTextKey);
@@ -89,19 +92,27 @@ export function ProImportPanel({ bid, sortes }: { bid: string; sortes: SorteImpo
   const [correspondance, setCorrespondance] = useState<Correspondance>([]);
   const [lireErreur, setLireErreur] = useState<string | null>(null);
   const [seulementErreurs, setSeulementErreurs] = useState(false);
+  // « Importer aussi les lignes au même nom » (flotte sans plaque) : envoyé tel quel au serveur.
+  const [memesNoms, setMemesNoms] = useState(false);
   const [progres, setProgres] = useState({ done: 0, total: 0 });
   const [envoiErreur, setEnvoiErreur] = useState<string | null>(null);
   const [fin, setFin] = useState<Fin | null>(null);
   // Envoi figé au premier clic (paquets et identifiants) : une relance après une panne renvoie
   // exactement les mêmes paquets, le serveur rejoue ceux déjà faits sans rien recréer.
-  const envoi = useRef<{ ids: string[]; envois: PaquetImport[]; lignes: LigneApercu[] } | null>(null);
+  const envoi = useRef<{ ids: string[]; envois: PaquetImport[]; lignes: LigneApercu[]; memesNoms: boolean } | null>(null);
   const { existants } = useCatalogueKeys(bid);
 
   const manquantes = useMemo(() => COLONNES_REQUISES[sorte].filter((c) => !correspondance.includes(c)), [sorte, correspondance]);
   const lignes: LigneApercu[] = useMemo(
-    () => (etape === 'coller' || manquantes.length ? [] : apercu(sorte, lignesBrutes(rows, correspondance, aUneEntete), existants)),
-    [etape, manquantes.length, sorte, rows, correspondance, aUneEntete, existants],
+    () => (etape === 'coller' || manquantes.length ? [] : apercu(sorte, lignesBrutes(rows, correspondance, aUneEntete), existants, { memesNoms: sorte === 'flotte' && memesNoms })),
+    [etape, manquantes.length, sorte, rows, correspondance, aUneEntete, existants, memesNoms],
   );
+  // La case n'apparaît que si des lignes portent le même nom (ou si le pro l'a cochée).
+  const montrerMemesNoms = sorte === 'flotte' && (memesNoms || lignes.some((l) => estMemeNom(l.raison)));
+  const basculerMemesNoms = (v: boolean) => {
+    setMemesNoms(v);
+    envoi.current = null;
+  };
   const pretes = lignes.filter((l) => !l.raison).length;
   const envois = useMemo(() => paquets(sorte, lignes), [sorte, lignes]);
   const offset = aUneEntete ? 2 : 1;
@@ -146,7 +157,7 @@ export function ProImportPanel({ bid, sortes }: { bid: string; sortes: SorteImpo
   const importer = async () => {
     if (!envoi.current) {
       if (!envois.length) return;
-      envoi.current = { ids: envois.map(() => newImportId()), envois, lignes };
+      envoi.current = { ids: envois.map(() => newImportId()), envois, lignes, memesNoms: sorte === 'flotte' && memesNoms };
     }
     const fige = envoi.current;
     setEtape('envoi');
@@ -157,7 +168,13 @@ export function ProImportPanel({ bid, sortes }: { bid: string; sortes: SorteImpo
     try {
       for (let i = 0; i < fige.envois.length; i++) {
         const p = fige.envois[i];
-        const res = await callPro<{ crees?: number; ignorees?: ErreurLigne[] }>('proImport', { bid, importId: fige.ids[i], sorte, lignes: p.lignes });
+        const res = await callPro<{ crees?: number; ignorees?: ErreurLigne[] }>('proImport', {
+          bid,
+          importId: fige.ids[i],
+          sorte,
+          lignes: p.lignes,
+          ...(fige.memesNoms ? { memesNoms: true } : {}),
+        });
         crees += res.crees ?? 0;
         for (const e of res.ignorees ?? []) {
           const index = p.index[e.index];
@@ -180,6 +197,7 @@ export function ProImportPanel({ bid, sortes }: { bid: string; sortes: SorteImpo
     setTexte('');
     setRows([]);
     setFin(null);
+    setMemesNoms(false);
     envoi.current = null;
   };
 
@@ -297,7 +315,18 @@ export function ProImportPanel({ bid, sortes }: { bid: string; sortes: SorteImpo
           {manquantes.length ? (
             <p className="mt-3 text-[15px] text-tradeInk">{manquantes.map((c) => x.t('imp.mapMissing', { col: colLabel(x, c) })).join(' ')}</p>
           ) : (
-            <Apercu sorte={sorte} lignes={lignes} offset={offset} seulementErreurs={seulementErreurs} setSeulementErreurs={setSeulementErreurs} x={x} />
+            <>
+              <Apercu sorte={sorte} lignes={lignes} offset={offset} seulementErreurs={seulementErreurs} setSeulementErreurs={setSeulementErreurs} x={x} />
+              {montrerMemesNoms ? (
+                <div className="mt-3 rounded-[12px] bg-paperSoft px-4 py-3">
+                  <label className="flex items-center gap-2 text-[15px] font-semibold text-ink">
+                    <input type="checkbox" checked={memesNoms} onChange={(e) => basculerMemesNoms(e.target.checked)} className="h-4 w-4" />
+                    {x.t('imp.sameNames')}
+                  </label>
+                  <p className="mt-1 text-[14px] leading-6 text-inkMuted">{x.t('imp.sameNamesHint')}</p>
+                </div>
+              ) : null}
+            </>
           )}
           {envoiErreur ? (
             <p role="alert" className="mt-4 rounded-[12px] bg-tradeBg px-4 py-3 text-[15px] text-tradeInk">

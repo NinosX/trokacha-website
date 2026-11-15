@@ -19,7 +19,7 @@ const fr: Dict = {
   'cli.col.name': 'Client',
   'cli.col.phone': 'Téléphone',
   'cli.col.ops': 'Opérations',
-  'cli.col.due': 'Reste dû',
+  'cli.col.due': 'Reste à payer',
   'cli.col.last': 'Dernière fois',
   'cli.never': 'Jamais',
   'cli.repere.bon': 'Bon client',
@@ -216,6 +216,10 @@ const fr: Dict = {
   'imp.reason.TROP_DE_VARIANTES': 'Trop de tailles et couleurs pour un article (120 au plus)',
   'imp.reason.PLAQUE_EN_DOUBLE': 'Plaque déjà présente plus haut',
   'imp.reason.DEJA_AU_CATALOGUE': 'Déjà dans votre catalogue',
+  'imp.reason.MEME_NOM_FLOTTE': 'Même nom qu’un véhicule ou logement de votre flotte',
+  'imp.reason.MEME_NOM_LIGNE': 'Même nom qu’une autre ligne plus haut',
+  'imp.sameNames': 'Importer aussi les lignes au même nom',
+  'imp.sameNamesHint': 'Cochez si vous avez vraiment plusieurs véhicules ou logements du même nom sans plaque. Sinon, ces lignes sont laissées de côté pour ne pas doubler votre flotte.',
   'imp.reason.generic': 'Ligne refusée',
 };
 
@@ -230,7 +234,7 @@ const en: Dict = {
   'cli.col.name': 'Client',
   'cli.col.phone': 'Phone',
   'cli.col.ops': 'Operations',
-  'cli.col.due': 'Still owed',
+  'cli.col.due': 'Left to pay',
   'cli.col.last': 'Last time',
   'cli.never': 'Never',
   'cli.repere.bon': 'Good client',
@@ -425,6 +429,10 @@ const en: Dict = {
   'imp.reason.TROP_DE_VARIANTES': 'Too many sizes and colours for one item (120 at most)',
   'imp.reason.PLAQUE_EN_DOUBLE': 'Plate already higher up',
   'imp.reason.DEJA_AU_CATALOGUE': 'Already in your catalogue',
+  'imp.reason.MEME_NOM_FLOTTE': 'Same name as a vehicle or home in your fleet',
+  'imp.reason.MEME_NOM_LIGNE': 'Same name as another row higher up',
+  'imp.sameNames': 'Also import the rows with the same name',
+  'imp.sameNamesHint': 'Tick this if you really have several vehicles or homes with the same name and no plate. Otherwise these rows are left out so your fleet is not doubled.',
   'imp.reason.generic': 'Row refused',
 };
 
@@ -439,7 +447,7 @@ const ar: Dict = {
   'cli.col.name': 'الزبون',
   'cli.col.phone': 'الهاتف',
   'cli.col.ops': 'العمليات',
-  'cli.col.due': 'الباقي',
+  'cli.col.due': 'الباقي للدفع',
   'cli.col.last': 'آخر مرة',
   'cli.never': 'أبدًا',
   'cli.repere.bon': 'زبون جيد',
@@ -634,6 +642,10 @@ const ar: Dict = {
   'imp.reason.TROP_DE_VARIANTES': 'مقاسات وألوان كثيرة لسلعة واحدة (120 كحد أقصى)',
   'imp.reason.PLAQUE_EN_DOUBLE': 'الترقيم موجود أعلاه',
   'imp.reason.DEJA_AU_CATALOGUE': 'موجودة في كتالوجك',
+  'imp.reason.MEME_NOM_FLOTTE': 'نفس اسم سيارة أو مسكن في أسطولك',
+  'imp.reason.MEME_NOM_LIGNE': 'نفس اسم سطر آخر أعلاه',
+  'imp.sameNames': 'استيراد الأسطر التي تحمل نفس الاسم أيضًا',
+  'imp.sameNamesHint': 'ضع العلامة إن كانت لديك فعلًا عدة سيارات أو مساكن بنفس الاسم ودون ترقيم. وإلا تُترك هذه الأسطر جانبًا حتى لا يتضاعف أسطولك.',
   'imp.reason.generic': 'سطر مرفوض',
 };
 

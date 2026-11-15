@@ -27,6 +27,9 @@ import { hoursLeft, needsSizeChoice, offerPriceLine, outsideSalesOf, saleActions
 import { assignVariant, recordPayment, saleStep, shopErrorKey } from '@/lib/pro/shop/writes';
 import { shortClientName } from '@/lib/pro/today';
 import type { ProTexts } from '@/lib/pro/texts';
+import { displayPhone } from '@/lib/pro/shared/format';
+import { wilayaName } from '@/lib/pro/shared/wilayas';
+import { Ltr } from '../Ltr';
 import { useProDesk } from '../ProDeskShell';
 import { ProPaneTitle } from '../ProPane';
 import { ProCentered, useProSession } from '../ProSession';
@@ -59,7 +62,7 @@ function opTitle(op: Operation, article: ShopArticle | undefined): string {
 
 function carnetLine(op: Operation, x: ProTexts): { text: string; warning: boolean } {
   const exp = op.expedition;
-  const carrier = exp?.transporteur ? [exp.transporteur, exp.wilaya].filter(Boolean).join(' · ') : '';
+  const carrier = exp?.transporteur ? [exp.transporteur, wilayaName(exp.wilaya, x.locale)].filter(Boolean).join(' · ') : '';
   switch (op.statut) {
     case 'mise_de_cote':
       return op.solde > 0 ? { text: x.t('shop.line.putAsideDue', { amount: x.money(op.solde) }), warning: true } : { text: x.t('shop.line.putAside'), warning: false };
@@ -188,8 +191,8 @@ export function ShopOrdersPane() {
                       {op.clientTel ? (
                         <>
                           {' · '}
-                          <a href={`tel:${op.clientTel}`} dir="ltr" className="underline decoration-dotted underline-offset-2">
-                            {op.clientTel}
+                          <a href={`tel:${op.clientTel}`} className="underline decoration-dotted underline-offset-2">
+                            <Ltr>{displayPhone(op.clientTel)}</Ltr>
                           </a>
                         </>
                       ) : null}
