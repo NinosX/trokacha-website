@@ -246,4 +246,33 @@ test('vente à expédier : transporteur et wilaya exigés, frais lisibles, 69 wi
   assert.ok(!/application/.test(proTexts('fr').t('boutique.sale.shipNote')));
 });
 
+test('modifier un article : titre, promotion posée sous le prix actuel, retirée au prix barré', () => {
+  const { planArticleEdit, promoEndMs } = require('../lib/pro/shop/catalogue.ts');
+  const art = { titre: 'Robe longue', prix: 6500, prixSurDemande: false, promo: false, promoPrixBarre: null };
+  const today = '2026-11-15';
+  const none = { titleText: 'Robe longue', promoText: '', promoEndDay: '', removePromo: false };
+  assert.deepEqual(planArticleEdit(art, none, today), { ok: false, reason: 'RIEN_A_CHANGER' });
+  assert.deepEqual(planArticleEdit(art, { ...none, titleText: '  Robe   longue fleurie ' }, today), { ok: true, value: { titre: 'Robe longue fleurie' } });
+  assert.deepEqual(planArticleEdit(art, { ...none, titleText: ' ' }, today), { ok: false, reason: 'TITRE_REQUIS' });
+  assert.deepEqual(planArticleEdit(art, { ...none, promoText: '4 900' }, today), { ok: true, value: { prix: 4900, promo: { prixBarre: 6500, finMs: null } } });
+  assert.deepEqual(planArticleEdit(art, { ...none, promoText: '6500' }, today), { ok: false, reason: 'PROMO_TROP_HAUTE' });
+  assert.deepEqual(planArticleEdit(art, { ...none, promoText: 'abc' }, today), { ok: false, reason: 'MONTANT_INVALIDE' });
+  assert.deepEqual(planArticleEdit(art, { ...none, promoText: '4900', promoEndDay: '2026-11-10' }, today), { ok: false, reason: 'FIN_PASSEE' });
+  const withEnd = planArticleEdit(art, { ...none, promoText: '4900', promoEndDay: '2026-11-30' }, today);
+  assert.equal(withEnd.value.promo.finMs, Date.parse('2026-11-30T22:59:59Z'));
+  assert.equal(promoEndMs('x'), null);
+  assert.deepEqual(planArticleEdit({ ...art, prix: null }, { ...none, promoText: '100' }, today), { ok: false, reason: 'PRIX_REQUIS' });
+  const onPromo = { ...art, prix: 4900, promo: true, promoPrixBarre: 6500 };
+  assert.deepEqual(planArticleEdit(onPromo, { ...none, removePromo: true }, today), { ok: true, value: { promo: null, prix: 6500 } });
+  // En promotion, un prix promo tapé est ignoré (on retire d'abord la promotion).
+  assert.deepEqual(planArticleEdit(onPromo, { ...none, promoText: '3000' }, today), { ok: false, reason: 'RIEN_A_CHANGER' });
+  for (const key of ['boutique.edit.title', 'boutique.edit.promoPrice', 'boutique.edit.promoRemove', 'boutique.edit.err.PROMO_TROP_HAUTE', 'boutique.edit.err.TITRE_REQUIS', 'boutique.edit.nameNote']) {
+    for (const locale of ['fr', 'en', 'ar']) {
+      const text = proTexts(locale).t(key, { amount: '1', title: 't' });
+      assert.ok(text.trim() !== '' && !text.includes(key) && !/[\u2013\u2014]/.test(text), `${locale} ${key}`);
+    }
+  }
+  assert.ok(!/application/.test(proTexts('fr').t('boutique.cat.promoNote')));
+});
+
 console.log(`Bureau pro : ${passed} tests verts.`);

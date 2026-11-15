@@ -54,8 +54,12 @@ export interface ShopArticle {
   adId: string | null;
   /** Miroir serveur de la modération de l'annonce (`approved`, `pending`, `rejected`, `deleted`…). */
   moderation: string | null;
-  /** Article en promotion : le prix se change dans l'application (prix barré à garder cohérent). */
+  /** Article en promotion : le prix se change en retirant la promotion (prix barré à garder cohérent). */
   promo: boolean;
+  /** Prix barré de la promotion (l'ancien prix), `null` : pas de prix barré. */
+  promoPrixBarre: number | null;
+  /** Fin de la promotion (millisecondes), `null` : sans date de fin. */
+  promoFinMs: number | null;
   /** Article programmé dont l'instantané d'annonce porte aussi le prix. */
   hasAdDraft: boolean;
   /** Commandes Trokacha dont la taille est choisie (`m_<matchId>` → clé). */
@@ -117,6 +121,8 @@ export function readShopArticle(id: string, data: unknown): ShopArticle | null {
     adId: readString(data.adId),
     moderation,
     promo: isRecord(data.promo) && Object.keys(data.promo).length > 0,
+    promoPrixBarre: isRecord(data.promo) ? (readNumber(data.promo.prixBarre) ?? null) : null,
+    promoFinMs: isRecord(data.promo) ? (readMillis(data.promo.fin) ?? null) : null,
     hasAdDraft: isRecord(data.adDraft),
     variantesAffectees: affectees,
     rental: !!data.rental,
@@ -606,4 +612,64 @@ export function shipExpeditionOf(draft: ShipDraft): { ok: true; value: ShipExped
   const frais = parseAmount(draft.fraisText);
   if (frais !== null && Number.isNaN(frais)) return { ok: false, reason: 'MONTANT_INVALIDE' };
   return { ok: true, value: { transporteur: transporteur.slice(0, 60), mode: draft.livraison, wilaya: draft.wilaya, commune: draft.commune.trim().slice(0, 80) || null, frais } };
+}
+
+// =============================================================================
+// MODIFIER UN ARTICLE (bureau web, 15/11) : le titre, une promotion (prix barré)
+// =============================================================================
+//
+// Promotion = le nouveau prix devient `prix` et l'ancien part dans `promo.prixBarre`
+// (ce que lisent la page boutique et la carte : `promoStrikeOf`, barré seulement s'il
+// dépasse le prix). La retirer remet le prix barré comme prix. Même projection sur
+// l'annonce que la resynchronisation de l'application (`title`, `price`, `promo`).
+
+export const ARTICLE_TITLE_MAX = 80;
+
+export interface ArticleEdit {
+  titre?: string;
+  prix?: number;
+  /** `null` : promotion retirée. */
+  promo?: { prixBarre: number; finMs: number | null } | null;
+}
+
+/** Fin d'une promotion choisie au jour (« 2026-11-30 ») : 23 h 59 à Alger (UTC+1). */
+export function promoEndMs(day: string): number | null {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) return null;
+  const ms = Date.parse(`${day}T22:59:59Z`);
+  return Number.isFinite(ms) ? ms : null;
+}
+
+/**
+ * Ce que la fenêtre « Modifier l'article » écrit, ou la raison du refus : `TITRE_REQUIS`,
+ * `PRIX_REQUIS` (pas de prix à barrer), `MONTANT_INVALIDE`, `PROMO_TROP_HAUTE` (le prix promo
+ * doit être sous le prix actuel), `FIN_PASSEE`, `RIEN_A_CHANGER`.
+ */
+export function planArticleEdit(
+  article: Pick<ShopArticle, 'titre' | 'prix' | 'prixSurDemande' | 'promo' | 'promoPrixBarre'>,
+  input: { titleText: string; promoText: string; promoEndDay: string; removePromo: boolean },
+  today: string,
+): { ok: true; value: ArticleEdit } | { ok: false; reason: string } {
+  const edit: ArticleEdit = {};
+  const titre = input.titleText.trim().replace(/\s+/g, ' ').slice(0, ARTICLE_TITLE_MAX);
+  if (!titre) return { ok: false, reason: 'TITRE_REQUIS' };
+  if (titre !== (article.titre ?? '')) edit.titre = titre;
+  if (article.promo && input.removePromo) {
+    edit.promo = null;
+    if (article.promoPrixBarre !== null && article.promoPrixBarre > 0) edit.prix = article.promoPrixBarre;
+  } else if (!article.promo && input.promoText.trim()) {
+    const current = articlePrice(article);
+    if (current === null || current <= 0) return { ok: false, reason: 'PRIX_REQUIS' };
+    const promoPrice = parseAmount(input.promoText);
+    if (promoPrice === null || Number.isNaN(promoPrice) || promoPrice <= 0) return { ok: false, reason: 'MONTANT_INVALIDE' };
+    if (promoPrice >= current) return { ok: false, reason: 'PROMO_TROP_HAUTE' };
+    let finMs: number | null = null;
+    if (input.promoEndDay) {
+      if (input.promoEndDay < today) return { ok: false, reason: 'FIN_PASSEE' };
+      finMs = promoEndMs(input.promoEndDay);
+    }
+    edit.prix = promoPrice;
+    edit.promo = { prixBarre: current, finMs };
+  }
+  if (Object.keys(edit).length === 0) return { ok: false, reason: 'RIEN_A_CHANGER' };
+  return { ok: true, value: edit };
 }

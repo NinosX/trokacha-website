@@ -15,12 +15,12 @@
 //     Article programmé : son instantané d'annonce (`adDraft.price`) suit.
 // =============================================================================
 
-import { doc, serverTimestamp, writeBatch } from 'firebase/firestore';
+import { Timestamp, doc, serverTimestamp, writeBatch } from 'firebase/firestore';
 import type { Etape, MoyenPaiement, SaisieOperation } from '@/lib/pro-core';
 import { db } from '@/lib/firebase';
 import { callPro, newProId, ProCallableError } from '../callables';
 import { SHOP_ERROR_REASONS } from '../texts/shop';
-import type { ArrivalLineInput, ShopArticle, StockSet } from './catalogue';
+import type { ArrivalLineInput, ArticleEdit, ShopArticle, StockSet } from './catalogue';
 
 /** Clé de texte d'un refus (`boutique.err.*`). */
 export function shopErrorKey(error: unknown): string {
@@ -43,6 +43,38 @@ export async function writeArticlePrice(bid: string, article: Pick<ShopArticle, 
   if (article.statut === 'programme' && article.hasAdDraft) catalogue['adDraft.price'] = prix;
   batch.update(doc(db, 'boutiques', bid, 'catalogue', article.id), catalogue);
   if (article.adId) batch.update(doc(db, 'ads', article.adId), { price: prix, updatedAt: serverTimestamp() });
+  await batch.commit();
+}
+
+/**
+ * Titre et promotion d'un article : catalogue et annonce ensemble (les deux ou rien), comme
+ * la resynchronisation de l'application (`title`, `price`, `promo`). Un titre changé sur une
+ * annonce en ligne repasse par la vérification habituelle (champ modéré), comme dans l'app.
+ */
+export async function writeArticleEdit(bid: string, article: Pick<ShopArticle, 'id' | 'adId' | 'statut' | 'hasAdDraft'>, edit: ArticleEdit): Promise<void> {
+  const promo =
+    edit.promo === undefined ? undefined : edit.promo === null ? null : { prixBarre: edit.promo.prixBarre, ...(edit.promo.finMs !== null ? { fin: Timestamp.fromMillis(edit.promo.finMs) } : {}) };
+  const catalogue: Record<string, unknown> = { updatedAt: serverTimestamp() };
+  const ad: Record<string, unknown> = { updatedAt: serverTimestamp() };
+  const draft = article.statut === 'programme' && article.hasAdDraft;
+  if (edit.titre !== undefined) {
+    catalogue.titre = edit.titre;
+    ad.title = edit.titre;
+    if (draft) catalogue['adDraft.title'] = edit.titre;
+  }
+  if (edit.prix !== undefined) {
+    catalogue.prix = edit.prix;
+    ad.price = edit.prix;
+    if (draft) catalogue['adDraft.price'] = edit.prix;
+  }
+  if (promo !== undefined) {
+    catalogue.promo = promo;
+    ad.promo = promo;
+    if (draft) catalogue['adDraft.promo'] = promo;
+  }
+  const batch = writeBatch(db);
+  batch.update(doc(db, 'boutiques', bid, 'catalogue', article.id), catalogue);
+  if (article.adId) batch.update(doc(db, 'ads', article.adId), ad);
   await batch.commit();
 }
 

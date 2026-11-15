@@ -24,7 +24,9 @@ import {
   isSaleArticle,
   matchesArticle,
   parseAmount,
+  planArticleEdit,
   planPriceChange,
+  ARTICLE_TITLE_MAX,
   planSoldOut,
   planStockSet,
   SALE_CARRIERS,
@@ -38,7 +40,7 @@ import {
   type ShipExpedition,
   type ShopArticle,
 } from '@/lib/pro/shop/catalogue';
-import { adjustStock, newProId, receiveArrival, runSeries, saveSale, shopErrorKey, writeArticlePrice } from '@/lib/pro/shop/writes';
+import { adjustStock, newProId, receiveArrival, runSeries, saveSale, shopErrorKey, writeArticleEdit, writeArticlePrice } from '@/lib/pro/shop/writes';
 import type { ProTexts } from '@/lib/pro/texts';
 import { WILAYA_CODES, wilayaName } from '@/lib/pro/shared/wilayas';
 import { useProSession } from '../ProSession';
@@ -708,6 +710,93 @@ export function ArrivalDialog({ bid, catalogue, initialIds, onClose, onDone }: {
         <ShopField label={x.t('boutique.arrival.supplier')}>
           <input value={supplier} onChange={(e) => setSupplier(e.target.value)} placeholder={x.t('boutique.arrival.supplierPlaceholder')} className={inputClass} />
         </ShopField>
+      </div>
+      <FormError text={error} />
+    </ShopDialog>
+  );
+}
+
+// =============================================================================
+// MODIFIER L'ARTICLE : le titre, une promotion (prix barré), même voie que le prix
+// =============================================================================
+
+export function EditArticleDialog({ bid, article, today, onClose, onDone }: { bid: string; article: ShopArticle; today: string; onClose: () => void; onDone: (r: DoneReport) => void }) {
+  const { texts: x } = useProSession();
+  const [titleText, setTitleText] = useState(article.titre ?? '');
+  const [promoText, setPromoText] = useState('');
+  const [promoEndDay, setPromoEndDay] = useState('');
+  const [removePromo, setRemovePromo] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const current = articlePrice(article);
+
+  const save = async () => {
+    setError(null);
+    const plan = planArticleEdit(article, { titleText, promoText, promoEndDay, removePromo }, today);
+    if (plan.ok === false) {
+      if (plan.reason === 'RIEN_A_CHANGER') return onClose();
+      return setError(x.t(`boutique.edit.err.${plan.reason}`) || reasonText(plan.reason, x));
+    }
+    setBusy(true);
+    try {
+      await writeArticleEdit(bid, article, plan.value);
+      onDone({ tone: 'success', text: x.t('boutique.edit.saved', { title: plan.value.titre ?? titleOf(article, x) }) });
+    } catch (e) {
+      setBusy(false);
+      setError(x.t(shopErrorKey(e)));
+    }
+  };
+
+  return (
+    <ShopDialog
+      title={x.t('boutique.edit.title')}
+      sub={titleOf(article, x)}
+      onClose={onClose}
+      footer={
+        <>
+          <ShopButton tone="outline" onClick={onClose}>
+            {x.t('boutique.cat.cancel')}
+          </ShopButton>
+          <ShopButton onClick={() => void save()} busy={busy}>
+            {x.t('boutique.edit.save')}
+          </ShopButton>
+        </>
+      }
+    >
+      <div className="space-y-5">
+        <ShopField label={x.t('boutique.edit.name')}>
+          <input value={titleText} onChange={(e) => setTitleText(e.target.value)} maxLength={ARTICLE_TITLE_MAX} className={inputClass} autoComplete="off" />
+        </ShopField>
+        {article.adId ? <p className="-mt-3 text-[13px] text-inkMuted">{x.t('boutique.edit.nameNote')}</p> : null}
+        <div className="rounded-[14px] border border-line bg-paperSoft p-4">
+          <p className="mb-2 text-[14px] font-semibold text-ink">{x.t('boutique.edit.promo')}</p>
+          {article.promo ? (
+            <>
+              <p className="text-[15px] text-ink">
+                {article.promoPrixBarre !== null && current !== null
+                  ? x.t('boutique.edit.promoNow', { before: x.money(article.promoPrixBarre), now: x.money(current) })
+                  : x.t('boutique.edit.promoOn')}
+              </p>
+              <label className="mt-3 flex items-center gap-2 text-[15px] text-ink">
+                <input type="checkbox" checked={removePromo} onChange={(e) => setRemovePromo(e.target.checked)} className="h-4 w-4 accent-[#0A66C2]" />
+                {article.promoPrixBarre !== null
+                  ? x.t('boutique.edit.promoRemove', { amount: x.money(article.promoPrixBarre) })
+                  : x.t('boutique.edit.promoRemovePlain')}
+              </label>
+            </>
+          ) : current === null ? (
+            <p className="text-[14px] text-inkMuted">{x.t('boutique.edit.promoNoPrice')}</p>
+          ) : (
+            <div className="grid gap-3 sm:grid-cols-2">
+              <ShopField label={x.t('boutique.edit.promoPrice', { amount: x.money(current) })}>
+                <input inputMode="numeric" dir="ltr" value={promoText} onChange={(e) => setPromoText(e.target.value)} maxLength={10} className={inputClass} />
+              </ShopField>
+              <ShopField label={x.t('boutique.edit.promoEnd')}>
+                <input type="date" dir="ltr" min={today} value={promoEndDay} onChange={(e) => setPromoEndDay(e.target.value)} className={inputClass} />
+              </ShopField>
+            </div>
+          )}
+        </div>
       </div>
       <FormError text={error} />
     </ShopDialog>

@@ -39,15 +39,17 @@ import {
 import { useShopCatalogue } from '@/lib/pro/shop/hooks';
 import { adjustStock, shopErrorKey, writeArticlePrice } from '@/lib/pro/shop/writes';
 import type { ProTexts } from '@/lib/pro/texts';
+import { useAlgiersToday } from '@/lib/pro/hooks';
 import { useProDesk } from '../ProDeskShell';
 import { ProPaneTitle } from '../ProPane';
 import { ProCentered, useProSession } from '../ProSession';
-import { ArrivalDialog, PriceDialog, SaleDialog, SellDialog, SoldOutDialog, StockDialog, type DoneReport } from './ShopCatalogueDialogs';
+import { ArrivalDialog, EditArticleDialog, PriceDialog, SaleDialog, SellDialog, SoldOutDialog, StockDialog, type DoneReport } from './ShopCatalogueDialogs';
 import { ArticleThumb, inputClass, NoticeBar, ShopButton, ShopIcon, useNotice } from './ShopUi';
 
 type Dialog =
   | { kind: 'sell'; id: string }
   | { kind: 'sale'; id: string }
+  | { kind: 'edit'; id: string }
   | { kind: 'price'; ids: string[] }
   | { kind: 'stock'; ids: string[]; initial?: number; restock?: boolean }
   | { kind: 'soldOut'; ids: string[] }
@@ -169,6 +171,7 @@ function Row({
   onToggle,
   onSell,
   onRestock,
+  onEdit,
   onPrice,
   onStock,
   onVariantStock,
@@ -180,6 +183,7 @@ function Row({
   onToggle: (id: string) => void;
   onSell: (row: CatalogueRow) => void;
   onRestock: (row: CatalogueRow) => void;
+  onEdit: (row: CatalogueRow) => void;
   onPrice: (row: CatalogueRow, prix: number) => Promise<boolean>;
   onStock: (row: CatalogueRow, stock: number) => Promise<boolean>;
   onVariantStock: (row: CatalogueRow, variante: string, label: string, stock: number) => Promise<boolean>;
@@ -232,6 +236,15 @@ function Row({
           <span className={`inline-flex rounded-full px-2.5 py-1 text-[13px] font-semibold ${STATE_TONE[row.state]}`}>{x.t(`boutique.state.${row.state}`)}</span>
         </td>
         <td className="whitespace-nowrap py-3 pe-4 ps-3 text-end">
+          <button
+            type="button"
+            onClick={() => onEdit(row)}
+            aria-label={x.t('boutique.edit.a11y', { title })}
+            title={x.t('boutique.edit.title')}
+            className="me-2 inline-flex h-9 w-9 items-center justify-center rounded-full text-inkSoft hover:bg-paperHard"
+          >
+            <ShopIcon name="pencil" size={17} />
+          </button>
           {row.soldOut ? (
             <ShopButton tone="soft" small onClick={() => onRestock(row)}>
               <ShopIcon name="refresh" size={15} />
@@ -267,6 +280,7 @@ function Row({
 // ── Le volet ──────────────────────────────────────────────────────────────
 
 export function ShopCataloguePane() {
+  const today = useAlgiersToday();
   const { texts: x } = useProSession();
   const { space } = useProDesk();
   const bid = space.id;
@@ -364,7 +378,7 @@ export function ShopCataloguePane() {
   };
 
   const articlesOf = (ids: string[]) => ids.flatMap((id) => (byId.has(id) ? [byId.get(id) as ShopArticle] : []));
-  const dialogArticle = dialog && (dialog.kind === 'sell' || dialog.kind === 'sale') ? byId.get(dialog.id) ?? null : null;
+  const dialogArticle = dialog && (dialog.kind === 'sell' || dialog.kind === 'sale' || dialog.kind === 'edit') ? byId.get(dialog.id) ?? null : null;
 
   return (
     <>
@@ -481,6 +495,7 @@ export function ShopCataloguePane() {
                       onToggle={onToggle}
                       onSell={onSell}
                       onRestock={onRestock}
+                      onEdit={(r) => setDialog({ kind: 'edit', id: r.id })}
                       onPrice={onPrice}
                       onStock={onStock}
                       onVariantStock={onVariantStock}
@@ -499,6 +514,7 @@ export function ShopCataloguePane() {
         <SellDialog bid={bid} article={dialogArticle} onClose={() => setDialog(null)} onDone={report} onMore={() => setDialog({ kind: 'sale', id: dialogArticle.id })} />
       ) : null}
       {dialog?.kind === 'sale' && dialogArticle ? <SaleDialog bid={bid} article={dialogArticle} onClose={() => setDialog(null)} onDone={report} /> : null}
+      {dialog?.kind === 'edit' && dialogArticle ? <EditArticleDialog bid={bid} article={dialogArticle} today={today} onClose={() => setDialog(null)} onDone={report} /> : null}
       {dialog?.kind === 'price' ? <PriceDialog bid={bid} articles={articlesOf(dialog.ids)} onClose={() => setDialog(null)} onDone={report} /> : null}
       {dialog?.kind === 'stock' ? (
         <StockDialog bid={bid} articles={articlesOf(dialog.ids)} initial={dialog.initial} title={dialog.restock ? x.t('boutique.cat.restock') : undefined} onClose={() => setDialog(null)} onDone={report} />
