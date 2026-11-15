@@ -9,6 +9,8 @@
 //     bien, ce jour ; le bouton « Nouvelle réservation » en tête aussi ;
 //   • une réservation → sa fiche (gestes, argent, caution) ;
 //   • une demande Trokacha (pointillés) → sa page, réponse dans l'application.
+//   • « Bloquer des dates » (15/11) : garage, usage personnel, ménage ; une
+//     période bloquée → « Débloquer ces dates ? » (callables du carnet).
 // DONNÉES : les biens loués du catalogue, les opérations ouvertes (fraîches) et
 // celles qui finissent depuis le 1er du mois affiché (le taux du mois compte
 // aussi les locations finies), les demandes reçues, les fiches clients.
@@ -23,11 +25,14 @@ import { useRecentClients, useRentalProposals, useRentalUnits, useWindowOps } fr
 import { buildMonthPlanning, monthBounds, shiftMonth, type PlanningBar, type PlanningRow } from '@/lib/pro/agency/planning';
 import { planningRequestsOf } from '@/lib/pro/agency/requests';
 import { monthRest, monthTitle, shortRange } from '@/lib/pro/agency/text';
-import { unitsKind } from '@/lib/pro/agency/units';
+import { unitsKind, type BlockedRange, type RentalUnit } from '@/lib/pro/agency/units';
+import { blockOfBar } from '@/lib/pro/agency/blocks';
 import { useProDesk } from '../ProDeskShell';
 import { ProPaneTitle } from '../ProPane';
 import { ProCentered, useProSession } from '../ProSession';
 import { AgencyIcon } from './icons';
+import { BlockDatesDrawer } from './BlockDatesDrawer';
+import { UnblockDialog } from './UnblockDialog';
 import { NewBookingDrawer } from './NewBookingDrawer';
 import { OperationDrawer } from './OperationDrawer';
 import { PlanningGrid, PlanningLegend } from './PlanningGrid';
@@ -42,6 +47,12 @@ export function AgencyPlanningPane() {
   const [booking, setBooking] = useState<{ itemId: string | null; debut: string | null } | null>(null);
   const [openOpId, setOpenOpId] = useState<string | null>(null);
   const [saved, setSaved] = useState<string | null>(null);
+  const [blocking, setBlocking] = useState<{ itemId: string | null } | null>(null);
+  const [unblocking, setUnblocking] = useState<{ unit: RentalUnit; block: BlockedRange } | null>(null);
+  const flash = useCallback((message: string) => {
+    setSaved(message);
+    window.setTimeout(() => setSaved(null), 5000);
+  }, []);
 
   const units = useRentalUnits(space.id);
   const open = useOpenOps(space.id);
@@ -83,8 +94,12 @@ export function AgencyPlanningPane() {
   const onCell = useCallback((row: PlanningRow, day: string) => setBooking({ itemId: row.unit.id, debut: day }), []);
   const locale = useLocale();
   const onBar = useCallback(
-    (_row: PlanningRow, bar: PlanningBar) => {
+    (row: PlanningRow, bar: PlanningBar) => {
       if (bar.kind === 'booking' && bar.opId) setOpenOpId(bar.opId);
+      else if (bar.kind === 'blocked') {
+        const block = blockOfBar(row.unit, bar);
+        if (block) setUnblocking({ unit: row.unit, block });
+      }
       // Une demande se répond dans l'application : sa page l'ouvre (ou propose de l'installer).
       else if (bar.kind === 'request' && bar.requestId) window.open(getPathname({ href: `/proposal/${encodeURIComponent(bar.requestId)}`, locale }), '_blank', 'noopener');
     },
@@ -99,7 +114,12 @@ export function AgencyPlanningPane() {
   return (
     <>
       <ProPaneTitle title={t('pane.planning')}>
-        {!empty && !failed ? <Button label={t('ag.booking.title')} icon={<AgencyIcon name="plus" />} onClick={() => setBooking({ itemId: null, debut: null })} /> : null}
+        {!empty && !failed ? (
+          <div className="flex flex-wrap gap-2">
+            <Button label={t('ag.web.blockButton')} tone="secondary" onClick={() => setBlocking({ itemId: null })} />
+            <Button label={t('ag.booking.title')} icon={<AgencyIcon name="plus" />} onClick={() => setBooking({ itemId: null, debut: null })} />
+          </div>
+        ) : null}
       </ProPaneTitle>
 
       {loading ? (
@@ -173,7 +193,9 @@ export function AgencyPlanningPane() {
             onCell={onCell}
             onBar={onBar}
           />
-          <p className="mt-3 text-[14px] text-inkMuted">{t('ag.web.planningHint')}</p>
+          <p className="mt-3 text-[14px] text-inkMuted">
+            {t('ag.web.planningHint')} {t('ag.web.blockedHint')}
+          </p>
           <PlanningLegend texts={texts} />
         </>
       )}
@@ -193,6 +215,34 @@ export function AgencyPlanningPane() {
             setBooking(null);
             setSaved(t('ag.booking.saved', { title: title || t('ag.unit.untitled') }));
             window.setTimeout(() => setSaved(null), 5000);
+          }}
+        />
+      ) : null}
+      {blocking ? (
+        <BlockDatesDrawer
+          bid={space.id}
+          texts={texts}
+          today={today}
+          units={units.rows}
+          ops={open.rows}
+          initialItemId={blocking.itemId}
+          onClose={() => setBlocking(null)}
+          onSaved={(message) => {
+            setBlocking(null);
+            flash(message);
+          }}
+        />
+      ) : null}
+      {unblocking ? (
+        <UnblockDialog
+          bid={space.id}
+          texts={texts}
+          unit={unblocking.unit}
+          block={unblocking.block}
+          onClose={() => setUnblocking(null)}
+          onDone={(message) => {
+            setUnblocking(null);
+            flash(message);
           }}
         />
       ) : null}

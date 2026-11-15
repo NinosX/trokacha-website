@@ -30,7 +30,7 @@ export function rowHeight(lanes: number): number {
 function barClass(bar: PlanningBar): string {
   const round = `${bar.clippedStart ? 'rounded-s-none' : 'rounded-s-full'} ${bar.clippedEnd ? 'rounded-e-none' : 'rounded-e-full'}`;
   if (bar.kind === 'request') return `${round} border-2 border-dashed border-cash bg-white text-cash hover:bg-cashBg`;
-  if (bar.kind === 'blocked') return `${round} border border-[#DCD3C2] bg-[#ECE5D8] text-inkSoft bg-[repeating-linear-gradient(135deg,transparent_0,transparent_6px,rgba(26,24,20,0.07)_6px,rgba(26,24,20,0.07)_9px)] cursor-default`;
+  if (bar.kind === 'blocked') return `${round} border border-[#DCD3C2] bg-[#ECE5D8] text-inkSoft bg-[repeating-linear-gradient(135deg,transparent_0,transparent_6px,rgba(26,24,20,0.07)_6px,rgba(26,24,20,0.07)_9px)] cursor-pointer hover:brightness-95`;
   if (bar.late) return `${round} border-2 border-warning bg-[#FEF3C7] text-[#92400E] hover:brightness-95`;
   if (bar.returnsToday) return `${round} border-2 border-warning bg-white text-[#92400E] hover:bg-paperSoft`;
   return `${round} border border-cash bg-cash text-white hover:bg-cashInk`;

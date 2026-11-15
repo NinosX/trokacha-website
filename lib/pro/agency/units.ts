@@ -12,10 +12,16 @@ import { isRecord, readNumber, readString } from '../carnet';
 
 export type RentalKind = 'car' | 'immo';
 
+/** Raison d'un blocage (privée : `blocages.{id}.motif` de l'article, jamais sur l'annonce). */
+export type BlockReason = 'garage' | 'perso' | 'menage' | 'autre';
+export const BLOCK_REASONS: readonly BlockReason[] = ['garage', 'perso', 'menage', 'autre'];
+
 export interface BlockedRange {
   start: string;
   end: string;
   id: string | null;
+  /** `null` : vieux blocage sans identifiant, ou sans raison notée. */
+  reason: BlockReason | null;
 }
 
 export interface RentalUnit {
@@ -51,14 +57,19 @@ function readTiers(value: unknown): PalierPrix[] {
   });
 }
 
-function readBlocked(value: unknown): BlockedRange[] {
+function readBlocked(value: unknown, blocages: unknown): BlockedRange[] {
   if (!Array.isArray(value)) return [];
+  const reasons = isRecord(blocages) ? blocages : {};
   return value.flatMap((raw): BlockedRange[] => {
     if (!isRecord(raw)) return [];
     const start = readString(raw.start);
     const end = readString(raw.end);
     if (!start || !end || !DAY_RE.test(start) || !DAY_RE.test(end) || !(start < end)) return [];
-    return [{ start, end, id: readString(raw.id) }];
+    const id = readString(raw.id);
+    const entry = id && isRecord(reasons[id]) ? (reasons[id] as Record<string, unknown>) : null;
+    const motif = entry ? readString(entry.motif) : null;
+    const reason = motif && (BLOCK_REASONS as readonly string[]).includes(motif) ? (motif as BlockReason) : null;
+    return [{ start, end, id, reason }];
   });
 }
 
@@ -96,7 +107,7 @@ export function readRentalUnit(id: string, data: unknown): RentalUnit | null {
     published: data.statut === 'publie' && !!adId,
     kind: rental.kind === 'immo' ? 'immo' : 'car',
     pricingTiers: readTiers(rental.pricingTiers),
-    blockedRanges: readBlocked(rental.blockedRanges),
+    blockedRanges: readBlocked(rental.blockedRanges, data.blocages),
     tamponJours: tampon === null ? 0 : Math.max(0, Math.min(30, Math.floor(tampon))),
     caution: caution !== null && caution > 0 ? Math.round(caution) : null,
     plaque: readString(bien.plaque)?.trim() || null,

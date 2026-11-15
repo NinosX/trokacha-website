@@ -29,7 +29,9 @@ export type ProCallableName =
   | 'proReceiveArrival'
   | 'proAdjustStock'
   | 'proAssignVariant'
-  | 'proImport';
+  | 'proImport'
+  | 'proBlockDates'
+  | 'proUnblockDates';
 
 /** Refus d'une callable du carnet : code Firebase et raison métier. */
 export class ProCallableError extends Error {
@@ -76,8 +78,8 @@ export async function callPro<T extends Record<string, unknown> = Record<string,
   }
 }
 
-/** Identifiant fait par l'appelant (`op_…`, `pa_…`, `ar_…`, `ga_…`) : même forme que l'application. */
-export function newProId(prefix: 'op' | 'pa' | 'ar' | 'ga'): string {
+/** Identifiant fait par l'appelant (`op_…`, `pa_…`, `ar_…`, `ga_…`, `bl_…`) : même forme que l'application. */
+export function newProId(prefix: 'op' | 'pa' | 'ar' | 'ga' | 'bl'): string {
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   const bytes = new Uint8Array(14);
   crypto.getRandomValues(bytes);

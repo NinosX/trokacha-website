@@ -155,4 +155,34 @@ test('textes des documents : les trois langues, mêmes clés', () => {
   }
 });
 
+test('dates bloquées : raison privée lue sur l’article, texte de la période, blocage d’une barre rognée, mots dans les trois langues', () => {
+  const { readRentalUnit } = require('../lib/pro/agency/units.ts');
+  const { blockOfBar, blockRangeText, blockReasonText } = require('../lib/pro/agency/blocks.ts');
+  const { errorReason } = require('../lib/pro/agency/errors.ts');
+  const unit = readRentalUnit('clio', {
+    titre: 'Clio 5',
+    statut: 'publie',
+    adId: 'ad1',
+    rental: { kind: 'car', pricingTiers: [{ upToDays: null, pricePerDay: 5000 }], blockedRanges: [{ start: '2026-11-23', end: '2026-11-25', id: 'bl_a' }, { start: '2026-12-02', end: '2026-12-03' }, { start: 'x', end: 'y' }] },
+    blocages: { bl_a: { motif: 'garage' } },
+  });
+  assert.deepEqual(unit.blockedRanges, [
+    { start: '2026-11-23', end: '2026-11-25', id: 'bl_a', reason: 'garage' },
+    { start: '2026-12-02', end: '2026-12-03', id: null, reason: null },
+  ]);
+  const fr = proTexts('fr');
+  assert.equal(blockRangeText(unit.blockedRanges[0], fr), 'Bloqué du lun. 23 au mar. 24 nov.');
+  assert.equal(blockRangeText(unit.blockedRanges[1], fr), 'Bloqué le mer. 2 déc.');
+  assert.equal(blockReasonText('garage', 'immo', fr), 'Travaux');
+  assert.equal(blockOfBar(unit, { start: '2026-11-24', end: '2026-11-25' }).id, 'bl_a');
+  assert.equal(blockOfBar(unit, { start: '2026-11-26', end: '2026-11-27' }), null);
+  assert.equal(errorReason({ reason: 'DATES_PASSEES' }), 'DATES_PASSEES');
+  for (const key of ['ag.web.blockButton', 'ag.web.blockHint', 'ag.unit.blockReason.perso', 'ag.unit.unblockTitle', 'ag.unit.unblockBody', 'ag.errors.BLOCAGES_MAX', 'ag.errors.DATES_PASSEES']) {
+    for (const locale of ['fr', 'en', 'ar']) {
+      const text = proTexts(locale).t(key, { range: 'x', reason: 'y' });
+      assert.ok(text.trim() !== '' && !text.includes(key) && !/[\u2013\u2014]/.test(text), `${locale} ${key}`);
+    }
+  }
+});
+
 console.log(`Bureau pro : ${passed} tests verts.`);

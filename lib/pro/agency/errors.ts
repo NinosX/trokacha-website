@@ -21,6 +21,9 @@ const KNOWN = new Set([
   'DATES_INVALIDES',
   'DUREE_TROP_LONGUE',
   'DEJA_ECRIT',
+  'DATES_PASSEES',
+  'BLOCAGES_MAX',
+  'PAS_UNE_LOCATION',
 ]);
 
 const NETWORK_CODES = new Set(['unavailable', 'deadline-exceeded']);

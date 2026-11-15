@@ -26,6 +26,14 @@ const frWeb: Dict = {
   'ag.web.replyNote': 'Pour accepter ou refuser, ouvrez la demande dans l’application Trokacha : vous y voyez le calendrier et le dossier, puis vous confirmez.',
   'ag.web.openRequest': 'Voir la demande',
   'ag.web.loadingBooking': 'Chargement de la réservation…',
+  "ag.web.blockButton": "Bloquer des dates",
+  "ag.web.blockHint": "Garage, usage personnel, ménage : ces jours ne se réservent plus, sur Trokacha non plus.",
+  "ag.web.blockUnit.car": "Véhicule",
+  "ag.web.blockUnit.immo": "Logement",
+  "ag.web.blockDates": "Dates",
+  "ag.web.blockPick": "Choisissez le premier jour bloqué, puis le jour où le bien redevient libre.",
+  "ag.web.blockedHint": "Cliquez sur une période bloquée pour la débloquer.",
+  "ag.web.blockReasonLine": "Raison : {{reason}}",
 };
 
 const enWeb: Dict = {
@@ -38,6 +46,14 @@ const enWeb: Dict = {
   'ag.web.replyNote': 'To accept or decline, open the request in the Trokacha app: you see the calendar and the documents, then you confirm.',
   'ag.web.openRequest': 'See the request',
   'ag.web.loadingBooking': 'Loading the booking…',
+  "ag.web.blockButton": "Block dates",
+  "ag.web.blockHint": "Garage, personal use, cleaning: these days can no longer be booked, on Trokacha either.",
+  "ag.web.blockUnit.car": "Vehicle",
+  "ag.web.blockUnit.immo": "Place",
+  "ag.web.blockDates": "Dates",
+  "ag.web.blockPick": "Pick the first blocked day, then the day the item is free again.",
+  "ag.web.blockedHint": "Click a blocked period to unblock it.",
+  "ag.web.blockReasonLine": "Reason: {{reason}}",
 };
 
 const arWeb: Dict = {
@@ -50,6 +66,14 @@ const arWeb: Dict = {
   'ag.web.replyNote': 'للقبول أو الرفض، افتح الطلب في تطبيق تروكاشا: ترى فيه التقويم والملف، ثم تؤكّد.',
   'ag.web.openRequest': 'عرض الطلب',
   'ag.web.loadingBooking': 'جارٍ تحميل الحجز…',
+  "ag.web.blockButton": "إغلاق تواريخ",
+  "ag.web.blockHint": "عند الميكانيكي، استعمال شخصي، تنظيف: لا تُحجز هذه الأيام بعد الآن، ولا على تروكاشا.",
+  "ag.web.blockUnit.car": "المركبة",
+  "ag.web.blockUnit.immo": "المسكن",
+  "ag.web.blockDates": "التواريخ",
+  "ag.web.blockPick": "اختر أول يوم مغلق، ثم اليوم الذي يصبح فيه العنصر متاحًا من جديد.",
+  "ag.web.blockedHint": "انقر على فترة مغلقة لإلغاء إغلاقها.",
+  "ag.web.blockReasonLine": "السبب: {{reason}}",
 };
 
 const frApp: Dict = {
@@ -466,6 +490,22 @@ const frApp: Dict = {
   "ag.unit.untitled": "Bien sans titre",
   "ag.unit.vidange": "Vidange à {{km}} km",
   "ag.unit.vignette": "Vignette le {{date}}",
+  "ag.unit.blockReasonLabel": "Pourquoi ?",
+  "ag.unit.blockReason.garage": "Garage",
+  "ag.unit.blockReason.travaux": "Travaux",
+  "ag.unit.blockReason.perso": "Usage personnel",
+  "ag.unit.blockReason.menage": "Ménage",
+  "ag.unit.blockReason.autre": "Autre",
+  "ag.unit.blocksTitle": "Dates bloquées",
+  "ag.unit.unblock": "Débloquer",
+  "ag.unit.unblockTitle": "Débloquer ces dates ?",
+  "ag.unit.unblockBody": "{{range}}. Ces jours redeviennent libres, sur Trokacha aussi.",
+  "ag.unit.unblockKeep": "Garder",
+  "ag.unit.unblockSaved": "Dates débloquées.",
+  "ag.unit.blockPast": "Ces dates sont passées.",
+  "ag.errors.DATES_PASSEES": "Ces dates sont passées.",
+  "ag.errors.BLOCAGES_MAX": "Trop de blocages sur ce bien : retirez-en un d'abord.",
+  "ag.errors.PAS_UNE_LOCATION": "Ce bien ne se loue pas.",
 };
 
 const enApp: Dict = {
@@ -882,6 +922,22 @@ const enApp: Dict = {
   "ag.unit.untitled": "Untitled item",
   "ag.unit.vidange": "Oil change at {{km}} km",
   "ag.unit.vignette": "Road tax on {{date}}",
+  "ag.unit.blockReasonLabel": "Why?",
+  "ag.unit.blockReason.garage": "Garage",
+  "ag.unit.blockReason.travaux": "Works",
+  "ag.unit.blockReason.perso": "Personal use",
+  "ag.unit.blockReason.menage": "Cleaning",
+  "ag.unit.blockReason.autre": "Other",
+  "ag.unit.blocksTitle": "Blocked dates",
+  "ag.unit.unblock": "Unblock",
+  "ag.unit.unblockTitle": "Unblock these dates?",
+  "ag.unit.unblockBody": "{{range}}. These days become free again, on Trokacha too.",
+  "ag.unit.unblockKeep": "Keep",
+  "ag.unit.unblockSaved": "Dates unblocked.",
+  "ag.unit.blockPast": "These dates are in the past.",
+  "ag.errors.DATES_PASSEES": "These dates are in the past.",
+  "ag.errors.BLOCAGES_MAX": "Too many blocks on this item: remove one first.",
+  "ag.errors.PAS_UNE_LOCATION": "This item is not for rent.",
 };
 
 const arApp: Dict = {
@@ -1298,6 +1354,22 @@ const arApp: Dict = {
   "ag.unit.untitled": "عنصر بدون عنوان",
   "ag.unit.vidange": "تغيير الزيت عند ‏{{km}} كلم",
   "ag.unit.vignette": "القسيمة يوم {{date}}",
+  "ag.unit.blockReasonLabel": "لماذا؟",
+  "ag.unit.blockReason.garage": "عند الميكانيكي",
+  "ag.unit.blockReason.travaux": "أشغال",
+  "ag.unit.blockReason.perso": "استعمال شخصي",
+  "ag.unit.blockReason.menage": "تنظيف",
+  "ag.unit.blockReason.autre": "سبب آخر",
+  "ag.unit.blocksTitle": "التواريخ المغلقة",
+  "ag.unit.unblock": "إلغاء الإغلاق",
+  "ag.unit.unblockTitle": "إلغاء إغلاق هذه التواريخ؟",
+  "ag.unit.unblockBody": "{{range}}. تصبح هذه الأيام متاحة من جديد، على تروكاشا أيضًا.",
+  "ag.unit.unblockKeep": "إبقاء",
+  "ag.unit.unblockSaved": "أُلغي الإغلاق.",
+  "ag.unit.blockPast": "هذه التواريخ فاتت.",
+  "ag.errors.DATES_PASSEES": "هذه التواريخ فاتت.",
+  "ag.errors.BLOCAGES_MAX": "إغلاقات كثيرة على هذا العنصر: احذف واحدًا أولًا.",
+  "ag.errors.PAS_UNE_LOCATION": "هذا العنصر ليس للكراء.",
 };
 
 export const agencyTexts: Record<ProLocale, Dict> = {
