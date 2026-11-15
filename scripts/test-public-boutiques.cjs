@@ -3,7 +3,7 @@
 // =============================================================================
 // Tests du module PUR des pages publiques des agences et boutiques :
 //   node scripts/test-public-boutiques.cjs
-// Même lanceur que `test-pro-desk.cjs` (sucrase déjà dans node_modules).
+// Même lanceur que `test-pro-desk.cjs` (`ts-register.cjs`, typescript déclaré).
 // =============================================================================
 
 const Module = require('module');
@@ -15,7 +15,7 @@ const resolve = Module._resolveFilename;
 Module._resolveFilename = function (request, ...rest) {
   return resolve.call(this, request.startsWith('@/') ? path.join(ROOT, request.slice(2)) : request, ...rest);
 };
-require('sucrase/register/ts');
+require('./ts-register.cjs');
 
 const {
   availabilityLabel,

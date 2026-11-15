@@ -26,6 +26,16 @@ import {
 } from '@/lib/pro-core';
 import { searchKey } from './format';
 
+/**
+ * Plafonds de l'import (relecture de Main, 15/11, S8) : un fichier (ou un collage) de
+ * 2 Mo au plus et 5 000 lignes au plus. Au-delà, le navigateur peine et l'envoi par
+ * paquets de 200 dure trop : le pro coupe son tableau en plusieurs fois.
+ */
+export const IMPORT_FICHIER_MAX_OCTETS = 2 * 1024 * 1024;
+export const IMPORT_TABLE_MAX_LIGNES = 5000;
+export const importTropLourd = (octets: number): boolean => octets > IMPORT_FICHIER_MAX_OCTETS;
+export const importTropLong = (lignes: number): boolean => lignes > IMPORT_TABLE_MAX_LIGNES;
+
 export type ColonneFlotte = 'titre' | 'kind' | 'plaque' | 'prixJour' | 'prixSemaine' | 'km' | 'capacite';
 export type ColonneArticle = 'titre' | 'prix' | 'quantite' | 'taille' | 'couleur' | 'prixAchat' | 'fournisseur' | 'codeBarre';
 export type Colonne = ColonneFlotte | ColonneArticle;

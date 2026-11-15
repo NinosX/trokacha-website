@@ -20,6 +20,8 @@ import {
   compterCreations,
   detecterEntete,
   estMemeNom,
+  importTropLong,
+  importTropLourd,
   lignesBrutes,
   newImportId,
   paquets,
@@ -118,9 +120,17 @@ export function ProImportPanel({ bid, sortes }: { bid: string; sortes: SorteImpo
   const offset = aUneEntete ? 2 : 1;
 
   const lire = (source: string) => {
+    if (importTropLourd(source.length)) {
+      setLireErreur(x.t('imp.tooBig'));
+      return;
+    }
     const table = parseTable(source);
     if (!table.length) {
       setLireErreur(x.t('imp.noRows'));
+      return;
+    }
+    if (importTropLong(table.length)) {
+      setLireErreur(x.t('imp.tooManyRows'));
       return;
     }
     const d = detecterEntete(table, sorte);
@@ -134,6 +144,10 @@ export function ProImportPanel({ bid, sortes }: { bid: string; sortes: SorteImpo
   };
 
   const lireFichier = (file: File) => {
+    if (importTropLourd(file.size)) {
+      setLireErreur(x.t('imp.tooBig'));
+      return;
+    }
     const reader = new FileReader();
     reader.onload = () => {
       const text = typeof reader.result === 'string' ? reader.result : '';

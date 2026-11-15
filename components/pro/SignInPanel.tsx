@@ -29,13 +29,9 @@ import { db } from '@/lib/firebase';
 import { clientAuth } from '@/lib/firebaseClient';
 import { useAuthUser } from '@/lib/pro/hooks';
 import { proTexts, type ProTextKey } from '@/lib/pro/texts';
+import { safeNext } from '@/lib/pro/safeNext';
 import { ProIcon } from './ProIcons';
 
-/** Chemin de retour accepté : interne au site, jamais une autre adresse. */
-export function safeNext(raw: string | null | undefined): string {
-  if (!raw || !raw.startsWith('/') || raw.startsWith('//') || raw.startsWith('/\\')) return '/pro';
-  return raw;
-}
 
 function errorKey(error: unknown): ProTextKey {
   const code = String((error as { code?: unknown } | null)?.code ?? '');
@@ -103,7 +99,7 @@ export function SignInPanel() {
   const { t } = texts;
   const router = useRouter();
   const search = useSearchParams();
-  const next = safeNext(search.get('next'));
+  const next = safeNext(search.get('next'), typeof window === 'undefined' ? 'https://trokacha.com' : window.location.origin);
   const { user, ready } = useAuthUser();
 
   const [email, setEmail] = useState('');

@@ -3,7 +3,7 @@
 // =============================================================================
 // Tests des modules PURS du bureau pro (le site n'a pas de lanceur de tests) :
 //   node scripts/test-pro-desk.cjs
-// Charge le TypeScript à la volée avec sucrase (déjà dans node_modules, aucune
+// Charge le TypeScript à la volée (`scripts/ts-register.cjs`, typescript déclaré, aucune
 // dépendance ajoutée) et résout l'alias `@/` vers la racine du site.
 // =============================================================================
 
@@ -16,7 +16,7 @@ const resolve = Module._resolveFilename;
 Module._resolveFilename = function (request, ...rest) {
   return resolve.call(this, request.startsWith('@/') ? path.join(ROOT, request.slice(2)) : request, ...rest);
 };
-require('sucrase/register/ts');
+require('./ts-register.cjs');
 
 const { colonneDeEntete, detecterEntete, apercu, lignesBrutes, parseTable, estMemeNom } = require('../lib/pro/shared/importTableur.ts');
 const { displayPhone } = require('../lib/pro/shared/format.ts');
