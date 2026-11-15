@@ -278,8 +278,34 @@ export interface JourAgregat {
   encaisse: number;
   encaissements: Partial<Record<MoyenPaiement, number>>;
   parMembre: Record<string, number>;
+  /** Rendu aux clients ce jour (remboursements), en positif ; déjà déduit de `encaisse`. */
+  rembourse: number;
+  /** Part gardée des cautions ce jour ; déjà comprise dans `encaisse`. */
+  retenu: number;
   operations: number;
   chiffre: number;
+}
+
+/** Nature d'un mouvement de caisse : paiement reçu, argent rendu, part gardée d'une caution. */
+export type NatureMouvement = 'paiement' | 'remboursement' | 'retenue';
+
+/**
+ * Un mouvement de caisse (`boutiques/{bid}/caisse/{id}`), écrit par le serveur dans la
+ * transaction qui fait entrer ou sortir l'argent ; id = celui du paiement (`pa_…`) ou
+ * `ret_<garantieId>` : un rejeu réécrit le même document, jamais un second.
+ * `montant` est signé comme dans l'agrégat (négatif pour un remboursement).
+ */
+export interface MouvementCaisse {
+  id: string;
+  jour: string;
+  at: number;
+  nature: NatureMouvement;
+  moyen: MoyenPaiement;
+  montant: number;
+  opId: string;
+  itemTitre: string;
+  clientNom: string | null;
+  par: string;
 }
 
 export interface LigneArrivage {

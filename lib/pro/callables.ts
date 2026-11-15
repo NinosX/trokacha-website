@@ -28,7 +28,8 @@ export type ProCallableName =
   | 'proSaveVariants'
   | 'proReceiveArrival'
   | 'proAdjustStock'
-  | 'proAssignVariant';
+  | 'proAssignVariant'
+  | 'proImport';
 
 /** Refus d'une callable du carnet : code Firebase et raison métier. */
 export class ProCallableError extends Error {

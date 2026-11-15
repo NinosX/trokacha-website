@@ -14,6 +14,9 @@ import { AgencyPlanningPane } from './agency/AgencyPlanningPane';
 import { AgencyRequestsPane } from './agency/AgencyRequestsPane';
 import { ShopCataloguePane } from './shop/ShopCataloguePane';
 import { ShopOrdersPane } from './shop/ShopOrdersPane';
+import { ProCaissePane } from './shared/ProCaissePane';
+import { ProClientsPane } from './shared/ProClientsPane';
+import { ProReglagesPane } from './shared/ProReglagesPane';
 
 export function ProPaneTitle({ title, children }: { title: string; children?: React.ReactNode }) {
   return (
@@ -40,5 +43,8 @@ export function ProPane({ pane }: { pane: string }) {
   if (pane === 'demandes') return <AgencyRequestsPane />;
   if (pane === 'catalogue') return <ShopCataloguePane />;
   if (pane === 'commandes') return <ShopOrdersPane />;
+  if (pane === 'clients') return <ProClientsPane />;
+  if (pane === 'caisse') return <ProCaissePane />;
+  if (pane === 'reglages') return <ProReglagesPane />;
   return <ProPaneTitle title={texts.t(PANE_LABEL[pane])} />;
 }
