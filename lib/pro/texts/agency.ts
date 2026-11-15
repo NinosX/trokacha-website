@@ -506,6 +506,10 @@ const frApp: Dict = {
   "ag.errors.DATES_PASSEES": "Ces dates sont passées.",
   "ag.errors.BLOCAGES_MAX": "Trop de blocages sur ce bien : retirez-en un d'abord.",
   "ag.errors.PAS_UNE_LOCATION": "Ce bien ne se loue pas.",
+  "ag.errors.ANNONCE_NON_RATTACHEE": "L'annonce publiée ne correspond plus à ce bien. Ouvrez-le dans le catalogue, republiez-le, puis réessayez.",
+  "ag.errors.CALENDRIER_PLEIN": "Le calendrier de cette annonce est plein. Clôturez ou annulez d'anciennes réservations, puis réessayez.",
+  "ag.errors.PAIEMENTS_MAX": "Cette opération a atteint le nombre maximal de paiements.",
+  "ag.errors.TROP_DE_DEMANDES": "Trop de demandes en peu de temps. Patientez un moment puis réessayez.",
 };
 
 const enApp: Dict = {
@@ -938,6 +942,10 @@ const enApp: Dict = {
   "ag.errors.DATES_PASSEES": "These dates are in the past.",
   "ag.errors.BLOCAGES_MAX": "Too many blocks on this item: remove one first.",
   "ag.errors.PAS_UNE_LOCATION": "This item is not for rent.",
+  "ag.errors.ANNONCE_NON_RATTACHEE": "The published ad no longer matches this item. Open it in the catalogue, publish it again, then retry.",
+  "ag.errors.CALENDRIER_PLEIN": "This ad's calendar is full. Close or cancel old bookings, then retry.",
+  "ag.errors.PAIEMENTS_MAX": "This operation has reached the maximum number of payments.",
+  "ag.errors.TROP_DE_DEMANDES": "Too many requests in a short time. Wait a moment, then retry.",
 };
 
 const arApp: Dict = {
@@ -1370,6 +1378,10 @@ const arApp: Dict = {
   "ag.errors.DATES_PASSEES": "هذه التواريخ فاتت.",
   "ag.errors.BLOCAGES_MAX": "إغلاقات كثيرة على هذا العنصر: احذف واحدًا أولًا.",
   "ag.errors.PAS_UNE_LOCATION": "هذا العنصر ليس للكراء.",
+  "ag.errors.ANNONCE_NON_RATTACHEE": "الإعلان المنشور لم يعد مطابقًا لهذا الغرض. افتحه في الكتالوج وأعد نشره ثم أعد المحاولة.",
+  "ag.errors.CALENDRIER_PLEIN": "رزنامة هذا الإعلان ممتلئة. أغلق أو ألغِ حجوزات قديمة ثم أعد المحاولة.",
+  "ag.errors.PAIEMENTS_MAX": "بلغت هذه العملية الحد الأقصى لعدد الدفعات.",
+  "ag.errors.TROP_DE_DEMANDES": "طلبات كثيرة في وقت قصير. انتظر قليلًا ثم أعد المحاولة.",
 };
 
 export const agencyTexts: Record<ProLocale, Dict> = {

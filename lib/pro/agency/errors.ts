@@ -24,6 +24,10 @@ const KNOWN = new Set([
   'DATES_PASSEES',
   'BLOCAGES_MAX',
   'PAS_UNE_LOCATION',
+  'ANNONCE_NON_RATTACHEE',
+  'CALENDRIER_PLEIN',
+  'PAIEMENTS_MAX',
+  'TROP_DE_DEMANDES',
 ]);
 
 const NETWORK_CODES = new Set(['unavailable', 'deadline-exceeded']);
