@@ -572,3 +572,38 @@ export function buildArrivalLines(items: readonly ArrivalDraftItem[], articles: 
   if (lignes.length > ARRIVAL_LINES_MAX) return { ok: false, reason: 'TROP_DE_LIGNES' };
   return { ok: true, value: { lignes, pieces: lignes.reduce((sum, l) => sum + l.quantite, 0), articles: touched.size } };
 }
+
+// =============================================================================
+// VENTE À EXPÉDIER (bureau web, 15/11) : même règle que l'application
+// (`src/v2/domain/proSaleDraft.ts`, mode « À expédier »)
+// =============================================================================
+
+/** Transporteurs proposés d'un clic ; le champ reste libre (mêmes noms que l'application). */
+export const SALE_CARRIERS: readonly string[] = ['Yalidine', 'ZR Express', 'Maystro', 'Ecotrack', 'Noest'];
+
+export interface ShipDraft {
+  transporteur: string;
+  livraison: 'domicile' | 'bureau';
+  /** Code wilaya du référentiel (« 16 »), `null` : pas encore choisie. */
+  wilaya: string | null;
+  commune: string;
+  fraisText: string;
+}
+
+/** Le colis d'une vente à expédier, ou la raison du refus (`TRANSPORTEUR_REQUIS`, `WILAYA_REQUISE`, `MONTANT_INVALIDE`). */
+export interface ShipExpedition {
+  transporteur: string;
+  mode: 'domicile' | 'bureau';
+  wilaya: string;
+  commune: string | null;
+  frais: number | null;
+}
+
+export function shipExpeditionOf(draft: ShipDraft): { ok: true; value: ShipExpedition } | { ok: false; reason: string } {
+  const transporteur = draft.transporteur.trim();
+  if (!transporteur) return { ok: false, reason: 'TRANSPORTEUR_REQUIS' };
+  if (!draft.wilaya) return { ok: false, reason: 'WILAYA_REQUISE' };
+  const frais = parseAmount(draft.fraisText);
+  if (frais !== null && Number.isNaN(frais)) return { ok: false, reason: 'MONTANT_INVALIDE' };
+  return { ok: true, value: { transporteur: transporteur.slice(0, 60), mode: draft.livraison, wilaya: draft.wilaya, commune: draft.commune.trim().slice(0, 80) || null, frais } };
+}

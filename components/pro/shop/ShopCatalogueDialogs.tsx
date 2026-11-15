@@ -4,7 +4,8 @@
 // =============================================================================
 // Les fenêtres du catalogue en tableau : vente au comptoir (une pièce, payée en
 // espèces au prix de l'article) et vente notée (quantité, prix, client, canal,
-// payé ou mis de côté), prix en série, stock en série, « épuisé » en série,
+// payé, mis de côté ou à expédier : transporteur, domicile ou bureau, wilaya,
+// commune, frais, payé à la livraison ou déjà payé), prix en série, stock en série, « épuisé » en série,
 // arrivage. Chaque écriture passe par `lib/pro/shop/writes.ts` (callables du
 // carnet ; prix : catalogue et annonce ensemble, comme l'application).
 // =============================================================================
@@ -26,16 +27,20 @@ import {
   planPriceChange,
   planSoldOut,
   planStockSet,
+  SALE_CARRIERS,
+  shipExpeditionOf,
   stockOf,
   variantChipLabel,
   variantColors,
   variantStocks,
   type ArrivalDraftItem,
   type PriceChange,
+  type ShipExpedition,
   type ShopArticle,
 } from '@/lib/pro/shop/catalogue';
 import { adjustStock, newProId, receiveArrival, runSeries, saveSale, shopErrorKey, writeArticlePrice } from '@/lib/pro/shop/writes';
 import type { ProTexts } from '@/lib/pro/texts';
+import { WILAYA_CODES, wilayaName } from '@/lib/pro/shared/wilayas';
 import { useProSession } from '../ProSession';
 import { ArticleThumb, ChipRow, FormError, inputClass, ShopButton, ShopChip, ShopDialog, ShopField, ShopIcon } from './ShopUi';
 
@@ -148,7 +153,14 @@ export function SaleDialog({ bid, article, onClose, onDone }: { bid: string; art
   const [nom, setNom] = useState('');
   const [tel, setTel] = useState('');
   const [origine, setOrigine] = useState<Exclude<Origine, 'trokacha'>>('comptoir');
-  const [mode, setMode] = useState<'paid' | 'aside'>('paid');
+  const [mode, setMode] = useState<'paid' | 'aside' | 'ship'>('paid');
+  // À expédier : le colis (mêmes champs que l'application) et le paiement, à la livraison par défaut.
+  const [transporteur, setTransporteur] = useState('');
+  const [livraison, setLivraison] = useState<'domicile' | 'bureau'>('domicile');
+  const [wilaya, setWilaya] = useState<string | null>(null);
+  const [commune, setCommune] = useState('');
+  const [fraisText, setFraisText] = useState('');
+  const [shipPaid, setShipPaid] = useState(false);
   const [moyen, setMoyen] = useState<MoyenPaiement>('especes');
   const [acompteText, setAcompteText] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -172,8 +184,14 @@ export function SaleDialog({ bid, article, onClose, onDone }: { bid: string; art
     const telText = tel.trim();
     if (telText && !telInternational(telText)) return setError(reasonText('TEL_INVALIDE', x));
     let paiement: { moyen: MoyenPaiement; montant: number } | null = null;
+    let expedition: ShipExpedition | null = null;
     if (mode === 'paid') paiement = amount > 0 ? { moyen, montant: amount } : null;
-    else {
+    else if (mode === 'ship') {
+      const colis = shipExpeditionOf({ transporteur, livraison, wilaya, commune, fraisText });
+      if (colis.ok === false) return setError(reasonText(colis.reason, x));
+      expedition = colis.value;
+      paiement = shipPaid && amount > 0 ? { moyen, montant: amount } : null;
+    } else {
       const acompte = parseAmount(acompteText);
       if (acompte !== null && Number.isNaN(acompte)) return setError(reasonText('MONTANT_INVALIDE', x));
       if (acompte !== null && acompte > amount) return setError(reasonText('ACOMPTE_TROP_GRAND', x));
@@ -198,8 +216,8 @@ export function SaleDialog({ bid, article, onClose, onDone }: { bid: string; art
       lignes: edited ? [{ libelle: label.slice(0, 120), quantite, prix: unit }] : null,
       paiement,
       garanties: [],
-      expedition: null,
-      statutVente: mode === 'paid' ? 'vendue' : 'mise_de_cote',
+      expedition,
+      statutVente: mode === 'paid' ? 'vendue' : mode === 'ship' ? 'a_expedier' : 'mise_de_cote',
       notes: null,
     });
     if (saisie.ok === false) return setError(reasonText(saisie.reason, x));
@@ -291,22 +309,67 @@ export function SaleDialog({ bid, article, onClose, onDone }: { bid: string; art
             <ChipRow>
               <ShopChip label={x.t('boutique.sale.modes.paid')} selected={mode === 'paid'} onClick={() => setMode('paid')} />
               <ShopChip label={x.t('boutique.sale.modes.aside')} selected={mode === 'aside'} onClick={() => setMode('aside')} />
+              <ShopChip label={x.t('boutique.sale.modes.ship')} selected={mode === 'ship'} onClick={() => setMode('ship')} />
             </ChipRow>
-            <p className="mt-2 text-[13px] text-inkMuted">{x.t('boutique.sale.shipNote')}</p>
           </div>
+          {mode === 'ship' ? (
+            <div className="space-y-4 rounded-[14px] border border-line bg-paperSoft p-4">
+              <p className="text-[14px] font-semibold text-ink">{x.t('boutique.sale.delivery')}</p>
+              <ShopField label={x.t('boutique.sale.carrier')}>
+                <input value={transporteur} onChange={(e) => setTransporteur(e.target.value)} placeholder={x.t('boutique.sale.carrierPlaceholder')} maxLength={60} className={inputClass} autoComplete="off" />
+              </ShopField>
+              <ChipRow>
+                {SALE_CARRIERS.map((c) => (
+                  <ShopChip key={c} label={c} selected={transporteur.trim().toLowerCase() === c.toLowerCase()} onClick={() => setTransporteur(c)} />
+                ))}
+              </ChipRow>
+              <ChipRow>
+                <ShopChip label={x.t('boutique.sale.deliveryMode.domicile')} selected={livraison === 'domicile'} onClick={() => setLivraison('domicile')} />
+                <ShopChip label={x.t('boutique.sale.deliveryMode.bureau')} selected={livraison === 'bureau'} onClick={() => setLivraison('bureau')} />
+              </ChipRow>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <ShopField label={x.t('boutique.sale.wilaya')}>
+                  <select value={wilaya ?? ''} onChange={(e) => setWilaya(e.target.value || null)} className={inputClass}>
+                    <option value="">{x.t('boutique.sale.pickWilaya')}</option>
+                    {WILAYA_CODES.map((code) => (
+                      <option key={code} value={code}>
+                        {`${code} · ${wilayaName(code, x.locale)}`}
+                      </option>
+                    ))}
+                  </select>
+                </ShopField>
+                <ShopField label={x.t('boutique.sale.commune')}>
+                  <input value={commune} onChange={(e) => setCommune(e.target.value)} maxLength={80} className={inputClass} autoComplete="off" />
+                </ShopField>
+              </div>
+              <ShopField label={x.t('boutique.sale.fees')}>
+                <input inputMode="numeric" dir="ltr" value={fraisText} onChange={(e) => setFraisText(e.target.value)} maxLength={9} className={inputClass} />
+              </ShopField>
+              <div>
+                <p className="mb-2 text-[14px] font-semibold text-ink">{x.t('boutique.sale.shipPay')}</p>
+                <ChipRow>
+                  <ShopChip label={x.t('boutique.sale.shipPayOnDelivery')} selected={!shipPaid} onClick={() => setShipPaid(false)} />
+                  <ShopChip label={x.t('boutique.sale.shipPayPaid')} selected={shipPaid} onClick={() => setShipPaid(true)} />
+                </ChipRow>
+                {!shipPaid ? <p className="mt-2 text-[13px] text-inkMuted">{x.t('boutique.sale.shipNote')}</p> : null}
+              </div>
+            </div>
+          ) : null}
           {mode === 'aside' ? (
             <ShopField label={x.t('boutique.sale.deposit')}>
               <input inputMode="numeric" dir="ltr" value={acompteText} onChange={(e) => setAcompteText(e.target.value)} className={inputClass} />
             </ShopField>
           ) : null}
-          <div>
-            <p className="mb-2 text-[14px] font-semibold text-ink">{mode === 'paid' ? x.t('boutique.sale.paidWith') : x.t('boutique.sale.depositWith')}</p>
-            <ChipRow>
-              {SALE_MOYENS.map((m) => (
-                <ShopChip key={m} label={x.t(`boutique.moyen.${m}`)} selected={m === moyen} onClick={() => setMoyen(m)} />
-              ))}
-            </ChipRow>
-          </div>
+          {mode !== 'ship' || shipPaid ? (
+            <div>
+              <p className="mb-2 text-[14px] font-semibold text-ink">{mode === 'aside' ? x.t('boutique.sale.depositWith') : x.t('boutique.sale.paidWith')}</p>
+              <ChipRow>
+                {SALE_MOYENS.map((m) => (
+                  <ShopChip key={m} label={x.t(`boutique.moyen.${m}`)} selected={m === moyen} onClick={() => setMoyen(m)} />
+                ))}
+              </ChipRow>
+            </div>
+          ) : null}
         </div>
       </div>
       <FormError text={error} />

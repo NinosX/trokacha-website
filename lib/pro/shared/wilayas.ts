@@ -86,3 +86,6 @@ export function wilayaName(code: string | null | undefined, locale: string | nul
   if (!entry) return raw;
   return locale === 'ar' ? entry[1] : entry[0];
 }
+
+/** Les 69 codes du référentiel, dans l'ordre (« 01 » à « 69 ») : la liste d'un choix de wilaya. */
+export const WILAYA_CODES: readonly string[] = Object.keys(WILAYAS).sort();

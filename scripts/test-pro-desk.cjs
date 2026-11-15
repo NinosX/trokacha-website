@@ -219,4 +219,31 @@ test('montants : milliers séparés par une espace insécable ordinaire (l’en-
   assert.equal(monthRest(16, 121500, proTexts('fr')), '16 % loué · 121\u00a0500 DA');
 });
 
+test('vente à expédier : transporteur et wilaya exigés, frais lisibles, 69 wilayas, mots dans les trois langues', () => {
+  const { shipExpeditionOf, SALE_CARRIERS } = require('../lib/pro/shop/catalogue.ts');
+  const { WILAYA_CODES } = require('../lib/pro/shared/wilayas.ts');
+  const { lireSaisieOperation } = require('../lib/pro-core');
+  const base = { transporteur: ' Yalidine ', livraison: 'bureau', wilaya: '25', commune: ' El Khroub ', fraisText: '600' };
+  assert.deepEqual(shipExpeditionOf(base), { ok: true, value: { transporteur: 'Yalidine', mode: 'bureau', wilaya: '25', commune: 'El Khroub', frais: 600 } });
+  assert.deepEqual(shipExpeditionOf({ ...base, transporteur: '  ' }), { ok: false, reason: 'TRANSPORTEUR_REQUIS' });
+  assert.deepEqual(shipExpeditionOf({ ...base, wilaya: null }), { ok: false, reason: 'WILAYA_REQUISE' });
+  assert.deepEqual(shipExpeditionOf({ ...base, fraisText: '6x' }), { ok: false, reason: 'MONTANT_INVALIDE' });
+  assert.equal(shipExpeditionOf({ ...base, commune: '', fraisText: '' }).value.frais, null);
+  assert.equal(WILAYA_CODES.length, 69);
+  assert.equal(WILAYA_CODES[0], '01');
+  assert.equal(WILAYA_CODES[68], '69');
+  assert.ok(SALE_CARRIERS.includes('Yalidine'));
+  // Le cœur accepte la vente à expédier telle que le bureau l'envoie (payée à la livraison ou déjà payée).
+  const saisie = (paiement) => lireSaisieOperation({ bid: 'b1', opId: 'op_abcdefgh1234', type: 'vente', origine: 'instagram', itemId: 'it1', variante: null, quantite: 2, debut: null, fin: null, heureDebut: null, heureFin: null, remise: null, client: { nom: 'Amel', tel: '0770987654' }, lignes: null, paiement, garanties: [], expedition: shipExpeditionOf(base).value, statutVente: 'a_expedier', notes: null });
+  assert.equal(saisie(null).ok, true);
+  assert.equal(saisie({ moyen: 'baridimob', montant: 13000 }).ok, true);
+  for (const key of ['boutique.sale.modes.ship', 'boutique.sale.carrier', 'boutique.sale.deliveryMode.bureau', 'boutique.sale.pickWilaya', 'boutique.sale.shipPayPaid', 'boutique.err.TRANSPORTEUR_REQUIS', 'boutique.err.WILAYA_REQUISE']) {
+    for (const locale of ['fr', 'en', 'ar']) {
+      const text = proTexts(locale).t(key);
+      assert.ok(text.trim() !== '' && !text.includes(key) && !/[\u2013\u2014]/.test(text), `${locale} ${key}`);
+    }
+  }
+  assert.ok(!/application/.test(proTexts('fr').t('boutique.sale.shipNote')));
+});
+
 console.log(`Bureau pro : ${passed} tests verts.`);
