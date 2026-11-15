@@ -15,3 +15,6 @@ export * from './phone';
 export * from './input';
 export * from './import';
 export * from './documents';
+export * from './xlsx';
+export * from './export';
+export * from './releve';

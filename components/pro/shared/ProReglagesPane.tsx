@@ -3,7 +3,8 @@
 // components/pro/shared/ProReglagesPane.tsx
 // =============================================================================
 // RÉGLAGES du bureau : « Vos documents » (en-tête et conditions des contrats,
-// reçus de caution et bons de livraison) et l'import d'un tableur (flotte
+// reçus de caution et bons de livraison), « Votre carnet » (export Excel et
+// relevé du mois) et l'import d'un tableur (flotte
 // d'une agence, articles d'une boutique, les deux pour une boutique qui loue
 // aussi). Les autres réglages de l'espace restent dans l'application.
 // =============================================================================
@@ -13,6 +14,7 @@ import { useProDesk } from '../ProDeskShell';
 import { ProPaneTitle } from '../ProPane';
 import { useProSession } from '../ProSession';
 import { DocumentSettingsForm } from './DocumentSettingsForm';
+import { ExportPanel } from './ExportPanel';
 import { ProImportPanel } from './ProImportPanel';
 
 export function ProReglagesPane() {
@@ -25,6 +27,10 @@ export function ProReglagesPane() {
       <section>
         <h2 className="mb-3 text-[20px] font-semibold text-ink">{x.t('doc.settingsTitle')}</h2>
         <DocumentSettingsForm key={space.id} bid={space.id} texts={x} rental={space.kind === 'agence' || space.hasRentals} sale={space.kind === 'boutique'} />
+      </section>
+      <section className="mt-10">
+        <h2 className="mb-3 text-[20px] font-semibold text-ink">{x.t('exp.title')}</h2>
+        <ExportPanel key={space.id} />
       </section>
       <section className="mt-10">
         <h2 className="mb-3 text-[20px] font-semibold text-ink">{x.t('reg.importTitle')}</h2>

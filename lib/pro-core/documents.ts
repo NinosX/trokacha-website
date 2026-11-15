@@ -363,7 +363,7 @@ const grille = (n: 1 | 2 | 3 | 4, champs: string[]) => `<div class="grille g${n}
 
 /* ---------------------------------- Blocs ---------------------------------- */
 
-function entete(d: DonneesDocument): string {
+function entete(d: Pick<DonneesDocument, 'reglages' | 'espace'>): string {
   const r = d.reglages ?? {};
   const nom = r.raisonSociale || d.espace.nom || '';
   const tel = telDocument(r.tel || d.espace.tel || '');
@@ -678,6 +678,27 @@ table.lignes td.vide { height: 6mm; }
 .sign .lib.fort { font-size: 11px; font-weight: 700; color: #111; }
 .sign .lib.bas { margin-top: auto; }
 `;
+
+/* ------------------------- Partagé avec l'export ------------------------- */
+
+/** Téléphone lisible (« 0550 12 34 56 ») ; repli : tel quel. */
+export function telLisible(tel: string | null | undefined): string {
+  return telDocument(tel);
+}
+
+/** « 20/11/2026 10:00 » (heure d'Alger) ; vide si l'instant manque. */
+export function instantLisible(ms: number | null | undefined): string {
+  return instantDocument(ms);
+}
+
+export const MOTS_FORMES_GARANTIE: Readonly<Record<FormeGarantie, TexteBilingue>> = FORMES;
+export const MOTS_ETATS_GARANTIE: Readonly<Record<Garantie['etat'], TexteBilingue>> = ETATS;
+
+/**
+ * Morceaux de page du générateur, pour le relevé du mois (`releve.ts`) : même en-tête, mêmes
+ * champs, même feuille de style. Pas pour les écrans.
+ */
+export const PIECES_DOCUMENT = { entete, section, champ, grille, lib, ar, ltr, auto, duo, esc, STYLE } as const;
 
 /** Le document HTML complet (A4, une page dans le cas courant). */
 export function documentPro(d: DonneesDocument): DocumentPro {

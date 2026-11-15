@@ -245,6 +245,20 @@ const fr: Dict = {
   'doc.saved': 'Enregistré.',
   'doc.saveError': 'Pas enregistré : vérifiez la connexion et réessayez.',
   'doc.tooLong': 'Ce texte est trop long ({{max}} caractères au plus).',
+  // ── Export du carnet (Réglages) ──
+  'exp.title': 'Votre carnet',
+  'exp.fileTitle': 'Tout le carnet dans Excel',
+  'exp.body': 'Opérations, paiements, clients, catalogue et caisse dans un seul fichier Excel, à garder ou à donner à votre comptable.',
+  'exp.download': 'Télécharger le fichier Excel',
+  'exp.loading': 'Lecture du carnet : {{count}} lignes',
+  'exp.done': 'Fichier téléchargé : {{name}}',
+  'exp.error': "L'export n'a pas abouti. Vérifiez la connexion et réessayez.",
+  'exp.releveTitle': 'Relevé du mois',
+  'exp.releveBody': "Ce qui est entré en caisse par moyen de paiement, l'argent rendu, les cautions retenues et les opérations du mois, en français et en arabe, à imprimer ou enregistrer en PDF.",
+  'exp.month': 'Mois',
+  'exp.print': 'Imprimer le relevé',
+  'exp.preparing': 'Préparation…',
+  'exp.releveEmpty': 'Rien de noté ce mois-ci : le relevé est vide.',
 };
 
 const en: Dict = {
@@ -482,6 +496,20 @@ const en: Dict = {
   'doc.saved': 'Saved.',
   'doc.saveError': 'Not saved: check the connection and try again.',
   'doc.tooLong': 'This text is too long ({{max}} characters at most).',
+  // ── Records export (Settings) ──
+  'exp.title': 'Your records',
+  'exp.fileTitle': 'All your records in Excel',
+  'exp.body': 'Operations, payments, clients, catalogue and cash desk in one Excel file, to keep or give to your accountant.',
+  'exp.download': 'Download the Excel file',
+  'exp.loading': 'Reading your records: {{count}} rows',
+  'exp.done': 'File downloaded: {{name}}',
+  'exp.error': 'The export did not go through. Check the connection and try again.',
+  'exp.releveTitle': 'Monthly statement',
+  'exp.releveBody': 'What came into the cash desk by payment method, money given back, deposits kept and the operations of the month, in French and Arabic, to print or save as PDF.',
+  'exp.month': 'Month',
+  'exp.print': 'Print the statement',
+  'exp.preparing': 'Preparing…',
+  'exp.releveEmpty': 'Nothing noted this month: the statement is empty.',
 };
 
 const ar: Dict = {
@@ -719,6 +747,20 @@ const ar: Dict = {
   'doc.saved': 'سُجّل.',
   'doc.saveError': 'لم يُسجَّل: تحقّق من الاتصال وأعد المحاولة.',
   'doc.tooLong': 'هذا النص طويل جدًا (‏{{max}} حرفًا على الأكثر).',
+  // ── تصدير الدفتر (الإعدادات) ──
+  'exp.title': 'دفترك',
+  'exp.fileTitle': 'كل الدفتر في Excel',
+  'exp.body': 'العمليات، المدفوعات، الزبائن، الكتالوڨ والصندوق في ملف Excel واحد، للاحتفاظ به أو لإعطائه لمحاسبك.',
+  'exp.download': 'تحميل ملف Excel',
+  'exp.loading': 'قراءة الدفتر: {{count}} سطر',
+  'exp.done': 'تم تحميل الملف: {{name}}',
+  'exp.error': 'لم ينجح التصدير. تحقق من الاتصال وأعد المحاولة.',
+  'exp.releveTitle': 'كشف الشهر',
+  'exp.releveBody': 'ما دخل الصندوق حسب وسيلة الدفع، المبالغ المُرجعة، الضمانات المحتجزة وعمليات الشهر، بالفرنسية والعربية، للطباعة أو الحفظ PDF.',
+  'exp.month': 'الشهر',
+  'exp.print': 'طباعة الكشف',
+  'exp.preparing': 'جارٍ التحضير…',
+  'exp.releveEmpty': 'لا شيء مسجّل في هذا الشهر: الكشف فارغ.',
 };
 
 export const sharedTexts: Record<ProLocale, Dict> = { fr, en, ar };
