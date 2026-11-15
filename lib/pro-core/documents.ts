@@ -103,6 +103,12 @@ export interface DonneesDocument {
   bien?: BienDocument | null;
   /** Pièces de la fiche client : type et numéro seulement (jamais la photo). */
   pieces?: readonly Pick<PieceClient, 'type' | 'numero'>[] | null;
+  /**
+   * Autres conducteurs, NOMS déjà résolus par l'appelant. `op.conducteurs` contient des
+   * identifiants de fiches client (le locataire lui-même compris) : jamais imprimé tel quel.
+   * Absent ou vide : ligne laissée à remplir à la main.
+   */
+  autresConducteurs?: readonly string[] | null;
   /** Livraison : wilaya en deux langues et commune, déjà résolues. */
   wilayaLivraison?: TexteBilingue | null;
   communeLivraison?: string | null;
@@ -400,7 +406,7 @@ function blocPersonne(d: DonneesDocument, titre: Mot, avecPieces: boolean, avecP
   if (avecPieces) champs.push(champ(W.piece, pieceDe(d.pieces, false)));
   if (avecPermis) champs.push(champ(W.permis, pieceDe(d.pieces, true)));
   let corps = grille(champs.length as 2 | 3 | 4, champs);
-  const autres = (op.conducteurs ?? []).filter((c) => typeof c === 'string' && c.trim());
+  const autres = (d.autresConducteurs ?? []).filter((c) => typeof c === 'string' && c.trim());
   if (avecPermis) corps += grille(1, [champ(W.conducteurs, autres.map((c) => auto(c.trim())).join(' <span class="sep">·</span> '))]);
   return section(titre, corps);
 }
@@ -567,12 +573,14 @@ function corpsCaution(d: DonneesDocument): string {
   const derniere = reglees.reduce<number | null>((max, g) => (typeof g.regleeLe === 'number' && (max == null || g.regleeLe > max) ? g.regleeLe : max), null);
   const premiere = op.garanties.reduce<number | null>((min, g) => (typeof g.at === 'number' && (min == null || g.at < min) ? g.at : min), null);
 
-  const resume = [champ(W.recuLe, premiere != null ? ltr(instantDocument(premiere)) : ''), champ(W.montantRecu, ltr(montantDocument(recu)), 'fort')];
-  if (reglees.length) {
+  // Montants seulement s'il y a de l'argent : un document gardé seul (permis, passeport) n'imprime pas « 0 DA ».
+  const resume = [champ(W.recuLe, premiere != null ? ltr(instantDocument(premiere)) : '')];
+  if (enArgent.length) resume.push(champ(W.montantRecu, ltr(montantDocument(recu)), 'fort'));
+  if (enArgent.length && reglees.length) {
     resume.push(champ(W.rendu, ltr(montantDocument(rendu)), 'fort'));
     resume.push(champ(W.retenu, ltr(montantDocument(retenu)), 'fort'));
   }
-  let corps = grille(resume.length as 2 | 4, resume);
+  let corps = grille(resume.length === 4 ? 4 : 2, resume);
   if (reglees.length) {
     const suite = [champ(W.regleeLe, derniere != null ? ltr(instantDocument(derniere)) : '')];
     if (motifs.length) suite.push(champ(W.motif, motifs.map(auto).join(' <span class="sep">·</span> '), 'span3'));
@@ -625,7 +633,8 @@ const STYLE = `
 @page { size: A4; margin: 10mm; }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: #fff; }
-body { font-family: -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans Arabic', sans-serif; color: #111; font-size: 11px; line-height: 1.35; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+/* Pas de -apple-system : à l'impression iOS (expo-print), sa liste de secours s'arrête sur LastResort et un texte saisi en arabe sortait en carrés ; les polices arabes nommées suivent les latines. */
+body { font-family: 'Helvetica Neue', 'Segoe UI', Roboto, Arial, 'Geeza Pro', 'SF Arabic', 'Noto Sans Arabic', Tahoma, sans-serif; color: #111; font-size: 11px; line-height: 1.35; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .ar { font-family: 'Geeza Pro', 'SF Arabic', 'Noto Naskh Arabic', 'Noto Sans Arabic', Tahoma, 'Segoe UI', sans-serif; unicode-bidi: isolate; }
 .iso { unicode-bidi: isolate; }
 bdi { unicode-bidi: isolate; }
