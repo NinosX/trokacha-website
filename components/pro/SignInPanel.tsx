@@ -13,7 +13,9 @@ import { useLocale } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import {
   GoogleAuthProvider,
+  getAdditionalUserInfo,
   getRedirectResult,
+  type UserCredential,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -22,6 +24,8 @@ import {
 } from 'firebase/auth';
 import { Link, useRouter } from '@/i18n/navigation';
 import { LanguageQuickSwitch } from '@/components/LocaleSwitch';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 import { clientAuth } from '@/lib/firebaseClient';
 import { useAuthUser } from '@/lib/pro/hooks';
 import { proTexts, type ProTextKey } from '@/lib/pro/texts';
@@ -56,6 +60,34 @@ function errorKey(error: unknown): ProTextKey {
   }
 }
 
+/**
+ * Compte Google sans compte Trokacha (mise en ligne anticipée du 15/11, aucun compte orphelin) :
+ * un compte que CETTE connexion vient de créer est supprimé tout de suite ; un compte plus
+ * ancien sans document `users` est seulement déconnecté (jamais supprimé d'ici). Rend vrai
+ * quand la connexion est refusée.
+ */
+export async function refuserCompteInconnu(credential: UserCredential | null): Promise<boolean> {
+  if (!credential) return false;
+  const user = credential.user;
+  if (getAdditionalUserInfo(credential)?.isNewUser) {
+    try {
+      await user.delete();
+    } catch {
+      await signOut(clientAuth());
+    }
+    return true;
+  }
+  let existe = true;
+  try {
+    existe = (await getDoc(doc(db, 'users', user.uid))).exists();
+  } catch {
+    existe = true; // Lecture impossible : le bureau dira lui-même ce qui manque.
+  }
+  if (existe) return false;
+  await signOut(clientAuth());
+  return true;
+}
+
 const GoogleMark = () => (
   <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden>
     <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z" />
@@ -80,18 +112,25 @@ export function SignInPanel() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
+  // Vérification d'un compte Google (retour de page entière ou fenêtre) : pas de renvoi au bureau avant.
+  const [verifying, setVerifying] = useState(true);
 
   // Retour d'une connexion Google par page entière.
   useEffect(() => {
     const auth = clientAuth();
     auth.languageCode = texts.locale;
-    getRedirectResult(auth).catch((e: unknown) => setError(t(errorKey(e))));
+    getRedirectResult(auth)
+      .then(async (credential) => {
+        if (await refuserCompteInconnu(credential)) setError(t('signin.error.noAccount'));
+      })
+      .catch((e: unknown) => setError(t(errorKey(e))))
+      .finally(() => setVerifying(false));
   }, [texts.locale, t]);
 
   // Déjà connecté et venu d'une page du bureau : on y retourne.
   useEffect(() => {
-    if (ready && user && search.get('next')) router.replace(next);
-  }, [ready, user, search, next, router]);
+    if (ready && user && !verifying && search.get('next')) router.replace(next);
+  }, [ready, user, verifying, search, next, router]);
 
   const submit = async (event: FormEvent) => {
     event.preventDefault();
@@ -115,8 +154,13 @@ export function SignInPanel() {
     const auth = clientAuth();
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
+    setVerifying(true);
     try {
-      await signInWithPopup(auth, provider);
+      const credential = await signInWithPopup(auth, provider);
+      if (await refuserCompteInconnu(credential)) {
+        setError(t('signin.error.noAccount'));
+        return;
+      }
       router.replace(next);
     } catch (e) {
       const code = String((e as { code?: unknown } | null)?.code ?? '');
@@ -127,6 +171,7 @@ export function SignInPanel() {
       setError(t(errorKey(e)));
     } finally {
       setBusy(false);
+      setVerifying(false);
     }
   };
 

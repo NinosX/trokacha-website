@@ -16,6 +16,9 @@ import { usePathname, useRouter } from '@/i18n/navigation';
 import { clientAuth } from '@/lib/firebaseClient';
 import { useAuthUser, useMySpaces, type LiveStatus } from '@/lib/pro/hooks';
 import { usableProSpaces, type ProSpace } from '@/lib/pro/space';
+import { espacesOuverts, porteDuBureau } from '@/lib/pro/pilot';
+import { useProPilotes } from '@/lib/pro/pilotHooks';
+import { APP_STORE_URL, PLAY_STORE_URL, detectPlatform, openTrokachaApp } from '@/lib/openInApp';
 import { proTexts, type ProTexts } from '@/lib/pro/texts';
 import { ProIcon } from './ProIcons';
 
@@ -51,6 +54,11 @@ export function ProSession({ children }: { children: ReactNode }) {
   const router = useRouter();
   const verified = !!user?.emailVerified;
   const spaces = useMySpaces(user && verified ? user.uid : null);
+  // Mise en ligne anticipée (15/11) : seuls les espaces pilotes s'ouvrent ici, comme sur le serveur.
+  const pilot = useProPilotes(user && verified ? user.uid : null);
+  const usable = useMemo(() => usableProSpaces(spaces.rows), [spaces.rows]);
+  const porte = porteDuBureau({ spaces: usable, spacesReady: spaces.status !== 'loading', pilotes: pilot.pilotes, pilotesError: pilot.error });
+  const ouverts = useMemo(() => espacesOuverts(usable, pilot.pilotes ?? new Set<string>()), [usable, pilot.pilotes]);
 
   useEffect(() => {
     if (ready && !user) router.replace({ pathname: '/connexion', query: { next: pathname } });
@@ -61,8 +69,8 @@ export function ProSession({ children }: { children: ReactNode }) {
       user
         ? {
             user,
-            spaces: usableProSpaces(spaces.rows),
-            spacesStatus: spaces.status,
+            spaces: ouverts,
+            spacesStatus: porte === 'attente' ? 'loading' : spaces.status,
             texts,
             signOutNow: async () => {
               await signOut(clientAuth());
@@ -70,7 +78,7 @@ export function ProSession({ children }: { children: ReactNode }) {
             },
           }
         : null,
-    [user, spaces.rows, spaces.status, texts, router],
+    [user, ouverts, porte, spaces.status, texts, router],
   );
 
   if (!ready || !user || !value) {
@@ -103,5 +111,50 @@ export function ProSession({ children }: { children: ReactNode }) {
     );
   }
 
+  if (porte === 'ferme') return <ProClosed texts={texts} onSignOut={() => void value.signOutNow()} />;
+
   return <ProSessionContext.Provider value={value}>{children}</ProSessionContext.Provider>;
+}
+
+/** Compte dont aucun espace n'est encore pilote : une page calme, sans erreur. */
+function ProClosed({ texts, onSignOut }: { texts: ProTexts; onSignOut: () => void }) {
+  const mobile = typeof window !== 'undefined' && detectPlatform() !== 'other';
+  return (
+    <div dir={texts.dir} className="min-h-screen bg-paper">
+      <ProCentered>
+        <div className="max-w-md" data-testid="pro-closed">
+          <h1 className="font-display text-[24px] font-bold text-ink">{texts.t('gate.closedTitle')}</h1>
+          <p className="mt-3 text-[16px] leading-6 text-inkSoft">{texts.t('gate.closedBody')}</p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            {mobile ? (
+              <button
+                type="button"
+                onClick={() => openTrokachaApp('boutique')}
+                className="inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-[15px] font-semibold text-white hover:opacity-90"
+              >
+                {texts.t('gate.openApp')}
+              </button>
+            ) : (
+              <>
+                <a href={APP_STORE_URL} target="_blank" rel="noreferrer" className="rounded-full border border-line px-4 py-2 text-[15px] font-semibold text-ink hover:bg-paperHard">
+                  App Store
+                </a>
+                <a href={PLAY_STORE_URL} target="_blank" rel="noreferrer" className="rounded-full border border-line px-4 py-2 text-[15px] font-semibold text-ink hover:bg-paperHard">
+                  Google Play
+                </a>
+              </>
+            )}
+            <button
+              type="button"
+              onClick={onSignOut}
+              className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-[15px] font-semibold text-ink hover:bg-paperHard"
+            >
+              <ProIcon name="logout" size={18} />
+              {texts.t('common.signOut')}
+            </button>
+          </div>
+        </div>
+      </ProCentered>
+    </div>
+  );
 }

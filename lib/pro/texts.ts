@@ -12,6 +12,7 @@ import { addDays } from '@/lib/pro-core';
 import { groupDigits } from './shared/format';
 
 import { agencyTexts } from './texts/agency';
+import { gateTexts } from './texts/gate';
 import { sharedTexts } from './texts/shared';
 import { shopTexts } from './texts/shop';
 
@@ -303,7 +304,7 @@ const ar: Dict = {
 
 // Textes par volet (`./texts/*.ts`, un fichier par chantier : agence, boutique,
 // commun) ajoutés à la base ; une clé de volet ne doit pas reprendre une clé de base.
-const AREAS = [agencyTexts, shopTexts, sharedTexts] as const;
+const AREAS = [agencyTexts, shopTexts, sharedTexts, gateTexts] as const;
 const withAreas = (locale: ProLocale, base: Dict): Dict => Object.assign({}, base, ...AREAS.map((a) => a[locale]));
 
 const DICTS: Record<ProLocale, Dict> = { fr: withAreas('fr', fr), en: withAreas('en', en), ar: withAreas('ar', ar) };
