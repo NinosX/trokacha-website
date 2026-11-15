@@ -25,9 +25,6 @@ const frWeb: Dict = {
   'ag.web.replyInApp': 'Répondre dans l’application',
   'ag.web.replyNote': 'Pour accepter ou refuser, ouvrez la demande dans l’application Trokacha : vous y voyez le calendrier et le dossier, puis vous confirmez.',
   'ag.web.openRequest': 'Voir la demande',
-  'ag.web.requestOn': 'Demande sur Trokacha',
-  'ag.web.amount': '{{amount}} proposés',
-  'ag.web.offTrokachaTitle': 'Notée hors Trokacha',
   'ag.web.loadingBooking': 'Chargement de la réservation…',
 };
 
@@ -40,9 +37,6 @@ const enWeb: Dict = {
   'ag.web.replyInApp': 'Reply in the app',
   'ag.web.replyNote': 'To accept or decline, open the request in the Trokacha app: you see the calendar and the documents, then you confirm.',
   'ag.web.openRequest': 'See the request',
-  'ag.web.requestOn': 'Request on Trokacha',
-  'ag.web.amount': '{{amount}} offered',
-  'ag.web.offTrokachaTitle': 'Noted outside Trokacha',
   'ag.web.loadingBooking': 'Loading the booking…',
 };
 
@@ -55,9 +49,6 @@ const arWeb: Dict = {
   'ag.web.replyInApp': 'الرد في التطبيق',
   'ag.web.replyNote': 'للقبول أو الرفض، افتح الطلب في تطبيق تروكاشا: ترى فيه التقويم والملف، ثم تؤكّد.',
   'ag.web.openRequest': 'عرض الطلب',
-  'ag.web.requestOn': 'طلب على تروكاشا',
-  'ag.web.amount': '{{amount}} مقترحة',
-  'ag.web.offTrokachaTitle': 'مسجّل خارج تروكاشا',
   'ag.web.loadingBooking': 'جارٍ تحميل الحجز…',
 };
 
