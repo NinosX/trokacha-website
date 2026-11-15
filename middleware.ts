@@ -48,5 +48,7 @@ export default function middleware(request: NextRequest) {
 
 export const config = {
   // Match all pathnames except for API routes, static files, etc.
-  matcher: ['/', '/(fr|en|ar|kab)/:path*', '/((?!api|_next|_vercel|.*\\..*).*)']
+  // `__` exclu : `/__/auth/*` et `/__/firebase/*` (connexion Google) sont
+  // relayés vers Firebase par next.config.js, sans passer par les langues.
+  matcher: ['/', '/(fr|en|ar|kab)/:path*', '/((?!api|_next|_vercel|__|.*\\..*).*)']
 };

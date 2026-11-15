@@ -5,13 +5,20 @@
 // Firestore cherchait alors un projet inexistant, la page d'annonce partagée
 // restait sur « Chargement… » et son aperçu affichait « Annonce Trokacha ».
 // D'où le trim, qui protège aussi d'une prochaine saisie avec espaces.
+//
+// Mode « émulateurs locaux » (`./firebaseEmulators`, `next dev` + variable) :
+// projet `demo-…` aux identifiants factices, jamais la production.
+import { FIREBASE_EMULATORS, emulatorFirebaseConfig } from './firebaseEmulators';
+
 const clean = (value: string | undefined) => value?.trim() || undefined;
 
-export const firebaseConfig = {
-  apiKey: clean(process.env.NEXT_PUBLIC_FIREBASE_API_KEY),
-  authDomain: clean(process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN),
-  projectId: clean(process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID),
-  storageBucket: clean(process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET),
-  messagingSenderId: clean(process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID),
-  appId: clean(process.env.NEXT_PUBLIC_FIREBASE_APP_ID),
-};
+export const firebaseConfig = FIREBASE_EMULATORS
+  ? emulatorFirebaseConfig(FIREBASE_EMULATORS)
+  : {
+      apiKey: clean(process.env.NEXT_PUBLIC_FIREBASE_API_KEY),
+      authDomain: clean(process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN),
+      projectId: clean(process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID),
+      storageBucket: clean(process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET),
+      messagingSenderId: clean(process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID),
+      appId: clean(process.env.NEXT_PUBLIC_FIREBASE_APP_ID),
+    };

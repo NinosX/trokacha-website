@@ -74,7 +74,32 @@ const nextConfig = {
           },
         ],
       },
+      {
+        // Connexion Google relayée par le site (/__/auth/*, voir rewrites) :
+        // Firebase charge /__/auth/iframe dans une iframe de la MÊME origine.
+        // DENY (règle ci-dessus) la casserait ; la dernière règle l'emporte.
+        source: '/__/:path*',
+        headers: [{ key: 'X-Frame-Options', value: 'SAMEORIGIN' }],
+      },
     ];
+  },
+
+  // Connexion Google sur trokacha.com (bureau des pros) : le gestionnaire de
+  // connexion de Firebase est servi depuis le domaine du site, comme le
+  // recommande Firebase pour les navigateurs qui bloquent le stockage tiers
+  // (Safari, Chrome mobile). N'a d'effet qu'une fois `authDomain` passé à
+  // trokacha.com côté Vercel (étapes : admin/REFONTE_2026-10/PROS_2026-11/
+  // WEB_LIVRAISON_NOTES.md). Sans identifiant de projet, aucune réécriture.
+  async rewrites() {
+    const projectId = (process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || '').trim();
+    if (!/^[a-z0-9-]{4,40}$/.test(projectId) || projectId.startsWith('demo-')) return [];
+    const origin = `https://${projectId}.firebaseapp.com`;
+    return {
+      beforeFiles: [
+        { source: '/__/auth/:path*', destination: `${origin}/__/auth/:path*` },
+        { source: '/__/firebase/:path*', destination: `${origin}/__/firebase/:path*` },
+      ],
+    };
   },
 };
 
