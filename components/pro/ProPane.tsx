@@ -10,6 +10,8 @@ import { isProPaneId } from '@/lib/pro/space';
 import { PANE_LABEL, useProDesk } from './ProDeskShell';
 import { useProSession } from './ProSession';
 import { ProTodayPane } from './ProTodayPane';
+import { AgencyPlanningPane } from './agency/AgencyPlanningPane';
+import { AgencyRequestsPane } from './agency/AgencyRequestsPane';
 
 export function ProPaneTitle({ title, children }: { title: string; children?: React.ReactNode }) {
   return (
@@ -32,5 +34,7 @@ export function ProPane({ pane }: { pane: string }) {
 
   if (!allowed || !isProPaneId(pane)) return null;
   if (pane === 'aujourdhui') return <ProTodayPane />;
+  if (pane === 'planning') return <AgencyPlanningPane />;
+  if (pane === 'demandes') return <AgencyRequestsPane />;
   return <ProPaneTitle title={texts.t(PANE_LABEL[pane])} />;
 }
