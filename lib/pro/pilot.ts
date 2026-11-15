@@ -21,7 +21,7 @@ export function espacesOuverts(spaces: readonly ProSpace[], pilotes: ReadonlySet
   return spaces.filter((s) => pilotes.has(s.id));
 }
 
-export type PorteBureau = 'attente' | 'ouvert' | 'ferme';
+export type PorteBureau = 'attente' | 'ouvert' | 'ferme' | 'erreur';
 
 /**
  * Ce que montre le bureau : en attente tant que les espaces ou la liste ne sont pas lus ;
@@ -30,14 +30,20 @@ export type PorteBureau = 'attente' | 'ouvert' | 'ferme';
  * à ouvrir sa boutique (`desk.noSpaceBody`) promettait un outil qu'il n'aurait pas
  * (relecture de Main, 15/11, S4). À l'ouverture à tous les pros, rendre une valeur
  * « aucun espace » ici et laisser la page `/pro` montrer l'invitation.
+ * Lecture des espaces du compte en échec : « erreur » (message et « Réessayer »), jamais
+ * « pas encore ouvert », qui mentirait à un pilote (relecture 2 de Main, SM2). Le bureau
+ * reste fermé dans les deux cas.
  */
 export function porteDuBureau(input: {
   spaces: readonly ProSpace[];
   spacesReady: boolean;
+  /** La lecture des espaces du compte a échoué. */
+  spacesError?: boolean;
   pilotes: ReadonlySet<string> | null;
   pilotesError: boolean;
 }): PorteBureau {
   if (!input.spacesReady) return 'attente';
+  if (input.spacesError) return 'erreur';
   if (input.spaces.length === 0) return 'ferme';
   if (input.pilotesError) return 'ferme';
   if (!input.pilotes) return 'attente';

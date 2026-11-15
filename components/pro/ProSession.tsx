@@ -57,7 +57,13 @@ export function ProSession({ children }: { children: ReactNode }) {
   // Mise en ligne anticipée (15/11) : seuls les espaces pilotes s'ouvrent ici, comme sur le serveur.
   const pilot = useProPilotes(user && verified ? user.uid : null);
   const usable = useMemo(() => usableProSpaces(spaces.rows), [spaces.rows]);
-  const porte = porteDuBureau({ spaces: usable, spacesReady: spaces.status !== 'loading', pilotes: pilot.pilotes, pilotesError: pilot.error });
+  const porte = porteDuBureau({
+    spaces: usable,
+    spacesReady: spaces.status !== 'loading',
+    spacesError: spaces.status === 'error',
+    pilotes: pilot.pilotes,
+    pilotesError: pilot.error,
+  });
   const ouverts = useMemo(() => espacesOuverts(usable, pilot.pilotes ?? new Set<string>()), [usable, pilot.pilotes]);
 
   useEffect(() => {
@@ -111,9 +117,45 @@ export function ProSession({ children }: { children: ReactNode }) {
     );
   }
 
+  if (porte === 'erreur') return <ProReadError texts={texts} onSignOut={() => void value.signOutNow()} />;
   if (porte === 'ferme') return <ProClosed texts={texts} onSignOut={() => void value.signOutNow()} />;
 
   return <ProSessionContext.Provider value={value}>{children}</ProSessionContext.Provider>;
+}
+
+/**
+ * Lecture des espaces du compte en échec (réseau, règles) : on le dit et on propose de réessayer
+ * (relecture 2 de Main, SM2). Recharger la page relance toutes les écoutes du bureau.
+ */
+function ProReadError({ texts, onSignOut }: { texts: ProTexts; onSignOut: () => void }) {
+  return (
+    <div dir={texts.dir} className="min-h-screen bg-paper">
+      <ProCentered>
+        <div className="max-w-md" data-testid="pro-read-error">
+          <h1 className="font-display text-[24px] font-bold text-ink">{texts.t('gate.errorTitle')}</h1>
+          <p className="mt-3 text-[16px] leading-6 text-inkSoft">{texts.t('gate.errorBody')}</p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => window.location.reload()}
+              className="inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-[15px] font-semibold text-white hover:opacity-90"
+              data-testid="pro-read-error-retry"
+            >
+              {texts.t('common.retry')}
+            </button>
+            <button
+              type="button"
+              onClick={onSignOut}
+              className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 text-[15px] font-semibold text-ink hover:bg-paperHard"
+            >
+              <ProIcon name="logout" size={18} />
+              {texts.t('common.signOut')}
+            </button>
+          </div>
+        </div>
+      </ProCentered>
+    </div>
+  );
 }
 
 /** Compte dont aucun espace n'est encore pilote : une page calme, sans erreur. */

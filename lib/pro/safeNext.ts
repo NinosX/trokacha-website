@@ -25,6 +25,8 @@ export function safeNext(raw: string | null | undefined, origin: string): string
     return DEFAUT;
   }
   if (url.origin !== base.origin) return DEFAUT;
+  // Relecture 2 de Main (SM5) : jamais de segment vide (`/pro//x`, `/pro/b1//evil.example`).
+  if (url.pathname.includes('//')) return DEFAUT;
   const m = BUREAU.exec(url.pathname);
   if (!m) return DEFAUT;
   return m[1] + url.search;

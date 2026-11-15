@@ -11,6 +11,8 @@ const fr: Dict = {
   'gate.closedBody': 'En attendant, tout se fait dans l’application Trokacha.',
   'gate.openApp': 'Ouvrir l’application',
   'gate.checking': 'Vérification de votre compte…',
+  'gate.errorTitle': 'Impossible de lire votre compte pour le moment',
+  'gate.errorBody': 'Vérifiez votre connexion, puis réessayez.',
   'signin.error.noAccount': 'Créez d’abord votre compte dans l’application Trokacha.',
 };
 
@@ -19,6 +21,8 @@ const en: Dict = {
   'gate.closedBody': 'In the meantime, everything is done in the Trokacha app.',
   'gate.openApp': 'Open the app',
   'gate.checking': 'Checking your account…',
+  'gate.errorTitle': 'Your account cannot be read right now',
+  'gate.errorBody': 'Check your connection, then try again.',
   'signin.error.noAccount': 'Create your account in the Trokacha app first.',
 };
 
@@ -27,6 +31,8 @@ const ar: Dict = {
   'gate.closedBody': 'في الأثناء، كل شيء يتم من تطبيق تروكاشا.',
   'gate.openApp': 'افتح التطبيق',
   'gate.checking': 'جارٍ التحقق من حسابك…',
+  'gate.errorTitle': 'تعذّرت قراءة حسابك حاليًا',
+  'gate.errorBody': 'تحقّق من الاتصال ثم أعد المحاولة.',
   'signin.error.noAccount': 'أنشئ حسابك أولا في تطبيق تروكاشا.',
 };
 

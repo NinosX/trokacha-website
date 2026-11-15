@@ -2,7 +2,8 @@
 // scripts/test-pro-site-safety.cjs
 // =============================================================================
 // Relecture du site par Main (15/11) : robots (S1), retour après connexion (S2),
-// porte du bureau pendant le pilote (S4), taille de l'import (S8).
+// porte du bureau pendant le pilote (S4), taille de l'import (S8) ; relecture 2 :
+// lecture des espaces en échec (SM2), cas de retour en plus (SM5).
 //   node scripts/test-pro-site-safety.cjs
 // =============================================================================
 
@@ -83,9 +84,24 @@ test('S2 retour après connexion : chemin du bureau seulement, jamais une autre 
     '/proposal/x',
     '/prox',
     '/connexion',
+    // Relecture 2 de Main (15/11, SM5).
+    '/pro/..//evil.example',
+    '/pro/%2e%2e//evil',
+    '/pro@evil.example',
+    '/pro ',
+    '/%5C',
+    '/%252F',
+    '/pro//x',
+    '/pro/b1//evil.example',
   ]) {
     assert.equal(safeNext(bad, O), '/pro', `refusé : ${JSON.stringify(bad)}`);
   }
+  // Préfixes de langue du site (ar, fr, en, kab) : retirés, le routeur les remet.
+  for (const locale of ['en', 'kab', 'ar', 'fr']) {
+    assert.equal(safeNext(`/${locale}/pro`, O), '/pro', `langue ${locale}`);
+    assert.equal(safeNext(`/${locale}/pro/b1/caisse`, O), '/pro/b1/caisse', `langue ${locale}, sous-page`);
+  }
+  assert.equal(safeNext('/de/pro', O), '/pro');
 });
 
 test('S4 pendant le pilote : un compte sans boutique voit « pas encore ouvert »', () => {
@@ -93,6 +109,24 @@ test('S4 pendant le pilote : un compte sans boutique voit « pas encore ouvert �
   assert.equal(porteDuBureau({ spaces: [], spacesReady: true, pilotes: new Set(['b1']), pilotesError: false }), 'ferme');
   assert.equal(porteDuBureau({ spaces: [], spacesReady: true, pilotes: null, pilotesError: false }), 'ferme');
   assert.equal(porteDuBureau({ spaces: [], spacesReady: false, pilotes: null, pilotesError: false }), 'attente');
+});
+
+test('SM2 : lecture des espaces en échec, une erreur avec « Réessayer », jamais « pas encore ouvert »', () => {
+  const { porteDuBureau } = require('../lib/pro/pilot.ts');
+  const base = { spaces: [], spacesReady: true, spacesError: true, pilotes: new Set(['b1']), pilotesError: false };
+  assert.equal(porteDuBureau(base), 'erreur');
+  assert.equal(porteDuBureau({ ...base, pilotes: null }), 'erreur');
+  assert.equal(porteDuBureau({ ...base, spacesReady: false }), 'attente');
+  assert.equal(porteDuBureau({ ...base, spacesError: false }), 'ferme');
+  const { proTexts } = require('../lib/pro/texts.ts');
+  for (const locale of ['fr', 'en', 'ar']) {
+    const t = proTexts(locale).t;
+    for (const key of ['gate.errorTitle', 'gate.errorBody', 'common.retry']) {
+      const v = t(key);
+      assert.ok(v && v !== key, `${locale} ${key}`);
+      assert.ok(!/[\u2013\u2014]/.test(v), `tiret long : ${locale} ${key}`);
+    }
+  }
 });
 
 test('S8 import : 2 Mo et 5 000 lignes au plus, message clair dans les trois langues', () => {
@@ -114,4 +148,4 @@ test('S8 import : 2 Mo et 5 000 lignes au plus, message clair dans les trois lan
   }
 });
 
-console.log(`test-pro-site-safety : ${passed}/4 réussis`);
+console.log(`test-pro-site-safety : ${passed}/5 réussis`);
