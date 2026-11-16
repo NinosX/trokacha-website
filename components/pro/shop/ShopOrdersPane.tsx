@@ -23,7 +23,7 @@ import type { Etape, MoyenPaiement, Operation } from '@/lib/pro-core';
 import { useOpenOps } from '@/lib/pro/hooks';
 import { articlePrice, hasVariants, isSaleArticle, isSettledOrder, parseAmount, variantChipLabel, variantColors, variantStocks, type ShopArticle } from '@/lib/pro/shop/catalogue';
 import { useShopCatalogue, useShopOffers } from '@/lib/pro/shop/hooks';
-import { hoursLeft, needsSizeChoice, offerPriceLine, outsideSalesOf, saleActionsOf, type SaleAction, type ShopOffer } from '@/lib/pro/shop/orders';
+import { hoursLeft, needsSizeChoice, offerPriceLine, orderGone, outsideSalesOf, saleActionsOf, type SaleAction, type ShopOffer } from '@/lib/pro/shop/orders';
 import { assignVariant, recordPayment, saleStep, settleOrder, shopErrorKey } from '@/lib/pro/shop/writes';
 import { shortClientName } from '@/lib/pro/today';
 import type { ProTexts } from '@/lib/pro/texts';
@@ -445,8 +445,12 @@ function SizeDialog({ bid, op, article, busy, onClose, run }: { bid: string; op:
           <ShopButton tone="outline" onClick={onClose}>
             {x.t('boutique.cat.cancel')}
           </ShopButton>
-          <ShopButton busy={busy} disabled={!chosen} onClick={() => chosen && void run(op, () => assignVariant(bid, op.id, chosen), x.t('boutique.orders.chooseSizeDone', { label }))}>
-            {x.t('boutique.orders.chooseSizeConfirm')}
+          <ShopButton
+            busy={busy}
+            disabled={!chosen}
+            onClick={() => chosen && void run(op, () => assignVariant(bid, op.id, chosen), x.t(orderGone(op) ? 'boutique.orders.chooseSizeGoneDone' : 'boutique.orders.chooseSizeDone', { label }))}
+          >
+            {x.t(orderGone(op) ? 'boutique.orders.chooseSizeGone' : 'boutique.orders.chooseSizeConfirm')}
           </ShopButton>
         </>
       }

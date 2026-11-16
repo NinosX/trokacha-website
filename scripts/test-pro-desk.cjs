@@ -304,6 +304,14 @@ test('relecture 8 de Main (I8-1) : « Pièce déjà partie », textes dans les t
     }
   }
   assert.equal(proTexts('fr').t('boutique.orders.settleOrder'), 'Pièce déjà partie');
+  assert.equal(proTexts('fr').t('boutique.orders.chooseSizeGoneDone', { label: 'M' }), 'Taille M retirée du stock');
+  const { needsSizeChoice, orderGone } = require('../lib/pro/shop/orders.ts');
+  const op = { id: 'm_x', type: 'vente', statut: 'vendue', itemId: 'robe', proposalId: 'p-1', variante: null };
+  assert.equal(needsSizeChoice(op, () => true), true);
+  assert.equal(needsSizeChoice({ ...op, statut: 'livree' }, () => true), true);
+  assert.equal(needsSizeChoice({ ...op, statut: 'annulee' }, () => true), false);
+  assert.equal(orderGone(op), true);
+  assert.equal(orderGone({ statut: 'mise_de_cote' }), false);
 });
 
 console.log(`Bureau pro : ${passed} tests verts.`);
