@@ -146,15 +146,9 @@ export function hoursLeft(expiresAt: number | null, now: number): number | null 
 // CARNET : TAILLE À CHOISIR, VENTES HORS TROKACHA
 // =============================================================================
 
-/** La commande est conclue : sa pièce est partie (« Cette taille est partie », pas « mettre de côté »). */
-export function orderGone(op: Pick<Operation, 'statut'>): boolean {
-  return op.statut === 'vendue' || op.statut === 'livree';
-}
-
 /**
  * Commande Trokacha recopiée au carnet dont la taille reste à choisir (article à variantes). Relecture 7
- * de Main (m7-3) : jamais pour une commande soldée (`settled`), le serveur la refuse. Relecture 8 (I8-1) :
- * une commande conclue (`vendue`, `livree`) sans taille la demande AUSSI, sinon sa pièce resterait réservée.
+ * de Main (m7-3) : jamais pour une commande soldée au passage aux tailles (`settled`), le serveur la refuse.
  */
 export function needsSizeChoice(op: Operation, hasVariants: (itemId: string) => boolean, settled?: (op: Operation) => boolean): boolean {
   return (
@@ -164,6 +158,8 @@ export function needsSizeChoice(op: Operation, hasVariants: (itemId: string) => 
     !op.variante &&
     op.statut !== 'annulee' &&
     op.statut !== 'retournee' &&
+    op.statut !== 'livree' &&
+    op.statut !== 'vendue' &&
     hasVariants(op.itemId)
   );
 }

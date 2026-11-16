@@ -296,22 +296,4 @@ test('relecture 7 de Main (m7-3) : commande soldée au passage aux tailles, pas 
   }
 });
 
-test('relecture 8 de Main (I8-1) : « Pièce déjà partie », textes dans les trois langues', () => {
-  for (const key of ['boutique.orders.settleOrder', 'boutique.orders.settleOrderNote', 'boutique.orders.settleOrderDone']) {
-    for (const locale of ['fr', 'en', 'ar']) {
-      const text = proTexts(locale).t(key);
-      assert.ok(text.trim() !== '' && !text.includes(key) && !/[\u2013\u2014]/.test(text), `${locale} ${key}`);
-    }
-  }
-  assert.equal(proTexts('fr').t('boutique.orders.settleOrder'), 'Pièce déjà partie');
-  assert.equal(proTexts('fr').t('boutique.orders.chooseSizeGoneDone', { label: 'M' }), 'Taille M retirée du stock');
-  const { needsSizeChoice, orderGone } = require('../lib/pro/shop/orders.ts');
-  const op = { id: 'm_x', type: 'vente', statut: 'vendue', itemId: 'robe', proposalId: 'p-1', variante: null };
-  assert.equal(needsSizeChoice(op, () => true), true);
-  assert.equal(needsSizeChoice({ ...op, statut: 'livree' }, () => true), true);
-  assert.equal(needsSizeChoice({ ...op, statut: 'annulee' }, () => true), false);
-  assert.equal(orderGone(op), true);
-  assert.equal(orderGone({ statut: 'mise_de_cote' }), false);
-});
-
 console.log(`Bureau pro : ${passed} tests verts.`);

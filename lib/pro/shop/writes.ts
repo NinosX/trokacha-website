@@ -102,14 +102,6 @@ export function assignVariant(bid: string, opId: string, variante: string): Prom
   return callPro('proAssignVariant', { bid, opId, variante });
 }
 
-/**
- * Relecture 8 de Main (I8-1) : « Pièce déjà partie ». Commande Trokacha sans taille soldée sans toucher
- * au stock (le pro a déjà refait le compte) ; aucun recomptage ne le fait de lui-même.
- */
-export function settleOrder(bid: string, opId: string): Promise<Record<string, unknown>> {
-  return callPro('proAssignVariant', { bid, opId, dejaPartie: true });
-}
-
 /** Étape d'une vente (version lue à l'écran : un écart refuse au lieu d'écraser). */
 export function saleStep(bid: string, input: { opId: string; etape: Etape; version: number; suivi?: string | null }): Promise<Record<string, unknown>> {
   const data: Record<string, unknown> = { bid, opId: input.opId, etape: input.etape, version: input.version };
