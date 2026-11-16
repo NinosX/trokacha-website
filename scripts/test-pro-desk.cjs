@@ -275,4 +275,25 @@ test('modifier un article : titre, promotion posée sous le prix actuel, retiré
   assert.ok(!/application/.test(proTexts('fr').t('boutique.cat.promoNote')));
 });
 
+test('relecture 7 de Main (m7-3) : commande soldée au passage aux tailles, pas de « Choisir la taille »', () => {
+  const { isSettledOrder } = require('../lib/pro/shop/catalogue.ts');
+  const { needsSizeChoice } = require('../lib/pro/shop/orders.ts');
+  const article = { variantesAffectees: { 'p-gone': '@avant', 'p-m': 'm' } };
+  assert.equal(isSettledOrder(article, 'p-gone'), true);
+  assert.equal(isSettledOrder(article, 'p-m'), false);
+  assert.equal(isSettledOrder(article, null), false);
+  assert.equal(isSettledOrder(undefined, 'p-gone'), false);
+  const op = { id: 'm_x', type: 'vente', statut: 'mise_de_cote', itemId: 'robe', proposalId: 'p-gone', variante: null };
+  const sized = () => true;
+  assert.equal(needsSizeChoice(op, sized), true);
+  assert.equal(needsSizeChoice(op, sized, (o) => isSettledOrder(article, o.proposalId)), false);
+  assert.equal(needsSizeChoice({ ...op, proposalId: 'p-open' }, sized, (o) => isSettledOrder(article, o.proposalId)), true);
+  for (const key of ['boutique.err.COMMANDE_SOLDEE', 'ag.errors.COMMANDE_SOLDEE']) {
+    for (const locale of ['fr', 'en', 'ar']) {
+      const text = proTexts(locale).t(key);
+      assert.ok(text.trim() !== '' && !text.includes(key) && !/[\u2013\u2014]/.test(text), `${locale} ${key}`);
+    }
+  }
+});
+
 console.log(`Bureau pro : ${passed} tests verts.`);

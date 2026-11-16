@@ -146,9 +146,13 @@ export function hoursLeft(expiresAt: number | null, now: number): number | null 
 // CARNET : TAILLE À CHOISIR, VENTES HORS TROKACHA
 // =============================================================================
 
-/** Commande Trokacha recopiée au carnet dont la taille reste à choisir (article à variantes). */
-export function needsSizeChoice(op: Operation, hasVariants: (itemId: string) => boolean): boolean {
+/**
+ * Commande Trokacha recopiée au carnet dont la taille reste à choisir (article à variantes). Relecture 7
+ * de Main (m7-3) : jamais pour une commande soldée au passage aux tailles (`settled`), le serveur la refuse.
+ */
+export function needsSizeChoice(op: Operation, hasVariants: (itemId: string) => boolean, settled?: (op: Operation) => boolean): boolean {
   return (
+    !settled?.(op) &&
     op.type === 'vente' &&
     op.id.startsWith('m_') &&
     !op.variante &&

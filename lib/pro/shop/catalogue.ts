@@ -673,3 +673,15 @@ export function planArticleEdit(
   if (Object.keys(edit).length === 0) return { ok: false, reason: 'RIEN_A_CHANGER' };
   return { ok: true, value: edit };
 }
+
+/**
+ * Marque serveur d'une commande Trokacha SOLDÉE au passage aux tailles (`COMMANDE_AVANT_TAILLES`,
+ * `functions/src/pro/stockProjection.ts` de l'application) : sa pièce est déjà partie.
+ */
+export const ORDER_SETTLED_MARK = '@avant';
+
+/** Relecture 7 de Main (m7-3) : la commande de cette proposition est soldée sur cet article. */
+export function isSettledOrder(article: Pick<ShopArticle, 'variantesAffectees'> | null | undefined, proposalId: string | null | undefined): boolean {
+  if (!article || !proposalId) return false;
+  return article.variantesAffectees[proposalId] === ORDER_SETTLED_MARK;
+}

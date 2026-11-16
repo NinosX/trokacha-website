@@ -21,7 +21,7 @@ import { useMemo, useState } from 'react';
 import { Link } from '@/i18n/navigation';
 import type { Etape, MoyenPaiement, Operation } from '@/lib/pro-core';
 import { useOpenOps } from '@/lib/pro/hooks';
-import { articlePrice, hasVariants, isSaleArticle, parseAmount, variantChipLabel, variantColors, variantStocks, type ShopArticle } from '@/lib/pro/shop/catalogue';
+import { articlePrice, hasVariants, isSaleArticle, isSettledOrder, parseAmount, variantChipLabel, variantColors, variantStocks, type ShopArticle } from '@/lib/pro/shop/catalogue';
 import { useShopCatalogue, useShopOffers } from '@/lib/pro/shop/hooks';
 import { hoursLeft, needsSizeChoice, offerPriceLine, outsideSalesOf, saleActionsOf, type SaleAction, type ShopOffer } from '@/lib/pro/shop/orders';
 import { assignVariant, recordPayment, saleStep, shopErrorKey } from '@/lib/pro/shop/writes';
@@ -136,10 +136,14 @@ export function ShopOrdersPane() {
   const sizeOps = useMemo(
     () =>
       ops.rows.filter((op) =>
-        needsSizeChoice(op, (itemId) => {
-          const a = byId.get(itemId);
-          return !!a && hasVariants(a);
-        }),
+        needsSizeChoice(
+          op,
+          (itemId) => {
+            const a = byId.get(itemId);
+            return !!a && hasVariants(a);
+          },
+          (o) => isSettledOrder(byId.get(o.itemId), o.proposalId),
+        ),
       ),
     [ops.rows, byId],
   );
