@@ -7,8 +7,9 @@
 // =============================================================================
 //
 // Le carnet n'est JAMAIS écrit directement depuis le site (règles Firestore :
-// `write: false`) ; ces appels sont sa seule voie, l'écoute du carnet apporte
-// le résultat. Chaque création porte un identifiant fait par l'appelant
+// `write: false`), sauf `prive/reglages` (clé `documents` seule, espace pilote
+// seulement, `lib/pro/shared/hooks.ts`) ; ces appels sont sa seule voie pour
+// tout le reste, l'écoute du carnet apporte le résultat. Chaque création porte un identifiant fait par l'appelant
 // (`op_…`, `pa_…`) : un appel rejoué ne crée jamais de doublon.
 // Refus : `HttpsError` dont `details.reason` porte le code métier en MAJUSCULES
 // (`DATES_PRISES`, `STOCK_INSUFFISANT`…), gardé par `ProCallableError`.
