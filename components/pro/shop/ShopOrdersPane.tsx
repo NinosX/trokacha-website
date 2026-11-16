@@ -24,7 +24,7 @@ import { useOpenOps } from '@/lib/pro/hooks';
 import { articlePrice, hasVariants, isSaleArticle, isSettledOrder, parseAmount, variantChipLabel, variantColors, variantStocks, type ShopArticle } from '@/lib/pro/shop/catalogue';
 import { useShopCatalogue, useShopOffers } from '@/lib/pro/shop/hooks';
 import { hoursLeft, needsSizeChoice, offerPriceLine, outsideSalesOf, saleActionsOf, type SaleAction, type ShopOffer } from '@/lib/pro/shop/orders';
-import { assignVariant, recordPayment, saleStep, shopErrorKey } from '@/lib/pro/shop/writes';
+import { assignVariant, recordPayment, saleStep, settleOrder, shopErrorKey } from '@/lib/pro/shop/writes';
 import { shortClientName } from '@/lib/pro/today';
 import type { ProTexts } from '@/lib/pro/texts';
 import { buildDeskDocument, deskDocuments } from '@/lib/pro/shared/documents';
@@ -460,6 +460,12 @@ function SizeDialog({ bid, op, article, busy, onClose, run }: { bid: string; op:
       ) : (
         <p className="text-[15px] text-danger">{x.t('boutique.orders.sizeNoStock')}</p>
       )}
+      <div className="mt-4 flex flex-col items-start gap-2 border-t border-line pt-4">
+        <p className="text-[14px] text-inkSoft">{x.t('boutique.orders.settleOrderNote')}</p>
+        <ShopButton tone="outline" busy={busy} onClick={() => void run(op, () => settleOrder(bid, op.id), x.t('boutique.orders.settleOrderDone'))}>
+          {x.t('boutique.orders.settleOrder')}
+        </ShopButton>
+      </div>
     </ShopDialog>
   );
 }
