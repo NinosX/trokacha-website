@@ -1,6 +1,7 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextResponse, type NextRequest } from 'next/server';
 import { routing, isLocale, LOCALE_COOKIE } from './i18n/routing';
+import { STORE_LINK_PATH, storeUrlFor } from './lib/storeRedirect';
 
 const handleI18nRouting = createMiddleware(routing);
 
@@ -12,6 +13,17 @@ const LANG_PARAM = 'lang';
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const firstSegment = pathname.split('/')[1];
+
+  // 0. Lien court de téléchargement (publicités, bios, QR codes) : `/app`
+  //    n'affiche aucune page, il envoie droit au store de l'appareil.
+  //    Ordinateur ou robot : accueil du site, où sont les deux boutons.
+  //    Jamais mis en cache : la réponse dépend de l'appareil.
+  if (pathname === STORE_LINK_PATH) {
+    const store = storeUrlFor(request.headers.get('user-agent') ?? '', request.nextUrl.searchParams);
+    const response = NextResponse.redirect(store ?? new URL('/', request.url), 307);
+    response.headers.set('Cache-Control', 'no-store');
+    return response;
+  }
 
   // 1. Anciennes URLs `/ar/x` (l'arabe était préfixé quand le français était
   //    la langue par défaut) → `/x`, en PERMANENT (308) pour que Google et les
