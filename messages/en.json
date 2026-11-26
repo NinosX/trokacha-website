@@ -275,7 +275,7 @@
   },
   "privacy": {
     "title": "Privacy Policy",
-    "lastUpdate": "Last updated: February 2026",
+    "lastUpdate": "Last updated: November 2026",
     "intro": "In accordance with Law 18-07 of June 10, 2018 relating to the protection of natural persons in the processing of personal data, amended by Law 11-25 of July 2025, Trokacha is committed to protecting the personal data of its users.",
     "backHome": "Back to home",
     "articles": {
@@ -365,7 +365,7 @@
         },
         "s3": {
           "title": "4.3 – Analytics Services",
-          "content": "If analytics tools are enabled (Firebase Analytics or similar), the data collected is anonymized and used solely to improve the user experience. The user can opt out of this collection in the application settings."
+          "content": "The app counts some usage steps anonymously (opening the app, sign-up steps, install source), with no identifier and no link to an account. These figures are used only to improve the app."
         }
       },
       "a5": {

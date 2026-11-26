@@ -275,7 +275,7 @@
   },
   "privacy": {
     "title": "Politique de Confidentialité",
-    "lastUpdate": "Dernière mise à jour : Février 2026",
+    "lastUpdate": "Dernière mise à jour : Novembre 2026",
     "intro": "Conformément à la Loi 18-07 du 10 juin 2018 relative à la protection des personnes physiques dans le traitement des données à caractère personnel, modifiée par la Loi 11-25 de juillet 2025, Trokacha s'engage à protéger les données personnelles de ses utilisateurs.",
     "backHome": "Retour à l'accueil",
     "articles": {
@@ -365,7 +365,7 @@
         },
         "s3": {
           "title": "4.3 – Services d'analyse",
-          "content": "Si des outils d'analyse sont activés (Firebase Analytics ou similaire), les données collectées sont anonymisées et utilisées uniquement dans le but d'améliorer l'expérience utilisateur. L'utilisateur peut s'opposer à cette collecte dans les paramètres de l'application."
+          "content": "L'application compte de façon anonyme certaines étapes d'utilisation (ouverture de l'application, étapes de l'inscription, origine de l'installation), sans identifiant et sans lien avec un compte. Ces chiffres servent uniquement à améliorer l'application."
         }
       },
       "a5": {
